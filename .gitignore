@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.class
 
 # Package Files #
@@ -7,3 +8,25 @@
 /lint.xml
 /bin
 /gen
+=======
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Eclipse project files
+.classpath
+.project
+>>>>>>> 6e4b8a40d007c6786be65184835662128756adb5

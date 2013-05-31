@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 android-app
 ===========
 
@@ -110,3 +111,9 @@ AndroidManifest.xml注册的启动界面为"AppStart"，具体文件为net.oschi
 **3) 解析数据显示**<br>
 服务得到请求，将返回对应的资讯XML数据，再通过资讯实体类(NewsList)解析XML，返回实体(NewsList)给UI控件(PullToRefreshListView)展示。<br>
 *注：NewsList实体类在net.oschina.app.bean包。*
+=======
+ihelpoo-android
+===============
+
+ihelpoo android
+>>>>>>> 6e4b8a40d007c6786be65184835662128756adb5
