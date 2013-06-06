@@ -67,7 +67,7 @@ import android.widget.TextView;
 
 /**
  * 应用程序首页
- * 
+ *
  * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-21
@@ -231,12 +231,18 @@ public class Main extends BaseActivity {
 		super.onResume();
 		if (mViewCount == 0)
 			mViewCount = 4;
-		if (mCurSel == 0 && !fbNews.isChecked()) {
-			fbNews.setChecked(true);
-			fbQuestion.setChecked(false);
-			fbTweet.setChecked(false);
-			fbactive.setChecked(false);
-		}
+//		if (mCurSel == 0 && !fbNews.isChecked()) {
+//			fbNews.setChecked(true);
+//			fbQuestion.setChecked(false);
+//			fbTweet.setChecked(false);
+//			fbactive.setChecked(false);
+//		}
+        if (mCurSel == 0 && !fbQuestion.isChecked()) {// here it is the default config of first screen!!!
+            fbQuestion.setChecked(true);
+            fbNews.setChecked(false);
+            fbTweet.setChecked(false);
+            fbactive.setChecked(false);
+        }
 		// 读取左右滑动配置
 		mScrollLayout.setIsScroll(appContext.isScroll());
 	}
@@ -285,7 +291,7 @@ public class Main extends BaseActivity {
 					if (curTweetCatalog >= 0 && mCurSel == 2) {
 						loadLvTweetData(curTweetCatalog, 0, lvTweetHandler,UIHelper.LISTVIEW_ACTION_REFRESH);
 					} else if (curActiveCatalog == ActiveList.CATALOG_LASTEST&& mCurSel == 3) {
-						
+
 						loadLvActiveData(curActiveCatalog, 0, lvActiveHandler,UIHelper.LISTVIEW_ACTION_REFRESH);
 					}
 				}
@@ -398,9 +404,9 @@ public class Main extends BaseActivity {
 	 */
 	private void initFrameListView() {
 		// 初始化listview控件
+        this.initQuestionListView();
 		this.initNewsListView();
 		this.initBlogListView();
-		this.initQuestionListView();
 		this.initTweetListView();
 		this.initActiveListView();
 		this.initMsgListView();
@@ -408,32 +414,36 @@ public class Main extends BaseActivity {
 		this.initFrameListViewData();
 	}
 
-	/**
-	 * 初始化所有ListView数据
-	 */
-	private void initFrameListViewData() {
-		// 初始化Handler
-		lvNewsHandler = this.getLvHandler(lvNews, lvNewsAdapter,
-				lvNews_foot_more, lvNews_foot_progress, AppContext.PAGE_SIZE);
-		lvBlogHandler = this.getLvHandler(lvBlog, lvBlogAdapter,
-				lvBlog_foot_more, lvBlog_foot_progress, AppContext.PAGE_SIZE);
-		lvQuestionHandler = this.getLvHandler(lvQuestion, lvQuestionAdapter,
-				lvQuestion_foot_more, lvQuestion_foot_progress,
-				AppContext.PAGE_SIZE);
-		lvTweetHandler = this.getLvHandler(lvTweet, lvTweetAdapter,
-				lvTweet_foot_more, lvTweet_foot_progress, AppContext.PAGE_SIZE);
-		lvActiveHandler = this.getLvHandler(lvActive, lvActiveAdapter,
-				lvActive_foot_more, lvActive_foot_progress,
-				AppContext.PAGE_SIZE);
-		lvMsgHandler = this.getLvHandler(lvMsg, lvMsgAdapter, lvMsg_foot_more,
-				lvMsg_foot_progress, AppContext.PAGE_SIZE);
+    /**
+     * 初始化所有ListView数据
+     */
+    private void initFrameListViewData() {
+        // 初始化Handler
+        lvNewsHandler = this.getLvHandler(lvNews, lvNewsAdapter,
+                lvNews_foot_more, lvNews_foot_progress, AppContext.PAGE_SIZE);
+        lvBlogHandler = this.getLvHandler(lvBlog, lvBlogAdapter,
+                lvBlog_foot_more, lvBlog_foot_progress, AppContext.PAGE_SIZE);
+        lvQuestionHandler = this.getLvHandler(lvQuestion, lvQuestionAdapter,
+                lvQuestion_foot_more, lvQuestion_foot_progress,
+                AppContext.PAGE_SIZE);
+        lvTweetHandler = this.getLvHandler(lvTweet, lvTweetAdapter,
+                lvTweet_foot_more, lvTweet_foot_progress, AppContext.PAGE_SIZE);
+        lvActiveHandler = this.getLvHandler(lvActive, lvActiveAdapter,
+                lvActive_foot_more, lvActive_foot_progress,
+                AppContext.PAGE_SIZE);
+        lvMsgHandler = this.getLvHandler(lvMsg, lvMsgAdapter, lvMsg_foot_more,
+                lvMsg_foot_progress, AppContext.PAGE_SIZE);
 
-		// 加载资讯数据
-		if (lvNewsData.isEmpty()) {
-			loadLvNewsData(curNewsCatalog, 0, lvNewsHandler,
-					UIHelper.LISTVIEW_ACTION_INIT);
-		}
-	}
+        // 加载资讯数据
+//		if (lvNewsData.isEmpty()) {
+//			loadLvNewsData(curNewsCatalog, 0, lvNewsHandler,
+//					UIHelper.LISTVIEW_ACTION_INIT);
+//    }
+
+        if(lvQuestionData.isEmpty()){
+            loadLvQuestionData(curQuestionCatalog, 0,lvQuestionHandler,UIHelper.LISTVIEW_ACTION_INIT);
+        }
+}
 
 	/**
 	 * 初始化新闻列表
@@ -665,21 +675,21 @@ public class Main extends BaseActivity {
 					// 当前pageIndex
 					int pageIndex = lvQuestionSumData / AppContext.PAGE_SIZE;
 					loadLvQuestionData(curQuestionCatalog, pageIndex,lvQuestionHandler, UIHelper.LISTVIEW_ACTION_SCROLL);
-							
+
 				}
 			}
 
 			public void onScroll(AbsListView view, int firstVisibleItem,
 					int visibleItemCount, int totalItemCount) {
 				lvQuestion.onScroll(view, firstVisibleItem, visibleItemCount,totalItemCount);
-						
+
 			}
 		});
 		lvQuestion
 				.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
 					public void onRefresh() {
 						loadLvQuestionData(curQuestionCatalog, 0,lvQuestionHandler,UIHelper.LISTVIEW_ACTION_REFRESH);
-								
+
 					}
 				});
 	}
@@ -712,7 +722,7 @@ public class Main extends BaseActivity {
 					tweet = (Tweet) tv.getTag();
 				}
 				if (tweet == null)
-					return;   			
+					return;
 				// 跳转到动弹详情&评论页面
 				UIHelper.showTweetDetail(view.getContext(), tweet.getId());
 			}
@@ -1090,8 +1100,8 @@ public class Main extends BaseActivity {
 	 * 初始化底部栏
 	 */
 	private void initFootBar() {
+        fbQuestion = (RadioButton) findViewById(R.id.main_footbar_question);
 		fbNews = (RadioButton) findViewById(R.id.main_footbar_news);
-		fbQuestion = (RadioButton) findViewById(R.id.main_footbar_question);
 		fbTweet = (RadioButton) findViewById(R.id.main_footbar_tweet);
 		fbactive = (RadioButton) findViewById(R.id.main_footbar_active);
 
@@ -1160,13 +1170,13 @@ public class Main extends BaseActivity {
 					// 点击当前项刷新
 					if (mCurSel == pos) {
 						switch (pos) {
-						case 0:// 资讯+博客
+						case 1:// 资讯+博客
 							if (lvNews.getVisibility() == View.VISIBLE)
 								lvNews.clickRefresh();
 							else
 								lvBlog.clickRefresh();
 							break;
-						case 1:// 问答
+						case 0:// 问答
 							lvQuestion.clickRefresh();
 							break;
 						case 2:// 动弹
@@ -1194,7 +1204,7 @@ public class Main extends BaseActivity {
 					public void OnViewChange(int viewIndex) {
 						// 切换列表视图-如果列表数据为空：加载数据
 						switch (viewIndex) {
-						case 0:// 资讯
+						case 1:// 资讯
 							if (lvNews.getVisibility() == View.VISIBLE) {
 								if (lvNewsData.isEmpty()) {
 									loadLvNewsData(curNewsCatalog, 0,
@@ -1209,7 +1219,7 @@ public class Main extends BaseActivity {
 								}
 							}
 							break;
-						case 1:// 问答
+						case 0:// 问答
 							if (lvQuestionData.isEmpty()) {
 								loadLvQuestionData(curQuestionCatalog, 0,
 										lvQuestionHandler,
@@ -1272,7 +1282,7 @@ public class Main extends BaseActivity {
 
 	/**
 	 * 设置底部栏当前焦点
-	 * 
+	 *
 	 * @param index
 	 */
 	private void setCurPoint(int index) {
@@ -1288,10 +1298,10 @@ public class Main extends BaseActivity {
 		mHeadPub_post.setVisibility(View.GONE);
 		mHeadPub_tweet.setVisibility(View.GONE);
 		// 头部logo、发帖、发动弹按钮显示
-		if (index == 0) {
+		if (index == 1) {
 			mHeadLogo.setImageResource(R.drawable.frame_logo_news);
 			mHead_search.setVisibility(View.VISIBLE);
-		} else if (index == 1) {
+		} else if (index == 0) {
 			mHeadLogo.setImageResource(R.drawable.frame_logo_post);
 			mHeadPub_post.setVisibility(View.VISIBLE);
 		} else if (index == 2) {
@@ -1561,7 +1571,7 @@ public class Main extends BaseActivity {
 
 	/**
 	 * 获取listview的初始化Handler
-	 * 
+	 *
 	 * @param lv
 	 * @param adapter
 	 * @return
@@ -1630,7 +1640,7 @@ public class Main extends BaseActivity {
 
 	/**
 	 * listview数据处理
-	 * 
+	 *
 	 * @param what
 	 *            数量
 	 * @param obj
@@ -1941,7 +1951,7 @@ public class Main extends BaseActivity {
 
 	/**
 	 * 线程加载新闻数据
-	 * 
+	 *
 	 * @param catalog
 	 *            分类
 	 * @param pageIndex
@@ -1981,7 +1991,7 @@ public class Main extends BaseActivity {
 
 	/**
 	 * 线程加载博客数据
-	 * 
+	 *
 	 * @param catalog
 	 *            分类
 	 * @param pageIndex
@@ -2030,7 +2040,7 @@ public class Main extends BaseActivity {
 
 	/**
 	 * 线程加载帖子数据
-	 * 
+	 *
 	 * @param catalog
 	 *            分类
 	 * @param pageIndex
@@ -2070,7 +2080,7 @@ public class Main extends BaseActivity {
 
 	/**
 	 * 线程加载动弹数据
-	 * 
+	 *
 	 * @param catalog
 	 *            -1 热门，0 最新，大于0 某用户的动弹(uid)
 	 * @param pageIndex
@@ -2110,7 +2120,7 @@ public class Main extends BaseActivity {
 
 	/**
 	 * 线程加载动态数据
-	 * 
+	 *
 	 * @param catalog
 	 * @param pageIndex
 	 *            当前页数
@@ -2146,7 +2156,7 @@ public class Main extends BaseActivity {
 
 	/**
 	 * 线程加载留言数据
-	 * 
+	 *
 	 * @param pageIndex
 	 *            当前页数
 	 * @param handler
@@ -2218,7 +2228,7 @@ public class Main extends BaseActivity {
 
 	/**
 	 * 通知信息处理
-	 * 
+	 *
 	 * @param type
 	 *            1:@我的信息 2:未读消息 3:评论个数 4:新粉丝个数
 	 */

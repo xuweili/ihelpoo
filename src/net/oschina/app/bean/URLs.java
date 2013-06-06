@@ -27,7 +27,7 @@ public class URLs implements Serializable {
 	public final static String LOGIN_VALIDATE_HTTPS = HTTPS + HOST + URL_SPLITTER + "action/api/login_validate";
 	public final static String NEWS_LIST = URL_API_HOST+"action/api/news_list";
 	public final static String NEWS_DETAIL = URL_API_HOST+"action/api/news_detail";
-	public final static String POST_LIST = "http://192.168.1.110:8080/v1/posts.xml";
+	public final static String POST_LIST = "http://192.168.20.63:8080/v1/posts.xml";
 	public final static String POST_DETAIL = URL_API_HOST+"action/api/post_detail";
 	public final static String POST_PUB = URL_API_HOST+"action/api/post_pub";
 	public final static String TWEET_LIST = URL_API_HOST+"action/api/tweet_list";
