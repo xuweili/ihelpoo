@@ -164,7 +164,7 @@ public class QuestionDetail extends BaseActivity {
     	mWebView = (WebView)findViewById(R.id.question_detail_webview);
     	mWebView.getSettings().setSupportZoom(true);
     	mWebView.getSettings().setBuiltInZoomControls(true);
-    	mWebView.getSettings().setDefaultFontSize(15);    	
+    	mWebView.getSettings().setDefaultFontSize(15);
     	UIHelper.addWebImageShow(this, mWebView);
     	
     	mBack.setOnClickListener(UIHelper.finish(this));
