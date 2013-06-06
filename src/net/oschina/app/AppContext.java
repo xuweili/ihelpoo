@@ -1,49 +1,5 @@
 package net.oschina.app;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InvalidClassException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.net.URLEncoder;
-import java.util.Hashtable;
-import java.util.Properties;
-import java.util.UUID;
-
-import net.oschina.app.api.ApiClient;
-import net.oschina.app.bean.ActiveList;
-import net.oschina.app.bean.Blog;
-import net.oschina.app.bean.BlogCommentList;
-import net.oschina.app.bean.BlogList;
-import net.oschina.app.bean.CommentList;
-import net.oschina.app.bean.FavoriteList;
-import net.oschina.app.bean.FriendList;
-import net.oschina.app.bean.MessageList;
-import net.oschina.app.bean.MyInformation;
-import net.oschina.app.bean.News;
-import net.oschina.app.bean.NewsList;
-import net.oschina.app.bean.Notice;
-import net.oschina.app.bean.Post;
-import net.oschina.app.bean.PostList;
-import net.oschina.app.bean.Result;
-import net.oschina.app.bean.SearchList;
-import net.oschina.app.bean.Software;
-import net.oschina.app.bean.SoftwareCatalogList;
-import net.oschina.app.bean.SoftwareList;
-import net.oschina.app.bean.Tweet;
-import net.oschina.app.bean.TweetList;
-import net.oschina.app.bean.User;
-import net.oschina.app.bean.UserInformation;
-import net.oschina.app.common.CyptoUtils;
-import net.oschina.app.common.FileUtils;
-import net.oschina.app.common.ImageUtils;
-import net.oschina.app.common.MethodsCompat;
-import net.oschina.app.common.StringUtils;
-import net.oschina.app.common.UIHelper;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -56,6 +12,15 @@ import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Message;
 import android.webkit.CacheManager;
+import net.oschina.app.api.ApiClient;
+import net.oschina.app.bean.*;
+import net.oschina.app.common.*;
+
+import java.io.*;
+import java.net.URLEncoder;
+import java.util.Hashtable;
+import java.util.Properties;
+import java.util.UUID;
 
 /**
  * 全局应用程序类：用于保存和调用全局应用配置及访问网络数据
@@ -436,15 +401,15 @@ public class AppContext extends Application {
 		}
 		return list;
 	}
-	
-	/**
-	 * 新闻列表
-	 * @param catalog
-	 * @param pageIndex
-	 * @param pageSize
-	 * @return
-	 * @throws ApiException
-	 */
+
+    /**
+     * 新闻列表
+     * @param catalog
+     * @param pageIndex
+     * @param isRefresh
+     * @return
+     * @throws AppException
+     */
 	public NewsList getNewsList(int catalog, int pageIndex, boolean isRefresh) throws AppException {
 		NewsList list = null;
 		String key = "newslist_"+catalog+"_"+pageIndex+"_"+PAGE_SIZE;
@@ -470,13 +435,14 @@ public class AppContext extends Application {
 		}
 		return list;
 	}
-	
-	/**
-	 * 新闻详情
-	 * @param news_id
-	 * @return
-	 * @throws ApiException
-	 */
+
+    /**
+     * 新闻详情
+     * @param news_id
+     * @param isRefresh
+     * @return
+     * @throws AppException
+     */
 	public News getNews(int news_id, boolean isRefresh) throws AppException {		
 		News news = null;
 		String key = "news_"+news_id;
@@ -698,13 +664,14 @@ public class AppContext extends Application {
 		}
 		return list;
 	}
-	
-	/**
-	 * 软件详情
-	 * @param soft_id
-	 * @return
-	 * @throws AppException
-	 */
+
+    /**
+     * 软件详情
+     * @param ident
+     * @param isRefresh
+     * @return
+     * @throws AppException
+     */
 	public Software getSoftware(String ident, boolean isRefresh) throws AppException {
 		Software soft = null;
 		String key = "software_"+(URLEncoder.encode(ident));
@@ -730,14 +697,15 @@ public class AppContext extends Application {
 		}
 		return soft;
 	}
-	
-	/**
-	 * 帖子列表
-	 * @param catalog
-	 * @param pageIndex
-	 * @return
-	 * @throws ApiException
-	 */
+
+    /**
+     * 帖子列表
+     * @param catalog
+     * @param pageIndex
+     * @param isRefresh
+     * @return
+     * @throws AppException
+     */
 	public PostList getPostList(int catalog, int pageIndex, boolean isRefresh) throws AppException {
 		PostList list = null;
 		String key = "postlist_"+catalog+"_"+pageIndex+"_"+PAGE_SIZE;
@@ -763,14 +731,15 @@ public class AppContext extends Application {
 		}
 		return list;
 	}
-	
-	/**
-	 * Tag相关帖子列表
-	 * @param tag
-	 * @param pageIndex
-	 * @return
-	 * @throws ApiException
-	 */
+
+    /**
+     * Tag相关帖子列表
+     * @param tag
+     * @param pageIndex
+     * @param isRefresh
+     * @return
+     * @throws AppException
+     */
 	public PostList getPostListByTag(String tag, int pageIndex, boolean isRefresh) throws AppException {
 		PostList list = null;
 		String key = "postlist_"+(URLEncoder.encode(tag))+"_"+pageIndex+"_"+PAGE_SIZE;
@@ -796,13 +765,14 @@ public class AppContext extends Application {
 		}
 		return list;
 	}
-	
-	/**
-	 * 读取帖子详情
-	 * @param post_id
-	 * @return
-	 * @throws ApiException
-	 */
+
+    /**
+     * 读取帖子详情
+     * @param post_id
+     * @param isRefresh
+     * @return
+     * @throws AppException
+     */
 	public Post getPost(int post_id, boolean isRefresh) throws AppException {		
 		Post post = null;
 		String key = "post_"+post_id;
@@ -893,15 +863,15 @@ public class AppContext extends Application {
 		}
 		return tweet;
 	}
-	
-	/**
-	 * 动态列表
-	 * @param catalog 1最新动态 2@我 3评论 4我自己
-	 * @param id
-	 * @param pageIndex
-	 * @return
-	 * @throws AppException
-	 */
+
+    /**
+     * 动态列表
+     * @param catalog 1最新动态 2@我 3评论 4我自己
+     * @param pageIndex
+     * @param isRefresh
+     * @return
+     * @throws AppException
+     */
 	public ActiveList getActiveList(int catalog, int pageIndex, boolean isRefresh) throws AppException {
 		ActiveList list = null;
 		String key = "activelist_"+loginUid+"_"+catalog+"_"+pageIndex+"_"+PAGE_SIZE;
@@ -1049,10 +1019,10 @@ public class AppContext extends Application {
 	public Result pubPost(Post post) throws AppException {
 		return ApiClient.pubPost(this, post);
 	}
-	
+
 	/**
 	 * 发动弹
-	 * @param Tweet-uid & msg & image
+	 * @param tweet - uid & msg & image
 	 * @return
 	 * @throws AppException
 	 */
@@ -1223,12 +1193,11 @@ public class AppContext extends Application {
 	public Result delFavorite(int uid, int objid, int type) throws AppException { 	
 		return ApiClient.delFavorite(this, uid, objid, type);
 	}
-	
-	/**
-	 * 保存登录信息
-	 * @param username
-	 * @param pwd
-	 */
+
+    /**
+     * 保存登录信息
+     * @param user
+     */
 	public void saveLoginInfo(final User user) {
 		this.loginUid = user.getUid();
 		this.login = true;
@@ -1509,7 +1478,7 @@ public class AppContext extends Application {
 	/**
 	 * 清除缓存目录
 	 * @param dir 目录
-	 * @param numDays 当前系统时间
+	 * @param curTime 当前系统时间
 	 * @return
 	 */
 	private int clearCacheFolder(File dir, long curTime) {          

@@ -157,7 +157,7 @@ public class ApiClient {
 	 * @throws AppException 
 	 */
 	private static InputStream http_get(AppContext appContext, String url) throws AppException {	
-		//System.out.println("get_url==> "+url);
+		System.out.println("get_url==> "+url);
 		String cookie = getCookie(appContext);
 		String userAgent = getUserAgent(appContext);
 		
@@ -170,7 +170,7 @@ public class ApiClient {
 			try 
 			{
 				httpClient = getHttpClient();
-				httpGet = getHttpGet(url, cookie, userAgent);			
+				httpGet = getHttpGet(url, cookie, userAgent);
 				int statusCode = httpClient.executeMethod(httpGet);
 				if (statusCode != HttpStatus.SC_OK) {
 					throw AppException.http(statusCode);
