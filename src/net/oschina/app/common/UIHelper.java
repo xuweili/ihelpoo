@@ -1191,7 +1191,7 @@ public class UIHelper {
 		int start = 0;
 		int end = 0;
 		if (objecttype == 32 && objectcatalog == 0) {
-			title = "加入了开源中国";
+			title = "加入了我帮圈圈";
 		} else if (objecttype == 1 && objectcatalog == 0) {
 			title = "添加了开源项目 " + objecttitle;
 		} else if (objecttype == 2 && objectcatalog == 1) {
@@ -1529,7 +1529,7 @@ public class UIHelper {
 						i.putExtra(Intent.EXTRA_EMAIL,
 								new String[] { "jxsmallmouse@163.com" });
 						i.putExtra(Intent.EXTRA_SUBJECT,
-								"开源中国Android客户端 - 错误报告");
+								"我帮圈圈Android客户端 - 错误报告");
 						i.putExtra(Intent.EXTRA_TEXT, crashReport);
 						cont.startActivity(Intent.createChooser(i, "发送错误报告"));
 						// 退出

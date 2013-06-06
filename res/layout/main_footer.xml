@@ -10,7 +10,7 @@
     <RadioButton
             android:id="@+id/main_footbar_question"
             style="@style/main_footbar_radio"
-            android:drawableTop="@drawable/widget_bar_question"/>
+            android:drawableTop="@drawable/widget_bar_news"/>
 
     <ImageView
             style="@style/main_footbar_cutline"
@@ -19,7 +19,7 @@
     <RadioButton
             android:id="@+id/main_footbar_news"
             style="@style/main_footbar_radio"
-            android:drawableTop="@drawable/widget_bar_news"/>
+            android:drawableTop="@drawable/widget_bar_question"/>
 
     <ImageView
             style="@style/main_footbar_cutline"

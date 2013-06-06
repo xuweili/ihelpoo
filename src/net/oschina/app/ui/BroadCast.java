@@ -83,7 +83,7 @@ public class BroadCast extends BroadcastReceiver {
 		//创建 NotificationManager
 		NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 		
-		String contentTitle = "开源中国";
+		String contentTitle = "我帮圈圈";
 		String contentText = "您有 " + noticeCount + " 条最新信息";
 		int _lastNoticeCount;
 		

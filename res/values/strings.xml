@@ -39,7 +39,7 @@
     <string name="footbar_favorite">收藏</string>
     <string name="footbar_more">更多</string>
     
-    <string name="login_dialog_logo">开源中国</string>
+    <string name="login_dialog_logo">我帮圈圈</string>
     <string name="login_dialog_account">账号:</string>
     <string name="login_dialog_account_hint">输入账号/邮箱</string>
     <string name="login_dialog_password">密码:</string>
