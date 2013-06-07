@@ -24,7 +24,7 @@ import com.ihelpoo.app.ui.TweetPub;
 import com.ihelpoo.app.widget.LinkView;
 import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.AppManager;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.api.ApiClient;
 import com.ihelpoo.app.bean.AccessInfo;
 import com.ihelpoo.app.bean.Active;

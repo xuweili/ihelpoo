@@ -2,7 +2,7 @@ package com.ihelpoo.app.ui;
 
 import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 
 import android.content.Intent;
 import android.os.Bundle;

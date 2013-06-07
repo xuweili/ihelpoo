@@ -2,7 +2,7 @@ package com.ihelpoo.app.adapter;
 
 import java.util.List;
 
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.bean.FriendList.Friend;
 import com.ihelpoo.app.common.BitmapManager;
 import com.ihelpoo.app.common.StringUtils;

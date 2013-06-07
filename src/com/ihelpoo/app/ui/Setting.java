@@ -10,7 +10,7 @@ import com.ihelpoo.app.common.MethodsCompat;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.common.UpdateManager;
 import com.ihelpoo.app.widget.PathChooseDialog;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

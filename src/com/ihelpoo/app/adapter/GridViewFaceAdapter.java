@@ -1,6 +1,6 @@
 package com.ihelpoo.app.adapter;
 
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 
 import android.content.Context;
 import android.view.View;

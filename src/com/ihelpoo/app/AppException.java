@@ -10,7 +10,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Date;
 
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.common.UIHelper;
 
 import org.apache.commons.httpclient.HttpException;

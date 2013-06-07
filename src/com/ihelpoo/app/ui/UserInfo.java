@@ -11,7 +11,7 @@ import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.widget.LoadingDialog;
 import com.ihelpoo.app.AppContext;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.bean.MyInformation;
 import com.ihelpoo.app.bean.Result;
 import com.ihelpoo.app.common.FileUtils;

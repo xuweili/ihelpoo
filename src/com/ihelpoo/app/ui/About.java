@@ -1,7 +1,7 @@
 package com.ihelpoo.app.ui;
 
 import com.ihelpoo.app.common.UpdateManager;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;

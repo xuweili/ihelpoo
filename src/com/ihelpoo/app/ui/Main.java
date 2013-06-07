@@ -17,7 +17,7 @@ import com.ihelpoo.app.widget.NewDataToast;
 import com.ihelpoo.app.AppConfig;
 import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.AppException;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.adapter.ListViewActiveAdapter;
 import com.ihelpoo.app.adapter.ListViewBlogAdapter;
 import com.ihelpoo.app.adapter.ListViewMessageAdapter;

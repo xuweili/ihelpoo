@@ -2,7 +2,7 @@ package com.ihelpoo.app.ui;
 
 import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.AppException;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.api.ApiClient;
 import com.ihelpoo.app.bean.Result;
 import com.ihelpoo.app.bean.User;

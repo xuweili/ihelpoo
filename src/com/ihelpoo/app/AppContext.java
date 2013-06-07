@@ -43,7 +43,7 @@ import com.ihelpoo.app.bean.Result;
 import com.ihelpoo.app.bean.UserInformation;
 import com.ihelpoo.app.common.ImageUtils;
 
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.api.ApiClient;
 
 import java.io.*;

@@ -8,7 +8,7 @@ import com.ihelpoo.app.common.QQWeiboHelper2;
 import com.ihelpoo.app.common.SinaWeiboHelper;
 import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;

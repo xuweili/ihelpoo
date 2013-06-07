@@ -3,7 +3,7 @@ package com.ihelpoo.app.adapter;
 import java.util.List;
 
 import com.ihelpoo.app.common.StringUtils;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.bean.Blog;
 import com.ihelpoo.app.bean.BlogList;
 

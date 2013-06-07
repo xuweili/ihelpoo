@@ -5,7 +5,7 @@ import com.ihelpoo.app.bean.Software;
 import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.AppContext;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.api.ApiClient;
 import com.ihelpoo.app.bean.FavoriteList;
 import com.ihelpoo.app.bean.Notice;

@@ -10,7 +10,7 @@ import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.widget.PullToRefreshListView;
 import com.ihelpoo.app.AppContext;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.adapter.ListViewSoftwareAdapter;
 import com.ihelpoo.app.adapter.ListViewSoftwareCatalogAdapter;
 import com.ihelpoo.app.bean.Notice;

@@ -10,7 +10,7 @@ import com.ihelpoo.app.adapter.ListViewFavoriteAdapter;
 import com.ihelpoo.app.bean.FavoriteList;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.widget.PullToRefreshListView;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.bean.Notice;
 import com.ihelpoo.app.bean.Result;
 

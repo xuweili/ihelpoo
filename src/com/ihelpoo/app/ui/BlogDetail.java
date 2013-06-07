@@ -15,7 +15,7 @@ import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.widget.BadgeView;
 import com.ihelpoo.app.widget.PullToRefreshListView;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.bean.Blog;
 import com.ihelpoo.app.bean.Notice;
 import com.ihelpoo.app.bean.Result;

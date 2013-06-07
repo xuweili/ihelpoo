@@ -9,7 +9,7 @@ import com.ihelpoo.app.bean.SearchList;
 import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.AppContext;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.bean.Notice;
 
 import android.os.Bundle;

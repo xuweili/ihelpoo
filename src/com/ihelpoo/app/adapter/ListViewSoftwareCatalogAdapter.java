@@ -3,7 +3,7 @@ package com.ihelpoo.app.adapter;
 import java.util.List;
 
 import com.ihelpoo.app.bean.SoftwareCatalogList;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;

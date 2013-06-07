@@ -6,7 +6,7 @@ import com.ihelpoo.app.bean.Active;
 import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.widget.LinkView;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.common.BitmapManager;
 
 import android.content.Context;

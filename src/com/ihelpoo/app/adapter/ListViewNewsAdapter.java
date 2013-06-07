@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.ihelpoo.app.bean.News;
 import com.ihelpoo.app.common.StringUtils;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;

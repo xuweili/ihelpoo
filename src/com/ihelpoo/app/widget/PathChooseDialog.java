@@ -6,7 +6,7 @@ import java.util.Stack;
 
 import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.adapter.ListViewPathAdapter;
 import com.ihelpoo.app.adapter.ListViewPathAdapter.OnPathOperateListener;
 import com.ihelpoo.app.common.FileUtils;

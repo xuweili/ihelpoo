@@ -5,7 +5,7 @@ import java.util.List;
 import com.ihelpoo.app.bean.Post;
 import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.common.BitmapManager;
 
 import android.content.Context;

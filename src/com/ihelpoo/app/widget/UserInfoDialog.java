@@ -1,6 +1,6 @@
 package com.ihelpoo.app.widget;
 
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.Gravity;

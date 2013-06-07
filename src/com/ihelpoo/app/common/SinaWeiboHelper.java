@@ -7,7 +7,7 @@ import com.weibo.net.Weibo;
 import com.weibo.net.WeiboDialogListener;
 import com.weibo.net.WeiboException;
 
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

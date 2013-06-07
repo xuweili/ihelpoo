@@ -1,7 +1,7 @@
 package com.ihelpoo.app.ui;
 
 import com.ihelpoo.app.AppContext;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;

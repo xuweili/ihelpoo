@@ -18,7 +18,7 @@ package greendroid.widget;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import android.content.Context;
 import android.graphics.Rect;
 import android.view.Gravity;

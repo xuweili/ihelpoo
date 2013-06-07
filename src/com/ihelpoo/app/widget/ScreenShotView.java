@@ -3,7 +3,7 @@ package com.ihelpoo.app.widget;
 import com.ihelpoo.app.AppConfig;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.ui.BaseActivity;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;

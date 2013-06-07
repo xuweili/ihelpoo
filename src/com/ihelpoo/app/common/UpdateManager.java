@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 import com.ihelpoo.app.AppException;
 import com.ihelpoo.app.bean.Update;
 import com.ihelpoo.app.AppContext;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.api.ApiClient;
 
 import android.app.AlertDialog;

@@ -8,7 +8,7 @@ import com.ihelpoo.app.adapter.GridViewFaceAdapter;
 import com.ihelpoo.app.AppConfig;
 import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.AppException;
-import net.oschina.app.R;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.adapter.ListViewCommentAdapter;
 import com.ihelpoo.app.bean.Comment;
 import com.ihelpoo.app.bean.CommentList;
