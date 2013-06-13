@@ -24,7 +24,6 @@ import android.widget.ImageView;
  * BitmapManager bmpManager;
  * bmpManager = new BitmapManager(BitmapFactory.decodeResource(context.getResources(), R.drawable.loading));
  * bmpManager.loadBitmap(imageURL, imageView);
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-6-25
  */
@@ -131,7 +130,7 @@ public class BitmapManager {
                 String tag = imageViews.get(imageView);  
                 if (tag != null && tag.equals(url)) {  
                     if (msg.obj != null) {  
-                        imageView.setImageBitmap((Bitmap) msg.obj);  
+                        imageView.setImageBitmap((Bitmap) msg.obj);
                         try {
                         	//向SD卡中写入图片缓存
 							ImageUtils.saveImage(imageView.getContext(), FileUtils.getFileName(url), (Bitmap) msg.obj);

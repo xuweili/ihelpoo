@@ -2,7 +2,6 @@ package com.ihelpoo.app.bean;
 
 /**
  * 微博认证信息类：OAuth认证返回的数据集合
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-21
  */

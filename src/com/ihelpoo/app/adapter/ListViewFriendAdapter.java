@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 /**
  * 用户粉丝、关注Adapter类
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-5-24
  */

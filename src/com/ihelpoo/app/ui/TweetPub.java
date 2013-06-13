@@ -50,7 +50,6 @@ import android.widget.Toast;
 
 /**
  * 发表动弹
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-21
  */

@@ -14,14 +14,12 @@ import android.util.Xml;
 
 /**
  * 通知信息实体类
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-21
  */
 public class Notice implements Serializable {
 	
 	public final static String UTF8 = "UTF-8";
-	public final static String NODE_ROOT = "oschina";
 	
 	public final static int	TYPE_ATME = 1;
 	public final static int	TYPE_MESSAGE = 2;

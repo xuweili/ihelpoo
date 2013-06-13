@@ -27,7 +27,6 @@ import android.widget.TextView;
 
 /**
  * Tag相关帖子列表
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-8-27
  */

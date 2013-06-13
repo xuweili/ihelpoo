@@ -17,7 +17,6 @@ import android.os.Message;
 import android.widget.Toast;
 /**
  * 新浪微博帮助类
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-22
  */

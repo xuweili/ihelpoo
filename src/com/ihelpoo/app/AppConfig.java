@@ -15,8 +15,7 @@ import android.preference.PreferenceManager;
 
 /**
  * 应用程序配置类：用于保存用户相关信息及设置
- * 
- * @author liux (http://my.oschina.net/liux)
+ *
  * @version 1.0
  * @created 2012-3-21
  */
@@ -46,7 +45,7 @@ public class AppConfig {
 
 	public final static String SAVE_IMAGE_PATH = "save_image_path";
 	@SuppressLint("NewApi")
-	public final static String DEFAULT_SAVE_IMAGE_PATH = Environment.getExternalStorageDirectory()+ File.separator+ "OSChina"+ File.separator;
+	public final static String DEFAULT_SAVE_IMAGE_PATH = Environment.getExternalStorageDirectory()+ File.separator+ "ihelpoo"+ File.separator;
 			
 	private Context mContext;
 	private AccessInfo accessInfo = null;

@@ -11,8 +11,6 @@ import android.widget.Scroller;
 
 /**
  * 左右滑动切换屏幕控件
- * @author Yao.GUET date: 2011-05-04
- * @modify liux (http://my.oschina.net/liux)
  */
 public class ScrollLayout extends ViewGroup {
 	private static final String TAG = "ScrollLayout";

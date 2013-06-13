@@ -8,8 +8,7 @@ import android.view.View;
 
 /**
  * 应用程序Activity的基类
- * 
- * @author liux (http://my.oschina.net/liux)
+ *
  * @version 1.0
  * @created 2012-9-18
  */

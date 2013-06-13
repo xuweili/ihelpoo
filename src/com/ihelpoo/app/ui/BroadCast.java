@@ -12,7 +12,6 @@ import android.net.Uri;
 
 /**
  * 通知信息广播接收器
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-4-16
  */
@@ -25,7 +24,7 @@ public class BroadCast extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		String ACTION_NAME = intent.getAction();
-		if("net.oschina.app.action.APPWIDGET_UPDATE".equals(ACTION_NAME))
+		if("com.ihelpoo.app.action.APPWIDGET_UPDATE".equals(ACTION_NAME))
 		{	
 			int atmeCount = intent.getIntExtra("atmeCount", 0);//@我
 			int msgCount = intent.getIntExtra("msgCount", 0);//留言

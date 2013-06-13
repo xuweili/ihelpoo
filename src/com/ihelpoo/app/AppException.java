@@ -23,7 +23,6 @@ import android.widget.Toast;
 
 /**
  * 应用程序异常类：用于捕获异常和提示错误信息
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-21
  */

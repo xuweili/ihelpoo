@@ -14,14 +14,12 @@ import android.util.Xml;
 
 /**
  * 应用程序更新实体类
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-21
  */
 public class Update implements Serializable{
 	
 	public final static String UTF8 = "UTF-8";
-	public final static String NODE_ROOT = "oschina";
 	
 	private int versionCode;
 	private String versionName;

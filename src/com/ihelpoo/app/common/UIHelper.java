@@ -96,8 +96,7 @@ import android.widget.Toast;
 
 /**
  * 应用程序UI工具包：封装UI相关的一些操作
- * 
- * @author liux (http://my.oschina.net/liux)
+ *
  * @version 1.0
  * @created 2012-3-21
  */
@@ -1148,7 +1147,7 @@ public class UIHelper {
 		if (!((AppContext) context.getApplicationContext()).isLogin()
 				|| notice == null)
 			return;
-		Intent intent = new Intent("net.oschina.app.action.APPWIDGET_UPDATE");
+		Intent intent = new Intent("com.ihelpoo.app.action.APPWIDGET_UPDATE");
 		intent.putExtra("atmeCount", notice.getAtmeCount());
 		intent.putExtra("msgCount", notice.getMsgCount());
 		intent.putExtra("reviewCount", notice.getReviewCount());
@@ -1166,7 +1165,7 @@ public class UIHelper {
 			Result res, Tweet tweet) {
 		if (res == null && tweet == null)
 			return;
-		Intent intent = new Intent("net.oschina.app.action.APP_TWEETPUB");
+		Intent intent = new Intent("com.ihelpoo.app.action.APP_TWEETPUB");
 		intent.putExtra("MSG_WHAT", what);
 		if (what == 1)
 			intent.putExtra("RESULT", res);

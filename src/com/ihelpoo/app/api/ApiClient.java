@@ -56,7 +56,6 @@ import android.graphics.BitmapFactory;
 
 /**
  * API客户端接口：用于访问网络数据
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-21
  */
@@ -86,7 +85,7 @@ public class ApiClient {
 	
 	private static String getUserAgent(AppContext appContext) {
 		if(appUserAgent == null || appUserAgent == "") {
-			StringBuilder ua = new StringBuilder("OSChina.NET");
+			StringBuilder ua = new StringBuilder("ihelpoo.com");
 			ua.append('/'+appContext.getPackageInfo().versionName+'_'+appContext.getPackageInfo().versionCode);//App版本
 			ua.append("/Android");//手机系统平台
 			ua.append("/"+android.os.Build.VERSION.RELEASE);//手机系统版本
@@ -283,7 +282,7 @@ public class ApiClient {
 	        		}
 		        }
 		     	responseBody = httpPost.getResponseBodyAsString();
-		        //System.out.println("XMLDATA=====>"+responseBody);
+		        System.out.println("XMLDATA=====>"+responseBody);
 		     	break;	     	
 			} catch (HttpException e) {
 				time++;

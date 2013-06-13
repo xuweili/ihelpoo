@@ -17,7 +17,6 @@ import android.util.Xml;
 
 /**
  * 博客评论列表实体类
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-21
  */

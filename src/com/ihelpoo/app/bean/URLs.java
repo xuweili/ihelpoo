@@ -9,7 +9,6 @@ import java.net.URLEncoder;
 
 /**
  * 接口URL实体类
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-21
  */
@@ -23,7 +22,8 @@ public class URLs implements Serializable {
 	private final static String URL_UNDERLINE = "_";
 	
 	private final static String URL_API_HOST = HTTP + HOST + URL_SPLITTER;
-	public final static String LOGIN_VALIDATE_HTTP = HTTP + HOST + URL_SPLITTER + "action/api/login_validate";
+//	public final static String LOGIN_VALIDATE_HTTP = HTTP + HOST + URL_SPLITTER + "action/api/login_validate";
+    public final static String LOGIN_VALIDATE_HTTP = "http://192.168.1.101:8080/v1/login.xml";
 	public final static String LOGIN_VALIDATE_HTTPS = HTTPS + HOST + URL_SPLITTER + "action/api/login_validate";
 	public final static String NEWS_LIST = URL_API_HOST+"action/api/news_list";
 	public final static String NEWS_DETAIL = URL_API_HOST+"action/api/news_detail";
@@ -57,7 +57,8 @@ public class URLs implements Serializable {
 	public final static String MY_INFORMATION = URL_API_HOST+"action/api/my_information";
 	public final static String USER_INFORMATION = URL_API_HOST+"action/api/user_information";
 	public final static String USER_UPDATERELATION = URL_API_HOST+"action/api/user_updaterelation";
-	public final static String USER_NOTICE = URL_API_HOST+"action/api/user_notice";
+//	public final static String USER_NOTICE = URL_API_HOST+"action/api/user_notice";
+    public final static String USER_NOTICE = "http://192.168.1.101:8080/v1/notifications.xml";
 	public final static String NOTICE_CLEAR = URL_API_HOST+"action/api/notice_clear";
 	public final static String FRIENDS_LIST = URL_API_HOST+"action/api/friends_list";
 	public final static String FAVORITE_LIST = URL_API_HOST+"action/api/favorite_list";

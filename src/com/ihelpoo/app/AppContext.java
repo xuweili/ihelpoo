@@ -54,7 +54,6 @@ import java.util.UUID;
 
 /**
  * 全局应用程序类：用于保存和调用全局应用配置及访问网络数据
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-21
  */
@@ -1231,13 +1230,17 @@ public class AppContext extends Application {
 	public void saveLoginInfo(final User user) {
 		this.loginUid = user.getUid();
 		this.login = true;
+        //TODO, if any different, here it will exit with warning
 		setProperties(new Properties(){{
 			setProperty("user.uid", String.valueOf(user.getUid()));
 			setProperty("user.name", user.getName());
-			setProperty("user.face", FileUtils.getFileName(user.getFace()));//用户头像-文件名
+            //http://static.oschina.net/uploads/user/457/915579_100.jpg?t=1370707416000
+            setProperty("user.face", "http://static.oschina.net/uploads/user/457/915579_100.jpg?t=1370707416000");//用户头像-文件名
+//			setProperty("user.face", FileUtils.getFileName(user.getFace()));//用户头像-文件名
 			setProperty("user.account", user.getAccount());
 			setProperty("user.pwd", CyptoUtils.encode("oschinaApp", user.getPwd()));
-			setProperty("user.location", user.getLocation());
+//			setProperty("user.location", user.getLocation());
+            setProperty("user.location", "深圳");
 			setProperty("user.followers", String.valueOf(user.getFollowers()));
 			setProperty("user.fans", String.valueOf(user.getFans()));
 			setProperty("user.score", String.valueOf(user.getScore()));

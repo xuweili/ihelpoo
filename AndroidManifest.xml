@@ -43,7 +43,7 @@
 		
 		<receiver android:name=".ui.BroadCast">
             <intent-filter>
-                <action android:name="net.oschina.app.action.APPWIDGET_UPDATE" />
+                <action android:name="com.ihelpoo.app.action.APPWIDGET_UPDATE" />
             </intent-filter>
         </receiver>
     </application>

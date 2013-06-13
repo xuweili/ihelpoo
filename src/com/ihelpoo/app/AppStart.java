@@ -14,7 +14,6 @@ import android.view.animation.Animation.AnimationListener;
 
 /**
  * 应用程序启动类：显示欢迎界面并跳转到主界面
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-21
  */

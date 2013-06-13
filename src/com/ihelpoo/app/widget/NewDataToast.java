@@ -2,6 +2,7 @@ package com.ihelpoo.app.widget;
 
 import com.ihelpoo.app.R;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -12,7 +13,6 @@ import android.widget.Toast;
 
 /**
  * 新数据Toast提示控件(带音乐播放)
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-8-30
  */
@@ -72,7 +72,8 @@ public class NewDataToast extends Toast{
         
         View v = inflate.inflate(R.layout.new_data_toast, null);
         v.setMinimumWidth(dm.widthPixels);//设置控件最小宽度为手机屏幕宽度
-        
+        Drawable background = context.getResources().getDrawable(R.drawable.new_data_toast);
+        background.setAlpha(50);
         TextView tv = (TextView)v.findViewById(R.id.new_data_toast_message);
         tv.setText(text);
         

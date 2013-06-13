@@ -18,8 +18,7 @@ import android.widget.TextView;
 
 /**
  * 超链接文本控件
- * 
- * @author liux (http://my.oschina.net/liux)
+ *
  * @version 1.0
  * @created 2012-3-21
  */

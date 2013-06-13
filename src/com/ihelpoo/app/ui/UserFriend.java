@@ -26,7 +26,6 @@ import android.widget.TextView;
 
 /**
  * 用户关注、粉丝
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-21
  */

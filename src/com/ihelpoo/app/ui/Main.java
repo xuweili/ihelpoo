@@ -68,7 +68,6 @@ import android.widget.TextView;
 /**
  * 应用程序首页
  *
- * @author liux (http://my.oschina.net/liux)
  * @version 1.0
  * @created 2012-3-21
  */
@@ -199,7 +198,7 @@ public class Main extends BaseActivity {
 		// 注册广播接收器
 		tweetReceiver = new TweetReceiver();
 		IntentFilter filter = new IntentFilter();
-		filter.addAction("net.oschina.app.action.APP_TWEETPUB");
+		filter.addAction("com.ihelpoo.app.action.APP_TWEETPUB");
 		registerReceiver(tweetReceiver, filter);
 
 		appContext = (AppContext) getApplication();
