@@ -1391,8 +1391,9 @@ public class Main extends BaseActivity {
 		framebtn_Active_message.setOnClickListener(frameActiveBtnClick(
 				framebtn_Active_message, 0));
 		// 特殊处理
-		framebtn_Active_atme.setText("@"
-				+ getString(R.string.frame_title_active_atme));
+//		framebtn_Active_atme.setText("@"
+//				+ getString(R.string.frame_title_active_atme));
+        framebtn_Active_atme.setText(R.string.frame_title_active_atme);
 	}
 
 	private View.OnClickListener frameNewsBtnClick(final Button btn,

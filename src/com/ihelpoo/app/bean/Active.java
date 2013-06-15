@@ -45,8 +45,70 @@ public class Active extends Entity {
 	private String tweetimage;
 	private int appClient;
 	private String url;
-	
-	public static class ObjectReply implements Serializable{
+    private String academy;
+    private String authorType;
+    private String authorGossip;
+    private int diffusionCount;
+    private int online;
+    private String rank;
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public int getOnline() {
+        return online;
+    }
+
+    public void setOnline(int online) {
+        this.online = online;
+    }
+
+    public int getDiffusionCount() {
+        return diffusionCount;
+    }
+
+    public void setDiffusionCount(int diffusionCount) {
+        this.diffusionCount = diffusionCount;
+    }
+
+    public String getAuthorGossip() {
+        return authorGossip;
+    }
+
+    public void setAuthorGossip(String authorGossip) {
+        this.authorGossip = authorGossip;
+    }
+
+    public String getAuthorType() {
+        return authorType;
+    }
+
+    public void setAuthorType(String authorType) {
+        this.authorType = authorType;
+    }
+
+    public String getAcademy() {
+        return academy;
+    }
+
+    public void setAcademy(String academy) {
+        this.academy = academy;
+    }
+
+    public String getEssage() {
+        return message;
+    }
+
+    public void setEssage(String essage) {
+        message = essage;
+    }
+
+    public static class ObjectReply implements Serializable{
 		public String objectName;
 		public String objectBody;
 	} 	
@@ -229,10 +291,28 @@ public class Active extends Entity {
 				            {			            	
 				            	active.setAppClient(StringUtils.toInt(xmlParser.nextText(),0));			            	
 				            }
+                            else if(tag.equalsIgnoreCase("diffusionCo")){
+                                active.setDiffusionCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("academy")){
+                                active.setAcademy(xmlParser.nextText());
+                            }
+                            else if(tag.equalsIgnoreCase("authorType")){
+                                active.setAuthorType(xmlParser.nextText());
+                            }
+                            else if(tag.equalsIgnoreCase("authorGossip")){
+                                active.setAuthorGossip(xmlParser.nextText());
+                            }
+                            else if(tag.equalsIgnoreCase("online")){
+                                active.setOnline(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
 				            else if(tag.equalsIgnoreCase("url"))
 				            {			            	
 				            	active.setUrl(xmlParser.nextText());			            	
 				            }
+                            else if(tag.equalsIgnoreCase("activeRank")){
+                                active.setRank(xmlParser.nextText());
+                            }
 				            //通知信息
 				            else if(tag.equalsIgnoreCase("notice"))
 				    		{
