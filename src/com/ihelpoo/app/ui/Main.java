@@ -95,7 +95,7 @@ public class Main extends BaseActivity {
 
 	private int curNewsCatalog = NewsList.CATALOG_ALL;
 	private int curQuestionCatalog = PostList.CATALOG_ASK;
-	private int curTweetCatalog = TweetList.CATALOG_LASTEST;
+	private int curTweetCatalog = TweetList.CATALOG_STREAM;
 	private int curActiveCatalog = ActiveList.CATALOG_LASTEST;
 
 	private PullToRefreshListView lvNews;
@@ -1358,27 +1358,30 @@ public class Main extends BaseActivity {
 				framebtn_Question_site, PostList.CATALOG_SITE));
 		// 动弹
 		framebtn_Tweet_lastest.setOnClickListener(frameTweetBtnClick(
-				framebtn_Tweet_lastest, TweetList.CATALOG_LASTEST));
+				framebtn_Tweet_lastest, TweetList.CATALOG_STREAM));
 		framebtn_Tweet_hot.setOnClickListener(frameTweetBtnClick(
-				framebtn_Tweet_hot, TweetList.CATALOG_HOT));
-		framebtn_Tweet_my.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				// 判断登录
-				int uid = appContext.getLoginUid();
-				if (uid == 0) {
-					UIHelper.showLoginDialog(Main.this);
-					return;
-				}
+				framebtn_Tweet_hot, TweetList.CATALOG_HELP));
+        framebtn_Tweet_my.setOnClickListener(frameTweetBtnClick(
+                framebtn_Tweet_my, TweetList.CATALOG_MINE));
 
-				framebtn_Tweet_lastest.setEnabled(true);
-				framebtn_Tweet_hot.setEnabled(true);
-				framebtn_Tweet_my.setEnabled(false);
-
-				curTweetCatalog = uid;
-				loadLvTweetData(curTweetCatalog, 0, lvTweetHandler,
-						UIHelper.LISTVIEW_ACTION_CHANGE_CATALOG);
-			}
-		});
+//		framebtn_Tweet_my.setOnClickListener(new View.OnClickListener() {
+//			public void onClick(View v) {
+//				// 判断登录
+//				int uid = appContext.getLoginUid();
+//				if (uid == 0) {
+//					UIHelper.showLoginDialog(Main.this);
+//					return;
+//				}
+//
+//				framebtn_Tweet_lastest.setEnabled(true);
+//				framebtn_Tweet_hot.setEnabled(true);
+//				framebtn_Tweet_my.setEnabled(false);
+//
+//				curTweetCatalog = uid;
+//				loadLvTweetData(curTweetCatalog, 0, lvTweetHandler,
+//						UIHelper.LISTVIEW_ACTION_CHANGE_CATALOG);
+//			}
+//		});
 		// 动态+留言
 		framebtn_Active_lastest.setOnClickListener(frameActiveBtnClick(
 				framebtn_Active_lastest, ActiveList.CATALOG_LASTEST));
@@ -1472,6 +1475,12 @@ public class Main extends BaseActivity {
 			final int catalog) {
 		return new View.OnClickListener() {
 			public void onClick(View v) {
+                // 判断登录
+                int uid = appContext.getLoginUid();
+                if (uid == 0) {
+                    UIHelper.showLoginDialog(Main.this);
+                    return;
+                }
 				if (btn == framebtn_Tweet_lastest)
 					framebtn_Tweet_lastest.setEnabled(false);
 				else
@@ -2102,7 +2111,7 @@ public class Main extends BaseActivity {
 					isRefresh = true;
 				try {
 					TweetList list = appContext.getTweetList(catalog,
-                            0, pageIndex, isRefresh);
+                            pageIndex, isRefresh);
 					msg.what = list.getPageSize();
 					msg.obj = list;
 				} catch (AppException e) {

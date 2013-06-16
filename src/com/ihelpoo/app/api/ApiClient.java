@@ -840,9 +840,10 @@ public class ApiClient {
      * @return
 	 * @throws AppException
 	 */
-	public static TweetList getTweetList(AppContext appContext, int catalog, final int uid, final int pageIndex, final int pageSize) throws AppException {
+	public static TweetList getTweetList(AppContext appContext, final int catalog, final int uid, final int pageIndex, final int pageSize) throws AppException {
 		String newUrl = _MakeURL(URLs.TWEET_LIST, new HashMap<String, Object>(){{
-			put("uid", uid);
+			put("catalog", catalog);
+            put("uid", 0);
 			put("pageIndex", pageIndex);
 			put("pageSize", pageSize);
 		}});

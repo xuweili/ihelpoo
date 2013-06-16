@@ -26,7 +26,7 @@
 		    	android:layout_marginLeft="3dip"
 		        android:textSize="15sp"
 		        android:textColor="@color/black"
-		        android:text="动弹后台发布中···"/>
+		        android:text="后台发布中···"/>
 	   	</LinearLayout>
 	</LinearLayout>
 	
@@ -42,7 +42,7 @@
 	        android:layout_height="fill_parent"
 	        android:autoLink="web"
 	        android:gravity="top"
-	        android:hint="请输入动弹内容"
+	        android:hint="请输入内容"
 	        android:background="@null"/>
 
 		<ImageView

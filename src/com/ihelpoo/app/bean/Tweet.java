@@ -30,6 +30,14 @@ public class Tweet extends Entity{
 	public final static String NODE_IMGBIG = "imgBig";
 	public final static String NODE_APPCLIENT = "appclient";
 	public final static String NODE_START = "tweet";
+
+    public final static String NODE_spreadCount = "spreadCount";
+    public final static String NODE_academy = "academy";
+    public final static String NODE_authorType = "authorType";
+    public final static String NODE_authorGossip = "authorGossip";
+    public final static String NODE_onlineState = "onlineState";
+    public final static String NODE_rank = "rank";
+
 	
 	public final static int CLIENT_MOBILE = 2;
 	public final static int CLIENT_ANDROID = 3;
@@ -45,9 +53,64 @@ public class Tweet extends Entity{
 	private String imgSmall;
 	private String imgBig;
 	private File imageFile;
-	private int appClient; 
-	
-	public int getAppClient() {
+	private int appClient;
+
+    private int spreadCount;
+    private String academy;
+    private String authorType;
+    private String authorGossip;
+    private String onlineState;
+    private int rank;
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public String getOnlineState() {
+        return onlineState;
+    }
+
+    public void setOnlineState(String onlineState) {
+        this.onlineState = onlineState;
+    }
+
+    public String getAuthorGossip() {
+        return authorGossip;
+    }
+
+    public void setAuthorGossip(String authorGossip) {
+        this.authorGossip = authorGossip;
+    }
+
+    public String getAuthorType() {
+        return authorType;
+    }
+
+    public void setAuthorType(String authorType) {
+        this.authorType = authorType;
+    }
+
+    public String getAcademy() {
+        return academy;
+    }
+
+    public void setAcademy(String academy) {
+        this.academy = academy;
+    }
+
+    public int getSpreadCount() {
+        return spreadCount;
+    }
+
+    public void setSpreadCount(int spreadCount) {
+        this.spreadCount = spreadCount;
+    }
+
+    public int getAppClient() {
 		return appClient;
 	}
 	public void setAppClient(int appClient) {

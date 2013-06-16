@@ -20,8 +20,9 @@ import android.util.Xml;
  */
 public class TweetList extends Entity{
 	
-	public final static int CATALOG_LASTEST = 0;
-	public final static int CATALOG_HOT = -1;
+	public final static int CATALOG_STREAM = 0;
+	public final static int CATALOG_HELP = -1;
+    public final static int CATALOG_MINE = Integer.MIN_VALUE;
 
 	private int pageSize;
 	private int tweetCount;
@@ -105,6 +106,31 @@ public class TweetList extends Entity{
 				            {			            	
 				            	tweet.setAppClient(StringUtils.toInt(xmlParser.nextText(),0));				            	
 				            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_academy))
+                            {
+                                tweet.setAcademy(xmlParser.nextText());
+                            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_authorGossip))
+                            {
+                                tweet.setAuthorGossip(xmlParser.nextText());
+                            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_authorType))
+                            {
+                                tweet.setAuthorType(xmlParser.nextText());
+                            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_onlineState))
+                            {
+                                tweet.setOnlineState(xmlParser.nextText());
+                            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_rank))
+                            {
+                                tweet.setRank(StringUtils.toInt(xmlParser.nextText(),1));
+                            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_spreadCount))
+                            {
+                                tweet.setSpreadCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+
 			    		}
 			            //通知信息
 			            else if(tag.equalsIgnoreCase("notice"))

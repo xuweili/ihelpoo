@@ -43,5 +43,16 @@
     <color name="listitem_gray">#ff9da19e</color>
     <color name="listitem_green">#ffe3ffc6</color>
     <color name="listitem_greenyellow">#ff87b869</color>
-    <color name="listitem_yellow">#fffaffbf</color>  
+    <color name="listitem_yellow">#fffaffbf</color>
+
+    <color name="bg_rank1">#A8A8A8</color>
+    <color name="bg_rank2">#99CC14</color>
+    <color name="bg_rank3">#73CAFC</color>
+    <color name="bg_rank4">#2B78C8</color>
+    <color name="bg_rank5">#EB6534</color>
+    <color name="bg_rank6">#DD405D</color>
+    <color name="bg_rank7">#F9CC32</color>
+    <color name="bg_rank8">#F9CC32</color>
+    <color name="bg_rank9">#212121</color>
+    <color name="bg_rank10">#212121</color>
 </resources>

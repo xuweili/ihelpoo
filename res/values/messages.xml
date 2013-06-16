@@ -33,7 +33,7 @@
     <string name="delete_image">确定删除该图片吗？</string>
     <string name="delete_tweet">确定删除该动弹吗？</string>
     <string name="delete_blog">确定删除该博客吗？</string>
-    <string name="republish_tweet">网络超时，是否重新发布动弹？</string>
+    <string name="republish_tweet">网络超时，是否重新发布？</string>
     <string name="clearwords">清除文字吗？</string>
     
     <string name="msg_load_is_null">读取失败，可能已被删除</string>
