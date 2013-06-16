@@ -831,13 +831,16 @@ public class ApiClient {
 	
 	/**
 	 * 获取动弹列表
-	 * @param uid
-	 * @param pageIndex
-	 * @param pageSize
-	 * @return
+	 *
+     *
+     * @param catalog
+     * @param uid
+     * @param pageIndex
+     * @param pageSize
+     * @return
 	 * @throws AppException
 	 */
-	public static TweetList getTweetList(AppContext appContext, final int uid, final int pageIndex, final int pageSize) throws AppException {
+	public static TweetList getTweetList(AppContext appContext, int catalog, final int uid, final int pageIndex, final int pageSize) throws AppException {
 		String newUrl = _MakeURL(URLs.TWEET_LIST, new HashMap<String, Object>(){{
 			put("uid", uid);
 			put("pageIndex", pageIndex);

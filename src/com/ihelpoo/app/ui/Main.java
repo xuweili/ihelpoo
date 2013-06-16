@@ -2102,7 +2102,7 @@ public class Main extends BaseActivity {
 					isRefresh = true;
 				try {
 					TweetList list = appContext.getTweetList(catalog,
-							pageIndex, isRefresh);
+                            0, pageIndex, isRefresh);
 					msg.what = list.getPageSize();
 					msg.obj = list;
 				} catch (AppException e) {

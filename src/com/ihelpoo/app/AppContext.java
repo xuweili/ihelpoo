@@ -30,7 +30,6 @@ import com.ihelpoo.app.bean.Tweet;
 import com.ihelpoo.app.bean.TweetList;
 import com.ihelpoo.app.bean.User;
 import com.ihelpoo.app.common.CyptoUtils;
-import com.ihelpoo.app.common.FileUtils;
 import com.ihelpoo.app.common.MethodsCompat;
 import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
@@ -43,7 +42,6 @@ import com.ihelpoo.app.bean.Result;
 import com.ihelpoo.app.bean.UserInformation;
 import com.ihelpoo.app.common.ImageUtils;
 
-import com.ihelpoo.app.R;
 import com.ihelpoo.app.api.ApiClient;
 
 import java.io.*;
@@ -830,17 +828,18 @@ public class AppContext extends Application {
 	
 	/**
 	 * 动弹列表
-	 * @param catalog -1 热门，0 最新，大于0 某用户的动弹(uid)
-	 * @param pageIndex
-	 * @return
+	 *
+     * @param catalog -1 热门，0 最新，大于0 某用户的动弹(uid)
+     * @param uid
+     *@param pageIndex  @return
 	 * @throws AppException
 	 */
-	public TweetList getTweetList(int catalog, int pageIndex, boolean isRefresh) throws AppException {
+	public TweetList getTweetList(int catalog, int uid, int pageIndex, boolean isRefresh) throws AppException {
 		TweetList list = null;
 		String key = "tweetlist_"+catalog+"_"+pageIndex+"_"+PAGE_SIZE;		
 		if(isNetworkConnected() && (!isReadDataCache(key) || isRefresh)) {
 			try{
-				list = ApiClient.getTweetList(this, catalog, pageIndex, PAGE_SIZE);
+				list = ApiClient.getTweetList(this, catalog, uid, pageIndex, PAGE_SIZE);
 				if(list != null && pageIndex == 0){
 					Notice notice = list.getNotice();
 					list.setNotice(null);
