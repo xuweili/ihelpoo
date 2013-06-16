@@ -843,7 +843,7 @@ public class ApiClient {
 	public static TweetList getTweetList(AppContext appContext, final int catalog, final int uid, final int pageIndex, final int pageSize) throws AppException {
 		String newUrl = _MakeURL(URLs.TWEET_LIST, new HashMap<String, Object>(){{
 			put("catalog", catalog);
-            put("uid", 0);
+            put("uid", uid);
 			put("pageIndex", pageIndex);
 			put("pageSize", pageSize);
 		}});

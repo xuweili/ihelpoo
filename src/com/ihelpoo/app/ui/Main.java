@@ -147,9 +147,9 @@ public class Main extends BaseActivity {
 	private Button framebtn_Question_other;
 	private Button framebtn_Question_job;
 	private Button framebtn_Question_site;
-	private Button framebtn_Tweet_lastest;
-	private Button framebtn_Tweet_hot;
-	private Button framebtn_Tweet_my;
+	private Button framebtn_Tweet_stream;
+	private Button framebtn_Tweet_mine;
+	private Button framebtn_Tweet_help;
 	private Button framebtn_Active_lastest;
 	private Button framebtn_Active_atme;
 	private Button framebtn_Active_comment;
@@ -1325,9 +1325,9 @@ public class Main extends BaseActivity {
 		framebtn_Question_other = (Button) findViewById(R.id.frame_btn_question_other);
 		framebtn_Question_job = (Button) findViewById(R.id.frame_btn_question_job);
 		framebtn_Question_site = (Button) findViewById(R.id.frame_btn_question_site);
-		framebtn_Tweet_lastest = (Button) findViewById(R.id.frame_btn_tweet_lastest);
-		framebtn_Tweet_hot = (Button) findViewById(R.id.frame_btn_tweet_hot);
-		framebtn_Tweet_my = (Button) findViewById(R.id.frame_btn_tweet_my);
+		framebtn_Tweet_stream = (Button) findViewById(R.id.frame_btn_tweet_stream);
+		framebtn_Tweet_mine = (Button) findViewById(R.id.frame_btn_tweet_mine);
+		framebtn_Tweet_help = (Button) findViewById(R.id.frame_btn_tweet_help);
 		framebtn_Active_lastest = (Button) findViewById(R.id.frame_btn_active_lastest);
 		framebtn_Active_atme = (Button) findViewById(R.id.frame_btn_active_atme);
 		framebtn_Active_comment = (Button) findViewById(R.id.frame_btn_active_comment);
@@ -1336,7 +1336,7 @@ public class Main extends BaseActivity {
 		// 设置首选择项
 		framebtn_News_lastest.setEnabled(false);
 		framebtn_Question_ask.setEnabled(false);
-		framebtn_Tweet_lastest.setEnabled(false);
+		framebtn_Tweet_stream.setEnabled(false);
 		framebtn_Active_lastest.setEnabled(false);
 		// 资讯+博客
 		framebtn_News_lastest.setOnClickListener(frameNewsBtnClick(
@@ -1349,39 +1349,21 @@ public class Main extends BaseActivity {
 		framebtn_Question_ask.setOnClickListener(frameQuestionBtnClick(
 				framebtn_Question_ask, PostList.CATALOG_ASK));
 		framebtn_Question_share.setOnClickListener(frameQuestionBtnClick(
-				framebtn_Question_share, PostList.CATALOG_SHARE));
+                framebtn_Question_share, PostList.CATALOG_SHARE));
 		framebtn_Question_other.setOnClickListener(frameQuestionBtnClick(
-				framebtn_Question_other, PostList.CATALOG_OTHER));
+                framebtn_Question_other, PostList.CATALOG_OTHER));
 		framebtn_Question_job.setOnClickListener(frameQuestionBtnClick(
-				framebtn_Question_job, PostList.CATALOG_JOB));
+                framebtn_Question_job, PostList.CATALOG_JOB));
 		framebtn_Question_site.setOnClickListener(frameQuestionBtnClick(
 				framebtn_Question_site, PostList.CATALOG_SITE));
 		// 动弹
-		framebtn_Tweet_lastest.setOnClickListener(frameTweetBtnClick(
-				framebtn_Tweet_lastest, TweetList.CATALOG_STREAM));
-		framebtn_Tweet_hot.setOnClickListener(frameTweetBtnClick(
-				framebtn_Tweet_hot, TweetList.CATALOG_HELP));
-        framebtn_Tweet_my.setOnClickListener(frameTweetBtnClick(
-                framebtn_Tweet_my, TweetList.CATALOG_MINE));
+		framebtn_Tweet_stream.setOnClickListener(frameTweetBtnClick(
+                framebtn_Tweet_stream, TweetList.CATALOG_STREAM));
+		framebtn_Tweet_help.setOnClickListener(frameTweetBtnClick(
+                framebtn_Tweet_help, TweetList.CATALOG_HELP));
+        framebtn_Tweet_mine.setOnClickListener(frameTweetBtnClick(
+                framebtn_Tweet_mine, TweetList.CATALOG_MINE));
 
-//		framebtn_Tweet_my.setOnClickListener(new View.OnClickListener() {
-//			public void onClick(View v) {
-//				// 判断登录
-//				int uid = appContext.getLoginUid();
-//				if (uid == 0) {
-//					UIHelper.showLoginDialog(Main.this);
-//					return;
-//				}
-//
-//				framebtn_Tweet_lastest.setEnabled(true);
-//				framebtn_Tweet_hot.setEnabled(true);
-//				framebtn_Tweet_my.setEnabled(false);
-//
-//				curTweetCatalog = uid;
-//				loadLvTweetData(curTweetCatalog, 0, lvTweetHandler,
-//						UIHelper.LISTVIEW_ACTION_CHANGE_CATALOG);
-//			}
-//		});
 		// 动态+留言
 		framebtn_Active_lastest.setOnClickListener(frameActiveBtnClick(
 				framebtn_Active_lastest, ActiveList.CATALOG_LASTEST));
@@ -1481,18 +1463,18 @@ public class Main extends BaseActivity {
                     UIHelper.showLoginDialog(Main.this);
                     return;
                 }
-				if (btn == framebtn_Tweet_lastest)
-					framebtn_Tweet_lastest.setEnabled(false);
+				if (btn == framebtn_Tweet_stream)
+					framebtn_Tweet_stream.setEnabled(false);
 				else
-					framebtn_Tweet_lastest.setEnabled(true);
-				if (btn == framebtn_Tweet_hot)
-					framebtn_Tweet_hot.setEnabled(false);
+					framebtn_Tweet_stream.setEnabled(true);
+				if (btn == framebtn_Tweet_mine)
+					framebtn_Tweet_mine.setEnabled(false);
 				else
-					framebtn_Tweet_hot.setEnabled(true);
-				if (btn == framebtn_Tweet_my)
-					framebtn_Tweet_my.setEnabled(false);
+					framebtn_Tweet_mine.setEnabled(true);
+				if (btn == framebtn_Tweet_help)
+					framebtn_Tweet_help.setEnabled(false);
 				else
-					framebtn_Tweet_my.setEnabled(true);
+					framebtn_Tweet_help.setEnabled(true);
 
 				curTweetCatalog = catalog;
 				loadLvTweetData(curTweetCatalog, 0, lvTweetHandler,
