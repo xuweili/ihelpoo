@@ -860,7 +860,7 @@ public class AppContext extends Application {
     /**
      * 动弹列表
      *
-     * @param catalog   -1 热门，0 最新，大于0 某用户的动弹(uid)
+     * @param catalog   -1 help，0 stream，Min_value, mine
      * @param pageIndex @return
      * @throws AppException
      */

@@ -120,8 +120,8 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
         //设置文字和图片
         Tweet tweet = listItems.get(position);
 
-        listItemView.rank.setText(bold(String.valueOf(tweet.getRank())));
-        listItemView.rank.setBackgroundDrawable(drawBg(tweet.getRank()));
+        listItemView.rank.setText(tweet.bold(String.valueOf(tweet.getRank())));
+        listItemView.rank.setBackgroundDrawable(tweet.drawBg(context, tweet.getRank()));
 
         listItemView.type_gossip.setText(tweet.getAuthorType() + " " + tweet.getAuthorGossip());
         listItemView.academy.setText(tweet.getAcademy());
@@ -184,66 +184,6 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
         }
 
         return convertView;
-    }
-
-    private SpannableString bold(String rank) {
-        SpannableString spanString = new SpannableString(rank);
-        spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
-        return spanString;
-    }
-
-    private DrawableGradient drawBg(int rank) {
-        return new DrawableGradient(new int[]{matchColor(rank), matchColor(rank), matchColor(rank)}, dp2px(1L)).SetTransparency(10);
-    }
-
-    private float dp2px(float dp) {
-        Resources r = context.getResources();
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics());
-    }
-
-    public class DrawableGradient extends GradientDrawable {
-        DrawableGradient(int[] colors, float cornerRadius) {
-            super(GradientDrawable.Orientation.TOP_BOTTOM, colors);
-
-            try {
-                this.setShape(GradientDrawable.RECTANGLE);
-                this.setGradientType(GradientDrawable.LINEAR_GRADIENT);
-                this.setCornerRadius(cornerRadius);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        public DrawableGradient SetTransparency(int transparencyPercent) {
-            this.setAlpha(255 - ((255 * transparencyPercent) / 100));
-
-            return this;
-        }
-    }
-
-    private int matchColor(int rank) {
-        switch (rank) {
-            case 2:
-                return context.getResources().getColor(R.color.bg_rank2);
-            case 3:
-                return context.getResources().getColor(R.color.bg_rank3);
-            case 4:
-                return context.getResources().getColor(R.color.bg_rank4);
-            case 5:
-                return context.getResources().getColor(R.color.bg_rank5);
-            case 6:
-                return context.getResources().getColor(R.color.bg_rank6);
-            case 7:
-                return context.getResources().getColor(R.color.bg_rank7);
-            case 8:
-                return context.getResources().getColor(R.color.bg_rank8);
-            case 9:
-                return context.getResources().getColor(R.color.bg_rank9);
-            case 10:
-                return context.getResources().getColor(R.color.bg_rank10);
-            default:
-                return context.getResources().getColor(R.color.bg_rank1);
-        }
     }
 
     private View.OnClickListener faceClickListener = new View.OnClickListener() {

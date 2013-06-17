@@ -864,8 +864,8 @@ public class ApiClient {
 	 * @throws AppException
 	 */
 	public static Tweet getTweetDetail(AppContext appContext, final int tweet_id) throws AppException {
-		String newUrl = _MakeURL(URLs.TWEET_DETAIL, new HashMap<String, Object>(){{
-			put("id", tweet_id);
+		String newUrl = _MakeURL(URLs.TWEET_DETAIL.replace("${id}", String.valueOf(tweet_id)), new HashMap<String, Object>(){{
+			put("sid", tweet_id);
 		}});
 		try{
 			return Tweet.parse(http_get(appContext, newUrl));			
