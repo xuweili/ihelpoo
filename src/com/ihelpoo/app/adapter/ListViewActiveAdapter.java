@@ -157,7 +157,10 @@ public class ListViewActiveAdapter extends MyBaseAdapter {
 
 //        SpannableString spanString = new SpannableString(String.valueOf(active.getRank()));
 //        spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
-        listItemView.rank.setText(active.getRank());
+
+        listItemView.rank.setText(active.bold(String.valueOf(active.getRank())));
+        listItemView.rank.setBackgroundDrawable(active.drawBg(context, active.getRank()));
+
         listItemView.academy.setText(active.getAcademy());
         listItemView.online.setText(1==active.getOnline()?"在线":"");
 //        if(1!=active.getOnline())listItemView.online.setTextColor(Color.LTGRAY);

@@ -156,7 +156,7 @@ public class ActiveList extends Entity{
                                 active.setOnline(StringUtils.toInt(xmlParser.nextText(),0));
                             }
                             else if(tag.equalsIgnoreCase("activeRank")){
-                                active.setRank(xmlParser.nextText());
+                                active.setRank(StringUtils.toInt(xmlParser.nextText(),1));
                             }
 			    		}
 			            //通知信息
