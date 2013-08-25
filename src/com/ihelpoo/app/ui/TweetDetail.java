@@ -72,6 +72,13 @@ public class TweetDetail extends BaseActivity {
     private ImageView image;
     private Handler mHandler;
     private Tweet tweetDetail;
+
+    private ImageView redirect;
+    private TextView type_gossip;
+    private TextView diffusionCount;
+    private TextView online;
+    private TextView academy;
+    private TextView rank;
     
     private int curId;
 	private int curCatalog;	
@@ -198,6 +205,13 @@ public class TweetDetail extends BaseActivity {
     	date = (TextView)lvHeader.findViewById(R.id.tweet_listitem_date);
     	commentCount = (TextView)lvHeader.findViewById(R.id.tweet_listitem_commentCount);
     	image = (ImageView)lvHeader.findViewById(R.id.tweet_listitem_image);
+
+        redirect = (ImageView) lvHeader.findViewById(R.id.tweet_listitem_redirect);
+        type_gossip = (TextView) lvHeader.findViewById(R.id.tweet_listitem_type_gossip);
+        diffusionCount = (TextView) lvHeader.findViewById(R.id.tweet_listitem_diffusionCount);
+        online = (TextView) lvHeader.findViewById(R.id.tweet_listitem_online);
+        academy = (TextView) lvHeader.findViewById(R.id.tweet_listitem_academy);
+        rank = (TextView) lvHeader.findViewById(R.id.tweet_listitem_rank);
     	
     	content = (WebView)lvHeader.findViewById(R.id.tweet_listitem_content);
     	content.getSettings().setJavaScriptEnabled(false);
@@ -343,7 +357,15 @@ public class TweetDetail extends BaseActivity {
 				headButtonSwitch(DATA_LOAD_COMPLETE,1);
 				
 				if(msg.what == 1){
-					username.setText(tweetDetail.getAuthor());
+                    rank.setText(tweetDetail.bold(String.valueOf(tweetDetail.getRank())));
+                    rank.setBackgroundDrawable(tweetDetail.drawBg(rank.getContext(), tweetDetail.getRank()));
+
+                    type_gossip.setText(tweetDetail.getAuthorType() + " " + tweetDetail.getAuthorGossip());
+                    academy.setText(tweetDetail.getAcademy());
+                    online.setText(tweetDetail.getOnlineState());
+                    diffusionCount.setText(tweetDetail.getSpreadCount() + "");
+
+                    username.setText(tweetDetail.getAuthor());
 			    	username.setOnClickListener(faceClickListener);
 					date.setText(StringUtils.friendly_time(tweetDetail.getPubDate()));
 					commentCount.setText(tweetDetail.getCommentCount()+"");

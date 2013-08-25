@@ -23,10 +23,10 @@
     <string name="frame_title_question_other">扩散</string>
     <string name="frame_title_question_job">热门帮助</string>
     <string name="frame_title_question_site">最多帮助</string>
-    <string name="frame_title_tweet_lastest">最新动弹</string>
-    <string name="frame_title_tweet_hot">热门动弹</string>
-    <string name="frame_title_tweet_my">我的动弹</string>
-    <string name="frame_title_tweet_send">动弹一下</string>
+    <string name="frame_title_tweet_lastest">信息流</string>
+    <string name="frame_title_tweet_hot">只看我圈的</string>
+    <string name="frame_title_tweet_my">只看帮助</string>
+    <!--<string name="frame_title_tweet_send">动弹一下</string>-->
     <!--<string name="frame_title_active_lastest">最新动态</string>-->
     <!--<string name="frame_title_active_atme">我</string>-->
     <!--<string name="frame_title_active_comment">评论</string>-->
@@ -67,8 +67,8 @@
     <string name="question_pub_head_title">我要发帖</string>
     <string name="blog_detail_head_title">博客正文</string>
     <string name="software_detail_head_title">软件详情</string>
-    <string name="tweet_detail_head_title">动弹详情</string>
-    <string name="tweet_pub_head_title">动弹一下</string>
+    <string name="tweet_detail_head_title">信息正文</string>
+    <string name="tweet_pub_head_title">记录我的大学生活</string>
     <string name="message_detail_head_title">我和%s的对话</string>
     <string name="user_center_head_title">用户空间</string>
     
@@ -87,4 +87,5 @@
     <string name="ui_insert_image">插入图片</string>  
     
     <string name="setting_head_title">系统设置</string>
+    <string name="loading">loading...</string>
 </resources>

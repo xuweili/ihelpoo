@@ -9,17 +9,17 @@
 		android:orientation="horizontal" 
 		android:gravity="center_vertical">
      	<Button 
-     		android:id="@+id/frame_btn_tweet_lastest"
+     		android:id="@+id/frame_btn_tweet_stream"
      		style="@style/frame_button"
          	android:text="@string/frame_title_tweet_lastest"/>
         <ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
      	<Button 
-     		android:id="@+id/frame_btn_tweet_hot"
+     		android:id="@+id/frame_btn_tweet_mine"
      		style="@style/frame_button"
          	android:text="@string/frame_title_tweet_hot"/>
 	    <ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
      	<Button 
-     		android:id="@+id/frame_btn_tweet_my"
+     		android:id="@+id/frame_btn_tweet_help"
      		style="@style/frame_button"
          	android:text="@string/frame_title_tweet_my"/>
     </LinearLayout>

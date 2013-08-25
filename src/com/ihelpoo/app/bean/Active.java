@@ -5,11 +5,19 @@ import java.io.InputStream;
 import java.io.Serializable;
 
 import com.ihelpoo.app.AppException;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.common.StringUtils;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
+import android.util.TypedValue;
 import android.util.Xml;
 
 /**
@@ -50,13 +58,13 @@ public class Active extends Entity {
     private String authorGossip;
     private int diffusionCount;
     private int online;
-    private String rank;
+    private int rank;
 
-    public String getRank() {
+    public int getRank() {
         return rank;
     }
 
-    public void setRank(String rank) {
+    public void setRank(int rank) {
         this.rank = rank;
     }
 
@@ -311,7 +319,7 @@ public class Active extends Entity {
 				            	active.setUrl(xmlParser.nextText());			            	
 				            }
                             else if(tag.equalsIgnoreCase("activeRank")){
-                                active.setRank(xmlParser.nextText());
+                                active.setRank(StringUtils.toInt(xmlParser.nextText(),1));
                             }
 				            //通知信息
 				            else if(tag.equalsIgnoreCase("notice"))
@@ -352,4 +360,65 @@ public class Active extends Entity {
         }      
         return active;       
 	}
+
+
+    public SpannableString bold(String rank) {
+        SpannableString spanString = new SpannableString(rank);
+        spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
+        return spanString;
+    }
+
+    public DrawableGradient drawBg(Context context, int rank) {
+        return new DrawableGradient(new int[]{matchColor(context,rank), matchColor(context,rank), matchColor(context,rank)}, dp2px(context, 1L)).SetTransparency(10);
+    }
+
+    public float dp2px(Context context, float dp) {
+        Resources r = context.getResources();
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics());
+    }
+
+    public static class DrawableGradient extends GradientDrawable {
+        DrawableGradient(int[] colors, float cornerRadius) {
+            super(GradientDrawable.Orientation.TOP_BOTTOM, colors);
+
+            try {
+                this.setShape(GradientDrawable.RECTANGLE);
+                this.setGradientType(GradientDrawable.LINEAR_GRADIENT);
+                this.setCornerRadius(cornerRadius);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        public DrawableGradient SetTransparency(int transparencyPercent) {
+            this.setAlpha(255 - ((255 * transparencyPercent) / 100));
+
+            return this;
+        }
+    }
+
+    public int matchColor(Context context, int rank) {
+        switch (rank) {
+            case 2:
+                return context.getResources().getColor(R.color.bg_rank2);
+            case 3:
+                return context.getResources().getColor(R.color.bg_rank3);
+            case 4:
+                return context.getResources().getColor(R.color.bg_rank4);
+            case 5:
+                return context.getResources().getColor(R.color.bg_rank5);
+            case 6:
+                return context.getResources().getColor(R.color.bg_rank6);
+            case 7:
+                return context.getResources().getColor(R.color.bg_rank7);
+            case 8:
+                return context.getResources().getColor(R.color.bg_rank8);
+            case 9:
+                return context.getResources().getColor(R.color.bg_rank9);
+            case 10:
+                return context.getResources().getColor(R.color.bg_rank10);
+            default:
+                return context.getResources().getColor(R.color.bg_rank1);
+        }
+    }
 }

@@ -500,9 +500,14 @@ public class ApiClient {
 		params.put("hisname", hisname);
 		params.put("pageIndex", pageIndex);
 		params.put("pageSize", pageSize);
+//        params.put("uid", 915579);
+//        params.put("hisuid", 12);
+//        params.put("hisname", "");
+//        params.put("pageIndex", 0);
+//        params.put("pageSize", 20);
 				
 		try{
-			return UserInformation.parse(_post(appContext, URLs.USER_INFORMATION, params, null));		
+			return UserInformation.parse(_post(appContext, URLs.USER_INFORMATION, params, null));
 		}catch(Exception e){
 			if(e instanceof AppException)
 				throw (AppException)e;
@@ -656,11 +661,16 @@ public class ApiClient {
 	 */
 	public static BlogList getUserBlogList(AppContext appContext, final int authoruid, final String authorname, final int uid, final int pageIndex, final int pageSize) throws AppException {
 		String newUrl = _MakeURL(URLs.USERBLOG_LIST, new HashMap<String, Object>(){{
-			put("authoruid", authoruid);
-			put("authorname", URLEncoder.encode(authorname));
-			put("uid", uid);
-			put("pageIndex", pageIndex);
-			put("pageSize", pageSize);
+//			put("authoruid", authoruid);
+//			put("authorname", URLEncoder.encode(authorname));
+//			put("uid", uid);
+//			put("pageIndex", pageIndex);
+//			put("pageSize", pageSize);
+            put("authoruid", 12);
+            put("authorname", URLEncoder.encode("红薯"));
+            put("uid", 915579);
+            put("pageIndex", 1);
+            put("pageSize", 30);
 		}});
 
 		try{
@@ -831,15 +841,19 @@ public class ApiClient {
 	
 	/**
 	 * 获取动弹列表
-	 * @param uid
-	 * @param pageIndex
-	 * @param pageSize
-	 * @return
+	 *
+     *
+     * @param catalog
+     * @param uid
+     * @param pageIndex
+     * @param pageSize
+     * @return
 	 * @throws AppException
 	 */
-	public static TweetList getTweetList(AppContext appContext, final int uid, final int pageIndex, final int pageSize) throws AppException {
+	public static TweetList getTweetList(AppContext appContext, final int catalog, final int uid, final int pageIndex, final int pageSize) throws AppException {
 		String newUrl = _MakeURL(URLs.TWEET_LIST, new HashMap<String, Object>(){{
-			put("uid", uid);
+			put("catalog", catalog);
+            put("uid", uid);
 			put("pageIndex", pageIndex);
 			put("pageSize", pageSize);
 		}});
@@ -860,8 +874,8 @@ public class ApiClient {
 	 * @throws AppException
 	 */
 	public static Tweet getTweetDetail(AppContext appContext, final int tweet_id) throws AppException {
-		String newUrl = _MakeURL(URLs.TWEET_DETAIL, new HashMap<String, Object>(){{
-			put("id", tweet_id);
+		String newUrl = _MakeURL(URLs.TWEET_DETAIL.replace("${id}", String.valueOf(tweet_id)), new HashMap<String, Object>(){{
+			put("sid", tweet_id);
 		}});
 		try{
 			return Tweet.parse(http_get(appContext, newUrl));			

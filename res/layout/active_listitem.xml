@@ -48,6 +48,7 @@
                     android:textSize="@dimen/text_size_12"
                     android:layout_alignParentBottom="true"
                     android:textColor="@color/lightblue"/>
+
             <TextView
                     android:id="@+id/active_listitem_rank"
                     android:layout_width="wrap_content"
@@ -58,7 +59,7 @@
                     android:layout_toRightOf="@+id/active_listitem_username"
                     android:layout_marginLeft="@dimen/space_3"
                     android:layout_marginBottom="@dimen/space_2"
-                    android:background="@drawable/rounded_view"
+                    android:background="@drawable/bg_rounded_rank"
                     android:paddingLeft="@dimen/space_2"
                     android:paddingRight="@dimen/space_2"/>
 

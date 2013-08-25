@@ -5,11 +5,19 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.ihelpoo.app.AppException;
+import com.ihelpoo.app.R;
 import com.ihelpoo.app.common.StringUtils;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
+import android.util.TypedValue;
 import android.util.Xml;
 
 /**
@@ -30,6 +38,14 @@ public class Tweet extends Entity{
 	public final static String NODE_IMGBIG = "imgBig";
 	public final static String NODE_APPCLIENT = "appclient";
 	public final static String NODE_START = "tweet";
+
+    public final static String NODE_spreadCount = "spreadCount";
+    public final static String NODE_academy = "academy";
+    public final static String NODE_authorType = "authorType";
+    public final static String NODE_authorGossip = "authorGossip";
+    public final static String NODE_onlineState = "onlineState";
+    public final static String NODE_rank = "rank";
+
 	
 	public final static int CLIENT_MOBILE = 2;
 	public final static int CLIENT_ANDROID = 3;
@@ -45,9 +61,64 @@ public class Tweet extends Entity{
 	private String imgSmall;
 	private String imgBig;
 	private File imageFile;
-	private int appClient; 
-	
-	public int getAppClient() {
+	private int appClient;
+
+    private int spreadCount;
+    private String academy;
+    private String authorType;
+    private String authorGossip;
+    private String onlineState;
+    private int rank;
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public String getOnlineState() {
+        return onlineState;
+    }
+
+    public void setOnlineState(String onlineState) {
+        this.onlineState = onlineState;
+    }
+
+    public String getAuthorGossip() {
+        return authorGossip;
+    }
+
+    public void setAuthorGossip(String authorGossip) {
+        this.authorGossip = authorGossip;
+    }
+
+    public String getAuthorType() {
+        return authorType;
+    }
+
+    public void setAuthorType(String authorType) {
+        this.authorType = authorType;
+    }
+
+    public String getAcademy() {
+        return academy;
+    }
+
+    public void setAcademy(String academy) {
+        this.academy = academy;
+    }
+
+    public int getSpreadCount() {
+        return spreadCount;
+    }
+
+    public void setSpreadCount(int spreadCount) {
+        this.spreadCount = spreadCount;
+    }
+
+    public int getAppClient() {
 		return appClient;
 	}
 	public void setAppClient(int appClient) {
@@ -167,6 +238,30 @@ public class Tweet extends Entity{
 				            {			            	
 				            	tweet.setAppClient(StringUtils.toInt(xmlParser.nextText(),0));			            	
 				            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_academy))
+                            {
+                                tweet.setAcademy(xmlParser.nextText());
+                            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_authorGossip))
+                            {
+                                tweet.setAuthorGossip(xmlParser.nextText());
+                            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_authorType))
+                            {
+                                tweet.setAuthorType(xmlParser.nextText());
+                            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_onlineState))
+                            {
+                                tweet.setOnlineState(xmlParser.nextText());
+                            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_rank))
+                            {
+                                tweet.setRank(StringUtils.toInt(xmlParser.nextText(),1));
+                            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_spreadCount))
+                            {
+                                tweet.setSpreadCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
 				            //通知信息
 				            else if(tag.equalsIgnoreCase("notice"))
 				    		{
@@ -206,4 +301,64 @@ public class Tweet extends Entity{
         }      
         return tweet;       
 	}
+
+    public SpannableString bold(String rank) {
+        SpannableString spanString = new SpannableString(rank);
+        spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
+        return spanString;
+    }
+
+    public DrawableGradient drawBg(Context context, int rank) {
+        return new DrawableGradient(new int[]{matchColor(context,rank), matchColor(context,rank), matchColor(context,rank)}, dp2px(context, 1L)).SetTransparency(10);
+    }
+
+    public float dp2px(Context context, float dp) {
+        Resources r = context.getResources();
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics());
+    }
+
+    public static class DrawableGradient extends GradientDrawable {
+        DrawableGradient(int[] colors, float cornerRadius) {
+            super(GradientDrawable.Orientation.TOP_BOTTOM, colors);
+
+            try {
+                this.setShape(GradientDrawable.RECTANGLE);
+                this.setGradientType(GradientDrawable.LINEAR_GRADIENT);
+                this.setCornerRadius(cornerRadius);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        public DrawableGradient SetTransparency(int transparencyPercent) {
+            this.setAlpha(255 - ((255 * transparencyPercent) / 100));
+
+            return this;
+        }
+    }
+
+    public int matchColor(Context context, int rank) {
+        switch (rank) {
+            case 2:
+                return context.getResources().getColor(R.color.bg_rank2);
+            case 3:
+                return context.getResources().getColor(R.color.bg_rank3);
+            case 4:
+                return context.getResources().getColor(R.color.bg_rank4);
+            case 5:
+                return context.getResources().getColor(R.color.bg_rank5);
+            case 6:
+                return context.getResources().getColor(R.color.bg_rank6);
+            case 7:
+                return context.getResources().getColor(R.color.bg_rank7);
+            case 8:
+                return context.getResources().getColor(R.color.bg_rank8);
+            case 9:
+                return context.getResources().getColor(R.color.bg_rank9);
+            case 10:
+                return context.getResources().getColor(R.color.bg_rank10);
+            default:
+                return context.getResources().getColor(R.color.bg_rank1);
+        }
+    }
 }

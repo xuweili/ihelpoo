@@ -161,6 +161,24 @@ public class UserInformation extends Entity{
 				            {			            	
 				            	active.setUrl(xmlParser.nextText());			            	
 				            }
+                            else if(tag.equalsIgnoreCase("diffusionCo")){
+                                active.setDiffusionCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("academy")){
+                                active.setAcademy(xmlParser.nextText());
+                            }
+                            else if(tag.equalsIgnoreCase("authorType")){
+                                active.setAuthorType(xmlParser.nextText());
+                            }
+                            else if(tag.equalsIgnoreCase("authorGossip")){
+                                active.setAuthorGossip(xmlParser.nextText());
+                            }
+                            else if(tag.equalsIgnoreCase("online")){
+                                active.setOnline(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("activeRank")){
+                                active.setRank(StringUtils.toInt(xmlParser.nextText(),1));
+                            }
 			    		}  
 			            //通知信息
 			            else if(tag.equalsIgnoreCase("notice"))
