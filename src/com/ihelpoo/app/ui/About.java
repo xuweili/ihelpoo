@@ -29,8 +29,9 @@ public class About extends BaseActivity{
         try { 
         	PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), 0);
         	mVersion = (TextView)findViewById(R.id.about_version);
-    		mVersion.setText("版本："+info.versionName);
-        } catch (NameNotFoundException e) {    
+    		mVersion.setText(info.versionName);
+        } catch (NameNotFoundException e) {
+            mVersion.setText();
 			e.printStackTrace(System.err);
 		} 
         
