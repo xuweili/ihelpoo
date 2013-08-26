@@ -116,7 +116,7 @@ public class Main extends BaseActivity {
     private List<News> lvNewsData = new ArrayList<News>();
     private List<Blog> lvBlogData = new ArrayList<Blog>();
     private List<Post> lvQuestionData = new ArrayList<Post>();
-    private List<Tweet> lvTweetData = new ArrayList<Tweet>();
+    private List<Tweet> lvHomeData = new ArrayList<Tweet>();
     private List<Active> lvActiveData = new ArrayList<Active>();
     private List<Messages> lvMsgData = new ArrayList<Messages>();
 
@@ -259,7 +259,7 @@ public class Main extends BaseActivity {
 
         if (intent.getBooleanExtra("LOGIN", false)) {
             // 加载动弹、动态及留言(当前动弹的catalog大于0表示用户的uid)
-            if (lvTweetData.isEmpty() && curTweetCatalog > 0 && mCurSel == 2) {
+            if (lvHomeData.isEmpty() && curTweetCatalog > 0 && mCurSel == 2) {
                 this.loadLvTweetData(curTweetCatalog, 0, lvTweetHandler, UIHelper.LISTVIEW_ACTION_INIT);
             } else if (mCurSel == 3) {
                 if (lvActiveData.isEmpty()) {
@@ -443,7 +443,7 @@ public class Main extends BaseActivity {
 //        if(lvQuestionData.isEmpty()){
 //            loadLvQuestionData(curQuestionCatalog, 0,lvQuestionHandler,UIHelper.LISTVIEW_ACTION_INIT);
 //        }
-        if (lvTweetData.isEmpty()) {
+        if (lvHomeData.isEmpty()) {
             loadLvTweetData(curTweetCatalog, 0, lvTweetHandler, UIHelper.LISTVIEW_ACTION_INIT);
         }
 
@@ -702,7 +702,7 @@ public class Main extends BaseActivity {
      * 初始化动弹列表
      */
     private void initTweetListView() {
-        lvTweetAdapter = new ListViewTweetAdapter(this, lvTweetData, R.layout.tweet_listitem);
+        lvTweetAdapter = new ListViewTweetAdapter(this, lvHomeData, R.layout.tweet_listitem);
         lvTweet_footer = getLayoutInflater().inflate(R.layout.listview_footer, null);
         lvTweet_foot_more = (TextView) lvTweet_footer.findViewById(R.id.listview_foot_more);
         lvTweet_foot_progress = (ProgressBar) lvTweet_footer.findViewById(R.id.listview_foot_progress);
@@ -736,7 +736,7 @@ public class Main extends BaseActivity {
                 lvHome.onScrollStateChanged(view, scrollState);
 
                 // 数据为空--不用继续下面代码了
-                if (lvTweetData.isEmpty())
+                if (lvHomeData.isEmpty())
                     return;
 
                 // 判断是否滚动到底部
@@ -792,7 +792,7 @@ public class Main extends BaseActivity {
                         if (msg.what == 1) {
                             Result res = (Result) msg.obj;
                             if (res.OK()) {
-                                lvTweetData.remove(tweet);
+                                lvHomeData.remove(tweet);
                                 lvTweetAdapter.notifyDataSetChanged();
                             }
                             UIHelper.ToastMessage(Main.this,
@@ -1174,23 +1174,23 @@ public class Main extends BaseActivity {
                     // 点击当前项刷新
                     if (mCurSel == pos) {
                         switch (pos) {
-                            case 1:// 资讯+博客
+                            case 0:// 首页
+                                lvHome.clickRefresh();
+                                break;
+                            case 1:// 消息
+                                if (lvActive.getVisibility() == View.VISIBLE)
+                                    lvActive.clickRefresh();
+                                else
+                                    lvMsg.clickRefresh();
+                                break;
+                            case 2:// 小窝
                                 if (lvNews.getVisibility() == View.VISIBLE)
                                     lvNews.clickRefresh();
                                 else
                                     lvBlog.clickRefresh();
                                 break;
-                            case 2:// 问答
+                            case 3:// 排行
                                 lvQuestion.clickRefresh();
-                                break;
-                            case 0:// 动弹
-                                lvHome.clickRefresh();
-                                break;
-                            case 3:// 动态+留言
-                                if (lvActive.getVisibility() == View.VISIBLE)
-                                    lvActive.clickRefresh();
-                                else
-                                    lvMsg.clickRefresh();
                                 break;
                         }
                     }
@@ -1208,36 +1208,15 @@ public class Main extends BaseActivity {
                     public void OnViewChange(int viewIndex) {
                         // 切换列表视图-如果列表数据为空：加载数据
                         switch (viewIndex) {
-                            case 1:// 资讯
-                                if (lvNews.getVisibility() == View.VISIBLE) {
-                                    if (lvNewsData.isEmpty()) {
-                                        loadLvNewsData(curNewsCatalog, 0,
-                                                lvNewsHandler,
-                                                UIHelper.LISTVIEW_ACTION_INIT);
-                                    }
-                                } else {
-                                    if (lvBlogData.isEmpty()) {
-                                        loadLvBlogData(curNewsCatalog, 0,
-                                                lvBlogHandler,
-                                                UIHelper.LISTVIEW_ACTION_INIT);
-                                    }
-                                }
-                                break;
-                            case 2:// 问答
-                                if (lvQuestionData.isEmpty()) {
-                                    loadLvQuestionData(curQuestionCatalog, 0,
-                                            lvQuestionHandler,
-                                            UIHelper.LISTVIEW_ACTION_INIT);
-                                }
-                                break;
-                            case 0:// 动弹
-                                if (lvTweetData.isEmpty()) {
+                            case 0:// 首页
+                                if (lvHomeData.isEmpty()) {
                                     loadLvTweetData(curTweetCatalog, 0,
                                             lvTweetHandler,
                                             UIHelper.LISTVIEW_ACTION_INIT);
                                 }
                                 break;
-                            case 3:// 动态
+                            case 1:// 消息
+
                                 // 判断登录
                                 if (!appContext.isLogin()) {
                                     if (lvActive.getVisibility() == View.VISIBLE
@@ -1277,6 +1256,28 @@ public class Main extends BaseActivity {
                                         && lvMsgData.isEmpty())
                                     loadLvMsgData(0, lvMsgHandler,
                                             UIHelper.LISTVIEW_ACTION_INIT);
+                                break;
+                            case 2:// 小窝
+                                if (lvNews.getVisibility() == View.VISIBLE) {
+                                    if (lvNewsData.isEmpty()) {
+                                        loadLvNewsData(curNewsCatalog, 0,
+                                                lvNewsHandler,
+                                                UIHelper.LISTVIEW_ACTION_INIT);
+                                    }
+                                } else {
+                                    if (lvBlogData.isEmpty()) {
+                                        loadLvBlogData(curNewsCatalog, 0,
+                                                lvBlogHandler,
+                                                UIHelper.LISTVIEW_ACTION_INIT);
+                                    }
+                                }
+                                break;
+                            case 3:// 排行
+                                if (lvQuestionData.isEmpty()) {
+                                    loadLvQuestionData(curQuestionCatalog, 0,
+                                            lvQuestionHandler,
+                                            UIHelper.LISTVIEW_ACTION_INIT);
+                                }
                                 break;
                         }
                         setCurPoint(viewIndex);
@@ -1383,7 +1384,7 @@ public class Main extends BaseActivity {
         // 特殊处理
 //		framebtn_Active_atme.setText("@"
 //				+ getString(R.string.frame_title_active_atme));
-        framebtn_Active_atme.setText(R.string.frame_title_active_atme);
+//        framebtn_Active_atme.setText(R.string.frame_title_active_atme);
     }
 
     private View.OnClickListener frameNewsBtnClick(final Button btn,
@@ -1452,11 +1453,8 @@ public class Main extends BaseActivity {
                     framebtn_Question_site.setEnabled(true);
 
                 curQuestionCatalog = catalog;
-//				loadLvQuestionData(curQuestionCatalog, 0, lvQuestionHandler,
-//						UIHelper.LISTVIEW_ACTION_CHANGE_CATALOG);.
-                loadLvTweetData(curTweetCatalog, 0,
-                        lvTweetHandler,
-                        UIHelper.LISTVIEW_ACTION_INIT);
+				loadLvQuestionData(curQuestionCatalog, 0, lvQuestionHandler,
+						UIHelper.LISTVIEW_ACTION_CHANGE_CATALOG);
             }
         };
     }
@@ -1597,7 +1595,7 @@ public class Main extends BaseActivity {
                         // 特殊处理-热门动弹不能翻页
                         if (lv == lvHome) {
                             TweetList tlist = (TweetList) msg.obj;
-                            if (lvTweetData.size() == tlist.getTweetCount()) {
+                            if (lvHomeData.size() == tlist.getTweetCount()) {
                                 lv.setTag(UIHelper.LISTVIEW_DATA_FULL);
                                 more.setText(R.string.load_full);
                             }
@@ -1732,10 +1730,10 @@ public class Main extends BaseActivity {
                         notice = tlist.getNotice();
                         lvTweetSumData = what;
                         if (actiontype == UIHelper.LISTVIEW_ACTION_REFRESH) {
-                            if (lvTweetData.size() > 0) {
+                            if (lvHomeData.size() > 0) {
                                 for (Tweet tweet1 : tlist.getTweetlist()) {
                                     boolean b = false;
-                                    for (Tweet tweet2 : lvTweetData) {
+                                    for (Tweet tweet2 : lvHomeData) {
                                         if (tweet1.getId() == tweet2.getId()) {
                                             b = true;
                                             break;
@@ -1748,8 +1746,8 @@ public class Main extends BaseActivity {
                                 newdata = what;
                             }
                         }
-                        lvTweetData.clear();// 先清除原有数据
-                        lvTweetData.addAll(tlist.getTweetlist());
+                        lvHomeData.clear();// 先清除原有数据
+                        lvHomeData.addAll(tlist.getTweetlist());
                         break;
                     case UIHelper.LISTVIEW_DATATYPE_ACTIVE:
                         ActiveList alist = (ActiveList) obj;
@@ -1882,20 +1880,20 @@ public class Main extends BaseActivity {
                         TweetList tlist = (TweetList) obj;
                         notice = tlist.getNotice();
                         lvTweetSumData += what;
-                        if (lvTweetData.size() > 0) {
+                        if (lvHomeData.size() > 0) {
                             for (Tweet tweet1 : tlist.getTweetlist()) {
                                 boolean b = false;
-                                for (Tweet tweet2 : lvTweetData) {
+                                for (Tweet tweet2 : lvHomeData) {
                                     if (tweet1.getId() == tweet2.getId()) {
                                         b = true;
                                         break;
                                     }
                                 }
                                 if (!b)
-                                    lvTweetData.add(tweet1);
+                                    lvHomeData.add(tweet1);
                             }
                         } else {
-                            lvTweetData.addAll(tlist.getTweetlist());
+                            lvHomeData.addAll(tlist.getTweetlist());
                         }
                         break;
                     case UIHelper.LISTVIEW_DATATYPE_ACTIVE:

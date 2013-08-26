@@ -35,11 +35,11 @@
         <item>站务</item>
     </string-array>
     <string-array name="head_titles">
+        <item>首页</item>
+        <item>消息</item>
+        <item>我的小窝</item>
         <item>排行</item>
-        <item>资讯</item>
-        <item>圈圈个人中心</item>
-        <item>ihelpoo.com</item>
-        <item>留言</item>
+        <item>更多</item>
     </string-array>
     <string-array name="path_op_title">
         <item>重命名</item>
