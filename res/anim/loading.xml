@@ -9,4 +9,8 @@
 	<item android:duration="100" android:drawable="@drawable/loading_5" />
 	<item android:duration="100" android:drawable="@drawable/loading_6" />
 	<item android:duration="100" android:drawable="@drawable/loading_7" />
+    <item android:duration="100" android:drawable="@drawable/loading_8" />
+    <item android:duration="100" android:drawable="@drawable/loading_9" />
+    <item android:duration="100" android:drawable="@drawable/loading_10" />
+    <item android:duration="100" android:drawable="@drawable/loading_11" />
 </animation-list> 

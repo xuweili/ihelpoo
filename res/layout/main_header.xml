@@ -3,7 +3,7 @@
 	android:id="@+id/main_relativelayout_header" 
   	android:layout_width="fill_parent" 
   	android:layout_height="40dip"
-  	android:background="@drawable/widget_head_bg">
+  	android:background="@drawable/head_bg">
   	
     <ImageView
     	android:id="@+id/main_head_logo"

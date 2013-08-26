@@ -14,6 +14,12 @@
     <string name="main_menu_about">关于我们</string>
     <string name="main_menu_setting">系统设置</string>
     <string name="main_menu_exit">退出程序</string>
+
+    <string name="footer_button_home">首页</string>
+    <string name="footer_button_word">消息</string>
+    <string name="footer_button_nest">小窝</string>
+    <string name="footer_button_rank">排行</string>
+    <string name="footer_button_more">更多</string>
     
     <string name="frame_title_news_lastest">最新资讯</string>
     <string name="frame_title_news_blog">最新博客</string>

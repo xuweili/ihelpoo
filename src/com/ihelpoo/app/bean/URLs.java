@@ -16,6 +16,7 @@ import java.net.URLEncoder;
 public class URLs implements Serializable {
 
     public final static String HOST = "www.oschina.net";//192.168.1.110  www.oschina.net
+    public final static String LOCALHOST = "192.168.0.102:8080";
     public final static String HTTP = "http://";
     public final static String HTTPS = "https://";
 
@@ -24,32 +25,32 @@ public class URLs implements Serializable {
 
     private final static String URL_API_HOST = HTTP + HOST + URL_SPLITTER;
     //	public final static String LOGIN_VALIDATE_HTTP = HTTP + HOST + URL_SPLITTER + "action/api/login_validate";
-    public final static String LOGIN_VALIDATE_HTTP = "http://api.ihelpoo.com/v1/login.xml";
+    public final static String LOGIN_VALIDATE_HTTP = "http://192.168.0.102:8080/v1/login.xml";
     public final static String LOGIN_VALIDATE_HTTPS = HTTPS + HOST + URL_SPLITTER + "action/api/login_validate";
     public final static String NEWS_LIST = URL_API_HOST + "action/api/news_list";
     public final static String NEWS_DETAIL = URL_API_HOST + "action/api/news_detail";
-    //	public final static String POST_LIST = "http://api.ihelpoo.com/v1/posts.xml";
-    public final static String POST_LIST = "http://api.ihelpoo.com/v1/posts.xml";
+    //	public final static String POST_LIST = "http://192.168.0.102:8080/v1/posts.xml";
+    public final static String POST_LIST = "http://192.168.0.102:8080/v1/posts.xml";
     public final static String POST_DETAIL = URL_API_HOST + "action/api/post_detail";
     public final static String POST_PUB = URL_API_HOST + "action/api/post_pub";
     //	public final static String TWEET_LIST = URL_API_HOST+"action/api/tweet_list";
-    public final static String TWEET_LIST = "http://api.ihelpoo.com/v1/tweets.xml";
+    public final static String TWEET_LIST = "http://192.168.0.102:8080/v1/tweets.xml";
     //	public final static String TWEET_DETAIL = URL_API_HOST+"action/api/tweet_detail";
-    public final static String TWEET_DETAIL = "http://api.ihelpoo.com/v1/tweets/${id}.xml";
+    public final static String TWEET_DETAIL = "http://192.168.0.102:8080/v1/tweets/${id}.xml";
     public final static String TWEET_PUB = URL_API_HOST + "action/api/tweet_pub";
     public final static String TWEET_DELETE = URL_API_HOST + "action/api/tweet_delete";
     //	public final static String ACTIVE_LIST = URL_API_HOST+"action/api/active_list";
-    public final static String ACTIVE_LIST = "http://api.ihelpoo.com/v1/stream.xml";
+    public final static String ACTIVE_LIST = "http://192.168.0.102:8080/v1/stream.xml";
 
     public final static String MESSAGE_LIST = URL_API_HOST + "action/api/message_list";
     public final static String MESSAGE_DELETE = URL_API_HOST + "action/api/message_delete";
     public final static String MESSAGE_PUB = URL_API_HOST + "action/api/message_pub";
     //	public final static String COMMENT_LIST = URL_API_HOST+"action/api/comment_list";
-    public final static String COMMENT_LIST = "http://api.ihelpoo.com/v1/comments.xml";
+    public final static String COMMENT_LIST = "http://192.168.0.102:8080/v1/comments.xml";
     //	public final static String COMMENT_PUB = URL_API_HOST+"action/api/comment_pub";
-    public final static String COMMENT_PUB = "http://api.ihelpoo.com/v1/commentPush.xml";
+    public final static String COMMENT_PUB = "http://192.168.0.102:8080/v1/commentPush.xml";
     //	public final static String COMMENT_REPLY = URL_API_HOST+"action/api/comment_reply";
-    public final static String COMMENT_REPLY = "http://api.ihelpoo.com/v1/commentReply.xml";
+    public final static String COMMENT_REPLY = "http://192.168.0.102:8080/v1/commentReply.xml";
     public final static String COMMENT_DELETE = URL_API_HOST + "action/api/comment_delete";
     public final static String SOFTWARECATALOG_LIST = URL_API_HOST + "action/api/softwarecatalog_list";
     public final static String SOFTWARETAG_LIST = URL_API_HOST + "action/api/softwaretag_list";
@@ -64,10 +65,10 @@ public class URLs implements Serializable {
     public final static String BLOGCOMMENT_DELETE = URL_API_HOST + "action/api/blogcomment_delete";
     public final static String MY_INFORMATION = URL_API_HOST + "action/api/my_information";
 //    public final static String USER_INFORMATION = URL_API_HOST + "action/api/user_information";
-    public final static String USER_INFORMATION ="http://api.ihelpoo.com/v1/userActive.xml";
+    public final static String USER_INFORMATION ="http://192.168.0.102:8080/v1/userActive.xml";
     public final static String USER_UPDATERELATION = URL_API_HOST + "action/api/user_updaterelation";
     //	public final static String USER_NOTICE = URL_API_HOST+"action/api/user_notice";
-    public final static String USER_NOTICE = "http://api.ihelpoo.com/v1/notifications.xml";
+    public final static String USER_NOTICE = "http://192.168.0.102:8080/v1/notifications.xml";
     public final static String NOTICE_CLEAR = URL_API_HOST + "action/api/notice_clear";
     public final static String FRIENDS_LIST = URL_API_HOST + "action/api/friends_list";
     public final static String FAVORITE_LIST = URL_API_HOST + "action/api/favorite_list";
@@ -76,7 +77,7 @@ public class URLs implements Serializable {
     public final static String SEARCH_LIST = URL_API_HOST + "action/api/search_list";
     public final static String PORTRAIT_UPDATE = URL_API_HOST + "action/api/portrait_update";
     //	public final static String UPDATE_VERSION = URL_API_HOST+"MobileAppVersion.xml";
-    public final static String UPDATE_VERSION = "http://api.ihelpoo.com/v1/versions.xml";
+    public final static String UPDATE_VERSION = "http://192.168.0.102:8080/v1/versions.xml";
 
     private final static String URL_HOST = "oschina.net";
     private final static String URL_WWW_HOST = "www." + URL_HOST;
