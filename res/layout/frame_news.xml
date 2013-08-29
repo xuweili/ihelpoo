@@ -9,23 +9,23 @@
 		android:orientation="horizontal" 
 		android:gravity="center_vertical">
      	<Button 
-     		android:id="@+id/frame_btn_news_lastest"
+     		android:id="@+id/frame_btn_nest_lastest"
      		style="@style/frame_button"
          	android:text="@string/frame_title_news_lastest"/>
      	<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
      	<Button 
-     		android:id="@+id/frame_btn_news_blog"
+     		android:id="@+id/frame_btn_nest_blog"
      		style="@style/frame_button"
          	android:text="@string/frame_title_news_blog"/>
      	<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
      	<Button 
-     		android:id="@+id/frame_btn_news_recommend"
+     		android:id="@+id/frame_btn_nest_recommend"
      		style="@style/frame_button"
          	android:text="@string/frame_title_news_recommend"/>
     </LinearLayout>
     
 	<com.ihelpoo.app.widget.PullToRefreshListView
-	  	android:id="@+id/frame_listview_news"
+	  	android:id="@+id/frame_listview_nest"
 	    style="@style/widget_listview"/>
 	
 	<com.ihelpoo.app.widget.PullToRefreshListView

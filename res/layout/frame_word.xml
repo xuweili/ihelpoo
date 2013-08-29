@@ -9,33 +9,33 @@
    		android:orientation="horizontal" 
    		android:gravity="center_vertical">
        	<Button 
-	        android:id="@+id/frame_btn_active_lastest"
+	        android:id="@+id/frame_btn_word_lastest"
 			style="@style/frame_button"
          	android:text="@string/frame_title_active_lastest"/>
        	<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
 		<Button 
-			android:id="@+id/frame_btn_active_atme"
+			android:id="@+id/frame_btn_word_atme"
 			style="@style/frame_button"
          	android:text="@string/frame_title_active_atme"/>
 		<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
 		<Button 
-			android:id="@+id/frame_btn_active_comment"
+			android:id="@+id/frame_btn_word_comment"
 			style="@style/frame_button"
          	android:text="@string/frame_title_active_comment"/>
 		<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
 		<Button
-			android:id="@+id/frame_btn_active_myself"
+			android:id="@+id/frame_btn_word_myself"
 			style="@style/frame_button"
          	android:text="@string/frame_title_active_myself"/>
 		<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
 		<Button
-			android:id="@+id/frame_btn_active_message"
+			android:id="@+id/frame_btn_word_message"
 			style="@style/frame_button"
          	android:text="@string/frame_title_active_message"/>
 	</LinearLayout>
 	
 	<com.ihelpoo.app.widget.PullToRefreshListView
-	  	android:id="@+id/frame_listview_active"
+	  	android:id="@+id/frame_listview_word"
 	    style="@style/widget_listview"/>
 	
 	<com.ihelpoo.app.widget.PullToRefreshListView

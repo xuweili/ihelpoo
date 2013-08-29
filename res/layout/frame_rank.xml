@@ -9,33 +9,33 @@
 		android:orientation="horizontal" 
 		android:gravity="center_vertical">
      	<Button 
-     		android:id="@+id/frame_btn_question_ask"
+     		android:id="@+id/frame_btn_rank_ask"
      		style="@style/frame_button"
          	android:text="@string/frame_title_question_ask"/>
      	<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
         <Button 
-           	android:id="@+id/frame_btn_question_share"
+           	android:id="@+id/frame_btn_rank_share"
      		style="@style/frame_button"
          	android:text="@string/frame_title_question_share"/>
         <ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
      	<Button 
-     		android:id="@+id/frame_btn_question_other"
+     		android:id="@+id/frame_btn_rank_other"
      		style="@style/frame_button" 
          	android:text="@string/frame_title_question_other"/>
      	<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
      	<Button 
-     		android:id="@+id/frame_btn_question_job"
+     		android:id="@+id/frame_btn_rank_job"
      		style="@style/frame_button"
          	android:text="@string/frame_title_question_job"/>
      	<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
      	<Button 
-     		android:id="@+id/frame_btn_question_site"
+     		android:id="@+id/frame_btn_rank_site"
      		style="@style/frame_button"
          	android:text="@string/frame_title_question_site"/>
     </LinearLayout>
     
 	<com.ihelpoo.app.widget.PullToRefreshListView
-	  	android:id="@+id/frame_listview_question"
+	  	android:id="@+id/frame_listview_rank"
 	    style="@style/widget_listview"/>
 	
 </LinearLayout>

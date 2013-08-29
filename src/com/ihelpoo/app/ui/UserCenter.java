@@ -156,7 +156,7 @@ public class UserCenter extends BaseActivity{
     	lvActive_foot_more = (TextView)lvActive_footer.findViewById(R.id.listview_foot_more);
         lvActive_foot_progress = (ProgressBar)lvActive_footer.findViewById(R.id.listview_foot_progress);
 
-    	lvActiveAdapter = new ListViewActiveAdapter(this, lvActiveData, R.layout.active_listitem, false); 
+    	lvActiveAdapter = new ListViewActiveAdapter(this, lvActiveData, R.layout.word_listitem, false);
     	mLvActive = (PullToRefreshListView)findViewById(R.id.user_center_activelist);
     	
         mLvActive.addFooterView(lvActive_footer);//添加底部视图  必须在setAdapter前

@@ -60,7 +60,7 @@ public class LoginDialog extends BaseActivity {
         loginLoading = (View) findViewById(R.id.login_loading);
         mAccount = (AutoCompleteTextView) findViewById(R.id.login_account);
         mPwd = (EditText) findViewById(R.id.login_password);
-        chb_rememberMe = (CheckBox) findViewById(R.id.login_checkbox_rememberMe);
+        chb_rememberMe = (CheckBox) findViewById(R.id.login_checkbox_remember);
 
         btn_close = (ImageButton) findViewById(R.id.login_close_button);
         btn_close.setOnClickListener(UIHelper.finish(this));

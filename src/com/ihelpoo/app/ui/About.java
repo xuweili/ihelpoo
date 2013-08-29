@@ -31,7 +31,7 @@ public class About extends BaseActivity{
         	mVersion = (TextView)findViewById(R.id.about_version);
     		mVersion.setText(info.versionName);
         } catch (NameNotFoundException e) {
-            mVersion.setText();
+            mVersion.setText(mVersion.getText());
 			e.printStackTrace(System.err);
 		} 
         

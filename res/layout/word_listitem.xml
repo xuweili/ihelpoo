@@ -41,7 +41,7 @@
                 android:layout_gravity="left|center_vertical">
 
             <TextView
-                    android:id="@+id/active_listitem_username"
+                    android:id="@+id/word_listitem_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
@@ -56,7 +56,7 @@
                     android:textSize="@dimen/space_7"
                     android:textColor="@color/white"
                     android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/active_listitem_username"
+                    android:layout_toRightOf="@+id/word_listitem_username"
                     android:layout_marginLeft="@dimen/space_3"
                     android:layout_marginBottom="@dimen/space_2"
                     android:background="@drawable/bg_rounded_rank"

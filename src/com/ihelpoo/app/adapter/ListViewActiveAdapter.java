@@ -11,10 +11,6 @@ import com.ihelpoo.app.common.BitmapManager;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.text.SpannableString;
-import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,7 +114,7 @@ public class ListViewActiveAdapter extends MyBaseAdapter {
             listItemView.userface = (ImageView) convertView
                     .findViewById(R.id.active_listitem_userface);
             listItemView.username = (TextView) convertView
-                    .findViewById(R.id.active_listitem_username);
+                    .findViewById(R.id.word_listitem_username);
             listItemView.content = (LinkView) convertView
                     .findViewById(R.id.active_listitem_content);
             listItemView.date = (TextView) convertView
