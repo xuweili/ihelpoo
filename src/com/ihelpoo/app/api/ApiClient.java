@@ -36,6 +36,7 @@ import com.ihelpoo.app.bean.URLs;
 import com.ihelpoo.app.bean.Update;
 import com.ihelpoo.app.bean.User;
 import com.ihelpoo.app.bean.UserInformation;
+import com.ihelpoo.app.common.DeviceUtil;
 
 import org.apache.commons.httpclient.Cookie;
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
@@ -398,7 +399,7 @@ public class ApiClient {
 	
 	/**
 	 * 检查版本更新
-	 * @param url
+	 * @param appContext
 	 * @return
 	 */
 	public static Update checkVersion(AppContext appContext) throws AppException {
@@ -413,17 +414,18 @@ public class ApiClient {
 	
 	/**
 	 * 登录， 自动处理cookie
-	 * @param url
+	 * @param appContext
 	 * @param username
 	 * @param pwd
 	 * @return
 	 * @throws AppException
 	 */
-	public static User login(AppContext appContext, String username, String pwd) throws AppException {
+	public static User login(AppContext appContext, String username, String pwd, String status) throws AppException {
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("username", username);
 		params.put("pwd", pwd);
-		params.put("keep_login", 1);
+		params.put("status", status);
+        params.put("ip", DeviceUtil.getIPAddress(true));
 				
 		String loginurl = URLs.LOGIN_VALIDATE_HTTP;
 		if(appContext.isHttpsLogin()){

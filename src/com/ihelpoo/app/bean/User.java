@@ -36,7 +36,8 @@ public class User extends Base {
 	private String account;
 	private String pwd;
 	private Result validate;
-	private boolean isRememberMe;
+	private boolean isRemember;
+    private String status;
 	
 	private String jointime;
 	private String gender;
@@ -44,13 +45,20 @@ public class User extends Base {
 	private String expertise;
 	private int relation;
 	private String latestonline;
-	
-	
-	public boolean isRememberMe() {
-		return isRememberMe;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public boolean isRemember() {
+		return isRemember;
 	}
-	public void setRememberMe(boolean isRememberMe) {
-		this.isRememberMe = isRememberMe;
+	public void setRemember(boolean isRemember) {
+		this.isRemember = isRemember;
 	}
 	public String getJointime() {
 		return jointime;

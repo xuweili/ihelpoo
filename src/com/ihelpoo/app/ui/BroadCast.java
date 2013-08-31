@@ -15,7 +15,7 @@ import android.net.Uri;
  * @version 1.0
  * @created 2012-4-16
  */
-public class BroadCast extends BroadcastReceiver {
+public class  BroadCast extends BroadcastReceiver {
 
 	private final static int NOTIFICATION_ID = R.layout.main;
 	

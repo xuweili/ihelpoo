@@ -240,7 +240,7 @@ public class AppContext extends Application {
      */
     public void initLoginInfo() {
         User loginUser = getLoginInfo();
-        if (loginUser != null && loginUser.getUid() > 0 && loginUser.isRememberMe()) {
+        if (loginUser != null && loginUser.getUid() > 0 && loginUser.isRemember()) {
             this.loginUid = loginUser.getUid();
             this.login = true;
         } else {
@@ -256,8 +256,8 @@ public class AppContext extends Application {
      * @return
      * @throws AppException
      */
-    public User loginVerify(String account, String pwd) throws AppException {
-        return ApiClient.login(this, account, pwd);
+    public User loginVerify(String account, String pwd, String status) throws AppException {
+        return ApiClient.login(this, account, pwd, status);
     }
 
     /**
@@ -1287,13 +1287,13 @@ public class AppContext extends Application {
             setProperty("user.face", "http://static.oschina.net/uploads/user/457/915579_100.jpg?t=1370707416000");//用户头像-文件名
 //			setProperty("user.face", FileUtils.getFileName(user.getFace()));//用户头像-文件名
             setProperty("user.account", user.getAccount());
-            setProperty("user.pwd", CyptoUtils.encode("oschinaApp", user.getPwd()));
+            setProperty("user.pwd", CyptoUtils.encode("ihelpooApp", user.getPwd()));
 //			setProperty("user.location", user.getLocation());
-            setProperty("user.location", "深圳");
+            setProperty("user.location", user.getLocation());
             setProperty("user.followers", String.valueOf(user.getFollowers()));
             setProperty("user.fans", String.valueOf(user.getFans()));
             setProperty("user.score", String.valueOf(user.getScore()));
-            setProperty("user.isRememberMe", String.valueOf(user.isRememberMe()));//是否记住我的信息
+            setProperty("user.isRemember", String.valueOf(user.isRemember()));//是否记住我的信息
         }});
     }
 
@@ -1304,7 +1304,7 @@ public class AppContext extends Application {
         this.loginUid = 0;
         this.login = false;
         removeProperty("user.uid", "user.name", "user.face", "user.account", "user.pwd",
-                "user.location", "user.followers", "user.fans", "user.score", "user.isRememberMe");
+                "user.location", "user.followers", "user.fans", "user.score", "user.isRemember");
     }
 
     /**
@@ -1318,12 +1318,12 @@ public class AppContext extends Application {
         lu.setName(getProperty("user.name"));
         lu.setFace(getProperty("user.face"));
         lu.setAccount(getProperty("user.account"));
-        lu.setPwd(CyptoUtils.decode("oschinaApp", getProperty("user.pwd")));
+        lu.setPwd(CyptoUtils.decode("ihelpooApp", getProperty("user.pwd")));
         lu.setLocation(getProperty("user.location"));
         lu.setFollowers(StringUtils.toInt(getProperty("user.followers"), 0));
         lu.setFans(StringUtils.toInt(getProperty("user.fans"), 0));
         lu.setScore(StringUtils.toInt(getProperty("user.score"), 0));
-        lu.setRememberMe(StringUtils.toBool(getProperty("user.isRememberMe")));
+        lu.setRemember(StringUtils.toBool(getProperty("user.isRemember")));
         return lu;
     }
 

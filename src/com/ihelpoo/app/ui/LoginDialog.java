@@ -39,7 +39,8 @@ public class LoginDialog extends BaseActivity {
     private EditText mPwd;
     private AnimationDrawable loadingAnimation;
     private View loginLoading;
-    private CheckBox chb_rememberMe;
+    private CheckBox chb_remember;
+    private CheckBox chb_status;
     private int curLoginType;
     private InputMethodManager imm;
 
@@ -60,7 +61,8 @@ public class LoginDialog extends BaseActivity {
         loginLoading = (View) findViewById(R.id.login_loading);
         mAccount = (AutoCompleteTextView) findViewById(R.id.login_account);
         mPwd = (EditText) findViewById(R.id.login_password);
-        chb_rememberMe = (CheckBox) findViewById(R.id.login_checkbox_remember);
+        chb_remember = (CheckBox) findViewById(R.id.login_checkbox_remember);
+        chb_status = (CheckBox) findViewById(R.id.login_checkbox_status);
 
         btn_close = (ImageButton) findViewById(R.id.login_close_button);
         btn_close.setOnClickListener(UIHelper.finish(this));
@@ -73,7 +75,8 @@ public class LoginDialog extends BaseActivity {
 
                 String account = mAccount.getText().toString();
                 String pwd = mPwd.getText().toString();
-                boolean isRememberMe = chb_rememberMe.isChecked();
+                boolean isRemember = chb_remember.isChecked();
+                boolean status = chb_status.isChecked();
                 //判断输入
                 if (StringUtils.isEmpty(account)) {
                     UIHelper.ToastMessage(v.getContext(), getString(R.string.msg_login_email_null));
@@ -89,18 +92,19 @@ public class LoginDialog extends BaseActivity {
                 loadingAnimation.start();
                 mViewSwitcher.showNext();
 
-                login(account, pwd, isRememberMe);
+                login(account, pwd, isRemember, String.valueOf(status));
             }
         });
 
         //是否显示登录信息
         AppContext ac = (AppContext) getApplication();
         User user = ac.getLoginInfo();
-        if (user == null || !user.isRememberMe()) return;
+        if (user == null || !user.isRemember()) return;
         if (!StringUtils.isEmpty(user.getAccount())) {
             mAccount.setText(user.getAccount());
             mAccount.selectAll();
-            chb_rememberMe.setChecked(user.isRememberMe());
+            chb_remember.setChecked(user.isRemember());
+            chb_status.setChecked(Boolean.valueOf(user.getStatus()));
         }
         if (!StringUtils.isEmpty(user.getPwd())) {
             mPwd.setText(user.getPwd());
@@ -108,7 +112,7 @@ public class LoginDialog extends BaseActivity {
     }
 
     //登录验证
-    private void login(final String account, final String pwd, final boolean isRememberMe) {
+    private void login(final String account, final String pwd, final boolean isRemember, final String status) {
         final Handler handler = new Handler() {
             public void handleMessage(Message msg) {
                 if (msg.what == 1) {
@@ -156,10 +160,11 @@ public class LoginDialog extends BaseActivity {
                 Message msg = new Message();
                 try {
                     AppContext ac = (AppContext) getApplication();
-                    User user = ac.loginVerify(account, pwd);
+                    User user = ac.loginVerify(account, pwd, status);
                     user.setAccount(account);
                     user.setPwd(pwd);
-                    user.setRememberMe(isRememberMe);
+                    user.setRemember(isRemember);
+                    user.setStatus(status);
                     Result res = user.getValidate();
                     if (res.OK()) {
                         ac.saveLoginInfo(user);//保存登录信息

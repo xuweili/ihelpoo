@@ -38,7 +38,7 @@ import android.widget.Toast;
 
 /**
  * 应用程序更新工具包
- * @version 1.1
+ * @version `1.1
  * @created 2012-6-29
  */
 public class UpdateManager {
@@ -270,8 +270,8 @@ public class UpdateManager {
 		@Override
 		public void run() {
 			try {
-				String apkName = "OSChinaApp_"+mUpdate.getVersionName()+".apk";
-				String tmpApk = "OSChinaApp_"+mUpdate.getVersionName()+".tmp";
+				String apkName = "IHelpOOApp_"+mUpdate.getVersionName()+".apk";
+				String tmpApk = "IHelpOOApp_"+mUpdate.getVersionName()+".tmp";
 				//判断是否挂载了SD卡
 				String storageState = Environment.getExternalStorageState();		
 				if(storageState.equals(Environment.MEDIA_MOUNTED)){
