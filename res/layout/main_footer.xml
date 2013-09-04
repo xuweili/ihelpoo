@@ -18,7 +18,7 @@
             android:src="@drawable/widget_bar_cut_off"/>
 
     <RadioButton
-            android:id="@+id/main_footbar_nest"
+            android:id="@+id/main_footbar_word"
             style="@style/main_footbar_radio"
             android:drawableTop="@drawable/widget_bar_question"
             android:drawablePadding="-20dp"
@@ -29,7 +29,7 @@
             android:src="@drawable/widget_bar_cut_off"/>
 
     <RadioButton
-            android:id="@+id/main_footbar_rank"
+            android:id="@+id/main_footbar_nest"
             style="@style/main_footbar_radio"
             android:drawableTop="@drawable/widget_bar_tweet"
             android:drawablePadding="-20dp"
@@ -40,7 +40,7 @@
             android:src="@drawable/widget_bar_cut_off"/>
 
     <RadioButton
-            android:id="@+id/main_footbar_word"
+            android:id="@+id/main_footbar_rank"
             style="@style/main_footbar_radio"
             android:drawableTop="@drawable/widget_bar_active"
             android:drawablePadding="-20dp"

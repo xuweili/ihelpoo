@@ -853,9 +853,11 @@ public class ApiClient {
 	 * @throws AppException
 	 */
 	public static TweetList getTweetList(AppContext appContext, final int catalog, final int uid, final int pageIndex, final int pageSize) throws AppException {
+        final User user = appContext.getLoginInfo();
 		String newUrl = _MakeURL(URLs.TWEET_LIST, new HashMap<String, Object>(){{
 			put("catalog", catalog);
             put("uid", uid);
+            put("schoolId", user.getLocation());
 			put("pageIndex", pageIndex);
 			put("pageSize", pageSize);
 		}});
@@ -943,9 +945,11 @@ public class ApiClient {
 	 * @throws AppException
 	 */
 	public static ActiveList getActiveList(AppContext appContext, final int uid,final int catalog, final int pageIndex, final int pageSize) throws AppException {
+        final User user = appContext.getLoginInfo();
 		String newUrl = _MakeURL(URLs.ACTIVE_LIST, new HashMap<String, Object>(){{
 			put("uid", uid);
 			put("catalog", catalog);
+            put("schoolId", user.getLocation());
 			put("pageIndex", pageIndex);
 			put("pageSize", pageSize);
 		}});

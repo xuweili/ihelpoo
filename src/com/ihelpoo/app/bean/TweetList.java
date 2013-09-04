@@ -22,7 +22,7 @@ public class TweetList extends Entity{
 	
 	public final static int CATALOG_STREAM = 0;
 	public final static int CATALOG_HELP = -1;
-    public final static int CATALOG_MINE = Integer.MIN_VALUE;
+    public final static int CATALOG_MINE = -2;
 
 	private int pageSize;
 	private int tweetCount;

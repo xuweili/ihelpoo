@@ -1352,12 +1352,9 @@ public class Main extends BaseActivity {
         framebtn_Rank_site.setOnClickListener(frameQuestionBtnClick(
                 framebtn_Rank_site, PostList.CATALOG_SITE));
         // 动弹
-        framebtn_Home_stream.setOnClickListener(frameTweetBtnClick(
-                framebtn_Home_stream, TweetList.CATALOG_STREAM));
-        framebtn_Home_help.setOnClickListener(frameTweetBtnClick(
-                framebtn_Home_help, TweetList.CATALOG_HELP));
-        framebtn_Home_mine.setOnClickListener(frameTweetBtnClick(
-                framebtn_Home_mine, TweetList.CATALOG_MINE));
+        framebtn_Home_stream.setOnClickListener(frameTweetBtnClick(framebtn_Home_stream, TweetList.CATALOG_STREAM));
+        framebtn_Home_help.setOnClickListener(frameTweetBtnClick(framebtn_Home_help, TweetList.CATALOG_HELP));
+        framebtn_Home_mine.setOnClickListener(frameTweetBtnClick(framebtn_Home_mine, TweetList.CATALOG_MINE));
 
         // 动态+留言
         framebtn_Word_lastest.setOnClickListener(frameActiveBtnClick(
