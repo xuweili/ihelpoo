@@ -53,23 +53,23 @@ public class  BroadCast extends BroadcastReceiver {
 				}
 			}
 			//评论
-			if(Main.bv_review != null){
+			if(Main.bv_comment != null){
 				if(reviewCount > 0){
-					Main.bv_review.setText(reviewCount+"");
-					Main.bv_review.show();
+					Main.bv_comment.setText(reviewCount+"");
+					Main.bv_comment.show();
 				}else{
-					Main.bv_review.setText("");
-					Main.bv_review.hide();
+					Main.bv_comment.setText("");
+					Main.bv_comment.hide();
 				}
 			}
 			//留言
-			if(Main.bv_message != null){
+			if(Main.bv_chat != null){
 				if(msgCount > 0){
-					Main.bv_message.setText(msgCount+"");
-					Main.bv_message.show();
+					Main.bv_chat.setText(msgCount+"");
+					Main.bv_chat.show();
 				}else{
-					Main.bv_message.setText("");
-					Main.bv_message.hide();
+					Main.bv_chat.setText("");
+					Main.bv_chat.hide();
 				}
 			}
 			

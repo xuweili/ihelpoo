@@ -27,7 +27,8 @@ public class URLs implements Serializable {
     //	public final static String LOGIN_VALIDATE_HTTP = HTTP + HOST + URL_SPLITTER + "action/api/login_validate";
     public final static String LOGIN_VALIDATE_HTTP = "http://192.168.0.102:8080/v1/login.xml";
     public final static String LOGIN_VALIDATE_HTTPS = HTTPS + HOST + URL_SPLITTER + "action/api/login_validate";
-    public final static String NEWS_LIST = URL_API_HOST + "action/api/news_list";
+//    public final static String NEWS_LIST = URL_API_HOST + "action/api/news_list";
+    public final static String NEWS_LIST = "http://192.168.0.102:8080/v1/notices.xml";
     public final static String NEWS_DETAIL = URL_API_HOST + "action/api/news_detail";
     //	public final static String POST_LIST = "http://192.168.0.102:8080/v1/posts.xml";
     public final static String POST_LIST = "http://192.168.0.102:8080/v1/posts.xml";
@@ -39,8 +40,8 @@ public class URLs implements Serializable {
     public final static String TWEET_DETAIL = "http://192.168.0.102:8080/v1/tweets/${id}.xml";
     public final static String TWEET_PUB = URL_API_HOST + "action/api/tweet_pub";
     public final static String TWEET_DELETE = URL_API_HOST + "action/api/tweet_delete";
-    //	public final static String ACTIVE_LIST = URL_API_HOST+"action/api/active_list";
-    public final static String ACTIVE_LIST = "http://192.168.0.102:8080/v1/stream.xml";
+    //	public final static String WORD_LIST = URL_API_HOST+"action/api/active_list";
+    public final static String WORD_LIST = "http://192.168.0.102:8080/v1/words.xml";
 
     public final static String MESSAGE_LIST = URL_API_HOST + "action/api/message_list";
     public final static String MESSAGE_DELETE = URL_API_HOST + "action/api/message_delete";
@@ -264,7 +265,7 @@ public class URLs implements Serializable {
         p = path.indexOf(url_type) + url_type.length();
         str = path.substring(p);
         if (str.contains("?")) {
-            tmp = str.split("?");
+            tmp = str.split("\\?");
             objKey = tmp[0];
         } else {
             objKey = str;

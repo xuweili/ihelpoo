@@ -13,7 +13,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.webkit.CacheManager;
 
-import com.ihelpoo.app.bean.ActiveList;
+import com.ihelpoo.app.bean.WordList;
 import com.ihelpoo.app.bean.BlogCommentList;
 import com.ihelpoo.app.bean.FriendList;
 import com.ihelpoo.app.bean.MessageList;
@@ -459,10 +459,10 @@ public class AppContext extends Application {
      */
     public NewsList getNewsList(int catalog, int pageIndex, boolean isRefresh) throws AppException {
         NewsList list = null;
-        String key = "newslist_" + catalog + "_" + pageIndex + "_" + PAGE_SIZE;
+        String key = "newslist_" + loginUid + "_" + catalog + "_" + pageIndex + "_" + PAGE_SIZE;
         if (isNetworkConnected() && (!isReadDataCache(key) || isRefresh)) {
             try {
-                list = ApiClient.getNewsList(this, catalog, pageIndex, PAGE_SIZE);
+                list = ApiClient.getNewsList(this, loginUid, catalog, pageIndex, PAGE_SIZE);
                 if (list != null && pageIndex == 0) {
                     Notice notice = list.getNotice();
                     list.setNotice(null);
@@ -932,12 +932,12 @@ public class AppContext extends Application {
      * @return
      * @throws AppException
      */
-    public ActiveList getActiveList(int catalog, int pageIndex, boolean isRefresh) throws AppException {
-        ActiveList list = null;
+    public WordList getWordList(int catalog, int pageIndex, boolean isRefresh) throws AppException {
+        WordList list = null;
         String key = "activelist_" + loginUid + "_" + catalog + "_" + pageIndex + "_" + PAGE_SIZE;
         if (isNetworkConnected() && (!isReadDataCache(key) || isRefresh)) {
             try {
-                list = ApiClient.getActiveList(this, loginUid, catalog, pageIndex, PAGE_SIZE);
+                list = ApiClient.getWordList(this, loginUid, catalog, pageIndex, PAGE_SIZE);
                 if (list != null && pageIndex == 0) {
                     Notice notice = list.getNotice();
                     list.setNotice(null);
@@ -946,14 +946,14 @@ public class AppContext extends Application {
                     list.setNotice(notice);
                 }
             } catch (AppException e) {
-                list = (ActiveList) readObject(key);
+                list = (WordList) readObject(key);
                 if (list == null)
                     throw e;
             }
         } else {
-            list = (ActiveList) readObject(key);
+            list = (WordList) readObject(key);
             if (list == null)
-                list = new ActiveList();
+                list = new WordList();
         }
         return list;
     }

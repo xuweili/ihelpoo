@@ -31,6 +31,7 @@ public class News extends Entity{
 	public final static String NODE_COMMENTCOUNT = "commentCount";
 	public final static String NODE_FAVORITE = "favorite";
 	public final static String NODE_START = "news";
+    public static final String NODE_INOUT = "inout";
 	
 	public final static String NODE_SOFTWARELINK = "softwarelink";
 	public final static String NODE_SOFTWARENAME = "softwarename";
@@ -49,6 +50,7 @@ public class News extends Entity{
 	private String url;
 	private String body;
 	private String author;
+    private String inout;
 	private int authorId;
 	private int commentCount;
 	private String pubDate;
@@ -72,9 +74,17 @@ public class News extends Entity{
 	public static class Relative implements Serializable{
 		public String title;
 		public String url;
-	} 
-	
-	public List<Relative> getRelatives() {
+	}
+
+    public String getInout() {
+        return inout;
+    }
+
+    public void setInout(String inout) {
+        this.inout = inout;
+    }
+
+    public List<Relative> getRelatives() {
 		return relatives;
 	}
 	public void setRelatives(List<Relative> relatives) {
@@ -187,6 +197,10 @@ public class News extends Entity{
 				            {			            	
 				            	news.setAuthor(xmlParser.nextText());		            	
 				            }
+                            else if (tag.equalsIgnoreCase(NODE_INOUT))
+                            {
+                                news.setInout(xmlParser.nextText());
+                            }
 				            else if(tag.equalsIgnoreCase(NODE_AUTHORID))
 				            {			            	
 				            	news.setAuthorId(StringUtils.toInt(xmlParser.nextText(),0));		            	

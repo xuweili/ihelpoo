@@ -119,6 +119,7 @@ public class UIHelper {
 	public final static int LISTVIEW_DATATYPE_ACTIVE = 0x05;
 	public final static int LISTVIEW_DATATYPE_MESSAGE = 0x06;
 	public final static int LISTVIEW_DATATYPE_COMMENT = 0x07;
+    public final static int LISTVIEW_DATATYPE_NOTICE = 0x08;
 
 	public final static int REQUEST_CODE_FOR_RESULT = 0x01;
 	public final static int REQUEST_CODE_FOR_REPLY = 0x02;

@@ -36,11 +36,11 @@
     <!--<string name="frame_title_active_lastest">最新动态</string>-->
     <!--<string name="frame_title_active_atme">我</string>-->
     <!--<string name="frame_title_active_comment">评论</string>-->
-    <string name="frame_title_active_lastest">评论</string>
-    <string name="frame_title_active_atme">\@我</string>
-    <string name="frame_title_active_comment">记录</string>
-    <string name="frame_title_active_myself">聊天</string>
-    <string name="frame_title_active_message">帮助</string>
+    <string name="frame_title_word_system">系统</string>
+    <string name="frame_title_word_comment">评论</string>
+    <string name="frame_title_word_atme">\@我</string>
+    <string name="frame_title_word_active">活跃</string>
+    <string name="frame_title_word_chat">留言</string>
     
     <string name="footbar_refresh">刷新</string>
     <string name="footbar_comment">评论</string>

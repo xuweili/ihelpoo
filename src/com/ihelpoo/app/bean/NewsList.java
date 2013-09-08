@@ -90,6 +90,10 @@ public class NewsList extends Entity{
 				            {			            	
 				            	news.setAuthor(xmlParser.nextText());		            	
 				            }
+                            else if(tag.equalsIgnoreCase(News.NODE_INOUT))
+                            {
+                                news.setInout(xmlParser.nextText());
+                            }
 				            else if(tag.equalsIgnoreCase(News.NODE_AUTHORID))
 				            {			            	
 				            	news.setAuthorId(StringUtils.toInt(xmlParser.nextText(),0));		            	

@@ -1,11 +1,5 @@
 package com.ihelpoo.app.adapter;
 
-import java.util.List;
-
-import com.ihelpoo.app.bean.News;
-import com.ihelpoo.app.common.StringUtils;
-import com.ihelpoo.app.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +8,19 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ihelpoo.app.R;
+import com.ihelpoo.app.bean.News;
+import com.ihelpoo.app.common.StringUtils;
+
+import java.util.List;
+
 /**
  * 新闻资讯Adapter类
  *
  * @version 1.0
  * @created 2012-3-21
  */
-public class ListViewNewsAdapter extends BaseAdapter {
+public class ListViewNoticeAdapter extends BaseAdapter {
     private Context context;//运行上下文
     private List<News> listItems;//数据集合
     private LayoutInflater listContainer;//视图容器
@@ -42,7 +42,7 @@ public class ListViewNewsAdapter extends BaseAdapter {
      * @param data
      * @param resource
      */
-    public ListViewNewsAdapter(Context context, List<News> data, int resource) {
+    public ListViewNoticeAdapter(Context context, List<News> data, int resource) {
         this.context = context;
         this.listContainer = LayoutInflater.from(context);    //创建视图容器并设置上下文
         this.itemViewResource = resource;
@@ -79,7 +79,7 @@ public class ListViewNewsAdapter extends BaseAdapter {
             listItemView.title = (TextView) convertView.findViewById(R.id.news_listitem_title);
             listItemView.author = (TextView) convertView.findViewById(R.id.news_listitem_author);
             listItemView.inout = (TextView) convertView.findViewById(R.id.news_listitem_inout);
-            listItemView.count = (TextView) convertView.findViewById(R.id.news_listitem_commentCount);
+//			listItemView.count= (TextView)convertView.findViewById(R.id.news_listitem_commentCount);
             listItemView.date = (TextView) convertView.findViewById(R.id.news_listitem_date);
             listItemView.flag = (ImageView) convertView.findViewById(R.id.news_listitem_flag);
 
@@ -95,9 +95,14 @@ public class ListViewNewsAdapter extends BaseAdapter {
         listItemView.title.setText(news.getTitle());
         listItemView.title.setTag(news);//设置隐藏参数(实体类)
         listItemView.author.setText(news.getAuthor());
-        listItemView.inout.setText(news.getInout());
         listItemView.date.setText(StringUtils.friendly_time(news.getPubDate()));
-        listItemView.count.setText(news.getCommentCount() + "");
+        listItemView.inout.setText(news.getInout());
+        if (news.getInout().contains("-")) {
+            listItemView.inout.setTextColor(context.getResources().getColor(R.color.orange));
+        } else {
+            listItemView.inout.setTextColor(context.getResources().getColor(R.color.green));
+        }
+//		listItemView.count.setText(news.getCommentCount()+"");
         if (StringUtils.isToday(news.getPubDate()))
             listItemView.flag.setVisibility(View.VISIBLE);
         else

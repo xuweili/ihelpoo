@@ -11,7 +11,7 @@ import java.util.Map;
 
 import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.AppException;
-import com.ihelpoo.app.bean.ActiveList;
+import com.ihelpoo.app.bean.WordList;
 import com.ihelpoo.app.bean.Blog;
 import com.ihelpoo.app.bean.BlogCommentList;
 import com.ihelpoo.app.bean.BlogList;
@@ -615,8 +615,9 @@ public class ApiClient {
 	 * @return
 	 * @throws AppException
 	 */
-	public static NewsList getNewsList(AppContext appContext, final int catalog, final int pageIndex, final int pageSize) throws AppException {
+	public static NewsList getNewsList(AppContext appContext, final int uid, final int catalog, final int pageIndex, final int pageSize) throws AppException {
 		String newUrl = _MakeURL(URLs.NEWS_LIST, new HashMap<String, Object>(){{
+            put("uid", uid);
 			put("catalog", catalog);
 			put("pageIndex", pageIndex);
 			put("pageSize", pageSize);
@@ -944,9 +945,9 @@ public class ApiClient {
 	 * @return
 	 * @throws AppException
 	 */
-	public static ActiveList getActiveList(AppContext appContext, final int uid,final int catalog, final int pageIndex, final int pageSize) throws AppException {
+	public static WordList getWordList(AppContext appContext, final int uid, final int catalog, final int pageIndex, final int pageSize) throws AppException {
         final User user = appContext.getLoginInfo();
-		String newUrl = _MakeURL(URLs.ACTIVE_LIST, new HashMap<String, Object>(){{
+		String newUrl = _MakeURL(URLs.WORD_LIST, new HashMap<String, Object>(){{
 			put("uid", uid);
 			put("catalog", catalog);
             put("schoolId", user.getLocation());
@@ -955,7 +956,7 @@ public class ApiClient {
 		}});
 		
 		try{
-			return ActiveList.parse(http_get(appContext, newUrl));		
+			return WordList.parse(http_get(appContext, newUrl));
 		}catch(Exception e){
 			if(e instanceof AppException)
 				throw (AppException)e;

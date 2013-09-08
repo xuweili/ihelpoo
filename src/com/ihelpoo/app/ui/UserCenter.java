@@ -6,13 +6,13 @@ import java.util.List;
 
 import com.ihelpoo.app.AppException;
 import com.ihelpoo.app.adapter.ListViewBlogAdapter;
+import com.ihelpoo.app.adapter.ListViewWordAdapter;
 import com.ihelpoo.app.bean.User;
 import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.widget.PullToRefreshListView;
 import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.R;
-import com.ihelpoo.app.adapter.ListViewActiveAdapter;
 import com.ihelpoo.app.bean.Active;
 import com.ihelpoo.app.bean.Blog;
 import com.ihelpoo.app.bean.BlogList;
@@ -62,7 +62,7 @@ public class UserCenter extends BaseActivity{
 	private TextView mLatestonline;
 	
 	private PullToRefreshListView mLvActive;
-	private ListViewActiveAdapter lvActiveAdapter;
+	private ListViewWordAdapter lvActiveAdapter;
 	private List<Active> lvActiveData = new ArrayList<Active>();
 	private View lvActive_footer;
 	private TextView lvActive_foot_more;
@@ -156,7 +156,7 @@ public class UserCenter extends BaseActivity{
     	lvActive_foot_more = (TextView)lvActive_footer.findViewById(R.id.listview_foot_more);
         lvActive_foot_progress = (ProgressBar)lvActive_footer.findViewById(R.id.listview_foot_progress);
 
-    	lvActiveAdapter = new ListViewActiveAdapter(this, lvActiveData, R.layout.word_listitem, false);
+    	lvActiveAdapter = new ListViewWordAdapter(this, lvActiveData, R.layout.word_listitem, false);
     	mLvActive = (PullToRefreshListView)findViewById(R.id.user_center_activelist);
     	
         mLvActive.addFooterView(lvActive_footer);//添加底部视图  必须在setAdapter前

@@ -19,12 +19,13 @@ import android.util.Xml;
  * @version 1.0
  * @created 2012-3-21
  */
-public class ActiveList extends Entity{
+public class WordList extends Entity{
 
-	public final static int CATALOG_LASTEST = 1;//最新
+	public final static int CATALOG_SYSTEM = 1;//最新
 	public final static int CATALOG_ATME = 2;//@我
 	public final static int CATALOG_COMMENT = 3;//评论
-	public final static int CATALOG_MYSELF = 4;//我自己
+	public final static int CATALOG_ACTIVE = 4;//我自己
+    public final static int CATALOG_CHAT = 0;//我自己
 	
 	private int pageSize;
 	private int activeCount;
@@ -40,8 +41,8 @@ public class ActiveList extends Entity{
 		return activelist;
 	}
 
-	public static ActiveList parse(InputStream inputStream) throws IOException, AppException {
-		ActiveList activelist = new ActiveList();
+	public static WordList parse(InputStream inputStream) throws IOException, AppException {
+		WordList activelist = new WordList();
 		Active active = null;
         //获得XmlPullParser解析器
         XmlPullParser xmlParser = Xml.newPullParser();

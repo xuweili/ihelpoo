@@ -9,34 +9,40 @@
    		android:orientation="horizontal" 
    		android:gravity="center_vertical">
        	<Button 
-	        android:id="@+id/frame_btn_word_lastest"
+	        android:id="@+id/frame_btn_word_system"
 			style="@style/frame_button"
-         	android:text="@string/frame_title_active_lastest"/>
+         	android:text="@string/frame_title_word_system"/>
        	<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
 		<Button 
 			android:id="@+id/frame_btn_word_atme"
 			style="@style/frame_button"
-         	android:text="@string/frame_title_active_atme"/>
+         	android:text="@string/frame_title_word_atme"/>
 		<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
 		<Button 
 			android:id="@+id/frame_btn_word_comment"
 			style="@style/frame_button"
-         	android:text="@string/frame_title_active_comment"/>
+         	android:text="@string/frame_title_word_comment"/>
 		<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
 		<Button
-			android:id="@+id/frame_btn_word_myself"
+			android:id="@+id/frame_btn_word_active"
 			style="@style/frame_button"
-         	android:text="@string/frame_title_active_myself"/>
+         	android:text="@string/frame_title_word_active"/>
 		<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
 		<Button
-			android:id="@+id/frame_btn_word_message"
+			android:id="@+id/frame_btn_word_chat"
 			style="@style/frame_button"
-         	android:text="@string/frame_title_active_message"/>
+         	android:text="@string/frame_title_word_chat"/>
 	</LinearLayout>
 	
 	<com.ihelpoo.app.widget.PullToRefreshListView
 	  	android:id="@+id/frame_listview_word"
 	    style="@style/widget_listview"/>
+
+    <com.ihelpoo.app.widget.PullToRefreshListView
+        android:id="@+id/frame_listview_notice"
+        style="@style/widget_listview"
+        android:divider="@null"
+        android:visibility="gone"/>
 	
 	<com.ihelpoo.app.widget.PullToRefreshListView
 	  	android:id="@+id/frame_listview_message"

@@ -23,16 +23,13 @@ import android.widget.TextView;
  * @version 1.0
  * @created 2012-3-21
  */
-public class ListViewActiveAdapter extends MyBaseAdapter {
+public class ListViewWordAdapter extends MyBaseAdapter {
     private Context context;// 运行上下文
     private List<Active> listItems;// 数据集合
     private LayoutInflater listContainer;// 视图容器
     private int itemViewResource;// 自定义项视图源
     private BitmapManager bmpManager;
     private boolean faceClickEnable;
-
-    private final static String AT_HOST_PRE = "http://my.oschina.net";
-    private final static String MAIN_HOST = "http://www.oschina.net";
 
     static class ListItemView { // 自定义控件集合
         public ImageView userface;
@@ -61,8 +58,8 @@ public class ListViewActiveAdapter extends MyBaseAdapter {
      * @param data
      * @param resource
      */
-    public ListViewActiveAdapter(Context context, List<Active> data,
-                                 int resource) {
+    public ListViewWordAdapter(Context context, List<Active> data,
+                               int resource) {
         this(context, data, resource, true);
     }
 
@@ -73,8 +70,8 @@ public class ListViewActiveAdapter extends MyBaseAdapter {
      * @param data
      * @param resource
      */
-    public ListViewActiveAdapter(Context context, List<Active> data,
-                                 int resource, boolean faceClickEnable) {
+    public ListViewWordAdapter(Context context, List<Active> data,
+                               int resource, boolean faceClickEnable) {
         this.context = context;
         this.listContainer = LayoutInflater.from(context); // 创建视图容器并设置上下文
         this.itemViewResource = resource;
@@ -111,29 +108,20 @@ public class ListViewActiveAdapter extends MyBaseAdapter {
 
             listItemView = new ListItemView();
             // 获取控件对象
-            listItemView.userface = (ImageView) convertView
-                    .findViewById(R.id.active_listitem_userface);
-            listItemView.username = (TextView) convertView
-                    .findViewById(R.id.word_listitem_username);
-            listItemView.content = (LinkView) convertView
-                    .findViewById(R.id.active_listitem_content);
-            listItemView.date = (TextView) convertView
-                    .findViewById(R.id.active_listitem_date);
-            listItemView.commentCount = (TextView) convertView
-                    .findViewById(R.id.active_listitem_commentCount);
-            listItemView.client = (TextView) convertView
-                    .findViewById(R.id.active_listitem_client);
-            listItemView.reply = (TextView) convertView
-                    .findViewById(R.id.active_listitem_reply);
-            listItemView.redirect = (ImageView) convertView
-                    .findViewById(R.id.active_listitem_redirect);
-            listItemView.image = (ImageView) convertView
-                    .findViewById(R.id.active_listitem_image);
+            listItemView.userface = (ImageView) convertView.findViewById(R.id.active_listitem_userface);
+            listItemView.username = (TextView) convertView.findViewById(R.id.word_listitem_username);
+            listItemView.content = (LinkView) convertView.findViewById(R.id.active_listitem_content);
+            listItemView.date = (TextView) convertView.findViewById(R.id.active_listitem_date);
+            listItemView.commentCount = (TextView) convertView.findViewById(R.id.active_listitem_commentCount);
+            listItemView.client = (TextView) convertView.findViewById(R.id.active_listitem_client);
+            listItemView.reply = (TextView) convertView.findViewById(R.id.active_listitem_reply);
+            listItemView.redirect = (ImageView) convertView.findViewById(R.id.active_listitem_redirect);
+            listItemView.image = (ImageView) convertView.findViewById(R.id.active_listitem_image);
             listItemView.type_gossip = (TextView) convertView.findViewById(R.id.active_listitem_type_gossip);
             listItemView.diffusionCount = (TextView) convertView.findViewById(R.id.active_listitem_diffusionCount);
-            listItemView.online = (TextView)convertView.findViewById(R.id.active_listitem_online);
+            listItemView.online = (TextView) convertView.findViewById(R.id.active_listitem_online);
             listItemView.academy = (TextView) convertView.findViewById(R.id.active_listitem_academy);
-            listItemView.rank = (TextView) convertView.findViewById(R.id.active_listitem_rank);
+//            listItemView.rank = (TextView) convertView.findViewById(R.id.active_listitem_rank);
 
             // 设置控件集到convertView
             convertView.setTag(listItemView);
@@ -149,16 +137,25 @@ public class ListViewActiveAdapter extends MyBaseAdapter {
         listItemView.username.setText(active.getAuthor());
         listItemView.username.setTag(active);// 设置隐藏参数(实体类)
 
-        listItemView.type_gossip.setText(active.getAuthorType()+" "+active.getAuthorGossip());
+        if (active.getAuthorType() == null || active.getAuthorGossip() == null) {
+            listItemView.type_gossip.setText("");
+        } else {
+            listItemView.type_gossip.setText(active.getAuthorType() + " " + active.getAuthorGossip());
+        }
+
 
 //        SpannableString spanString = new SpannableString(String.valueOf(active.getRank()));
 //        spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
 
-        listItemView.rank.setText(active.bold(String.valueOf(active.getRank())));
-        listItemView.rank.setBackgroundDrawable(active.drawBg(context, active.getRank()));
+//        if (active.getRank() == 0) {
+//            listItemView.rank.setText("");
+//        } else {
+//            listItemView.rank.setText(active.bold(String.valueOf(active.getRank())));
+//            listItemView.rank.setBackgroundDrawable(active.drawBg(context, active.getRank()));
+//        }
 
         listItemView.academy.setText(active.getAcademy());
-        listItemView.online.setText(1==active.getOnline()?"在线":"");
+        listItemView.online.setText(1 == active.getOnline() ? "在线" : "");
 //        if(1!=active.getOnline())listItemView.online.setTextColor(Color.LTGRAY);
         listItemView.diffusionCount.setText(active.getDiffusionCount() + "");
 
@@ -207,10 +204,10 @@ public class ListViewActiveAdapter extends MyBaseAdapter {
             listItemView.reply.setVisibility(TextView.GONE);
         }
 
-        if (active.getActiveType() == Active.CATALOG_OTHER)
-            listItemView.redirect.setVisibility(ImageView.GONE);
-        else
-            listItemView.redirect.setVisibility(ImageView.VISIBLE);
+//        if (active.getActiveType() == Active.CATALOG_OTHER)
+//            listItemView.redirect.setVisibility(ImageView.GONE);
+//        else
+//            listItemView.redirect.setVisibility(ImageView.VISIBLE);
 
         String faceURL = active.getFace();
         if (faceURL.endsWith("portrait.gif") || StringUtils.isEmpty(faceURL)) {
@@ -259,8 +256,8 @@ public class ListViewActiveAdapter extends MyBaseAdapter {
 
     private View.OnClickListener linkViewClickListener = new View.OnClickListener() {
         public void onClick(View v) {
-            if(!isLinkViewClick()){
-                UIHelper.showActiveRedirect(v.getContext(), (Active)v.getTag());
+            if (!isLinkViewClick()) {
+                UIHelper.showActiveRedirect(v.getContext(), (Active) v.getTag());
             }
             setLinkViewClick(false);
         }

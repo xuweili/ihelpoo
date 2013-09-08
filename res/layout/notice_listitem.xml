@@ -22,14 +22,20 @@
 	        android:layout_gravity="center_vertical"
 	        android:src="@drawable/widget_today_icon"
 	        android:visibility="gone"/>
-    
+
+        <TextView android:id="@+id/news_listitem_inout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_15"
+            android:textColor="@color/green"
+            android:textStyle="bold"
+
+            />
 	    <TextView android:id="@+id/news_listitem_title"
 	        android:layout_width="fill_parent" 
 	     	android:layout_height="wrap_content"
-	     	android:textStyle="bold"
 	     	android:textSize="@dimen/text_size_15"
-	     	android:textColor="@color/listitem_black"
-	     	android:singleLine="true"/> 
+	     	android:textColor="@color/listitem_black"/>
 	    
    	</LinearLayout>
 
@@ -37,40 +43,18 @@
     	android:orientation="horizontal" 
         android:layout_width="fill_parent"  
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dip">   
-       	
+        android:layout_marginTop="8dip">
+
        	<TextView android:id="@+id/news_listitem_author"
-    		android:layout_width="wrap_content" 
-           	android:layout_height="wrap_content" 
+    		android:layout_width="wrap_content"
+           	android:layout_height="wrap_content"
            	android:textSize="@dimen/text_size_10"
-            android:textColor="@color/listitem_gray"/>
-       	
-       	<TextView
-    		android:layout_width="wrap_content" 
-           	android:layout_height="wrap_content" 
-           	android:layout_marginLeft="10dip"
-           	android:textSize="@dimen/text_size_10"
-            android:textColor="@color/listitem_gray"
-            android:text="发布于"/>
+            android:textColor="@color/green"/>
        	
        	<TextView android:id="@+id/news_listitem_date"  
     		android:layout_width="wrap_content" 
            	android:layout_height="wrap_content"
            	android:layout_marginLeft="2dip" 
-           	android:textSize="@dimen/text_size_10"
-            android:textColor="@color/listitem_gray"/>
-            
-	    <ImageView 
-	      	android:layout_width="wrap_content" 
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="10dip"
-	        android:layout_gravity="center_vertical"
-	        android:src="@drawable/widget_comment_count_icon"/>
-	        
-       	<TextView android:id="@+id/news_listitem_commentCount"  
-    		android:layout_width="wrap_content" 
-           	android:layout_height="wrap_content" 
-           	android:layout_marginLeft="3dip"
            	android:textSize="@dimen/text_size_10"
             android:textColor="@color/listitem_gray"/>
        	
