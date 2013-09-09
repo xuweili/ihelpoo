@@ -79,7 +79,7 @@ public class ListViewNoticeAdapter extends BaseAdapter {
             listItemView.title = (TextView) convertView.findViewById(R.id.news_listitem_title);
             listItemView.author = (TextView) convertView.findViewById(R.id.news_listitem_author);
             listItemView.inout = (TextView) convertView.findViewById(R.id.news_listitem_inout);
-//			listItemView.count= (TextView)convertView.findViewById(R.id.news_listitem_commentCount);
+            listItemView.count = (TextView) convertView.findViewById(R.id.news_listitem_commentCount);
             listItemView.date = (TextView) convertView.findViewById(R.id.news_listitem_date);
             listItemView.flag = (ImageView) convertView.findViewById(R.id.news_listitem_flag);
 
@@ -103,11 +103,15 @@ public class ListViewNoticeAdapter extends BaseAdapter {
             listItemView.inout.setTextColor(context.getResources().getColor(R.color.green));
         }
 //		listItemView.count.setText(news.getCommentCount()+"");
-        if (StringUtils.isToday(news.getPubDate()))
-            listItemView.flag.setVisibility(View.VISIBLE);
-        else
+        if (isDelivered(news.getCommentCount()))
             listItemView.flag.setVisibility(View.GONE);
+        else
+            listItemView.flag.setVisibility(View.VISIBLE);
 
         return convertView;
+    }
+
+    private boolean isDelivered(int deliver) {
+        return 1 == deliver;
     }
 }
