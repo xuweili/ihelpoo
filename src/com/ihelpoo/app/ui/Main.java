@@ -1296,16 +1296,11 @@ public class Main extends BaseActivity {
                                 }
                                 // 处理通知信息
                                 if (bv_atme.isShown())
-                                    frameActiveBtnOnClick(framebtn_Word_atme,
-                                            WordList.CATALOG_ATME,
-                                            UIHelper.LISTVIEW_ACTION_REFRESH);
+                                    frameActiveBtnOnClick(framebtn_Word_atme, WordList.CATALOG_ATME, UIHelper.LISTVIEW_ACTION_REFRESH);
                                 else if (bv_comment.isShown())
-                                    frameActiveBtnOnClick(framebtn_Word_comment,
-                                            WordList.CATALOG_COMMENT,
-                                            UIHelper.LISTVIEW_ACTION_REFRESH);
+                                    frameActiveBtnOnClick(framebtn_Word_comment, WordList.CATALOG_COMMENT, UIHelper.LISTVIEW_ACTION_REFRESH);
                                 else if (bv_chat.isShown())
-                                    frameActiveBtnOnClick(framebtn_Word_chat,
-                                            0, UIHelper.LISTVIEW_ACTION_REFRESH);
+                                    frameActiveBtnOnClick(framebtn_Word_chat, 0, UIHelper.LISTVIEW_ACTION_REFRESH);
                                 else if (lvWord.getVisibility() == View.VISIBLE && lvWordData.isEmpty())
                                     loadLvWordData(curWordCatalog, 0, lvWordHandler, UIHelper.LISTVIEW_ACTION_INIT);
                                 else if (lvChat.getVisibility() == View.VISIBLE && lvMsgData.isEmpty())

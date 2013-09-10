@@ -939,7 +939,7 @@ public class ApiClient {
 	/**
 	 * 获取动态列表
 	 * @param uid
-	 * @param catalog 1最新动态  2@我  3评论  4我自己 
+	 * @param catalog 1系统  2@我  3评论
 	 * @param pageIndex
 	 * @param pageSize
 	 * @return

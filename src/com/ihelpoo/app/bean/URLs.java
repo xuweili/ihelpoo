@@ -43,7 +43,8 @@ public class URLs implements Serializable {
     //	public final static String WORD_LIST = URL_API_HOST+"action/api/active_list";
     public final static String WORD_LIST = "http://192.168.0.102:8080/v1/words.xml";
 
-    public final static String MESSAGE_LIST = URL_API_HOST + "action/api/message_list";
+//    public final static String MESSAGE_LIST = URL_API_HOST + "action/api/message_list";
+    public final static String MESSAGE_LIST = "http://192.168.0.102:8080/v1/chats.xml";
     public final static String MESSAGE_DELETE = URL_API_HOST + "action/api/message_delete";
     public final static String MESSAGE_PUB = URL_API_HOST + "action/api/message_pub";
     //	public final static String COMMENT_LIST = URL_API_HOST+"action/api/comment_list";
