@@ -27,8 +27,8 @@
     <string name="frame_title_question_ask">浏览</string>
     <string name="frame_title_question_share">评论</string>
     <string name="frame_title_question_other">扩散</string>
-    <string name="frame_title_question_job">热门帮助</string>
-    <string name="frame_title_question_site">最多帮助</string>
+    <string name="frame_title_question_job">热门</string>
+    <string name="frame_title_question_site">最多</string>
     <string name="frame_title_tweet_lastest">校园动态</string>
     <string name="frame_title_tweet_hot">看我圈的</string>
     <string name="frame_title_tweet_my">只看帮助</string>

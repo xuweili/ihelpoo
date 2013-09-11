@@ -15,12 +15,26 @@
 			android:background="@drawable/widget_bar_bg_n">
 			<ImageView
 				android:id="@+id/tweet_detail_footbar_editebox"
-				android:layout_width="fill_parent" 
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="4dip"
-				android:layout_marginRight="100dip"
-				android:layout_gravity="center_vertical"
-				android:background="@drawable/reply_editbox_bg1"/>
+                android:layout_width="150dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:layout_marginRight="4dip"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/reply_editbox_bg1"/>
+            <ImageView
+                style="@style/main_footbar_cutline"
+                android:src="@drawable/widget_bar_cut_off"/>
+            <ImageView
+                android:id="@+id/tweet_detail_footbar_plus"
+                style="@style/main_footbar_image"
+                android:src="@drawable/widget_bar_favorite"/>
+            <ImageView
+                style="@style/main_footbar_cutline"
+                android:src="@drawable/widget_bar_cut_off"/>
+            <ImageView
+                android:id="@+id/tweet_detail_footbar_diffuse"
+                style="@style/main_footbar_image"
+                android:src="@drawable/widget_bar_share"/>
 		</LinearLayout>
 		<LinearLayout
 			android:orientation="vertical" 
@@ -61,6 +75,16 @@
 			      	android:textColor="@color/black"
 			      	android:textSize="14dip"
 			      	android:text="评论"/>
+                <Button
+                    android:id="@+id/tweet_detail_foot_diffuse"
+                    android:layout_width="45dip"
+                    android:layout_height="34dip"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:background="@drawable/widget_button_bg"
+                    android:textColor="@color/black"
+                    android:textSize="14dip"
+                    android:text="扩散"/>
 			</LinearLayout>
 		    <GridView 
 		        android:id="@+id/tweet_detail_foot_faces"

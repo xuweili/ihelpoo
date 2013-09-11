@@ -25,14 +25,14 @@
 			<ImageView
 				style="@style/main_footbar_cutline"
 				android:src="@drawable/widget_bar_cut_off"/>
-			<ImageView 
+			<ImageView
 				android:id="@+id/blog_detail_footbar_detail"
 				style="@style/main_footbar_image"
 				android:src="@drawable/widget_bar_detail"/>
 			<ImageView
 				style="@style/main_footbar_cutline"
 				android:src="@drawable/widget_bar_cut_off"/>
-			<ImageView 
+			<ImageView
 				android:id="@+id/blog_detail_footbar_commentlist"
 				style="@style/main_footbar_image"
 				android:src="@drawable/widget_bar_comment"/>
