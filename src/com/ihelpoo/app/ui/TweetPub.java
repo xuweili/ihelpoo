@@ -59,6 +59,7 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -77,6 +78,7 @@ public class TweetPub extends BaseActivity{
 	private ImageView mPick;
 	private ImageView mAtme;
 	private ImageView mSoftware;
+    private Spinner reward;
 	private ImageView mImage;
 	private LinearLayout mClearwords;
 	private TextView mNumberwords;
@@ -156,6 +158,7 @@ public class TweetPub extends BaseActivity{
     	mPick = (ImageView)findViewById(R.id.tweet_pub_footbar_photo);
     	mAtme = (ImageView)findViewById(R.id.tweet_pub_footbar_atme);
     	mSoftware = (ImageView)findViewById(R.id.tweet_pub_footbar_software);
+        reward = (Spinner)findViewById(R.id.tweet_pub_footbar_reward);
     	mClearwords = (LinearLayout)findViewById(R.id.tweet_pub_clearwords);
     	mNumberwords = (TextView)findViewById(R.id.tweet_pub_numberwords);
     	
@@ -577,6 +580,11 @@ public class TweetPub extends BaseActivity{
 			tweet.setAuthorId(ac.getLoginUid());
 			tweet.setBody(content);
 			tweet.setImageFile(imgFile);
+            if("H".equals(reward.getSelectedItem())){
+                tweet.setReward(0);
+            } else {
+                tweet.setReward(Integer.parseInt(String.valueOf(reward.getSelectedItem())));
+            }
 			
 			final Handler handler = new Handler(){
 				public void handleMessage(Message msg) {
