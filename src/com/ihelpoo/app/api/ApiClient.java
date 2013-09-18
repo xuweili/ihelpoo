@@ -915,6 +915,7 @@ public class ApiClient {
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("uid", tweet.getAuthorId());
 		params.put("msg", tweet.getBody());
+        params.put("reward", tweet.getReward());
 				
 		Map<String, File> files = new HashMap<String, File>();
 		if(tweet.getImageFile() != null)

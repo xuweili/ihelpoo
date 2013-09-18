@@ -106,7 +106,7 @@ public class LoginDialog extends BaseActivity {
                 loadingAnimation.start();
                 mViewSwitcher.showNext();
 
-                login(account, pwd, isRemember, String.valueOf(status));
+                login(account, pwd, isRemember, status ? "1" : "0");
             }
         });
 

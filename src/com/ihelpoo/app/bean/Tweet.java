@@ -83,6 +83,15 @@ public class Tweet extends Entity{
     private String authorGossip;
     private String onlineState;
     private int rank;
+    private int reward;
+
+    public int getReward() {
+        return reward;
+    }
+
+    public void setReward(int reward) {
+        this.reward = reward;
+    }
 
     public int getRank() {
         return rank;

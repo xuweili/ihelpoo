@@ -23,18 +23,32 @@
 			android:src="@drawable/widget_bar_photo"/>
 		<ImageView
 			style="@style/main_footbar_cutline"
-			android:src="@drawable/widget_bar_cut_off"/>
+			android:src="@drawable/widget_bar_cut_off"
+            android:visibility="gone"/>
 		<ImageView 
 			android:id="@+id/tweet_pub_footbar_atme"
 			style="@style/main_footbar_image" 
-			android:src="@drawable/widget_bar_atme"/>
+			android:src="@drawable/widget_bar_atme"
+            android:visibility="gone"/>
 		<ImageView
 			style="@style/main_footbar_cutline"
-			android:src="@drawable/widget_bar_cut_off"/>
+			android:src="@drawable/widget_bar_cut_off"
+            android:visibility="gone"/>
 		<ImageView 
 			android:id="@+id/tweet_pub_footbar_software"
 			style="@style/main_footbar_image" 
-			android:src="@drawable/widget_bar_soft"/>
+			android:src="@drawable/widget_bar_soft"
+            android:visibility="gone"/>
+        <ImageView
+            style="@style/main_footbar_cutline"
+            android:src="@drawable/widget_bar_cut_off"/>
+
+        <Spinner
+            android:id="@+id/tweet_pub_footbar_reward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/tweet_help_reward"
+            android:prompt="@string/reward_prompt"/>
 	</LinearLayout>
 	
     <GridView 
