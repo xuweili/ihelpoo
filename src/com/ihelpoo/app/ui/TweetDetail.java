@@ -193,11 +193,7 @@ public class TweetDetail extends BaseActivity {
             }
         });
 
-        mFootPlus.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-            }
-        });
+        mFootPlus.setOnClickListener(plusClickListener);
 
         mFootDiffuse.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -657,6 +653,65 @@ public class TweetDetail extends BaseActivity {
         }
     };
 
+    private View.OnClickListener plusClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View view) {
+
+            if (curId == 0) {
+                return;
+            }
+            _id = curId;
+
+            final AppContext ac = (AppContext) getApplication();
+
+            if (!ac.isLogin()) {
+                UIHelper.showLoginDialog(TweetDetail.this);
+                return;
+            }
+            _uid = ac.getLoginUid();
+
+            final Handler handler = new Handler() {
+                public void handleMessage(Message msg) {
+                    if (msg.what == 1 && msg.obj != null) {
+                        Result res = (Result) msg.obj;
+                        UIHelper.ToastMessage(TweetDetail.this, res.getErrorMessage());
+                        if (res.OK()) {
+                            if(tweetDetail.getPlusByMe() == 1){
+                                tweetDetail.setPlusByMe(0);
+                                mFootPlus.setImageResource(R.drawable.widget_bar_favorite);
+                            }else{
+                                tweetDetail.setPlusByMe(1);
+                                mFootPlus.setImageResource(R.drawable.widget_bar_favorite2);
+                            }
+                            //发送通知广播
+                            if (res.getNotice() != null) {
+                                UIHelper.sendBroadCast(TweetDetail.this, res.getNotice());
+                            }
+                        }
+                    }
+                }
+            };
+            new Thread() {
+                public void run() {
+                    Message msg = new Message();
+                    Result res;
+                    try {
+                        //发表评论
+                        res = ac.plus(_id, _uid);
+                        msg.what = 1;
+                        msg.obj = res;
+                    } catch (AppException e) {
+                        e.printStackTrace();
+                        msg.what = -1;
+                        msg.obj = e;
+                    }
+                    handler.sendMessage(msg);
+                }
+            }.start();
+        }
+    };
+
     private View.OnClickListener commentpubClickListener = new View.OnClickListener() {
         public void onClick(View v) {
             _id = curId;
@@ -723,7 +778,7 @@ public class TweetDetail extends BaseActivity {
             new Thread() {
                 public void run() {
                     Message msg = new Message();
-                    Result res = new Result();
+                    Result res;
                     try {
                         //发表评论
                         res = ac.pubComment(_catalog, _id, _uid, _content, _isPostToMyZone);

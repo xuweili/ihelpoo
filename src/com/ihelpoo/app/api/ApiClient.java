@@ -1223,6 +1223,21 @@ public class ApiClient {
 		}
 	}
 
+
+    public static Result plus(AppContext appContext, int id, int uid) throws AppException {
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("id", id);
+        params.put("uid", uid);
+
+        try{
+            return http_post(appContext, URLs.PLUS, params, null);
+        }catch(Exception e){
+            if(e instanceof AppException)
+                throw (AppException)e;
+            throw AppException.network(e);
+        }
+    }
+
 	/**
 	 * 
 	 * @param id 表示被评论的某条新闻，帖子，动弹的id 或者某条消息的 friendid 

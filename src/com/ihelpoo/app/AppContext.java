@@ -1175,6 +1175,11 @@ public class AppContext extends Application {
         return ApiClient.pubComment(this, catalog, id, uid, content, isPostToMyZone);
     }
 
+
+    public Result plus(int id, int uid) throws AppException {
+        return ApiClient.plus(this, id, uid);
+    }
+
     /**
      * @param id       表示被评论的某条新闻，帖子，动弹的id 或者某条消息的 friendid
      * @param catalog  表示该评论所属什么类型：1新闻  2帖子  3动弹  4动态
@@ -1774,5 +1779,4 @@ public class AppContext extends Application {
     public void setSaveImagePath(String saveImagePath) {
         this.saveImagePath = saveImagePath;
     }
-
 }
