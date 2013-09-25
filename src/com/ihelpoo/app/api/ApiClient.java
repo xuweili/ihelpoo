@@ -1238,6 +1238,22 @@ public class ApiClient {
         }
     }
 
+
+    public static Result diffuse(AppContext appContext, int id, int uid, String content)throws AppException {
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("id", id);
+        params.put("uid", uid);
+        params.put("content", content);
+
+        try{
+            return http_post(appContext, URLs.DIFFUSE, params, null);
+        }catch(Exception e){
+            if(e instanceof AppException)
+                throw (AppException)e;
+            throw AppException.network(e);
+        }
+    }
+
 	/**
 	 * 
 	 * @param id 表示被评论的某条新闻，帖子，动弹的id 或者某条消息的 friendid 

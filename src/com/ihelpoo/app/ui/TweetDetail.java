@@ -106,6 +106,7 @@ public class TweetDetail extends BaseActivity {
     private ImageView mFootDiffuse;
     private EditText mFootEditer;
     private Button mFootPubcomment;
+    private Button mFootPubdiffuse;
     private ProgressDialog mProgress;
     private InputMethodManager imm;
     private String tempCommentKey = AppConfig.TEMP_COMMENT;
@@ -180,6 +181,8 @@ public class TweetDetail extends BaseActivity {
         mFootViewSwitcher = (ViewSwitcher) findViewById(R.id.tweet_detail_foot_viewswitcher);
         mFootPubcomment = (Button) findViewById(R.id.tweet_detail_foot_pubcomment);
         mFootPubcomment.setOnClickListener(commentpubClickListener);
+        mFootPubdiffuse = (Button) findViewById(R.id.tweet_detail_foot_diffuse);
+        mFootPubdiffuse.setOnClickListener(diffuseWithViewClickListener);
         mFootEditebox = (ImageView) findViewById(R.id.tweet_detail_footbar_editebox);
         mFootPlus = (ImageView) findViewById(R.id.tweet_detail_footbar_plus);
         mFootDiffuse = (ImageView) findViewById(R.id.tweet_detail_footbar_diffuse);
@@ -195,11 +198,7 @@ public class TweetDetail extends BaseActivity {
 
         mFootPlus.setOnClickListener(plusClickListener);
 
-        mFootDiffuse.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-            }
-        });
+        mFootDiffuse.setOnClickListener(diffuseClickListener);
 
 
         mFootEditer = (EditText) findViewById(R.id.tweet_detail_foot_editer);
@@ -653,6 +652,66 @@ public class TweetDetail extends BaseActivity {
         }
     };
 
+
+    private View.OnClickListener diffuseClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View view) {
+
+            if (curId == 0) {
+                return;
+            }
+            _id = curId;
+
+            final AppContext ac = (AppContext) getApplication();
+
+            if (!ac.isLogin()) {
+                UIHelper.showLoginDialog(TweetDetail.this);
+                return;
+            }
+            _uid = ac.getLoginUid();
+
+            final Handler handler = new Handler() {
+                public void handleMessage(Message msg) {
+                    if (msg.what == 1 && msg.obj != null) {
+                        Result res = (Result) msg.obj;
+                        if (res.OK()) {
+                            if(tweetDetail.getDiffuseByMe() == 1){
+                                UIHelper.ToastMessage(TweetDetail.this, "您已扩散过这条消息");
+                            }else{
+                                tweetDetail.setDiffuseByMe(1);
+                                mFootDiffuse.setImageResource(R.drawable.widget_bar_share_over);
+                                UIHelper.ToastMessage(TweetDetail.this, res.getErrorMessage());
+                            }
+                            //发送通知广播
+                            if (res.getNotice() != null) {
+                                UIHelper.sendBroadCast(TweetDetail.this, res.getNotice());
+                            }
+                        }
+                    }
+                }
+            };
+            new Thread() {
+                public void run() {
+                    Message msg = new Message();
+                    Result res;
+                    try {
+                        //发表评论
+                        res = ac.diffuse(_id, _uid, "");
+                        msg.what = 1;
+                        msg.obj = res;
+                    } catch (AppException e) {
+                        e.printStackTrace();
+                        msg.what = -1;
+                        msg.obj = e;
+                    }
+                    handler.sendMessage(msg);
+                }
+            }.start();
+        }
+    };
+
+
     private View.OnClickListener plusClickListener = new View.OnClickListener() {
 
         @Override
@@ -782,6 +841,85 @@ public class TweetDetail extends BaseActivity {
                     try {
                         //发表评论
                         res = ac.pubComment(_catalog, _id, _uid, _content, _isPostToMyZone);
+                        msg.what = 1;
+                        msg.obj = res;
+                    } catch (AppException e) {
+                        e.printStackTrace();
+                        msg.what = -1;
+                        msg.obj = e;
+                    }
+                    handler.sendMessage(msg);
+                }
+            }.start();
+        }
+    };
+
+    private View.OnClickListener diffuseWithViewClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            _id = curId;
+
+            if (curId == 0) {
+                return;
+            }
+
+            _catalog = curCatalog;
+
+            _content = mFootEditer.getText().toString();
+            if (StringUtils.isEmpty(_content)) {
+                UIHelper.ToastMessage(v.getContext(), "请加入扩散观点");
+                return;
+            }
+
+            final AppContext ac = (AppContext) getApplication();
+            if (!ac.isLogin()) {
+                UIHelper.showLoginDialog(TweetDetail.this);
+                return;
+            }
+            _uid = ac.getLoginUid();
+
+            mProgress = ProgressDialog.show(v.getContext(), null, "扩散中···", true, true);
+
+            final Handler handler = new Handler() {
+                public void handleMessage(Message msg) {
+
+                    if (mProgress != null) mProgress.dismiss();
+
+                    if (msg.what == 1 && msg.obj != null) {
+                        Result res = (Result) msg.obj;
+                        UIHelper.ToastMessage(TweetDetail.this, res.getErrorMessage());
+                        if (res.OK()) {
+                            //发送通知广播
+                            if (res.getNotice() != null) {
+                                UIHelper.sendBroadCast(TweetDetail.this, res.getNotice());
+                            }
+                            //恢复初始底部栏
+                            mFootViewSwitcher.setDisplayedChild(0);
+                            mFootEditer.clearFocus();
+                            mFootEditer.setText("");
+                            mFootEditer.setVisibility(View.GONE);
+                            //隐藏软键盘
+                            imm.hideSoftInputFromWindow(mFootEditer.getWindowToken(), 0);
+                            //隐藏表情
+                            hideFace();
+                            //更新评论列表
+//                            lvCommentData.add(0, res.getComment());
+//                            lvCommentAdapter.notifyDataSetChanged();
+//                            mLvComment.setSelection(0);
+                            //清除之前保存的编辑内容
+                            ac.removeProperty(tempCommentKey);
+                        }
+                    } else {
+                        ((AppException) msg.obj).makeToast(TweetDetail.this);
+                    }
+                }
+            };
+            new Thread() {
+                public void run() {
+                    Message msg = new Message();
+                    Result res;
+                    try {
+                        //发表评论
+                        res = ac.diffuse(_id, _uid, _content);
                         msg.what = 1;
                         msg.obj = res;
                     } catch (AppException e) {

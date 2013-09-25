@@ -1180,6 +1180,12 @@ public class AppContext extends Application {
         return ApiClient.plus(this, id, uid);
     }
 
+
+
+    public Result diffuse(int id, int uid, String content)  throws AppException {
+        return ApiClient.diffuse(this, id, uid, content);
+    }
+
     /**
      * @param id       表示被评论的某条新闻，帖子，动弹的id 或者某条消息的 friendid
      * @param catalog  表示该评论所属什么类型：1新闻  2帖子  3动弹  4动态

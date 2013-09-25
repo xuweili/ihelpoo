@@ -60,6 +60,7 @@ public class Tweet extends Entity{
     public final static String NODE_onlineState = "onlineState";
     public final static String NODE_rank = "rank";
     public final static String NODE_plusByMe = "plusByMe";
+    public final static String NODE_diffuseByMe = "diffuseByMe";
 
 	
 	public final static int CLIENT_MOBILE = 2;
@@ -86,6 +87,7 @@ public class Tweet extends Entity{
     private int rank;
     private int reward;
     private int plusByMe;
+    private int diffuseByMe;
 
     public int getPlusByMe() {
         return plusByMe;
@@ -93,6 +95,14 @@ public class Tweet extends Entity{
 
     public void setPlusByMe(int plusByMe) {
         this.plusByMe = plusByMe;
+    }
+
+    public int getDiffuseByMe() {
+        return diffuseByMe;
+    }
+
+    public void setDiffuseByMe(int diffuseByMe) {
+        this.diffuseByMe = diffuseByMe;
     }
 
     public int getReward() {
@@ -295,9 +305,13 @@ public class Tweet extends Entity{
                             {
                                 tweet.setPlusByMe(StringUtils.toInt(xmlParser.nextText(),1));
                             }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_diffuseByMe))
+                            {
+                                tweet.setPlusByMe(StringUtils.toInt(xmlParser.nextText(), 1));
+                            }
                             else if(tag.equalsIgnoreCase(Tweet.NODE_spreadCount))
                             {
-                                tweet.setSpreadCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                tweet.setSpreadCount(StringUtils.toInt(xmlParser.nextText(), 0));
                             }
 				            //通知信息
 				            else if(tag.equalsIgnoreCase("notice"))
