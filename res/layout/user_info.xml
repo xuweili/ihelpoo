@@ -45,33 +45,33 @@
 	    	android:layout_width="fill_parent" 
 	    	android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
-			android:padding="15.0dip">	
+			android:padding="15dip">
 			<RelativeLayout
-		    	android:layout_width="fill_parent" 
+		    	android:layout_width="fill_parent"
 		    	android:layout_height="wrap_content">
-	    	    <ImageView 
+	    	    <ImageView
 			    	android:id="@+id/user_info_userface"
-			      	android:layout_width="70dip" 
+			      	android:layout_width="70dip"
 			        android:layout_height="70dip"
 			        android:scaleType="fitCenter"
-			        android:padding="3.0dip"
+			        android:padding="3dip"
 					android:clickable="true"
 			        android:background="@drawable/widget_dface_border"
 			        android:src="@drawable/widget_dface"/>
-	    	    <ImageView 
+	    	    <ImageView
 			    	android:id="@+id/user_info_gender"
-			      	android:layout_width="18dip" 
+			      	android:layout_width="18dip"
 			        android:layout_height="18dip"
-			        android:layout_marginLeft="10.0dip"
+			        android:layout_marginLeft="10dip"
 			        android:layout_toRightOf="@id/user_info_userface"
 		           	android:layout_alignBottom="@id/user_info_userface"
 			        android:scaleType="fitCenter"
 			        android:src="@drawable/widget_gender_man"/>
-			   	<TextView 
-		       		android:id="@+id/user_info_username"  
-		    		android:layout_width="wrap_content" 
-		           	android:layout_height="wrap_content" 
-		           	android:layout_marginBottom="10.0dip"
+			   	<TextView
+		       		android:id="@+id/user_info_username"
+		    		android:layout_width="wrap_content"
+		           	android:layout_height="wrap_content"
+		           	android:layout_marginBottom="10dip"
 		           	android:layout_above="@id/user_info_gender"
 		           	android:layout_alignLeft="@id/user_info_gender"
 		           	android:textSize="@dimen/text_size_15"
@@ -82,213 +82,213 @@
 			    	android:layout_height="wrap_content"
 			    	android:layout_alignParentRight="true"
 			    	android:layout_alignParentBottom="true"
-			    	android:background="@drawable/login_btn_selector" 
-			    	android:textSize="@dimen/text_size_12" 
+			    	android:background="@drawable/login_btn_selector"
+			    	android:textSize="@dimen/text_size_12"
 			        android:text="编辑头像"/>
 		    </RelativeLayout>
 
-            <LinearLayout 
-                android:id="@+id/user_info_favorites_ll"  
-           		android:layout_width="fill_parent" 
-	            android:layout_height="wrap_content" 
-	            android:layout_marginTop="10.0dip"
+            <LinearLayout
+                android:id="@+id/user_info_favorites_ll"
+           		android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="10dip"
 	            android:gravity="center_vertical"
-	            android:focusable="true" 
+	            android:focusable="true"
 	            android:clickable="true"
 	            android:background="@drawable/table_above_bg">
-                <TextView 
-                	android:layout_width="wrap_content" 
-	                android:layout_height="wrap_content" 
-	                android:layout_marginLeft="10.0dip" 
+                <TextView
+                	android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="10dip"
 	                android:duplicateParentState="true"
-	                android:textSize="@dimen/text_size_15" 
-	                android:textStyle="bold" 
-	                android:textColor="@color/grayslate" 
-	                android:text="收藏：" />
-                <TextView 
-               		android:id="@+id/user_info_favorites"  
+	                android:textSize="@dimen/text_size_15"
+	                android:textStyle="bold"
+	                android:textColor="@color/grayslate"
+	                android:text="我圈：" />
+                <TextView
+               		android:id="@+id/user_info_favorites"
 	                android:layout_width="fill_parent"
-	                android:layout_height="wrap_content" 
+	                android:layout_height="wrap_content"
 	                android:layout_weight="1"
-	                android:layout_marginRight="10.0dip" 
+	                android:layout_marginRight="10dip"
 	                android:duplicateParentState="true"
-	                android:textSize="@dimen/text_size_14" 
+	                android:textSize="@dimen/text_size_14"
 	                android:textStyle="bold"
 	                android:textColor="@color/author_text"/>
-                <ImageView 
-                    android:layout_width="wrap_content" 
-                    android:layout_height="wrap_content" 
-                    android:layout_marginRight="15.0dip" 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dip"
                     android:src="@drawable/widget_right_icon"/>
             </LinearLayout>
-	        <LinearLayout 
-	            android:id="@+id/user_info_followers_ll"  
-            	android:layout_width="fill_parent" 
+	        <!--<LinearLayout-->
+	            <!--android:id="@+id/user_info_followers_ll"-->
+            	<!--android:layout_width="fill_parent"-->
+	            <!--android:layout_height="wrap_content"-->
+	            <!--android:gravity="center_vertical"-->
+	            <!--android:focusable="true"-->
+	            <!--android:clickable="true"-->
+	            <!--android:background="@drawable/table_mid_bg">-->
+	            <!--<TextView-->
+           			<!--android:layout_width="wrap_content"-->
+                  	<!--android:layout_height="wrap_content"-->
+                  	<!--android:layout_marginLeft="10dip"-->
+                  	<!--android:duplicateParentState="true"-->
+                  	<!--android:textSize="@dimen/text_size_15"-->
+                	<!--android:textStyle="bold"-->
+                  	<!--android:textColor="@color/grayslate"-->
+                  	<!--android:text="关注：" />-->
+             	<!--<TextView-->
+               		<!--android:id="@+id/user_info_followers"-->
+                  	<!--android:layout_width="fill_parent"-->
+                  	<!--android:layout_height="wrap_content"-->
+                  	<!--android:layout_weight="1"-->
+                  	<!--android:layout_marginRight="10dip"-->
+                  	<!--android:duplicateParentState="true"-->
+                  	<!--android:textSize="@dimen/text_size_14"-->
+                  	<!--android:textStyle="bold"-->
+                  	<!--android:textColor="@color/author_text"/>-->
+             	<!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginRight="15dip"-->
+                    <!--android:src="@drawable/widget_right_icon"/>-->
+            <!--</LinearLayout>-->
+	        <LinearLayout
+	            android:id="@+id/user_info_fans_ll"
+            	android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:gravity="center_vertical"
-	            android:focusable="true" 
-	            android:clickable="true"
-	            android:background="@drawable/table_mid_bg">
-	            <TextView 
-           			android:layout_width="wrap_content" 
-                  	android:layout_height="wrap_content" 
-                  	android:layout_marginLeft="10.0dip" 
-                  	android:duplicateParentState="true"
-                  	android:textSize="@dimen/text_size_15" 
-                	android:textStyle="bold" 
-                  	android:textColor="@color/grayslate" 
-                  	android:text="关注：" />
-             	<TextView 
-               		android:id="@+id/user_info_followers"  
-                  	android:layout_width="fill_parent" 
-                  	android:layout_height="wrap_content" 
-                  	android:layout_weight="1"
-                  	android:layout_marginRight="10.0dip" 
-                  	android:duplicateParentState="true"
-                  	android:textSize="@dimen/text_size_14" 
-                  	android:textStyle="bold"
-                  	android:textColor="@color/author_text"/>
-             	<ImageView 
-                    android:layout_width="wrap_content" 
-                    android:layout_height="wrap_content" 
-                    android:layout_marginRight="15.0dip" 
-                    android:src="@drawable/widget_right_icon"/>
-            </LinearLayout>
-	        <LinearLayout 
-	            android:id="@+id/user_info_fans_ll"  
-            	android:layout_width="fill_parent" 
-	            android:layout_height="wrap_content" 
-	            android:gravity="center_vertical"
-	            android:focusable="true" 
+	            android:focusable="true"
 	            android:clickable="true"
 	            android:background="@drawable/table_below_bg">
-	            <TextView 
-	                android:layout_width="wrap_content" 
-	                android:layout_height="wrap_content" 
-	                android:layout_marginLeft="10.0dip" 
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="10dip"
 	                android:duplicateParentState="true"
-	                android:textSize="@dimen/text_size_15" 
-	                android:textStyle="bold" 
-	                android:textColor="@color/grayslate" 
-	                android:text="粉丝：" />
-               	<TextView 
-              		android:id="@+id/user_info_fans"  
-	                android:layout_width="fill_parent" 
-	                android:layout_height="wrap_content" 
+	                android:textSize="@dimen/text_size_15"
+	                android:textStyle="bold"
+	                android:textColor="@color/grayslate"
+	                android:text="圈子：" />
+               	<TextView
+              		android:id="@+id/user_info_fans"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
 	                android:layout_weight="1"
-	                android:layout_marginRight="10.0dip" 
+	                android:layout_marginRight="10dip"
 	                android:duplicateParentState="true"
-	                android:textSize="@dimen/text_size_14" 
+	                android:textSize="@dimen/text_size_14"
 	                android:textStyle="bold"
 	                android:textColor="@color/author_text"/>
-               	<ImageView 
-                    android:layout_width="wrap_content" 
-                    android:layout_height="wrap_content" 
-                    android:layout_marginRight="15.0dip" 
+               	<ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dip"
                     android:src="@drawable/widget_right_icon"/>
 	        </LinearLayout>
 
-            <LinearLayout 
-           		android:layout_width="fill_parent" 
-	            android:layout_height="wrap_content" 
-	            android:layout_marginTop="10.0dip"
+            <LinearLayout
+           		android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="10dip"
 	            android:gravity="center_vertical"
-	            android:focusable="true" 
+	            android:focusable="true"
 	            android:clickable="true"
 	            android:background="@drawable/table_above_bg">
-                <TextView 
-                	android:layout_width="wrap_content" 
-	                android:layout_height="wrap_content" 
-	                android:layout_marginLeft="10.0dip" 
+                <TextView
+                	android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="10dip"
 	                android:duplicateParentState="true"
-	                android:textSize="@dimen/text_size_15" 
-	                android:textStyle="bold" 
-	                android:textColor="@color/grayslate" 
+	                android:textSize="@dimen/text_size_15"
+	                android:textStyle="bold"
+	                android:textColor="@color/grayslate"
 	                android:text="加入时间：" />
-                <TextView 
-               		android:id="@+id/user_info_jointime"    
+                <TextView
+               		android:id="@+id/user_info_jointime"
 	                android:layout_width="fill_parent"
-	                android:layout_height="wrap_content" 
+	                android:layout_height="wrap_content"
 	                android:layout_weight="1"
-	                android:layout_marginRight="10.0dip" 
+	                android:layout_marginRight="10dip"
 	                android:duplicateParentState="true"
-	                android:textSize="@dimen/text_size_14" 
+	                android:textSize="@dimen/text_size_14"
 	                android:textColor="#ff000000"/>
             </LinearLayout>
-	        <LinearLayout 
-            	android:layout_width="fill_parent" 
+	        <LinearLayout
+            	android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:gravity="center_vertical"
-	            android:focusable="true" 
+	            android:focusable="true"
 	            android:clickable="true"
 	            android:background="@drawable/table_mid_bg">
-	            <TextView 
-           			android:layout_width="wrap_content" 
-                  	android:layout_height="wrap_content" 
-                  	android:layout_marginLeft="10.0dip" 
+	            <TextView
+           			android:layout_width="wrap_content"
+                  	android:layout_height="wrap_content"
+                  	android:layout_marginLeft="10dip"
                   	android:duplicateParentState="true"
-                  	android:textSize="@dimen/text_size_15" 
-                	android:textStyle="bold" 
-                  	android:textColor="@color/grayslate" 
-                  	android:text="所在地区：" />
-             	<TextView 
-               		android:id="@+id/user_info_from" 
-                  	android:layout_width="fill_parent" 
-                  	android:layout_height="wrap_content" 
+                  	android:textSize="@dimen/text_size_15"
+                	android:textStyle="bold"
+                  	android:textColor="@color/grayslate"
+                  	android:text="等级：" />
+             	<TextView
+               		android:id="@+id/user_info_from"
+                  	android:layout_width="fill_parent"
+                  	android:layout_height="wrap_content"
                   	android:layout_weight="1"
-                  	android:layout_marginRight="10.0dip" 
+                  	android:layout_marginRight="10dip"
                   	android:duplicateParentState="true"
-                  	android:textSize="@dimen/text_size_14" 
+                  	android:textSize="@dimen/text_size_14"
                   	android:textColor="#ff000000"/>
             </LinearLayout>
-	        <LinearLayout 
-            	android:layout_width="fill_parent" 
+	        <LinearLayout
+            	android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:gravity="center_vertical"
-	            android:focusable="true" 
+	            android:focusable="true"
 	            android:clickable="true"
 	            android:background="@drawable/table_mid_bg">
-	            <TextView 
-           			android:layout_width="wrap_content" 
-                  	android:layout_height="wrap_content" 
-                  	android:layout_marginLeft="10.0dip" 
+	            <TextView
+           			android:layout_width="wrap_content"
+                  	android:layout_height="wrap_content"
+                  	android:layout_marginLeft="10dip"
                   	android:duplicateParentState="true"
-                  	android:textSize="@dimen/text_size_15" 
-                	android:textStyle="bold" 
-                  	android:textColor="@color/grayslate" 
-                  	android:text="开发平台：" />
-             	<TextView 
+                  	android:textSize="@dimen/text_size_15"
+                	android:textStyle="bold"
+                  	android:textColor="@color/grayslate"
+                  	android:text="活跃：" />
+             	<TextView
                		android:id="@+id/user_info_devplatform"
-                  	android:layout_width="fill_parent" 
-                  	android:layout_height="wrap_content" 
+                  	android:layout_width="fill_parent"
+                  	android:layout_height="wrap_content"
                   	android:layout_weight="1"
-                  	android:layout_marginRight="10.0dip" 
+                  	android:layout_marginRight="10dip"
                   	android:duplicateParentState="true"
-                  	android:textSize="@dimen/text_size_14" 
+                  	android:textSize="@dimen/text_size_14"
                   	android:textColor="#ff000000"/>
             </LinearLayout>
-	        <LinearLayout 
-            	android:layout_width="fill_parent" 
-	            android:layout_height="wrap_content" 
+	        <LinearLayout
+            	android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
 	            android:gravity="center_vertical"
-	            android:focusable="true" 
+	            android:focusable="true"
 	            android:clickable="true"
 	            android:background="@drawable/table_below_bg">
-	            <TextView 
-	                android:layout_width="wrap_content" 
-	                android:layout_height="wrap_content" 
-	                android:layout_marginLeft="10.0dip" 
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="10dip"
 	                android:duplicateParentState="true"
-	                android:textSize="@dimen/text_size_15" 
-	                android:textStyle="bold" 
-	                android:textColor="@color/grayslate" 
-	                android:text="专长领域：" />
-               	<TextView 
-              		android:id="@+id/user_info_expertise"   
-	                android:layout_width="fill_parent" 
-	                android:layout_height="wrap_content" 
+	                android:textSize="@dimen/text_size_15"
+	                android:textStyle="bold"
+	                android:textColor="@color/grayslate"
+	                android:text="连续登录：" />
+               	<TextView
+              		android:id="@+id/user_info_expertise"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
 	                android:layout_weight="1"
-	                android:layout_marginRight="10.0dip" 
+	                android:layout_marginRight="10dip"
 	                android:duplicateParentState="true"
 	                android:textSize="@dimen/text_size_14" 
 	                android:textColor="#ff000000"/>

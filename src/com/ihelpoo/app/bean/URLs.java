@@ -83,19 +83,22 @@ public class URLs implements Serializable {
     public final static String BLOGCOMMENT_LIST = URL_API_HOST + "action/api/blogcomment_list";
     public final static String BLOGCOMMENT_PUB = URL_API_HOST + "action/api/blogcomment_pub";
     public final static String BLOGCOMMENT_DELETE = URL_API_HOST + "action/api/blogcomment_delete";
-    public final static String MY_INFORMATION = URL_API_HOST + "action/api/my_information";
+//    public final static String MY_INFORMATION = URL_API_HOST + "action/api/my_information";
+    public final static String MY_INFORMATION = "http://192.168.0.108:8080/v1.1/user/${uid}.xml";
 //    public final static String USER_INFORMATION = URL_API_HOST + "action/api/user_information";
     public final static String USER_INFORMATION ="http://192.168.0.108:8080/v1.1/userActive.xml";
     public final static String USER_UPDATERELATION = URL_API_HOST + "action/api/user_updaterelation";
     //	public final static String USER_NOTICE = URL_API_HOST+"action/api/user_notice";
     public final static String USER_NOTICE = "http://192.168.0.108:8080/v1.1/notifications.xml";
     public final static String NOTICE_CLEAR = URL_API_HOST + "action/api/notice_clear";
-    public final static String FRIENDS_LIST = URL_API_HOST + "action/api/friends_list";
+    public final static String FRIENDS_LIST = "http://192.168.0.108:8080/v1.1/fos.xml";
+//    public final static String FRIENDS_LIST = URL_API_HOST + "action/api/friends_list";
     public final static String FAVORITE_LIST = URL_API_HOST + "action/api/favorite_list";
     public final static String FAVORITE_ADD = URL_API_HOST + "action/api/favorite_add";
     public final static String FAVORITE_DELETE = URL_API_HOST + "action/api/favorite_delete";
     public final static String SEARCH_LIST = URL_API_HOST + "action/api/search_list";
-    public final static String PORTRAIT_UPDATE = URL_API_HOST + "action/api/portrait_update";
+//    public final static String PORTRAIT_UPDATE = URL_API_HOST + "action/api/portrait_update";
+    public final static String PORTRAIT_UPDATE = "http://192.168.0.108:8080/v1.1/avatarUpload.xml";
     //	public final static String UPDATE_VERSION = URL_API_HOST+"MobileAppVersion.xml";
     public final static String UPDATE_VERSION = "http://192.168.0.108:8080/v1.1/versions.xml";
 

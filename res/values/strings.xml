@@ -78,8 +78,8 @@
     <string name="user_center_head_title">用户空间</string>
     
     <string name="user_friend_head_title">我的好友</string>
-    <string name="user_friend_follower">关注(%d)</string>
-    <string name="user_friend_fans">粉丝(%d)</string>
+    <string name="user_friend_follower">我圈(%d)</string>
+    <string name="user_friend_fans">圈子(%d)</string>
     
     <string name="comment_list_head_title">网友评论</string>
     <string name="comment_listitem_type">发布于</string>

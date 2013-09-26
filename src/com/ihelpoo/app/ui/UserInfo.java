@@ -64,11 +64,11 @@ public class UserInfo extends BaseActivity{
 	private TextView from;
 	private TextView devplatform;
 	private TextView expertise;
-	private TextView followers;
+//	private TextView followers;
 	private TextView fans;
 	private TextView favorites;
 	private LinearLayout favorites_ll;
-	private LinearLayout followers_ll;
+//	private LinearLayout followers_ll;
 	private LinearLayout fans_ll;
 	private LoadingDialog loading;
 	private MyInformation user;
@@ -107,11 +107,11 @@ public class UserInfo extends BaseActivity{
 		from = (TextView)findViewById(R.id.user_info_from);
 		devplatform = (TextView)findViewById(R.id.user_info_devplatform);
 		expertise = (TextView)findViewById(R.id.user_info_expertise);
-		followers = (TextView)findViewById(R.id.user_info_followers);
+//		followers = (TextView)findViewById(R.id.user_info_followers);
 		fans = (TextView)findViewById(R.id.user_info_fans);
 		favorites = (TextView)findViewById(R.id.user_info_favorites);
 		favorites_ll = (LinearLayout)findViewById(R.id.user_info_favorites_ll);
-		followers_ll = (LinearLayout)findViewById(R.id.user_info_followers_ll);
+//		followers_ll = (LinearLayout)findViewById(R.id.user_info_followers_ll);
 		fans_ll = (LinearLayout)findViewById(R.id.user_info_fans_ll);
 	}
 	
@@ -137,13 +137,13 @@ public class UserInfo extends BaseActivity{
 					from.setText(user.getFrom());
 					devplatform.setText(user.getDevplatform());
 					expertise.setText(user.getExpertise());
-					followers.setText(user.getFollowerscount()+"");
+//					followers.setText(user.getFollowerscount()+"");
 					fans.setText(user.getFanscount()+"");
 					favorites.setText(user.getFavoritecount()+"");
 					
-					favorites_ll.setOnClickListener(favoritesClickListener);
+					favorites_ll.setOnClickListener(followersClickListener);
 					fans_ll.setOnClickListener(fansClickListener);
-					followers_ll.setOnClickListener(followersClickListener);
+//					followers_ll.setOnClickListener(followersClickListener);
 					
 				}else if(msg.obj != null){
 					((AppException)msg.obj).makeToast(UserInfo.this);

@@ -463,11 +463,14 @@ public class ApiClient {
 	 * @throws AppException
 	 */
 	public static MyInformation myInformation(AppContext appContext, int uid) throws AppException {
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("uid", uid);
-				
+//		Map<String,Object> params = new HashMap<String,Object>();
+//		params.put("uid", uid);
+
+        String newUrl = _MakeURL(URLs.MY_INFORMATION.replace("${uid}", String.valueOf(uid)), new HashMap<String, Object>(){{
+
+        }});
 		try{
-			return MyInformation.parse(_post(appContext, URLs.MY_INFORMATION, params, null));		
+			return MyInformation.parse(http_get(appContext, newUrl));
 		}catch(Exception e){
 			if(e instanceof AppException)
 				throw (AppException)e;
