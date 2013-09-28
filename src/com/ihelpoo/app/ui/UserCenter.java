@@ -447,15 +447,15 @@ public class UserCenter extends BaseActivity{
 				break;
 			case User.RELATION_TYPE_FANS_HIM:
 				mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_del, 0, 0, 0);
-				mRelation.setText("取消关注");
+				mRelation.setText("取消圈");
 				break;
 			case User.RELATION_TYPE_FANS_ME:
 				mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_add, 0, 0, 0);
-				mRelation.setText("加关注");
+				mRelation.setText("圈Ta");
 				break;
 			case User.RELATION_TYPE_NULL:
 				mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_add, 0, 0, 0);
-				mRelation.setText("加关注");
+				mRelation.setText("圈Ta");
 				break;
 		}
 		if(relation > 0)
@@ -695,12 +695,12 @@ public class UserCenter extends BaseActivity{
 							switch (mUser.getRelation()) {
 								case User.RELATION_TYPE_BOTH:
 									mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_add, 0, 0, 0);
-									mRelation.setText("加关注");
+									mRelation.setText("圈Ta");
 									mUser.setRelation(User.RELATION_TYPE_FANS_ME);
 									break;
 								case User.RELATION_TYPE_FANS_HIM:
 									mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_add, 0, 0, 0);
-									mRelation.setText("加关注");
+									mRelation.setText("圈Ta");
 									mUser.setRelation(User.RELATION_TYPE_NULL);
 									break;
 								case User.RELATION_TYPE_FANS_ME:
@@ -710,7 +710,7 @@ public class UserCenter extends BaseActivity{
 									break;
 								case User.RELATION_TYPE_NULL:
 									mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_del, 0, 0, 0);
-									mRelation.setText("取消关注");
+									mRelation.setText("取消圈");
 									mUser.setRelation(User.RELATION_TYPE_FANS_HIM);
 									break;
 							}
@@ -743,15 +743,15 @@ public class UserCenter extends BaseActivity{
 					relationAction = User.RELATION_ACTION_DELETE;
 					break;
 				case User.RELATION_TYPE_FANS_HIM:
-					dialogTitle = "确定取消关注吗？";
+					dialogTitle = "确定取消圈吗？";
 					relationAction = User.RELATION_ACTION_DELETE;
 					break;
 				case User.RELATION_TYPE_FANS_ME:
-					dialogTitle = "确定关注他吗？";
+					dialogTitle = "确定圈Ta吗？";
 					relationAction = User.RELATION_ACTION_ADD;
 					break;
 				case User.RELATION_TYPE_NULL:
-					dialogTitle = "确定关注他吗？";
+					dialogTitle = "确定圈Ta吗？";
 					relationAction = User.RELATION_ACTION_ADD;
 					break;
 			}

@@ -85,9 +85,9 @@ public class CommentPub extends BaseActivity{
     	mPublish = (Button)findViewById(R.id.comment_pub_publish);
     	mContent = (EditText)findViewById(R.id.comment_pub_content);
     	mZone = (CheckBox)findViewById(R.id.comment_pub_zone);
-    	if(_catalog == CommentList.CATALOG_TWEET){
-    		mZone.setVisibility(View.VISIBLE);
-    	}
+//    	if(_catalog == CommentList.CATALOG_TWEET){
+//    		mZone.setVisibility(View.VISIBLE);
+//    	}
     	
     	mBack.setOnClickListener(UIHelper.finish(this));
     	mPublish.setOnClickListener(publishClickListener);    	

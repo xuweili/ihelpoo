@@ -10,7 +10,7 @@
 	    style="@style/user_center_footbar"
 	    android:layout_marginLeft="5dip"
 	    android:drawableLeft="@drawable/widget_bar_relation_add"
-	    android:text="加关注"/>
+	    android:text="圈Ta"/>
 	<ImageView
 		style="@style/main_footbar_cutline"
 		android:src="@drawable/widget_bar_cut_off"/>

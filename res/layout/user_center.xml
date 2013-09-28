@@ -26,7 +26,9 @@
 	     	<Button 
 	     		android:id="@+id/user_center_btn_blog"
 	     		style="@style/frame_button"
-	         	android:text="博客(0)"/>
+	         	android:text="博客(0)"
+                android:visibility="gone"
+                />
 	    </LinearLayout>
 	
 		<com.ihelpoo.app.widget.PullToRefreshListView

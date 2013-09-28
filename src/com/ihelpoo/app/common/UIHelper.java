@@ -336,7 +336,8 @@ public class UIHelper {
 				showTweetDetail(context, id);
 				break;
 			case Active.CATALOG_BLOG:
-				showBlogDetail(context, id);
+                showTweetDetail(context, active.getId());
+//				showBlogDetail(context, id);
 				break;
 			}
 		} else {
