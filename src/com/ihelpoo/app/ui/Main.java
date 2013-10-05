@@ -1373,7 +1373,7 @@ public class Main extends BaseActivity {
             mHead_search.setVisibility(View.VISIBLE);
         } else if (index == 2) {
             mHeadLogo.setImageResource(R.drawable.frame_logo_post);
-            mHeadPub_post.setVisibility(View.VISIBLE);
+//            mHeadPub_post.setVisibility(View.VISIBLE);
         } else if (index == 0) {
             mHeadLogo.setImageResource(R.drawable.frame_logo_tweet);
             mHeadPub_tweet.setVisibility(View.VISIBLE);
