@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/main_relativelayout_header" 
   	android:layout_width="fill_parent" 
@@ -11,7 +11,7 @@
 		android:layout_height="wrap_content"
 		android:layout_centerVertical="true"
 		android:layout_alignParentLeft="true"
-		android:layout_marginLeft="5.0dip"
+		android:layout_marginLeft="5dip"
 		android:src="@drawable/frame_logo_news"/>
     
     <TextView 
@@ -19,7 +19,7 @@
         style="@style/main_head_title"
 		android:layout_toRightOf="@id/main_head_logo"
 		android:layout_centerVertical="true"
-		android:layout_marginLeft="5.0dip"
+		android:layout_marginLeft="5dip"
 		android:text="首页"/>
 	
    	<ProgressBar 
@@ -27,7 +27,7 @@
 		style="@style/loading_small"
 		android:layout_toRightOf="@id/main_head_title"
 		android:layout_centerVertical="true"
-		android:layout_marginLeft="5.0dip"
+		android:layout_marginLeft="5dip"
 		android:visibility="gone"/>
     
     <ImageButton
@@ -36,8 +36,9 @@
 		android:layout_height="wrap_content"
 		android:layout_centerVertical="true"
 		android:layout_alignParentRight="true"
-		android:layout_marginRight="2.0dip"
-		android:background="@drawable/frame_icon_search"/>
+		android:layout_marginRight="2dip"
+		android:background="@drawable/frame_icon_search"
+        android:visibility="gone"/>
    	
     <ImageButton
     	android:id="@+id/main_head_pub_post"
@@ -45,9 +46,8 @@
 		android:layout_height="wrap_content"
 		android:layout_centerVertical="true"
 		android:layout_alignParentRight="true"
-		android:layout_marginRight="2.0dip"
-		android:background="@drawable/frame_icon_post"
-		android:visibility="gone"/>
+		android:layout_marginRight="2dip"
+		android:background="@drawable/frame_icon_post"/>
 		
     <ImageButton
     	android:id="@+id/main_head_pub_tweet"
@@ -55,7 +55,7 @@
 		android:layout_height="wrap_content"
 		android:layout_centerVertical="true"
 		android:layout_alignParentRight="true"
-		android:layout_marginRight="2.0dip"
+		android:layout_marginRight="2dip"
 		android:background="@drawable/frame_icon_tweet"
 		android:visibility="gone"/>
 </RelativeLayout>

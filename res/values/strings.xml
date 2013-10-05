@@ -41,7 +41,7 @@
     <string name="frame_title_word_comment">评论</string>
     <string name="frame_title_word_atme">\@我</string>
     <string name="frame_title_word_active">活跃</string>
-    <string name="frame_title_word_chat">留言</string>
+    <string name="frame_title_word_chat">悄悄话</string>
     
     <string name="footbar_refresh">刷新</string>
     <string name="footbar_comment">评论</string>

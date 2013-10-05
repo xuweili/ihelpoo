@@ -19,7 +19,7 @@
 	    style="@style/user_center_footbar"
 	    android:layout_marginLeft="15dip"
 	    android:drawableLeft="@drawable/widget_bar_mail"
-	    android:text="留言"/>
+	    android:text="悄悄话"/>
 	<ImageView
 		style="@style/main_footbar_cutline"
 		android:src="@drawable/widget_bar_cut_off"/>

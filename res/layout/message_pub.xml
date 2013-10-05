@@ -21,7 +21,7 @@
 		   	android:background="@drawable/head_back"/>
 	   	<TextView 
 	   		style="@style/detail_head_title"
-	   		android:text="发送留言"/>
+	   		android:text="发送悄悄话"/>
 	    <Button
 	    	android:id="@+id/message_pub_publish"
 	        android:layout_width="45dip"
@@ -39,7 +39,7 @@
 	   		android:id="@+id/message_pub_receiver"
 	        android:layout_width="fill_parent"
 	    	android:layout_height="wrap_content"
-	        android:padding="5.0dip"
+	        android:padding="5dip"
 	        android:autoLink="web"
 	        android:textSize="14sp"
 	        android:textColor="@color/white"
@@ -47,9 +47,9 @@
 	    <TextView 
 	        android:layout_height="wrap_content"
 	        android:layout_width="wrap_content"
-	        android:layout_marginTop="6.0dip"
-	        android:layout_marginLeft="2.0dip"
-	        android:text="* 留言内容(最多250个字)"
+	        android:layout_marginTop="6dip"
+	        android:layout_marginLeft="2dip"
+	        android:text="* 悄悄话内容(最多250个字)"
 	        android:textSize="12sp"
 	        android:textColor="@color/head_text"/>
 	    <EditText
@@ -59,7 +59,7 @@
 	        android:lines="5"
 	        android:autoLink="web"
 	        android:gravity="top"
-	        android:hint="输入留言"/>
+	        android:hint="输入悄悄话"/>
 	</LinearLayout>
 
 </LinearLayout>
