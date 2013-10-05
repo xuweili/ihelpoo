@@ -727,8 +727,9 @@ public class Main extends BaseActivity {
                             return;
 
                         // 跳转到问答详情
-                        UIHelper.showQuestionDetail(view.getContext(),
-                                post.getId());
+//                        UIHelper.showQuestionDetail(view.getContext(),
+//                                post.getId());
+                        UIHelper.showTweetDetail(view.getContext(), post.getId());
                     }
                 });
         lvRank.setOnScrollListener(new AbsListView.OnScrollListener() {
