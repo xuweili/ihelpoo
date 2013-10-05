@@ -21,9 +21,10 @@
     <string name="footer_button_rank">排行</string>
     <string name="footer_button_more">更多</string>
     
-    <string name="frame_title_news_lastest">最新资讯</string>
+    <string name="frame_title_news_lastest">动态</string>
     <string name="frame_title_news_blog">最新博客</string>
     <string name="frame_title_news_recommend">推荐阅读</string>
+
     <string name="frame_title_question_ask">浏览</string>
     <string name="frame_title_question_share">评论</string>
     <string name="frame_title_question_other">扩散</string>

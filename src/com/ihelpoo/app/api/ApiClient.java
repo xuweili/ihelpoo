@@ -633,7 +633,7 @@ public class ApiClient {
 	 * @throws AppException
 	 */
 	public static NewsList getNewsList(AppContext appContext, final int uid, final int catalog, final int pageIndex, final int pageSize) throws AppException {
-		String newUrl = _MakeURL(URLs.NEWS_LIST, new HashMap<String, Object>(){{
+		String newUrl = _MakeURL(URLs.NEST_LIST, new HashMap<String, Object>(){{
             put("uid", uid);
 			put("catalog", catalog);
 			put("pageIndex", pageIndex);
@@ -648,6 +648,23 @@ public class ApiClient {
 			throw AppException.network(e);
 		}
 	}
+
+    public static NewsList getNoticeList(AppContext appContext, final int loginUid, final int catalog, final int pageIndex, final int pageSize)  throws AppException {
+        String newUrl = _MakeURL(URLs.NOTICE_LIST, new HashMap<String, Object>(){{
+            put("uid", loginUid);
+            put("catalog", catalog);
+            put("pageIndex", pageIndex);
+            put("pageSize", pageSize);
+        }});
+
+        try{
+            return NewsList.parse(http_get(appContext, newUrl));
+        }catch(Exception e){
+            if(e instanceof AppException)
+                throw (AppException)e;
+            throw AppException.network(e);
+        }
+    }
 	
 	/**
 	 * 获取资讯的详情

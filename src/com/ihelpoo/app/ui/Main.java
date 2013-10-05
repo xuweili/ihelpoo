@@ -460,9 +460,8 @@ public class Main extends BaseActivity {
 
         // 加载资讯数据
 //		if (lvNestData.isEmpty()) {
-//			loadLvNewsData(curNestCatalog, 0, lvNestHandler,
-//					UIHelper.LISTVIEW_ACTION_INIT);
-//    }
+//			loadLvNewsData(curNestCatalog, 0, lvNestHandler, UIHelper.LISTVIEW_ACTION_INIT);
+//        }
 
 //        if(lvRankData.isEmpty()){
 //            loadLvQuestionData(curRankCatalog, 0,lvRankHandler,UIHelper.LISTVIEW_ACTION_INIT);
@@ -1736,30 +1735,30 @@ public class Main extends BaseActivity {
                         lvNoticeData.clear();// 先清除原有数据
                         lvNoticeData.addAll(noticelist.getNewslist());
                         break;
-//                    case UIHelper.LISTVIEW_DATATYPE_NEWS:
-//                        NewsList nlist = (NewsList) obj;
-//                        notice = nlist.getNotice();
-//                        lvNestSumData = what;
-//                        if (actiontype == UIHelper.LISTVIEW_ACTION_REFRESH) {
-//                            if (lvNestData.size() > 0) {
-//                                for (News news1 : nlist.getNewslist()) {
-//                                    boolean b = false;
-//                                    for (News news2 : lvNestData) {
-//                                        if (news1.getId() == news2.getId()) {
-//                                            b = true;
-//                                            break;
-//                                        }
-//                                    }
-//                                    if (!b)
-//                                        newdata++;
-//                                }
-//                            } else {
-//                                newdata = what;
-//                            }
-//                        }
-//                        lvNestData.clear();// 先清除原有数据
-//                        lvNestData.addAll(nlist.getNewslist());
-//                        break;
+                    case UIHelper.LISTVIEW_DATATYPE_NEWS:
+                        NewsList nlist = (NewsList) obj;
+                        notice = nlist.getNotice();
+                        lvNestSumData = what;
+                        if (actiontype == UIHelper.LISTVIEW_ACTION_REFRESH) {
+                            if (lvNestData.size() > 0) {
+                                for (News news1 : nlist.getNewslist()) {
+                                    boolean b = false;
+                                    for (News news2 : lvNestData) {
+                                        if (news1.getId() == news2.getId()) {
+                                            b = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!b)
+                                        newdata++;
+                                }
+                            } else {
+                                newdata = what;
+                            }
+                        }
+                        lvNestData.clear();// 先清除原有数据
+                        lvNestData.addAll(nlist.getNewslist());
+                        break;
                     case UIHelper.LISTVIEW_DATATYPE_BLOG:
                         BlogList blist = (BlogList) obj;
                         notice = blist.getNotice();
@@ -1919,26 +1918,26 @@ public class Main extends BaseActivity {
                             lvNoticeData.addAll(noticelist.getNewslist());
                         }
                         break;
-//                    case UIHelper.LISTVIEW_DATATYPE_NEWS:
-//                        NewsList list = (NewsList) obj;
-//                        notice = list.getNotice();
-//                        lvNestSumData += what;
-//                        if (lvNestData.size() > 0) {
-//                            for (News news1 : list.getNewslist()) {
-//                                boolean b = false;
-//                                for (News news2 : lvNestData) {
-//                                    if (news1.getId() == news2.getId()) {
-//                                        b = true;
-//                                        break;
-//                                    }
-//                                }
-//                                if (!b)
-//                                    lvNestData.add(news1);
-//                            }
-//                        } else {
-//                            lvNestData.addAll(list.getNewslist());
-//                        }
-//                        break;
+                    case UIHelper.LISTVIEW_DATATYPE_NEWS:
+                        NewsList list = (NewsList) obj;
+                        notice = list.getNotice();
+                        lvNestSumData += what;
+                        if (lvNestData.size() > 0) {
+                            for (News news1 : list.getNewslist()) {
+                                boolean b = false;
+                                for (News news2 : lvNestData) {
+                                    if (news1.getId() == news2.getId()) {
+                                        b = true;
+                                        break;
+                                    }
+                                }
+                                if (!b)
+                                    lvNestData.add(news1);
+                            }
+                        } else {
+                            lvNestData.addAll(list.getNewslist());
+                        }
+                        break;
                     case UIHelper.LISTVIEW_DATATYPE_BLOG:
                         BlogList blist = (BlogList) obj;
                         notice = blist.getNotice();
@@ -2064,7 +2063,7 @@ public class Main extends BaseActivity {
                 if (action == UIHelper.LISTVIEW_ACTION_REFRESH || action == UIHelper.LISTVIEW_ACTION_SCROLL)
                     isRefresh = true;
                 try {
-                    NewsList list = appContext.getNewsList(catalog, pageIndex, isRefresh);
+                    NewsList list = appContext.getNoticeList(catalog, pageIndex, isRefresh);
                     msg.what = list.getPageSize();
                     msg.obj = list;
                 } catch (AppException e) {

@@ -109,7 +109,10 @@ public class ListViewNewsAdapter extends BaseAdapter {
         listItemView.title.setText(news.getTitle());
         listItemView.title.setTag(news);//设置隐藏参数(实体类)
         listItemView.author.setText(news.getAuthor());
-        listItemView.inout.setText(news.getInout());
+        if(listItemView.inout != null){//小窝 if null
+            listItemView.inout.setText(news.getInout());
+        }
+
         listItemView.date.setText(StringUtils.friendly_time(news.getPubDate()));
         listItemView.count.setText(news.getCommentCount() + "");
         if (StringUtils.isToday(news.getPubDate()))

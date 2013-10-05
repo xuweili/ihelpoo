@@ -463,6 +463,40 @@ public class AppContext extends Application {
     }
 
     /**
+     * 活跃列表
+     *
+     * @param catalog
+     * @param pageIndex
+     * @param isRefresh
+     * @return
+     * @throws AppException
+     */
+    public NewsList getNoticeList(int catalog, int pageIndex, boolean isRefresh) throws AppException {
+        NewsList list = null;
+        String key = "noticelist_" + loginUid + "_" + catalog + "_" + pageIndex + "_" + PAGE_SIZE;
+        if (isNetworkConnected() && (!isReadDataCache(key) || isRefresh)) {
+            try {
+                list = ApiClient.getNoticeList(this, loginUid, catalog, pageIndex, PAGE_SIZE);
+                if (list != null && pageIndex == 0) {
+                    Notice notice = list.getNotice();
+                    list.setNotice(null);
+                    list.setCacheKey(key);
+                    saveObject(list, key);
+                    list.setNotice(notice);
+                }
+            } catch (AppException e) {
+                list = (NewsList) readObject(key);
+                if (list == null)
+                    throw e;
+            }
+        } else {
+            list = (NewsList) readObject(key);
+            if (list == null)
+                list = new NewsList();
+        }
+        return list;
+    }
+    /**
      * 新闻列表
      *
      * @param catalog

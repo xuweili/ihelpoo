@@ -62,21 +62,21 @@
 			style="@style/frame_button"
          	android:text="国产"/>
 	</LinearLayout>
-	
+
     <com.ihelpoo.app.widget.ScrollLayout
-	  	android:id="@+id/frame_software_scrolllayout"    
-	  	android:layout_width="fill_parent"    
+	  	android:id="@+id/frame_software_scrolllayout"
+	  	android:layout_width="fill_parent"
 	  	android:layout_height="fill_parent"
-   	  	android:layout_weight="1">  
+   	  	android:layout_weight="1">
 		<ListView
 		  	android:id="@+id/frame_software_listview_catalog"
-		    style="@style/widget_listview"/>	   	
+		    style="@style/widget_listview"/>
 		<ListView
 		  	android:id="@+id/frame_software_listview_tag"
-		    style="@style/widget_listview"/>		
+		    style="@style/widget_listview"/>
 		<com.ihelpoo.app.widget.PullToRefreshListView
 		  	android:id="@+id/frame_software_listview"
-		    style="@style/widget_listview"/>   
+		    style="@style/widget_listview"/>
 	</com.ihelpoo.app.widget.ScrollLayout>
    	
 </LinearLayout>

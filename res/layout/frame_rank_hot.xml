@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:layout_width="fill_parent"
+  	android:layout_height="fill_parent"
+  	android:orientation="vertical"
+  	android:background="@color/white">
+
+	<FrameLayout
+	   	android:layout_width="fill_parent"
+	   	android:layout_height="40dip"
+	   	android:gravity="center_vertical"
+	   	android:paddingLeft="2dip"
+   		android:paddingRight="2dip"
+	   	android:orientation="horizontal"
+	   	android:background="@drawable/widget_head_bg">
+	   	<ImageView 
+	   		android:id="@+id/frame_software_head_back"
+		   	android:layout_width="wrap_content" 
+		   	android:layout_height="wrap_content" 
+		   	android:layout_gravity="left|center"
+		   	android:clickable="true" 
+		   	android:background="@drawable/head_back"/>
+	   	<TextView 
+	   	    android:id="@+id/frame_software_head_title"
+	   		style="@style/detail_head_title" 
+	   		android:layout_gravity="center"
+	   		android:text="开源软件库"/>
+   	   	<ProgressBar 
+			android:id="@+id/frame_software_head_progress" 
+			style="@style/loading_small"
+			android:layout_gravity="right|center"
+			android:layout_marginRight="5dip"/>
+	</FrameLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="35.0dip"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <Button
+            android:id="@+id/frame_btn_rank_ask"
+            style="@style/frame_button"
+            android:text="@string/frame_title_question_ask"/>
+        <ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
+        <Button
+            android:id="@+id/frame_btn_rank_share"
+            style="@style/frame_button"
+            android:text="@string/frame_title_question_share"/>
+        <ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
+        <Button
+            android:id="@+id/frame_btn_rank_other"
+            style="@style/frame_button"
+            android:text="@string/frame_title_question_other"/>
+        <ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
+        <Button
+            android:id="@+id/frame_btn_rank_job"
+            style="@style/frame_button"
+            android:text="@string/frame_title_question_job"/>
+        <ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
+        <Button
+            android:id="@+id/frame_btn_rank_site"
+            style="@style/frame_button"
+            android:text="@string/frame_title_question_site"/>
+    </LinearLayout>
+
+    <com.ihelpoo.app.widget.PullToRefreshListView
+        android:id="@+id/frame_listview_rank"
+        style="@style/widget_listview"/>
+   	
+</LinearLayout>
