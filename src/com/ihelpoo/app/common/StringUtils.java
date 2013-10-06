@@ -41,7 +41,7 @@ public class StringUtils {
     private final static ThreadLocal<SimpleDateFormat> dateFormater2 = new ThreadLocal<SimpleDateFormat>() {
         @Override
         protected SimpleDateFormat initialValue() {
-            return new SimpleDateFormat("yyyy-MM-dd");
+            return new SimpleDateFormat("MM月dd HH:mm");
         }
     };
 

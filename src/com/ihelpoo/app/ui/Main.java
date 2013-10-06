@@ -376,19 +376,12 @@ public class Main extends BaseActivity {
      */
     private void initQuickActionGrid() {
         mGrid = new QuickActionGrid(this);
-        mGrid.addQuickAction(new MyQuickAction(this, R.drawable.ic_menu_login,
-                R.string.main_menu_login));
-        mGrid.addQuickAction(new MyQuickAction(this, R.drawable.ic_menu_myinfo,
-                R.string.main_menu_myinfo));
-        mGrid.addQuickAction(new MyQuickAction(this,
-                R.drawable.ic_menu_software, R.string.main_menu_software));
-        mGrid.addQuickAction(new MyQuickAction(this, R.drawable.ic_menu_search,
-                R.string.main_menu_search));
-        mGrid.addQuickAction(new MyQuickAction(this,
-                R.drawable.ic_menu_setting, R.string.main_menu_setting));
-        mGrid.addQuickAction(new MyQuickAction(this, R.drawable.ic_menu_exit,
-                R.string.main_menu_exit));
-
+        mGrid.addQuickAction(new MyQuickAction(this, R.drawable.ic_menu_login, R.string.main_menu_login));
+        mGrid.addQuickAction(new MyQuickAction(this, R.drawable.ic_menu_myinfo, R.string.main_menu_myinfo));
+//        mGrid.addQuickAction(new MyQuickAction(this, R.drawable.ic_menu_software, R.string.main_menu_software));
+//        mGrid.addQuickAction(new MyQuickAction(this, R.drawable.ic_menu_search, R.string.main_menu_search));
+        mGrid.addQuickAction(new MyQuickAction(this, R.drawable.ic_menu_setting, R.string.main_menu_setting));
+        mGrid.addQuickAction(new MyQuickAction(this, R.drawable.ic_menu_exit, R.string.main_menu_exit));
         mGrid.setOnQuickActionClickListener(mActionListener);
     }
 
