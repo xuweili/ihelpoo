@@ -94,6 +94,7 @@
                 android:textSize="@dimen/text_size_15"
                 android:textColor="@color/listitem_black"
                 android:textColorLink="@color/listitem_blue"
+                android:lineSpacingMultiplier="1.2"
                 android:autoLink="web|email"/>
 
 

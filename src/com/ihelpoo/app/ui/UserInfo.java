@@ -75,7 +75,7 @@ public class UserInfo extends BaseActivity{
 	private Handler mHandler;
 		
 	private final static int CROP = 200;
-	private final static String FILE_SAVEPATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/OSChina/Portrait/";
+	private final static String FILE_SAVEPATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ihelpoo/avatar/";
 	private Uri origUri;
 	private Uri cropUri;
 	private File protraitFile;
@@ -238,8 +238,8 @@ public class UserInfo extends BaseActivity{
 					//输出裁剪的临时文件
 					String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 					//照片命名
-					String origFileName = "osc_" + timeStamp + ".jpg";
-					String cropFileName = "osc_crop_" + timeStamp + ".jpg";
+					String origFileName = "oih_" + timeStamp + ".jpg";
+					String cropFileName = "oih_crop_" + timeStamp + ".jpg";
 					
 					//裁剪头像的绝对路径
 					protraitPath = FILE_SAVEPATH + cropFileName;
@@ -270,8 +270,8 @@ public class UserInfo extends BaseActivity{
 		intent.setType("image/*");
 		intent.putExtra("output", output);
 		intent.putExtra("crop", "true");
-		intent.putExtra("aspectX", 1);// 裁剪框比例
-		intent.putExtra("aspectY", 1);
+		intent.putExtra("aspectX", 4);// 裁剪框比例
+		intent.putExtra("aspectY", 3);
 		intent.putExtra("outputX", CROP);// 输出图片大小
 		intent.putExtra("outputY", CROP);
 		startActivityForResult(Intent.createChooser(intent, "选择图片"),ImageUtils.REQUEST_CODE_GETIMAGE_BYSDCARD);
@@ -295,8 +295,8 @@ public class UserInfo extends BaseActivity{
 		intent.setDataAndType(data, "image/*");
 		intent.putExtra("output", output);
 		intent.putExtra("crop", "true");
-		intent.putExtra("aspectX", 1);// 裁剪框比例
-		intent.putExtra("aspectY", 1);
+		intent.putExtra("aspectX", 4);// 裁剪框比例
+		intent.putExtra("aspectY", 3);
 		intent.putExtra("outputX", CROP);// 输出图片大小
 		intent.putExtra("outputY", CROP);
 		startActivityForResult(intent, ImageUtils.REQUEST_CODE_GETIMAGE_BYCROP);
@@ -333,7 +333,7 @@ public class UserInfo extends BaseActivity{
 	        	//获取头像缩略图
 	        	if(!StringUtils.isEmpty(protraitPath) && protraitFile.exists())
 	        	{
-	        		protraitBitmap = ImageUtils.loadImgThumbnail(protraitPath, 200, 200);
+	        		protraitBitmap = ImageUtils.loadImgThumbnail(protraitPath, 200, 150);
 	        	}
 		        
 				if(protraitBitmap != null)

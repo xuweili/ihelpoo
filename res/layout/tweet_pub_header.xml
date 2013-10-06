@@ -4,7 +4,7 @@
    	android:layout_height="wrap_content"
    	android:paddingLeft="2dip"
    	android:paddingRight="7dip"
-   	android:background="@drawable/head_bg">
+   	android:background="@drawable/head_bg_with_char">
    	<ImageView 
    		android:id="@+id/tweet_pub_back"
 	   	android:layout_width="wrap_content" 
@@ -13,11 +13,6 @@
 	   	android:layout_centerVertical="true"
 	   	android:clickable="true" 
 	   	android:background="@drawable/head_back"/>
-   	<TextView 
-   	    android:id="@+id/tweet_pub_head_title"
-   		style="@style/detail_head_title" 
-   		android:layout_centerInParent="true"
-   		android:text="@string/tweet_pub_head_title"/>
     <Button
     	android:id="@+id/tweet_pub_publish"
         android:layout_width="45dip"
