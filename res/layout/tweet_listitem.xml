@@ -104,6 +104,7 @@
                 android:layout_marginTop="8dip"
                 android:scaleType="fitCenter"
                 android:src="@drawable/image_loading"
+                android:adjustViewBounds="true"
                 android:visibility="gone"/>
 
         <RelativeLayout
