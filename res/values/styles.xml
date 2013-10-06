@@ -250,7 +250,7 @@
        	<item name="android:layout_weight">1</item>      	
        	<item name="android:listSelector">@drawable/listview_item_selector</item>
        	<item name="android:divider">@drawable/listview_divider_line</item>
-       	<item name="android:dividerHeight">1.0dip</item>
+       	<item name="android:dividerHeight">1dip</item>
        	<item name="android:fadingEdge">none</item>
        	<item name="android:scrollingCache">false</item>
     </style>
@@ -269,14 +269,23 @@
 		<item name="android:shadowDy">1</item>
 		<item name="android:shadowRadius">1</item>
     </style>
-    
+
+    <style name="cut_line">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">5dip</item>
+        <item name="android:layout_marginTop">8dip</item>
+        <item name="android:layout_marginBottom">10dip</item>
+        <item name="android:layout_marginLeft">6dip</item>
+        <item name="android:layout_marginRight">6dip</item>
+        <item name="android:background">@color/graywhite</item>
+    </style>
     <style name="detail_cut_line">
 		<item name="android:layout_width">fill_parent</item>
-		<item name="android:layout_height">2.0dip</item>
-		<item name="android:layout_marginTop">8.0dip</item>
-		<item name="android:layout_marginBottom">10.0dip</item>
-		<item name="android:layout_marginLeft">6.0dip</item>
-		<item name="android:layout_marginRight">6.0dip</item>
+		<item name="android:layout_height">2dip</item>
+		<item name="android:layout_marginTop">8dip</item>
+		<item name="android:layout_marginBottom">10dip</item>
+		<item name="android:layout_marginLeft">6dip</item>
+		<item name="android:layout_marginRight">6dip</item>
 		<item name="android:background">@drawable/line_bluegray</item>
 	</style>
     <style name="AudioFileInfoOverlayText">

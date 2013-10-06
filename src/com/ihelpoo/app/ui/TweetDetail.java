@@ -92,6 +92,7 @@ public class TweetDetail extends BaseActivity {
     private ImageView redirect;
     private TextView type_gossip;
     private TextView diffusionCount;
+    private TextView plusCount;
     private TextView online;
     private TextView academy;
     private TextView rank;
@@ -238,6 +239,7 @@ public class TweetDetail extends BaseActivity {
         redirect = (ImageView) lvHeader.findViewById(R.id.tweet_listitem_redirect);
         type_gossip = (TextView) lvHeader.findViewById(R.id.tweet_listitem_type_gossip);
         diffusionCount = (TextView) lvHeader.findViewById(R.id.tweet_listitem_diffusionCount);
+        plusCount = (TextView) lvHeader.findViewById(R.id.tweet_listitem_plusCount);
         online = (TextView) lvHeader.findViewById(R.id.tweet_listitem_online);
         academy = (TextView) lvHeader.findViewById(R.id.tweet_listitem_academy);
         rank = (TextView) lvHeader.findViewById(R.id.tweet_listitem_rank);
@@ -391,6 +393,7 @@ public class TweetDetail extends BaseActivity {
                     academy.setText(tweetDetail.getAcademy());
                     online.setText(tweetDetail.getOnlineState());
                     diffusionCount.setText(tweetDetail.getSpreadCount() + "");
+                    plusCount.setText(tweetDetail.getPlusCount() + "");
 
                     username.setText(tweetDetail.getAuthor());
                     username.setOnClickListener(faceClickListener);

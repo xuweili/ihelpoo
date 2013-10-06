@@ -1,139 +1,136 @@
-<?xml version="1.0" encoding="utf-8"?>  
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
-    android:orientation="vertical" 
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content"> 
-<LinearLayout 
-    android:orientation="horizontal" 
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content"
-    android:paddingLeft="6dip"
-    android:paddingRight="6dip"
-    android:paddingTop="5dip"
-    android:paddingBottom="5dip">   
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
 
-    <ImageView 
-    	android:id="@+id/tweet_listitem_userface"
-      	style="@style/user_face_image"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="6dip"
+        android:paddingRight="6dip"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip">
 
-	<LinearLayout
-    	android:layout_width="fill_parent" 
-    	android:layout_height="wrap_content"
-    	android:orientation="vertical"
-    	android:layout_marginLeft="6dip">
+        <ImageView
+            android:id="@+id/tweet_listitem_userface"
+            style="@style/user_face_image" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="6dip">
 
 
             <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:layout_gravity="left|center_vertical">
+
+                <TextView
+                    android:id="@+id/tweet_listitem_username"
                     android:layout_width="wrap_content"
-                    android:layout_height="17dp"
-                    android:layout_gravity="left|center_vertical">
-                <TextView
-                        android:text="用户名"
-                        android:id="@+id/tweet_listitem_username"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:textSize="@dimen/text_size_12"
-                        android:layout_alignParentBottom="true"
-                        android:textColor="@color/black"/>
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:textSize="@dimen/text_size_12"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="@color/black" />
 
                 <TextView
-                        android:text="5"
-                        android:id="@+id/tweet_listitem_rank"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/space_7"
-                        android:textColor="@color/white"
-                        android:layout_alignParentBottom="true"
-                        android:layout_toRightOf="@+id/tweet_listitem_username"
-                        android:layout_marginLeft="@dimen/space_3"
-                        android:layout_marginBottom="@dimen/space_2"
-                        android:background="@drawable/bg_rounded_rank"
-                        android:paddingLeft="@dimen/space_2"
-                        android:paddingRight="@dimen/space_2"/>
+                    android:id="@+id/tweet_listitem_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/space_7"
+                    android:textColor="@color/white"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/tweet_listitem_username"
+                    android:layout_marginLeft="@dimen/space_3"
+                    android:layout_marginBottom="@dimen/space_2"
+                    android:background="@drawable/bg_rounded_rank"
+                    android:paddingLeft="@dimen/space_2"
+                    android:paddingRight="@dimen/space_2" />
 
                 <TextView
-                        android:text="[城市规划]"
-                        android:id="@+id/tweet_listitem_academy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:textSize="@dimen/text_size_10"
-                        android:textColor="@color/listitem_gray"
-                        android:layout_alignParentBottom="true"
-                        android:layout_toRightOf="@+id/tweet_listitem_rank"
-                        android:layout_marginLeft="4dp"/>
+                    android:id="@+id/tweet_listitem_academy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:textSize="@dimen/text_size_10"
+                    android:textColor="@color/listitem_gray"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/tweet_listitem_rank"
+                    android:layout_marginLeft="4dp" />
 
                 <TextView
-                        android:text="大二"
-                        android:id="@+id/tweet_listitem_type_gossip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:textSize="@dimen/text_size_10"
-                        android:layout_marginLeft="5dp"
-                        android:layout_alignBottom="@+id/tweet_listitem_academy"
-                        android:layout_toRightOf="@+id/tweet_listitem_academy"/>
+                    android:id="@+id/tweet_listitem_type_gossip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:textSize="@dimen/text_size_10"
+                    android:layout_marginLeft="5dp"
+                    android:layout_alignBottom="@+id/tweet_listitem_academy"
+                    android:layout_toRightOf="@+id/tweet_listitem_academy" />
 
                 <TextView
-                        android:visibility="gone"
-                        android:text=">"
-                        android:id="@+id/tweet_listitem_online"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:textSize="@dimen/text_size_10"
-                        android:textColor="@color/gray"
-                        android:layout_marginRight="5dp"
-                        android:layout_gravity="right|center_vertical"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"/>
+                    android:visibility="gone"
+                    android:text=">"
+                    android:id="@+id/tweet_listitem_online"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:textSize="@dimen/text_size_10"
+                    android:textColor="@color/gray"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true" />
 
             </RelativeLayout>
-		<!-- 
-		<TextView 
-			android:id="@+id/tweet_listitem_content" 
-			android:layout_width="fill_parent" 
-			android:layout_height="wrap_content"
-			android:autoLink="web|email"
-           	android:textSize="@dimen/text_size_12"
-            android:textColorLink="@color/blue"
-			android:textColor="@color/black"/>
-		-->
-		<WebView 
-			android:id="@+id/tweet_listitem_content"
-	       	android:layout_width="fill_parent"
-	       	android:layout_height="wrap_content"
-	       	android:background="@color/white"
-	       	android:layout_marginLeft="-8dip"
-	       	android:layout_marginRight="-10dip"/>
-		
-	    <ImageView 
-	    	android:id="@+id/tweet_listitem_image"
-	      	android:layout_width="wrap_content" 
-	        android:layout_height="wrap_content"
-	        android:scaleType="fitCenter"
-	        android:src="@drawable/image_loading"
-	        android:visibility="gone"/>
+            <!--
+            <TextView
+                android:id="@+id/tweet_listitem_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web|email"
+                   android:textSize="@dimen/text_size_12"
+                android:textColorLink="@color/blue"
+                android:textColor="@color/black"/>
+            -->
+            <WebView
+                android:id="@+id/tweet_listitem_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginLeft="-8dip"
+                android:layout_marginRight="-10dip" />
+
+            <ImageView
+                android:id="@+id/tweet_listitem_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:src="@drawable/image_loading"
+                android:visibility="gone" />
 
 
-        <RelativeLayout
+            <RelativeLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="17dp"
-                android:layout_marginTop="8dip"
-                >
+                android:layout_marginTop="8dip">
 
-            <TextView
+                <TextView
                     android:id="@+id/tweet_listitem_client"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_10"
                     android:textColor="@color/listitem_gray"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"/>
+                    android:layout_alignParentLeft="true" />
 
-            <TextView
+                <TextView
                     android:id="@+id/tweet_listitem_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -141,9 +138,9 @@
                     android:textColor="@color/listitem_gray"
                     android:layout_marginLeft="5dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/tweet_listitem_client"/>
+                    android:layout_toRightOf="@+id/tweet_listitem_client" />
 
-            <TextView
+                <TextView
                     android:id="@+id/tweet_listitem_commentCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -151,9 +148,9 @@
                     android:textColor="@color/listitem_gray"
                     android:layout_marginRight="5dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_toLeftOf="@+id/tweet_listitem_commentIcon"/>
+                    android:layout_toLeftOf="@+id/tweet_listitem_commentIcon" />
 
-            <ImageView
+                <ImageView
                     android:id="@+id/tweet_listitem_commentIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -162,9 +159,9 @@
                     android:layout_marginRight="7dp"
                     android:layout_alignBottom="@+id/tweet_listitem_commentCount"
                     android:layout_toLeftOf="@+id/tweet_listitem_diffusionCount"
-                    android:paddingBottom="@dimen/space_1"/>
+                    android:paddingBottom="@dimen/space_1" />
 
-            <TextView
+                <TextView
                     android:id="@+id/tweet_listitem_diffusionCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -172,10 +169,31 @@
                     android:textColor="@color/listitem_gray"
                     android:layout_marginRight="5dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_toLeftOf="@+id/tweet_listitem_redirect"/>
+                    android:layout_toLeftOf="@+id/tweet_listitem_redirect" />
 
-            <ImageView
+                <ImageView
                     android:id="@+id/tweet_listitem_redirect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/widget_redirect_icon"
+                    android:layout_marginRight="7dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toLeftOf="@+id/tweet_listitem_plusCount"
+                    android:paddingBottom="@dimen/space_1" />
+
+                <TextView
+                    android:id="@+id/tweet_listitem_plusCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_10"
+                    android:textColor="@color/listitem_gray"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toLeftOf="@+id/tweet_listitem_plus" />
+
+                <ImageView
+                    android:id="@+id/tweet_listitem_plus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -183,12 +201,15 @@
                     android:layout_marginRight="5dp"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
-                    android:paddingBottom="@dimen/space_1"/>
+                    android:paddingBottom="@dimen/space_1" />
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-	</LinearLayout>
+        </LinearLayout>
 
-</LinearLayout> 
-<View style="@style/detail_cut_line" android:layout_margin="0dip"/>
+    </LinearLayout>
+
+    <View
+        style="@style/cut_line"
+        android:layout_margin="0dip" />
 </LinearLayout> 
