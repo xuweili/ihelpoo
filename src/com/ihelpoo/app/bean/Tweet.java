@@ -54,6 +54,8 @@ public class Tweet extends Entity{
 	public final static String NODE_START = "tweet";
 
     public final static String NODE_spreadCount = "spreadCount";
+    public final static String NODE_plusCount = "plusCount";
+
     public final static String NODE_academy = "academy";
     public final static String NODE_authorType = "authorType";
     public final static String NODE_authorGossip = "authorGossip";
@@ -80,6 +82,7 @@ public class Tweet extends Entity{
 	private int appClient;
 
     private int spreadCount;
+    private int plusCount;
     private String academy;
     private String authorType;
     private String authorGossip;
@@ -88,6 +91,14 @@ public class Tweet extends Entity{
     private int reward;
     private int plusByMe;
     private int diffuseByMe;
+
+    public int getPlusCount() {
+        return plusCount;
+    }
+
+    public void setPlusCount(int plusCount) {
+        this.plusCount = plusCount;
+    }
 
     public int getPlusByMe() {
         return plusByMe;
@@ -312,6 +323,10 @@ public class Tweet extends Entity{
                             else if(tag.equalsIgnoreCase(Tweet.NODE_spreadCount))
                             {
                                 tweet.setSpreadCount(StringUtils.toInt(xmlParser.nextText(), 0));
+                            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_plusCount))
+                            {
+                                tweet.setPlusCount(StringUtils.toInt(xmlParser.nextText(), 0));
                             }
 				            //通知信息
 				            else if(tag.equalsIgnoreCase("notice"))

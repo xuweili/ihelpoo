@@ -66,6 +66,7 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
         public TextView academy;
         public TextView online;
         public TextView diffusionCount;
+        public TextView plusCount;
     }
 
     /**
@@ -121,6 +122,7 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
             listItemView.redirect = (ImageView) convertView.findViewById(R.id.tweet_listitem_redirect);
             listItemView.type_gossip = (TextView) convertView.findViewById(R.id.tweet_listitem_type_gossip);
             listItemView.diffusionCount = (TextView) convertView.findViewById(R.id.tweet_listitem_diffusionCount);
+            listItemView.plusCount = (TextView) convertView.findViewById(R.id.tweet_listitem_plusCount);
             listItemView.online = (TextView) convertView.findViewById(R.id.tweet_listitem_online);
             listItemView.academy = (TextView) convertView.findViewById(R.id.tweet_listitem_academy);
             listItemView.rank = (TextView) convertView.findViewById(R.id.tweet_listitem_rank);
@@ -141,6 +143,7 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
         listItemView.academy.setText(tweet.getAcademy());
         listItemView.online.setText(tweet.getOnlineState());
         listItemView.diffusionCount.setText(tweet.getSpreadCount() + "");
+        listItemView.plusCount.setText(tweet.getPlusCount() + "");
 
 
         listItemView.username.setText(tweet.getAuthor());

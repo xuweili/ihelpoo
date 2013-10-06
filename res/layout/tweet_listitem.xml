@@ -169,10 +169,31 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/widget_redirect_icon"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="7dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:paddingBottom="@dimen/space_1"/>
+                    android:paddingBottom="@dimen/space_1"
+                    android:layout_toLeftOf="@+id/tweet_listitem_plusCount"/>
+
+            <TextView
+                android:id="@+id/tweet_listitem_plusCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_10"
+                android:textColor="@color/listitem_gray"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/tweet_listitem_plus"/>
+
+            <ImageView
+                android:id="@+id/tweet_listitem_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/widget_redirect_icon"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:paddingBottom="@dimen/space_1"/>
 
         </RelativeLayout>
 
