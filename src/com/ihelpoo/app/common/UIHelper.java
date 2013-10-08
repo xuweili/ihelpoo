@@ -1141,7 +1141,7 @@ public class UIHelper {
 						dialog.dismiss();
 						// 清除文字
 						editer.setText("");
-						numwords.setText("160");
+						numwords.setText(TweetPub.MAX_TEXT_LENGTH + "");
 					}
 				});
 		builder.setNegativeButton(R.string.cancle,

@@ -98,9 +98,9 @@ public class TweetPub extends BaseActivity{
 	public static LinearLayout mMessage;
 	public static Context mContext;
 	
-	private static final int MAX_TEXT_LENGTH = 160;//最大输入字数
+	public static final int MAX_TEXT_LENGTH = 222;//最大输入字数
 	private static final String TEXT_ATME = "@请输入用户名 ";
-	private static final String TEXT_SOFTWARE = "#请输入软件名#";
+	private static final String TEXT_SOFTWARE = "#请输入话题#";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
