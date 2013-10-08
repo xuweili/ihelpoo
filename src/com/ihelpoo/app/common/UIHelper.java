@@ -291,7 +291,8 @@ public class UIHelper {
 			String objId = news.getNewType().attachment;
 			switch (newsType) {
 			case News.NEWSTYPE_NEWS:
-				showNewsDetail(context, newsId);
+                showTweetDetail(context, newsId);
+//				showNewsDetail(context, newsId);
 				break;
 			case News.NEWSTYPE_SOFTWARE:
 				showSoftwareDetail(context, objId);
