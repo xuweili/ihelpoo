@@ -580,8 +580,8 @@ public class TweetPub extends BaseActivity{
 			tweet.setAuthorId(ac.getLoginUid());
 			tweet.setBody(content);
 			tweet.setImageFile(imgFile);
-            if("H".equals(reward.getSelectedItem())){
-                tweet.setReward(0);
+            if("help".equals(reward.getSelectedItem())){
+                tweet.setReward(-1);
             } else {
                 tweet.setReward(Integer.parseInt(String.valueOf(reward.getSelectedItem())));
             }
