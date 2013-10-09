@@ -75,6 +75,7 @@ public class LoginDialog extends BaseActivity {
 
     private ViewSwitcher mViewSwitcher;
     private ImageButton btn_close;
+    private Button btn_register;
     private Button btn_login;
     private Button btn_login_wb;
     private Button btn_login_qq;
@@ -131,6 +132,7 @@ public class LoginDialog extends BaseActivity {
         btn_close = (ImageButton) findViewById(R.id.login_close_button);
         btn_close.setOnClickListener(UIHelper.finish(this));
 
+        btn_register =  (Button) findViewById(R.id.login_btn_register);
         btn_login = (Button) findViewById(R.id.login_btn_login);
 
 
@@ -160,6 +162,11 @@ public class LoginDialog extends BaseActivity {
         btn_login_qq.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onClickLogin();
+            }
+        });
+        btn_register.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(LoginDialog.this, Register.class));
             }
         });
         btn_login.setOnClickListener(new View.OnClickListener() {
