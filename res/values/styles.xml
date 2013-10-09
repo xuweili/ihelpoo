@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <style name="navAppTheme" parent="android:Theme.Light.NoTitleBar" />
+
+    <style name="nav_whatsnew_txt">
+        <item name="android:textSize">23sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+    </style>
+
     <!-- sina weibo -->
    	<style name="ContentOverlay" parent="android:style/Theme.Dialog">
 		<item name="android:windowNoTitle">true</item>
