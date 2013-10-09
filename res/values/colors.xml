@@ -34,7 +34,7 @@
     
     <color name="face_bg">#eef1f4</color>
     
-    <color name="frame_button_text_nor">#033a5c</color>
+    <color name="frame_button_text_nor">#F5F5F5</color>
     <color name="frame_button_text_select">#FFFFFF</color>
     
     <color name="listitem_transparent">#00000000</color>

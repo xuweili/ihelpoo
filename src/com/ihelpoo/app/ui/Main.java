@@ -102,7 +102,7 @@ public class Main extends BaseActivity {
     private int mViewCount;
     private int mCurSel;
 
-    private ImageView mHeadLogo;
+//    private ImageView mHeadLogo;
     private TextView mHeadTitle;
     private ProgressBar mHeadProgress;
     private ImageButton mHead_search;
@@ -1147,7 +1147,7 @@ public class Main extends BaseActivity {
      * 初始化头部视图
      */
     private void initHeadView() {
-        mHeadLogo = (ImageView) findViewById(R.id.main_head_logo);
+//        mHeadLogo = (ImageView) findViewById(R.id.main_head_logo);
         mHeadTitle = (TextView) findViewById(R.id.main_head_title);
         mHeadProgress = (ProgressBar) findViewById(R.id.main_head_progress);
         mHead_search = (ImageButton) findViewById(R.id.main_head_search);
@@ -1362,16 +1362,16 @@ public class Main extends BaseActivity {
         mHeadPub_tweet.setVisibility(View.GONE);
         // 头部logo、发帖、发动弹按钮显示
         if (index == 1) {
-            mHeadLogo.setImageResource(R.drawable.frame_logo_news);
+//            mHeadLogo.setImageResource(R.drawable.frame_logo_news);
             mHead_search.setVisibility(View.VISIBLE);
         } else if (index == 2) {
-            mHeadLogo.setImageResource(R.drawable.frame_logo_post);
+//            mHeadLogo.setImageResource(R.drawable.frame_logo_post);
 //            mHeadPub_post.setVisibility(View.VISIBLE);
         } else if (index == 0) {
-            mHeadLogo.setImageResource(R.drawable.frame_logo_tweet);
+//            mHeadLogo.setImageResource(R.drawable.frame_logo_tweet);
             mHeadPub_tweet.setVisibility(View.VISIBLE);
         } else if (index == 3) {
-            mHeadLogo.setImageResource(R.drawable.frame_logo_active);
+//            mHeadLogo.setImageResource(R.drawable.frame_logo_active);
             mHeadPub_tweet.setVisibility(View.VISIBLE);
         }
     }

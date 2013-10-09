@@ -12,13 +12,15 @@
      		android:id="@+id/frame_btn_nest_lastest"
      		style="@style/frame_button"
          	android:text="@string/frame_title_news_lastest"/>
-     	<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
+     	<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"
+            android:visibility="gone"/>
      	<Button 
      		android:id="@+id/frame_btn_nest_blog"
      		style="@style/frame_button"
          	android:text="@string/frame_title_news_blog"
             android:visibility="gone"/>
-     	<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
+     	<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"
+            android:visibility="gone"/>
      	<Button 
      		android:id="@+id/frame_btn_nest_recommend"
      		style="@style/frame_button"

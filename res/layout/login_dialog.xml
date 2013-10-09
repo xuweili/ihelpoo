@@ -152,11 +152,20 @@
 
                         <Button
                                 android:id="@+id/login_btn_login"
-                                android:layout_width="fill_parent"
+                                android:layout_width="141dp"
                                 android:layout_height="45dip"
                                 android:textSize="@dimen/text_size_20"
                                 android:text="@string/login_dialog_login"
                                 android:background="@drawable/login_btn_selector"/>
+
+                        <Button
+                            android:id="@+id/login_btn_login_wb"
+                            android:layout_width="fill_parent"
+                            android:layout_height="45dip"
+                            android:textSize="@dimen/text_size_20"
+                            android:text="微博登录"
+                            android:background="@drawable/login_btn_selector"
+                            android:layout_marginLeft="15dp" />
                     </LinearLayout>
                 </TableLayout>
             </RelativeLayout>
