@@ -23,6 +23,13 @@ import com.ihelpoo.app.bean.User;
 import com.ihelpoo.app.common.QQWeiboHelper;
 import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
+import com.tencent.open.HttpStatusException;
+import com.tencent.open.NetworkUnavailableException;
+import com.tencent.tauth.Constants;
+import com.tencent.tauth.IRequestListener;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
 import com.weibo.sdk.android.Oauth2AccessToken;
 import com.weibo.sdk.android.Weibo;
 import com.weibo.sdk.android.WeiboAuthListener;
@@ -36,6 +43,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -48,6 +56,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import org.apache.http.conn.ConnectTimeoutException;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
 import java.text.SimpleDateFormat;
 
 /**
@@ -62,6 +77,7 @@ public class LoginDialog extends BaseActivity {
     private ImageButton btn_close;
     private Button btn_login;
     private Button btn_login_wb;
+    private Button btn_login_qq;
     private AutoCompleteTextView mAccount;
     private EditText mPwd;
     private AnimationDrawable loadingAnimation;
@@ -91,6 +107,11 @@ public class LoginDialog extends BaseActivity {
      */
     private SsoHandler mSsoHandler;
 
+
+    private static Tencent mTencent;
+
+    private Handler mHandler;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +135,9 @@ public class LoginDialog extends BaseActivity {
 
 
         mWeibo = Weibo.getInstance(QQWeiboHelper.APP_KEY_WB, QQWeiboHelper.REDIRECT_URL_WB, QQWeiboHelper.SCOPE_WB);
+        mTencent = Tencent.createInstance(QQWeiboHelper.APP_ID_QQ, this.getApplicationContext());
+
+        mHandler = new Handler();
         // 从 SharedPreferences 中读取上次已保存好 AccessToken 等信息，
         // 第一次启动本应用，AccessToken 不可用
         mAccessToken = AccessTokenKeeper.readAccessToken(this);
@@ -124,10 +148,18 @@ public class LoginDialog extends BaseActivity {
                     + mAccessToken.getToken() + "\n有效期：" + date, Toast.LENGTH_SHORT).show();
         }
         btn_login_wb = (Button) findViewById(R.id.login_btn_login_wb);
+        btn_login_qq = (Button) findViewById(R.id.login_btn_login_qq);
+
         btn_login_wb.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 mSsoHandler = new SsoHandler(LoginDialog.this, mWeibo);
                 mSsoHandler.authorize(new AuthDialogListener(), "com.ihelpoo.app");
+            }
+        });
+
+        btn_login_qq.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onClickLogin();
             }
         });
         btn_login.setOnClickListener(new View.OnClickListener() {
@@ -270,14 +302,14 @@ public class LoginDialog extends BaseActivity {
 
             String token = values.getString("access_token");
             String expires_in = values.getString("expires_in");
+            String userName = values.getString("userName");
             mAccessToken = new Oauth2AccessToken(token, expires_in);
             if (mAccessToken.isSessionValid()) {
                 String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                         .format(new java.util.Date(mAccessToken.getExpiresTime()));
 
                 AccessTokenKeeper.keepAccessToken(LoginDialog.this, mAccessToken);
-                Toast.makeText(LoginDialog.this, "认证成功: \r\n access_token: " + token + "\r\n" + "expires_in: "
-                        + expires_in + "\r\n有效期：" + date, Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginDialog.this, "欢迎 "+userName, Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -308,5 +340,143 @@ public class LoginDialog extends BaseActivity {
         if (mSsoHandler != null) {
             mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
+        mTencent.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void onClickLogin() {
+        if (!mTencent.isSessionValid()) {
+            IUiListener listener = new BaseUiListener() {
+                @Override
+                protected void doComplete(JSONObject values) {
+                    mTencent.requestAsync(Constants.GRAPH_SIMPLE_USER_INFO, null,
+                            Constants.HTTP_GET, new BaseApiListener("get_simple_userinfo", false), null);
+                }
+            };
+            mTencent.login(this, "all", listener);
+        } else {
+            mTencent.logout(this);
+        }
+    }
+
+
+    private class BaseUiListener implements IUiListener {
+
+        @Override
+        public void onComplete(JSONObject response) {
+            doComplete(response);
+        }
+
+        protected void doComplete(JSONObject values) {
+
+        }
+
+        @Override
+        public void onError(UiError e) {
+            showResult("onError:", "code:" + e.errorCode + ", msg:"
+                    + e.errorMessage + ", detail:" + e.errorDetail);
+        }
+
+        @Override
+        public void onCancel() {
+            showResult("onCancel", "");
+        }
+
+
+
+    }
+
+    private class BaseApiListener implements IRequestListener {
+        private String mScope = "all";
+        private Boolean mNeedReAuth = false;
+
+        public BaseApiListener(String scope, boolean needReAuth) {
+            mScope = scope;
+            mNeedReAuth = needReAuth;
+        }
+
+        @Override
+        public void onComplete(final JSONObject response, Object state) {
+            try {
+                showResult("IRequestListener.onComplete:", response.getString("nickname"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            doComplete(response, state);
+        }
+
+        protected void doComplete(JSONObject response, Object state) {
+            try {
+                int ret = response.getInt("ret");
+                if (ret == 100030) {
+                    if (mNeedReAuth) {
+                        Runnable r = new Runnable() {
+                            public void run() {
+                                mTencent.reAuth(LoginDialog.this, mScope, new BaseUiListener());
+                            }
+                        };
+                        LoginDialog.this.runOnUiThread(r);
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.e("toddtest", response.toString());
+            }
+
+        }
+
+        @Override
+        public void onIOException(final IOException e, Object state) {
+            showResult("IRequestListener.onIOException:", e.getMessage());
+        }
+
+        @Override
+        public void onMalformedURLException(final MalformedURLException e,
+                                            Object state) {
+            showResult("IRequestListener.onMalformedURLException", e.toString());
+        }
+
+        @Override
+        public void onJSONException(final JSONException e, Object state) {
+            showResult("IRequestListener.onJSONException:", e.getMessage());
+        }
+
+        @Override
+        public void onConnectTimeoutException(ConnectTimeoutException arg0,
+                                              Object arg1) {
+            showResult("IRequestListener.onConnectTimeoutException:", arg0.getMessage());
+
+        }
+
+        @Override
+        public void onSocketTimeoutException(SocketTimeoutException arg0,
+                                             Object arg1) {
+            showResult("IRequestListener.SocketTimeoutException:", arg0.getMessage());
+        }
+
+        @Override
+        public void onUnknowException(Exception arg0, Object arg1) {
+            showResult("IRequestListener.onUnknowException:", arg0.getMessage());
+        }
+
+        @Override
+        public void onHttpStatusException(HttpStatusException arg0, Object arg1) {
+            showResult("IRequestListener.HttpStatusException:", arg0.getMessage());
+        }
+
+        @Override
+        public void onNetworkUnavailableException(NetworkUnavailableException arg0, Object arg1) {
+            showResult("IRequestListener.onNetworkUnavailableException:", arg0.getMessage());
+        }
+    }
+
+    private void showResult(final String base, final String msg) {
+        mHandler.post(new Runnable() {
+
+            @Override
+            public void run() {
+
+                Toast.makeText(LoginDialog.this, "欢迎 " + msg, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
