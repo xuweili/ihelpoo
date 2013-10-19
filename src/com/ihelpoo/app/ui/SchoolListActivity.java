@@ -8,6 +8,7 @@ import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class SchoolListActivity extends BaseActivity {
+    public static final String SCHOOL_NAME_SELECTED = "school_name_selected";
+    public static final String IS_SELECT = "is_select";
     private BaseAdapter adapter;
     private ListView mSchoolLit;
     private TextView overlay;
@@ -50,7 +53,7 @@ public class SchoolListActivity extends BaseActivity {
         letterListView = (SchoolLetterListView) findViewById(R.id.school_letter_list_view);
         final AppContext ac = (AppContext) getApplication();
 
-//        mProgress = ProgressDialog.show(ac, null, "获取中···", true, true);
+        mProgress = ProgressDialog.show(SchoolListActivity.this, "串校", "正在获取学校···");
         final Handler handler = new Handler() {
             public void handleMessage(Message msg) {
 
@@ -102,13 +105,28 @@ public class SchoolListActivity extends BaseActivity {
             SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putInt(NavWelcome.CHOOSE_SCHOOL, schoolInfo.getId());
+            editor.putString(NavWelcome.CHOOSE_SCHOOL_NAME, schoolInfo.getSchool());
             editor.commit();
 
             Intent intent = new Intent(SchoolListActivity.this, Main.class);
-            startActivity(intent);
+            intent.putExtra(SCHOOL_NAME_SELECTED, schoolInfo.getSchool());
+            intent.putExtra(IS_SELECT, true);
+            SchoolListActivity.this.setResult(Main.REQUEST_CODE_SCHOOL, intent);
+//            startActivity(intent);
             SchoolListActivity.this.finish();
         }
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            Intent intent = new Intent(SchoolListActivity.this, Main.class);
+            SchoolListActivity.this.setResult(Main.REQUEST_CODE_SCHOOL, intent);
+            startActivity(intent);
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     /**

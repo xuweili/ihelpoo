@@ -96,6 +96,7 @@ public class Main extends BaseActivity {
     public static final int QUICKACTION_SEARCH = 3;
     public static final int QUICKACTION_SETTING = 4;
     public static final int QUICKACTION_EXIT = 5;
+    public static final int REQUEST_CODE_SCHOOL = 0;
 
     private ScrollLayout mScrollLayout;
     private RadioButton[] mButtons;
@@ -1150,6 +1151,14 @@ public class Main extends BaseActivity {
     private void initHeadView() {
 //        mHeadLogo = (ImageView) findViewById(R.id.main_head_logo);
         mHeadTitle = (TextView) findViewById(R.id.main_head_title);
+
+        SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
+        String otherSchoolName = preferences.getString(NavWelcome.CHOOSE_SCHOOL_NAME, NavWelcome.DEFAULT_SCHOOL_NAME);
+        if(otherSchoolName != null){
+            setHomeHeader(otherSchoolName);
+        } else {
+            mHeadTitle.setOnClickListener(null);
+        }
         mHeadProgress = (ProgressBar) findViewById(R.id.main_head_progress);
         mHead_search = (ImageButton) findViewById(R.id.main_head_search);
         mHeadPub_post = (ImageButton) findViewById(R.id.main_head_pub_post);
@@ -1344,6 +1353,37 @@ public class Main extends BaseActivity {
                 });
     }
 
+    View.OnClickListener schoolSelectListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent ii = new Intent();
+            ii.setClass(Main.this, SchoolListActivity.class);
+            startActivityForResult(ii, REQUEST_CODE_SCHOOL);
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(data == null){
+            return;
+        }
+        String schoolNameSelected = data.getStringExtra(SchoolListActivity.SCHOOL_NAME_SELECTED);
+        switch (requestCode) {
+            case REQUEST_CODE_SCHOOL:
+                setHomeHeader(schoolNameSelected);
+                lvHome.clickRefresh();
+                break;
+            default:
+                mHeadTitle.setText(schoolNameSelected);
+                break;
+        }
+    }
+
+    private void setHomeHeader(String schoolNameSelected) {
+        mHeadTitle.setText(schoolNameSelected + " ▼");
+        mHeadTitle.setOnClickListener(schoolSelectListener);
+    }
+
     /**
      * 设置底部栏当前焦点
      *
@@ -1355,7 +1395,16 @@ public class Main extends BaseActivity {
 
         mButtons[mCurSel].setChecked(false);
         mButtons[index].setChecked(true);
+
         mHeadTitle.setText(mHeadTitles[index]);
+        if(index == 0){
+            SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
+            String otherSchoolName = preferences.getString(NavWelcome.CHOOSE_SCHOOL_NAME, NavWelcome.DEFAULT_SCHOOL_NAME);
+            setHomeHeader(otherSchoolName);
+        } else {
+            mHeadTitle.setOnClickListener(null);
+        }
+
         mCurSel = index;
 
         mHead_search.setVisibility(View.GONE);

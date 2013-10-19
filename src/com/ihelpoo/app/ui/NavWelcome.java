@@ -13,7 +13,9 @@ import com.ihelpoo.app.R;
  */
 public class NavWelcome extends Activity {
     public static final int DEFAULT_SCHOOL = 35;
-    public static final String CHOOSE_SCHOOL = "my_school";
+    public static final String CHOOSE_SCHOOL = "other_school";
+    public static final String CHOOSE_SCHOOL_NAME = "other_school_name";
+    public static final String DEFAULT_SCHOOL_NAME = "XX大学";
     public static String GLOBAL_CONFIG = "ihelpoo_config";
     private boolean isFirstIn;
 
