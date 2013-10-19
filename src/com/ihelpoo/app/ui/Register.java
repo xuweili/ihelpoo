@@ -16,6 +16,7 @@ package com.ihelpoo.app.ui;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -36,6 +37,8 @@ import com.ihelpoo.app.AppException;
 import com.ihelpoo.app.R;
 import com.ihelpoo.app.bean.MobileCodeResult;
 import com.ihelpoo.app.bean.MobileRegisterResult;
+import com.ihelpoo.app.bean.Result;
+import com.ihelpoo.app.bean.User;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.common.VerifyUtil;
 
@@ -156,7 +159,7 @@ public class Register extends BaseActivity implements android.view.View.OnClickL
                 if (txt_mobile_code.getText().toString().length() != MOBILE_CODE_LENGHT) {
                     UIHelper.ToastMessage(Register.this, "请输入" + MOBILE_CODE_LENGHT + "位验证码");
                 } else {
-                    if(code != null && txt_mobile_code.getText().toString().equals(String.valueOf(code))){
+                    if (code != null && txt_mobile_code.getText().toString().equals(String.valueOf(code))) {
                         toStep(3);
                     } else {
                         UIHelper.ToastMessage(Register.this, "验证码输入错误，请重新输入");
@@ -186,7 +189,19 @@ public class Register extends BaseActivity implements android.view.View.OnClickL
                         if (msg.what == 1 && msg.obj != null) {
                             MobileRegisterResult res = (MobileRegisterResult) msg.obj;
                             if (res.OK()) {
-                                UIHelper.ToastMessage(Register.this, "注册成功" );
+                                UIHelper.ToastMessage(Register.this, "注册成功");
+                                User user = new User();
+                                user.setUid(res.getUser().getUid());
+                                user.setAccount(mobileNo);
+                                user.setPwd(pwd);
+                                user.setRemember(true);
+                                user.setStatus("1");
+                                user.setName(res.getUser().getNickname());
+                                user.setLocation(String.valueOf(res.getUser().getSchoolId()));
+                                ac.saveLoginInfo(user);
+                                Intent intent = new Intent(Register.this, Main.class);
+                                intent.putExtra("LOGIN", true);
+                                startActivity(intent);
 
                             } else {
                                 UIHelper.ToastMessage(Register.this, res.getErrorMessage());
@@ -220,12 +235,12 @@ public class Register extends BaseActivity implements android.view.View.OnClickL
     }
 
     private void closeSoftKeyBoard() {
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(txt_pwd.getWindowToken(), 0);
     }
 
     private void toStep(int step) {
-        switch (step){
+        switch (step) {
             case 2:
 
                 txt_mobile_no.setVisibility(View.GONE);

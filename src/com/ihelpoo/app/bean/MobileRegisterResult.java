@@ -66,7 +66,7 @@ public class MobileRegisterResult {
                             {
                                 res.errorMessage = xmlParser.nextText().trim();
                             }
-                            else if(tag.equalsIgnoreCase("comment"))
+                            else if(tag.equalsIgnoreCase("user"))
                             {
                                 res.user = new RegisterUser();
                             }
