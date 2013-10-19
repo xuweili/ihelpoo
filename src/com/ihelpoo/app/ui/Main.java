@@ -61,6 +61,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -2199,6 +2200,10 @@ public class Main extends BaseActivity {
      */
     private void loadLvTweetData(final int catalog, final int pageIndex,
                                  final Handler handler, final int action) {
+
+        SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
+        final int mySchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
+
         mHeadProgress.setVisibility(ProgressBar.VISIBLE);
         new Thread() {
             public void run() {
@@ -2209,7 +2214,7 @@ public class Main extends BaseActivity {
                     isRefresh = true;
                 try {
                     TweetList list = appContext.getTweetList(catalog,
-                            pageIndex, isRefresh);
+                            String.valueOf(mySchool), pageIndex, isRefresh);
                     msg.what = list.getPageSize();
                     msg.obj = list;
                 } catch (AppException e) {

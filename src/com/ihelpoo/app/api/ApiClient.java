@@ -54,6 +54,8 @@ import com.ihelpoo.app.bean.Update;
 import com.ihelpoo.app.bean.User;
 import com.ihelpoo.app.bean.UserInformation;
 import com.ihelpoo.app.common.DeviceUtil;
+import com.ihelpoo.app.common.StringUtils;
+import com.ihelpoo.app.ui.NavWelcome;
 
 import org.apache.commons.httpclient.Cookie;
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
@@ -69,6 +71,7 @@ import org.apache.commons.httpclient.methods.multipart.Part;
 import org.apache.commons.httpclient.methods.multipart.StringPart;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -883,19 +886,29 @@ public class ApiClient {
 	 * 获取动弹列表
 	 *
      *
+     *
+     *
      * @param catalog
      * @param uid
+     * @param schoolId
      * @param pageIndex
      * @param pageSize
      * @return
 	 * @throws AppException
 	 */
-	public static TweetList getTweetList(AppContext appContext, final int catalog, final int uid, final int pageIndex, final int pageSize) throws AppException {
+	public static TweetList getTweetList(AppContext appContext, final int catalog, final int uid, String schoolId, final int pageIndex, final int pageSize) throws AppException {
+        String school = "35";
         final User user = appContext.getLoginInfo();
-		String newUrl = _MakeURL(URLs.TWEET_LIST, new HashMap<String, Object>(){{
+        if(!StringUtils.isEmpty(schoolId) && !school.equals(schoolId)){
+            school = schoolId;
+        } else {
+            school = user.getLocation();
+        }
+        final String finalSchool = school;
+        String newUrl = _MakeURL(URLs.TWEET_LIST, new HashMap<String, Object>(){{
 			put("catalog", catalog);
             put("uid", uid);
-            put("schoolId", user.getLocation());
+            put("schoolId", finalSchool);
 			put("pageIndex", pageIndex);
 			put("pageSize", pageSize);
 		}});

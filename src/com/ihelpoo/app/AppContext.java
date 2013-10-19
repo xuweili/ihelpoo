@@ -912,16 +912,17 @@ public class AppContext extends Application {
     /**
      * 动弹列表
      *
+     *
      * @param catalog   -1 help，0 stream，Min_value, mine
-     * @param pageIndex @return
-     * @throws AppException
+     * @param schoolId
+     *@param pageIndex @return  @throws AppException
      */
-    public TweetList getTweetList(int catalog, int pageIndex, boolean isRefresh) throws AppException {
+    public TweetList getTweetList(int catalog, String schoolId, int pageIndex, boolean isRefresh) throws AppException {
         TweetList list = null;
         String key = "tweetlist_" + loginUid + "_" + catalog + "_" + pageIndex + "_" + PAGE_SIZE;
         if (isNetworkConnected() && (!isReadDataCache(key) || isRefresh)) {
             try {
-                list = ApiClient.getTweetList(this, catalog, loginUid, pageIndex, PAGE_SIZE);
+                list = ApiClient.getTweetList(this, catalog, loginUid, schoolId, pageIndex, PAGE_SIZE);
                 if (list != null && pageIndex == 0) {
                     Notice notice = list.getNotice();
                     list.setNotice(null);
