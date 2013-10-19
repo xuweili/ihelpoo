@@ -16,6 +16,7 @@ package com.ihelpoo.app.ui;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -200,8 +201,9 @@ public class Register extends BaseActivity implements android.view.View.OnClickL
                         Message msg = new Message();
                         MobileRegisterResult res;
                         try {
-                            //发表评论
-                            res = ac.mobileRegister(mobileCode, mobileNo, pwd, "35");
+                            SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
+                            int mySchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
+                            res = ac.mobileRegister(mobileCode, mobileNo, pwd, mySchool + "");
                             msg.what = 1;
                             msg.obj = res;
                         } catch (AppException e) {
