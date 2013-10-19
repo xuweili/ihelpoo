@@ -309,4 +309,12 @@
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">1</item>
     </style>
+
+
+    <declare-styleable name="TimeBtn">
+        <attr name="textColorNotFocused" format="integer" />
+        <attr name="textColorFocused" format="integer" />
+        <attr name="textColorPressed" format="integer" />
+        <attr name="time" format="integer" />
+    </declare-styleable>
 </resources>

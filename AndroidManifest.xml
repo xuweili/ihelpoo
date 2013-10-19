@@ -18,6 +18,7 @@
         <activity android:name=".ui.NavWhatsnewPages"/>
         <activity android:name=".ui.NavWhatsnewAnimation" android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name=".ui.NavFirstPage"/>
+        <activity android:name=".ui.SchoolListActivity"/>
 		<activity android:name=".ui.About" android:theme="@style/Theme.ZoomLight" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask"/>
 		<activity android:name=".ui.FeedBack" android:theme="@style/Theme.HalfTranslucent" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
 		<activity android:name=".ui.Main" android:theme="@style/Theme.NoTitleBar" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask"/>

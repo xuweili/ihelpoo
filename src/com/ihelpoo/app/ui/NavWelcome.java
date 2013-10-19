@@ -12,14 +12,16 @@ import com.ihelpoo.app.R;
  * 开场欢迎动画
  */
 public class NavWelcome extends Activity {
-    public static String SHAREDPREFERENCES_NAME = "qq_nav";
+    public static final int DEFAULT_SCHOOL = 35;
+    public static final String CHOOSE_SCHOOL = "my_school";
+    public static String GLOBAL_CONFIG = "ihelpoo_config";
     private boolean isFirstIn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //读取SharedPreFerences中需要的数据,使用SharedPreFerences来记录程序启动的使用次数
-        SharedPreferences preferences = getSharedPreferences(SHAREDPREFERENCES_NAME, MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(GLOBAL_CONFIG, MODE_PRIVATE);
         //取得相应的值,如果没有该值,说明还未写入,用true作为默认值
         isFirstIn = preferences.getBoolean("isFirstIn", true);
         //判断程序第几次启动

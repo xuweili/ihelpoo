@@ -27,6 +27,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.webkit.CacheManager;
 
+import com.ihelpoo.app.bean.MobileCodeResult;
+import com.ihelpoo.app.bean.MobileRegisterResult;
+import com.ihelpoo.app.bean.SchoolList;
 import com.ihelpoo.app.bean.WordList;
 import com.ihelpoo.app.bean.BlogCommentList;
 import com.ihelpoo.app.bean.FriendList;
@@ -496,6 +499,7 @@ public class AppContext extends Application {
         }
         return list;
     }
+
     /**
      * 新闻列表
      *
@@ -1215,8 +1219,7 @@ public class AppContext extends Application {
     }
 
 
-
-    public Result diffuse(int id, int uid, String content)  throws AppException {
+    public Result diffuse(int id, int uid, String content) throws AppException {
         return ApiClient.diffuse(this, id, uid, content);
     }
 
@@ -1818,5 +1821,19 @@ public class AppContext extends Application {
      */
     public void setSaveImagePath(String saveImagePath) {
         this.saveImagePath = saveImagePath;
+    }
+
+    public MobileRegisterResult mobileRegister(String mobileCode, String mobileNo, String pwd, String schoolId) throws AppException {
+        return ApiClient.mobileRegister(this, mobileCode, mobileNo, pwd, schoolId);
+    }
+
+
+    public MobileCodeResult mobileCode(String mobileNo) throws AppException {
+        return ApiClient.mobileCode(this, mobileNo);
+    }
+
+    //TODO cache and flush
+    public SchoolList getSchoolList() throws AppException {
+        return ApiClient.getSchoolList(this);
     }
 }

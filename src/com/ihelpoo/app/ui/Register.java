@@ -14,21 +14,28 @@
 
 package com.ihelpoo.app.ui;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Paint;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ihelpoo.app.AppContext;
+import com.ihelpoo.app.AppException;
 import com.ihelpoo.app.R;
+import com.ihelpoo.app.bean.MobileCodeResult;
+import com.ihelpoo.app.bean.MobileRegisterResult;
+import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.common.VerifyUtil;
 
 /**
@@ -39,11 +46,17 @@ import com.ihelpoo.app.common.VerifyUtil;
  */
 public class Register extends BaseActivity implements android.view.View.OnClickListener {
 
-    public static final int REGION_SELECT = 1;
-    private TextView tv_QQ_Server, tv_region_modify, tv_region_show, tv_top_title;
-    private Button btn_title_left, btn_title_right, btn_send_code;
-    private CheckBox chk_agree;
-    private EditText et_mobileNo;
+    public static final int MOBILE_CODE_LENGHT = 4;
+    private int REGION_SELECT = 1;
+    private TextView tv_top_title;
+    private Button btn_title_left, btn_title_right;
+    private TextView register_step_1, register_step_2, register_step_3;
+    private Button btn_fetch_code, btn_input_code, btn_input_pwd;
+    private EditText txt_mobile_no, txt_mobile_code, txt_pwd;
+
+    private Integer code = null;
+
+    private ProgressDialog mProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,88 +76,221 @@ public class Register extends BaseActivity implements android.view.View.OnClickL
         btn_title_left = (Button) findViewById(R.id.btn_title_left);
         btn_title_left.setOnClickListener(this);
 
-        btn_send_code = (Button) findViewById(R.id.btn_send_code);
-        btn_send_code.setOnClickListener(this);
 
-        tv_QQ_Server = (TextView) findViewById(R.id.tv_QQ_Server);
-        tv_QQ_Server.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+        txt_mobile_no = (EditText) findViewById(R.id.register_mobile_no_text);
+        txt_mobile_no.addTextChangedListener(toEnableButtonTextWatcher);
 
-        tv_region_show = (TextView) findViewById(R.id.tv_region_show);
+        txt_mobile_code = (EditText) findViewById(R.id.register_mobile_code_text);
+        txt_pwd = (EditText) findViewById(R.id.register_password_text);
 
-        tv_region_modify = (TextView) findViewById(R.id.tv_region_modify);
-        tv_region_modify.setOnClickListener(this);
 
-        chk_agree = (CheckBox) findViewById(R.id.chk_agree);
-        et_mobileNo = (EditText) findViewById(R.id.et_mobileNo);
-    }
+        btn_fetch_code = (Button) findViewById(R.id.btn_register_fetch_code);
+        btn_fetch_code.setOnClickListener(this);
+        btn_input_code = (Button) findViewById(R.id.btn_register_input_code);
+        btn_input_code.setOnClickListener(this);
+        btn_input_pwd = (Button) findViewById(R.id.btn_register_input_pwd);
+        btn_input_pwd.setOnClickListener(this);
 
-    /**
-     * 重写了onCreateDialog方法来创建一个列表对话框
-     */
-    @Override
-    protected Dialog onCreateDialog(int id, Bundle args) {
-        // TODO Auto-generated method stub
-        switch (id) {
-            case REGION_SELECT:
-                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("请选择所在地");
-                builder.setSingleChoiceItems(//第一个参数是要显示的列表，用数组展示；第二个参数是默认选中的项的位置；
-                        //第三个参数是一个事件点击监听器
-                        new String[]{"+86中国大陆", "+853中国澳门", "+852中国香港", "+886中国台湾"},
-                        0,
-                        new DialogInterface.OnClickListener() {
 
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // TODO Auto-generated method stub
-                                switch (which) {
-                                    case 0:
-                                        tv_region_show.setText("+86中国大陆");
-
-                                        break;
-                                    case 1:
-                                        tv_region_show.setText("+853中国澳门");
-                                        break;
-                                    case 2:
-                                        tv_region_show.setText("+852中国香港");
-                                        break;
-                                    case 3:
-                                        tv_region_show.setText("+886中国台湾");
-                                        break;
-                                }
-                                dismissDialog(REGION_SELECT);//想对话框关闭
-                            }
-                        });
-                return builder.create();
-        }
-        return null;
+        register_step_1 = (TextView) findViewById(R.id.register_step_1);
+        register_step_2 = (TextView) findViewById(R.id.register_step_2);
+        register_step_3 = (TextView) findViewById(R.id.register_step_3);
     }
 
     @Override
     public void onClick(View v) {
-        // TODO Auto-generated method stub
         switch (v.getId()) {
-            case R.id.tv_region_modify:
-                showDialog(REGION_SELECT);//显示列表对话框的方法
-                break;
             case R.id.btn_title_left:
                 Register.this.finish();
                 break;
-            case R.id.btn_send_code:
-                String mobiles = et_mobileNo.getText().toString();
-                if (chk_agree.isChecked() == false)//若没勾选checkbox无法后续操作
-                    Toast.makeText(this, "请确认是否已经阅读《我帮圈圈服务条款》", Toast.LENGTH_LONG).show();
-                if (VerifyUtil.isMobileNO(mobiles) == false)//对手机号码严格验证，参见工具类中的正则表达式
-                    Toast.makeText(this, "正确填写手机号，我们将向您发送一条验证码短信", Toast.LENGTH_LONG).show();
-                if (VerifyUtil.isMobileNO(mobiles) == true && chk_agree.isChecked() == true) {
-                    //当勾选中且号码正确，点击进行下一步操作
-                    Toast.makeText(this, "已经向您手机发送验证码，请查看", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(Register.this, Register.class);//TODO
-                    startActivity(intent);
+            case R.id.btn_register_fetch_code:
+                final String mobiles = txt_mobile_no.getText().toString();
+                if (VerifyUtil.isMobileNO(mobiles) == false) {
+                    Toast.makeText(Register.this, "正确填写手机号，我们将向您发送一条验证码短信", Toast.LENGTH_LONG).show();
+                } else {
+                    final AppContext ac = (AppContext) getApplication();
+                    mProgress = ProgressDialog.show(v.getContext(), null, "获取中···", true, true);
+
+                    final Handler handler = new Handler() {
+                        public void handleMessage(Message msg) {
+
+                            if (mProgress != null) mProgress.dismiss();
+
+                            if (msg.what == 1 && msg.obj != null) {
+                                MobileCodeResult res = (MobileCodeResult) msg.obj;
+                                if (res.OK()) {
+                                    code = res.getRegisterCode().getCode();
+                                    UIHelper.ToastMessage(Register.this, "已经向您手机发送验证码短信，请查收并继续验证");
+
+                                    toStep(2);
+                                } else {
+                                    UIHelper.ToastMessage(Register.this, res.getErrorMessage());
+                                }
+                            } else {
+                                ((AppException) msg.obj).makeToast(Register.this);
+                            }
+                        }
+                    };
+                    new Thread() {
+                        public void run() {
+                            Message msg = new Message();
+                            MobileCodeResult res;
+                            try {
+                                //发表评论
+                                res = ac.mobileCode(mobiles);
+                                msg.what = 1;
+                                msg.obj = res;
+                            } catch (AppException e) {
+                                e.printStackTrace();
+                                msg.what = -1;
+                                msg.obj = e;
+                            }
+                            handler.sendMessage(msg);
+                        }
+                    }.start();
+
                 }
+                break;
+            case R.id.btn_register_input_code:
+                if (txt_mobile_code.getText().toString().length() != MOBILE_CODE_LENGHT) {
+                    UIHelper.ToastMessage(Register.this, "请输入" + MOBILE_CODE_LENGHT + "位验证码");
+                } else {
+                    if(code != null && txt_mobile_code.getText().toString().equals(String.valueOf(code))){
+                        toStep(3);
+                    } else {
+                        UIHelper.ToastMessage(Register.this, "验证码输入错误，请重新输入");
+                        txt_mobile_code.setText("");
+                    }
+
+                }
+
+                break;
+            case R.id.btn_register_input_pwd:
+
+                closeSoftKeyBoard();
+
+                final String mobileNo = txt_mobile_no.getText().toString();
+                final String mobileCode = txt_mobile_code.getText().toString();
+                final String pwd = txt_pwd.getText().toString();
+
+                final AppContext ac = (AppContext) getApplication();
+                mProgress = ProgressDialog.show(v.getContext(), null, "注册中···", true, true);
+
+
+                final Handler handler = new Handler() {
+                    public void handleMessage(Message msg) {
+
+                        if (mProgress != null) mProgress.dismiss();
+
+                        if (msg.what == 1 && msg.obj != null) {
+                            MobileRegisterResult res = (MobileRegisterResult) msg.obj;
+                            if (res.OK()) {
+                                UIHelper.ToastMessage(Register.this, "注册成功" );
+
+                            } else {
+                                UIHelper.ToastMessage(Register.this, res.getErrorMessage());
+                            }
+                        } else {
+                            ((AppException) msg.obj).makeToast(Register.this);
+                        }
+                    }
+                };
+                new Thread() {
+                    public void run() {
+                        Message msg = new Message();
+                        MobileRegisterResult res;
+                        try {
+                            //发表评论
+                            res = ac.mobileRegister(mobileCode, mobileNo, pwd, "35");
+                            msg.what = 1;
+                            msg.obj = res;
+                        } catch (AppException e) {
+                            e.printStackTrace();
+                            msg.what = -1;
+                            msg.obj = e;
+                        }
+                        handler.sendMessage(msg);
+                    }
+                }.start();
+                break;
         }
 
     }
+
+    private void closeSoftKeyBoard() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(txt_pwd.getWindowToken(), 0);
+    }
+
+    private void toStep(int step) {
+        switch (step){
+            case 2:
+
+                txt_mobile_no.setVisibility(View.GONE);
+                txt_mobile_code.setVisibility(View.VISIBLE);
+                txt_pwd.setVisibility(View.GONE);
+                txt_mobile_code.requestFocus();
+
+                btn_fetch_code.setVisibility(View.GONE);
+                btn_input_code.setVisibility(View.VISIBLE);
+                btn_input_pwd.setVisibility(View.GONE);
+
+                register_step_1.setTextColor(Color.LTGRAY);
+                register_step_2.setTextColor(Color.BLACK);
+                register_step_3.setTextColor(Color.LTGRAY);
+                break;
+            case 3:
+
+                txt_mobile_no.setVisibility(View.GONE);
+                txt_mobile_code.setVisibility(View.GONE);
+                txt_pwd.setVisibility(View.VISIBLE);
+                txt_pwd.requestFocus();
+
+                btn_fetch_code.setVisibility(View.GONE);
+                btn_input_code.setVisibility(View.GONE);
+                btn_input_pwd.setVisibility(View.VISIBLE);
+
+                register_step_1.setTextColor(Color.LTGRAY);
+                register_step_2.setTextColor(Color.LTGRAY);
+                register_step_3.setTextColor(Color.BLACK);
+                break;
+            default:
+
+                txt_mobile_no.setVisibility(View.VISIBLE);
+                txt_mobile_code.setVisibility(View.GONE);
+                txt_pwd.setVisibility(View.GONE);
+                txt_mobile_no.requestFocus();
+
+                btn_fetch_code.setVisibility(View.VISIBLE);
+                btn_input_code.setVisibility(View.GONE);
+                btn_input_pwd.setVisibility(View.GONE);
+
+                register_step_1.setTextColor(Color.BLACK);
+                register_step_2.setTextColor(Color.LTGRAY);
+                register_step_3.setTextColor(Color.LTGRAY);
+
+
+        }
+    }
+
+    TextWatcher toEnableButtonTextWatcher = new TextWatcher() {
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (VerifyUtil.isMobileNO(s.toString())) {
+                btn_fetch_code.setEnabled(true);
+            } else {
+                btn_fetch_code.setEnabled(false);
+            }
+        }
+    };
 
 
 }

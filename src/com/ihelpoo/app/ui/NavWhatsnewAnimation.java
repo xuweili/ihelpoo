@@ -11,7 +11,6 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
 import com.ihelpoo.app.AppContext;
-import com.ihelpoo.app.AppStart;
 import com.ihelpoo.app.R;
 import com.ihelpoo.app.common.StringUtils;
 
@@ -24,9 +23,8 @@ public class NavWhatsnewAnimation extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        SharedPreferences preferences = getSharedPreferences(NavWelcome.SHAREDPREFERENCES_NAME, this.getApplicationContext().MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, this.getApplicationContext().MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
         editor.putBoolean("isFirstIn", false);
@@ -92,6 +90,18 @@ public class NavWhatsnewAnimation extends Activity {
      * 跳转到...
      */
     private void redirectTo(){
+
+//        SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, this.getApplicationContext().MODE_PRIVATE);
+//        SharedPreferences.Editor editor = preferences.edit();
+
+        SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
+        int mySchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
+        if(mySchool == NavWelcome.DEFAULT_SCHOOL){
+            Intent intent = new Intent(this, SchoolListActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
         Intent intent = new Intent(this, Main.class);
         startActivity(intent);
         finish();

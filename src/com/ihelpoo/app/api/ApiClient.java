@@ -25,6 +25,9 @@ import java.util.Map;
 
 import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.AppException;
+import com.ihelpoo.app.bean.MobileCodeResult;
+import com.ihelpoo.app.bean.MobileRegisterResult;
+import com.ihelpoo.app.bean.SchoolList;
 import com.ihelpoo.app.bean.WordList;
 import com.ihelpoo.app.bean.Blog;
 import com.ihelpoo.app.bean.BlogCommentList;
@@ -190,7 +193,7 @@ public class ApiClient {
 					throw AppException.http(statusCode);
 				}
 				responseBody = httpGet.getResponseBodyAsString();
-				//System.out.println("XMLDATA=====>"+responseBody);
+				System.out.println("XMLDATA=====>"+responseBody);
 				break;				
 			} catch (HttpException e) {
 				time++;
@@ -1508,4 +1511,43 @@ public class ApiClient {
 			throw AppException.network(e);
 		}
 	}
+
+    public static MobileRegisterResult mobileRegister(AppContext appContext, String mobileCode, String mobileNo, String pwd, String schoolId) throws AppException {
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("code", mobileCode);
+        params.put("mobile", mobileNo);
+        params.put("pwd", pwd);
+        params.put("schoolId", schoolId);
+
+        try{
+            return MobileRegisterResult.parse(_post(appContext, URLs.MOBILE_REGISTER, params, null));
+        }catch(Exception e){
+            if(e instanceof AppException)
+                throw (AppException)e;
+            throw AppException.network(e);
+        }
+    }
+
+    public static MobileCodeResult mobileCode(AppContext appContext, String mobileNo) throws AppException {
+        Map<String,Object> params = new HashMap<String,Object>();
+        params.put("mobile", mobileNo);
+
+        try{
+            return MobileCodeResult.parse(_post(appContext, URLs.MOBILE_CODE, params, null));
+        }catch(Exception e){
+            if(e instanceof AppException)
+                throw (AppException)e;
+            throw AppException.network(e);
+        }
+    }
+
+    public static SchoolList getSchoolList(AppContext appContext) throws AppException {
+        try{
+            return SchoolList.parse(http_get(appContext, URLs.SCHOOL_LIST));
+        }catch(Exception e){
+            if(e instanceof AppException)
+                throw (AppException)e;
+            throw AppException.network(e);
+        }
+    }
 }
