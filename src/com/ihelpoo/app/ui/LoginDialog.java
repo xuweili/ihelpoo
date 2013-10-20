@@ -74,11 +74,11 @@ import java.text.SimpleDateFormat;
 public class LoginDialog extends BaseActivity {
 
     private ViewSwitcher mViewSwitcher;
-    private ImageButton btn_close;
-    private Button btn_register;
+//    private ImageButton btn_close;
+    private TextView btn_register;
     private Button btn_login;
-    private Button btn_login_wb;
-    private Button btn_login_qq;
+    private TextView btn_login_wb;
+    private TextView btn_login_qq;
     private AutoCompleteTextView mAccount;
     private EditText mPwd;
     private AnimationDrawable loadingAnimation;
@@ -116,7 +116,7 @@ public class LoginDialog extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_dialog);
+        setContentView(R.layout.login);
 
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
@@ -129,10 +129,10 @@ public class LoginDialog extends BaseActivity {
         chb_remember = (CheckBox) findViewById(R.id.login_checkbox_remember);
         chb_status = (CheckBox) findViewById(R.id.login_checkbox_status);
 
-        btn_close = (ImageButton) findViewById(R.id.login_close_button);
-        btn_close.setOnClickListener(UIHelper.finish(this));
+//        btn_close = (ImageButton) findViewById(R.id.login_close_button);
+//        btn_close.setOnClickListener(UIHelper.finish(this));
 
-        btn_register =  (Button) findViewById(R.id.login_btn_register);
+        btn_register =  (TextView) findViewById(R.id.login_btn_register);
         btn_login = (Button) findViewById(R.id.login_btn_login);
 
 
@@ -149,8 +149,8 @@ public class LoginDialog extends BaseActivity {
             Toast.makeText(LoginDialog.this, "access_token 仍在有效期内,无需再次登录: \naccess_token:"
                     + mAccessToken.getToken() + "\n有效期：" + date, Toast.LENGTH_SHORT).show();
         }
-        btn_login_wb = (Button) findViewById(R.id.login_btn_login_wb);
-        btn_login_qq = (Button) findViewById(R.id.login_btn_login_qq);
+        btn_login_wb = (TextView) findViewById(R.id.login_btn_login_wb);
+        btn_login_qq = (TextView) findViewById(R.id.login_btn_login_qq);
 
         btn_login_wb.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -188,7 +188,7 @@ public class LoginDialog extends BaseActivity {
                     return;
                 }
 
-                btn_close.setVisibility(View.GONE);
+//                btn_close.setVisibility(View.GONE);
                 loadingAnimation = (AnimationDrawable) loginLoading.getBackground();
                 loadingAnimation.start();
                 mViewSwitcher.showNext();
@@ -240,11 +240,11 @@ public class LoginDialog extends BaseActivity {
                     }
                 } else if (msg.what == 0) {
                     mViewSwitcher.showPrevious();
-                    btn_close.setVisibility(View.VISIBLE);
+//                    btn_close.setVisibility(View.VISIBLE);
                     UIHelper.ToastMessage(LoginDialog.this, getString(R.string.msg_login_fail) + msg.obj);
                 } else if (msg.what == -1) {
                     mViewSwitcher.showPrevious();
-                    btn_close.setVisibility(View.VISIBLE);
+//                    btn_close.setVisibility(View.VISIBLE);
                     ((AppException) msg.obj).makeToast(LoginDialog.this);
                 }
             }
