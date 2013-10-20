@@ -5,11 +5,14 @@
     android:background="@drawable/nav_whatsnew_page05"
     android:orientation="vertical" >
 
-    <TextView
-        style="@style/nav_whatsnew_txt"
-        android:layout_width="fill_parent"
+    <Button
+        android:id="@+id/start_btn"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="@string/nav_whatsnew_page05"
-        android:paddingTop="58dp" />
+        android:layout_gravity="center"
+        style="@style/nav_whatsnew_txt"
+        android:layout_marginTop="95dp"
+        android:background="@drawable/nav_whatsnew_page06_button"
+        android:onClick="startbutton"/>
 
 </LinearLayout>

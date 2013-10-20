@@ -25,6 +25,7 @@ import com.ihelpoo.app.AppException;
 import com.ihelpoo.app.R;
 import com.ihelpoo.app.bean.SchoolInfo;
 import com.ihelpoo.app.bean.SchoolList;
+import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.widget.SchoolLetterListView;
 
 import java.util.HashMap;
@@ -103,6 +104,7 @@ public class SchoolListActivity extends BaseActivity {
 
             SchoolInfo schoolInfo = (SchoolInfo) mSchoolLit.getAdapter().getItem(pos);
             SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
+            int mySchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putInt(NavWelcome.CHOOSE_SCHOOL, schoolInfo.getId());
             editor.putString(NavWelcome.CHOOSE_SCHOOL_NAME, schoolInfo.getSchool());
@@ -111,8 +113,10 @@ public class SchoolListActivity extends BaseActivity {
             Intent intent = new Intent(SchoolListActivity.this, Main.class);
             intent.putExtra(SCHOOL_NAME_SELECTED, schoolInfo.getSchool());
             intent.putExtra(IS_SELECT, true);
+            if(isFirstIn(mySchool)){
+                startActivity(intent);
+            }
             SchoolListActivity.this.setResult(Main.REQUEST_CODE_SCHOOL, intent);
-//            startActivity(intent);
             SchoolListActivity.this.finish();
         }
 
@@ -120,6 +124,13 @@ public class SchoolListActivity extends BaseActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
+        int mySchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
+        if (isFirstIn(mySchool)) {
+            UIHelper.ToastMessage(this.getApplicationContext(), "初次进入系统，请选择您所在的学校");
+        }
+
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             Intent intent = new Intent(SchoolListActivity.this, Main.class);
             SchoolListActivity.this.setResult(Main.REQUEST_CODE_SCHOOL, intent);
@@ -127,6 +138,10 @@ public class SchoolListActivity extends BaseActivity {
             finish();
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private boolean isFirstIn(int mySchool) {
+        return mySchool == NavWelcome.DEFAULT_SCHOOL;
     }
 
     /**

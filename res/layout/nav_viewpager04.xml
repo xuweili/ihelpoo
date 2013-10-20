@@ -5,11 +5,4 @@
     android:background="@drawable/nav_whatsnew_page04"
     android:orientation="vertical" >
 
-    <TextView
-        style="@style/nav_whatsnew_txt"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/nav_whatsnew_page04"
-        android:paddingTop="28dp" />
-
 </LinearLayout>

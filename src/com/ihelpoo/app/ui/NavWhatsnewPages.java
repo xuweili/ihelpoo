@@ -42,7 +42,6 @@ public class NavWhatsnewPages extends Activity {
 		pageViews.add(inflater.inflate(R.layout.nav_viewpager03, null));
 		pageViews.add(inflater.inflate(R.layout.nav_viewpager04, null));
 		pageViews.add(inflater.inflate(R.layout.nav_viewpager05, null));
-		pageViews.add(inflater.inflate(R.layout.nav_viewpager06, null));
 
 		// 小圆点数组，大小是图片的个数
 		imageViews = new ImageView[pageViews.size()];

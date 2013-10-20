@@ -2,24 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/nav_whatsnew_page01"
+    android:background="@drawable/nav_whatsnew_page05"
     android:orientation="vertical" >
-
-    <TextView
-        style="@style/nav_whatsnew_txt"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/nav_whatsnew_page06"
-        android:paddingTop="85dp" />
-    <Button 
-        android:id="@+id/start_btn"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/nav_whatsnew_start_btn"
-        style="@style/nav_whatsnew_txt"
-        android:layout_marginTop="105dp"
-        android:background="@drawable/nav_whatsnew_start_btn"
-        android:onClick="startbutton"/>
 
 </LinearLayout>
