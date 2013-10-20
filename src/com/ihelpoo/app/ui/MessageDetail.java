@@ -209,7 +209,8 @@ public class MessageDetail extends BaseActivity{
 					lvComment_foot_progress.setVisibility(View.VISIBLE);
 					//当前pageIndex
 					int pageIndex = lvSumData/20;
-					loadLvCommentData(curFriendId, curCatalog, pageIndex, mHandler, UIHelper.LISTVIEW_ACTION_SCROLL);
+                    if((_uid = checkUid()) == 0) return;
+					loadLvCommentData(_uid, curFriendId, curCatalog, pageIndex, mHandler, UIHelper.LISTVIEW_ACTION_SCROLL);
 				}
 			}
 			public void onScroll(AbsListView view, int firstVisibleItem,int visibleItemCount, int totalItemCount) {
@@ -264,7 +265,8 @@ public class MessageDetail extends BaseActivity{
 		});
         mLvComment.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
 			public void onRefresh() {
-				loadLvCommentData(curFriendId, curCatalog, 0, mHandler, UIHelper.LISTVIEW_ACTION_REFRESH);
+                if((_uid = checkUid()) == 0) return;
+				loadLvCommentData(_uid, curFriendId, curCatalog, 0, mHandler, UIHelper.LISTVIEW_ACTION_REFRESH);
             }
         });
     }
@@ -337,17 +339,19 @@ public class MessageDetail extends BaseActivity{
 					mLvComment.onRefreshComplete(getString(R.string.pull_to_refresh_update) + new Date().toLocaleString());
 			}
 		};
-		this.loadLvCommentData(curFriendId,curCatalog,0,mHandler,UIHelper.LISTVIEW_ACTION_INIT);
+        if((_uid = checkUid()) == 0) return;
+		this.loadLvCommentData(_uid, curFriendId,curCatalog,0,mHandler,UIHelper.LISTVIEW_ACTION_INIT);
     }
     /**
      * 线程加载评论数据
+     * @param uid
      * @param id 当前文章id
      * @param catalog 分类
      * @param pageIndex 当前页数
      * @param handler 处理器
      * @param action 动作标识
      */
-	private void loadLvCommentData(final int id,final int catalog,final int pageIndex,final Handler handler,final int action){  
+	private void loadLvCommentData(final int uid, final int id, final int catalog, final int pageIndex, final Handler handler, final int action){
 		
 		this.headButtonSwitch(DATA_LOAD_ING);
 		
@@ -358,7 +362,7 @@ public class MessageDetail extends BaseActivity{
 				if(action == UIHelper.LISTVIEW_ACTION_REFRESH || action == UIHelper.LISTVIEW_ACTION_SCROLL)
 					isRefresh = true;
 				try {
-					CommentList commentlist = ((AppContext)getApplication()).getCommentList(catalog, id, pageIndex, isRefresh);				
+					CommentList commentlist = ((AppContext)getApplication()).getCommentList(uid, catalog, id, pageIndex, isRefresh);
 					msg.what = commentlist.getPageSize();
 					msg.obj = commentlist;
 	            } catch (AppException e) {
@@ -387,21 +391,31 @@ public class MessageDetail extends BaseActivity{
 	}
 	
 	private View.OnClickListener refreshClickListener = new View.OnClickListener() {
-		public void onClick(View v) {	
-			loadLvCommentData(curFriendId,curCatalog,0,mHandler,UIHelper.LISTVIEW_ACTION_REFRESH);
+		public void onClick(View v) {
+            if((_uid = checkUid()) == 0) return;
+			loadLvCommentData(_uid, curFriendId,curCatalog,0,mHandler,UIHelper.LISTVIEW_ACTION_REFRESH);
 		}
 	};
+
+    private final int checkUid(){
+        final AppContext ac = (AppContext)getApplication();
+        if(!ac.isLogin()){
+            UIHelper.showLoginDialog(MessageDetail.this);
+            return 0;
+        }
+        return ac.getLoginUid();
+    }
 	
 	private View.OnClickListener messagePubClickListener = new View.OnClickListener() {
-		public void onClick(View v) {	
-			
-			final AppContext ac = (AppContext)getApplication();
-			if(!ac.isLogin()){
-				UIHelper.showLoginDialog(MessageDetail.this);
-				return;
-			}
-			
-			_uid = ac.getLoginUid();
+		public void onClick(View v) {
+
+            final AppContext ac = (AppContext)getApplication();
+            if(!ac.isLogin()){
+                UIHelper.showLoginDialog(MessageDetail.this);
+                return;
+            }
+
+            _uid = ac.getLoginUid();
 			_friendid = curFriendId;
 			
 			if(_uid==0 || _friendid==0) return;

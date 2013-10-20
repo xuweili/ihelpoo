@@ -808,7 +808,7 @@ public class NewsDetail extends BaseActivity {
 					isRefresh = true;
 				try {
 					CommentList commentlist = ((AppContext) getApplication())
-							.getCommentList(catalog, id, pageIndex, isRefresh);
+							.getCommentList(0, catalog, id, pageIndex, isRefresh);
 					msg.what = commentlist.getPageSize();
 					msg.obj = commentlist;
 				} catch (AppException e) {

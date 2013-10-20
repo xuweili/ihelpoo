@@ -16,7 +16,7 @@
     	 	android:layout_height="wrap_content"      
     	 	android:paddingLeft="20dip"
     	 	android:paddingRight="20dip"    
-         	android:background="@drawable/login_bg"
+         	android:background="@drawable/login_gray_bg"
          	android:orientation="vertical">            
             <TextView
              	android:layout_width="wrap_content" 

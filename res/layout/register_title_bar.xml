@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="48dp"
     android:orientation="horizontal"
-    android:background="@drawable/login_bg">
+    android:background="@drawable/login_gray_bg">
 
     <Button
         android:id="@+id/btn_title_left"
