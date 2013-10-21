@@ -36,7 +36,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
                 android:background="#00ffffff"
-                android:hint="手机号/邮箱"
+                android:hint="邮箱/手机号"
                 android:textColor="@color/grayslate"
                 android:inputType="textAutoComplete"
                 android:paddingLeft="10dp" />

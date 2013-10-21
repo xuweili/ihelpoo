@@ -1171,7 +1171,7 @@ public class Main extends BaseActivity {
         });
         mHeadPub_post.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                UIHelper.showQuestionPub(v.getContext());
+                UIHelper.showTweetPub(Main.this);
             }
         });
         mHeadPub_tweet.setOnClickListener(new View.OnClickListener() {
