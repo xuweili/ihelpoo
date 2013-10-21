@@ -1413,7 +1413,7 @@ public class Main extends BaseActivity {
         // 头部logo、发帖、发动弹按钮显示
         if (index == 1) {
 //            mHeadLogo.setImageResource(R.drawable.frame_logo_news);
-            mHead_search.setVisibility(View.VISIBLE);
+            mHead_search.setVisibility(View.GONE);
         } else if (index == 2) {
 //            mHeadLogo.setImageResource(R.drawable.frame_logo_post);
 //            mHeadPub_post.setVisibility(View.VISIBLE);
