@@ -53,7 +53,7 @@ public class Register extends BaseActivity implements android.view.View.OnClickL
     public static final int MOBILE_CODE_LENGHT = 4;
     private int REGION_SELECT = 1;
     private TextView tv_top_title;
-    private Button btn_title_left, btn_title_right;
+    private Button btn_title_left;
     private TextView register_step_1, register_step_2, register_step_3;
     private Button btn_fetch_code, btn_input_code, btn_input_pwd;
     private EditText txt_mobile_no, txt_mobile_code, txt_pwd;
@@ -73,9 +73,6 @@ public class Register extends BaseActivity implements android.view.View.OnClickL
     private void initView() {
         tv_top_title = (TextView) findViewById(R.id.tv_top_title);
         tv_top_title.setText("注册");
-
-        btn_title_right = (Button) findViewById(R.id.btn_title_right);
-        btn_title_right.setVisibility(View.GONE);
 
         btn_title_left = (Button) findViewById(R.id.btn_title_left);
         btn_title_left.setOnClickListener(this);

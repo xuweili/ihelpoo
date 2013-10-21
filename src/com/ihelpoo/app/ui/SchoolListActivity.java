@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,6 +18,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,6 +39,7 @@ public class SchoolListActivity extends BaseActivity {
     private BaseAdapter adapter;
     private ListView mSchoolLit;
     private TextView overlay;
+    private Button btnBack;
     private SchoolLetterListView letterListView;
     private HashMap<String, Integer> alphaIndexer;
     private String[] sections;
@@ -45,12 +48,20 @@ public class SchoolListActivity extends BaseActivity {
     private List<SchoolInfo> schoolInfos;
     private ProgressDialog mProgress;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.school_list);
 
         mSchoolLit = (ListView) findViewById(R.id.school_list);
+        btnBack = (Button) findViewById(R.id.btn_school_title_left);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+            }
+        });
         letterListView = (SchoolLetterListView) findViewById(R.id.school_letter_list_view);
         final AppContext ac = (AppContext) getApplication();
 
@@ -113,7 +124,7 @@ public class SchoolListActivity extends BaseActivity {
             Intent intent = new Intent(SchoolListActivity.this, Main.class);
             intent.putExtra(SCHOOL_NAME_SELECTED, schoolInfo.getSchool());
             intent.putExtra(IS_SELECT, true);
-            if(isFirstIn(mySchool)){
+            if (isFirstIn(mySchool)) {
                 startActivity(intent);
             }
             SchoolListActivity.this.setResult(Main.REQUEST_CODE_SCHOOL, intent);
@@ -128,7 +139,7 @@ public class SchoolListActivity extends BaseActivity {
         SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
         int mySchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
         if (isFirstIn(mySchool)) {
-            UIHelper.ToastMessage(this.getApplicationContext(), "初次进入系统，请选择您所在的学校");
+            UIHelper.ToastMessage(this.getApplicationContext(), "初次进入系统，请选择您所在的学校:\n" + Build.MODEL + ":" + Build.MANUFACTURER);
             return false;
         }
 

@@ -92,8 +92,8 @@
                 android:orientation="vertical"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="14dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -105,7 +105,6 @@
                         android:id="@+id/register_mobile_no_text"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
                         android:hint="请输入手机号码"
                         android:inputType="number"
                         android:background="@null" />
@@ -136,7 +135,7 @@
                 <View
                     android:layout_height="1dp"
                     android:layout_width="fill_parent"
-                    android:background="@color/red" />
+                    android:background="#0095da" />
 
             </LinearLayout>
 
@@ -147,12 +146,11 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@color/grayslate"
-                android:paddingTop="14dp"
-                android:paddingBottom="14dp"
-                android:textSize="19sp"
+                android:background="@drawable/login_submit"
+                android:text="获取验证码"
+                android:textColor="@color/white"
                 android:enabled="false"
-                android:text="获取验证码" />
+                android:textSize="22sp" />
 
             <Button
                 android:id="@+id/btn_register_input_code"

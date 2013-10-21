@@ -187,8 +187,6 @@ public class LoginDialog extends BaseActivity {
                     UIHelper.ToastMessage(v.getContext(), getString(R.string.msg_login_pwd_null));
                     return;
                 }
-
-//                btn_close.setVisibility(View.GONE);
                 loadingAnimation = (AnimationDrawable) loginLoading.getBackground();
                 loadingAnimation.start();
                 mViewSwitcher.showNext();
