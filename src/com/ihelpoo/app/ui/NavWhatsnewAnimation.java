@@ -3,6 +3,8 @@ package com.ihelpoo.app.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
@@ -13,6 +15,10 @@ import android.widget.ImageView;
 import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.R;
 import com.ihelpoo.app.common.StringUtils;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * 导航过后的动画效果界面
@@ -32,36 +38,10 @@ public class NavWhatsnewAnimation extends Activity {
         editor.commit();
         setContentView(R.layout.nav_whatnew_animation);
         img_left = (ImageView) findViewById(R.id.doorpage_left);
-        img_right = (ImageView) findViewById(R.id.doorpage_right);
+//        img_right = (ImageView) findViewById(R.id.doorpage_right);
+        Bitmap bmp=getBitmapFromURL("http://static.ihelpoo.cn/img/mobile/start/school_1.jpg");
+        img_left.setImageBitmap(bmp);
 
-        //创建一个AnimationSet对象
-        AnimationSet animLeft = new AnimationSet(true);
-        TranslateAnimation transLeft = new TranslateAnimation(
-                Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF,
-                -1f, Animation.RELATIVE_TO_SELF, 0f,
-                Animation.RELATIVE_TO_SELF, 0f);
-        //设置动画效果持续的时间
-        transLeft.setDuration(2000);
-        //将anim对象添加到AnimationSet对象中
-        animLeft.addAnimation(transLeft);
-        animLeft.setFillAfter(true);
-        img_left.startAnimation(transLeft);
-        transLeft.startNow();
-
-
-        //创建一个AnimationSet对象
-        AnimationSet animRight = new AnimationSet(true);
-        TranslateAnimation transRight = new TranslateAnimation(
-                Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF,
-                1f, Animation.RELATIVE_TO_SELF, 0f,
-                Animation.RELATIVE_TO_SELF, 0f);
-        //设置动画效果持续的时间
-        transRight.setDuration(2000);
-        //将anim对象添加到AnimationSet对象中
-        animRight.addAnimation(transRight);
-        animRight.setFillAfter(true);
-        img_right.startAnimation(transRight);
-        transRight.startNow();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -71,32 +51,50 @@ public class NavWhatsnewAnimation extends Activity {
         }, 1000);
 
 
-
         //兼容低版本cookie（1.5版本以下，包括1.5.0,1.5.1）
-        AppContext appContext = (AppContext)getApplication();
+        AppContext appContext = (AppContext) getApplication();
         String cookie = appContext.getProperty("cookie");
-        if(StringUtils.isEmpty(cookie)) {
+        if (StringUtils.isEmpty(cookie)) {
             String cookie_name = appContext.getProperty("cookie_name");
             String cookie_value = appContext.getProperty("cookie_value");
-            if(!StringUtils.isEmpty(cookie_name) && !StringUtils.isEmpty(cookie_value)) {
+            if (!StringUtils.isEmpty(cookie_name) && !StringUtils.isEmpty(cookie_value)) {
                 cookie = cookie_name + "=" + cookie_value;
                 appContext.setProperty("cookie", cookie);
-                appContext.removeProperty("cookie_domain","cookie_name","cookie_value","cookie_version","cookie_path");
+                appContext.removeProperty("cookie_domain", "cookie_name", "cookie_value", "cookie_version", "cookie_path");
             }
+        }
+    }
+
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url
+                    .openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap mybitmap = BitmapFactory.decodeStream(input);
+
+            return mybitmap;
+
+        } catch (Exception ex) {
+
+            return null;
         }
     }
 
     /**
      * 跳转到...
      */
-    private void redirectTo(){
+    private void redirectTo() {
 
 //        SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, this.getApplicationContext().MODE_PRIVATE);
 //        SharedPreferences.Editor editor = preferences.edit();
 
         SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
         int mySchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
-        if(mySchool == NavWelcome.DEFAULT_SCHOOL){
+        if (mySchool == NavWelcome.DEFAULT_SCHOOL) {
             Intent intent = new Intent(this, SchoolListActivity.class);
             startActivity(intent);
             finish();

@@ -129,6 +129,7 @@ public class SchoolListActivity extends BaseActivity {
         int mySchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
         if (isFirstIn(mySchool)) {
             UIHelper.ToastMessage(this.getApplicationContext(), "初次进入系统，请选择您所在的学校");
+            return false;
         }
 
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
