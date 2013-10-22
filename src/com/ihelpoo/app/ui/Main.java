@@ -399,11 +399,12 @@ public class Main extends BaseActivity {
                 case QUICKACTION_USERINFO:// 我的资料
                     UIHelper.showUserInfo(Main.this);
                     break;
-                case QUICKACTION_SOFTWARE:// 开源软件
+                case QUICKACTION_SOFTWARE:// 排行
 //                    UIHelper.showSoftware(Main.this);
-                    mScrollLayout.scrollToScreen(3);
+                    mScrollLayout.setToScreen(3);
+                    lvRank.clickRefresh();
                     break;
-                case QUICKACTION_SEARCH:// 搜索
+                case QUICKACTION_SEARCH:// 串校
                     toSelectSchool();
                     break;
                 case QUICKACTION_SETTING:// 设置
@@ -1381,7 +1382,6 @@ public class Main extends BaseActivity {
         switch (requestCode) {
             case REQUEST_CODE_SCHOOL:
                 setHomeHeader(schoolNameSelected);
-                mScrollLayout.setToScreen(0);
                 lvHome.clickRefresh();
                 break;
             default:
