@@ -975,7 +975,7 @@ public class ApiClient {
 	public static Result delTweet(AppContext appContext, int uid, int tweetid) throws AppException {
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("uid", uid);
-		params.put("tweetid", tweetid);
+		params.put("sid", tweetid);
 
 		try{
 			return http_post(appContext, URLs.TWEET_DELETE, params, null);		

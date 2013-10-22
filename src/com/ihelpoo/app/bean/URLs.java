@@ -60,7 +60,8 @@ public class URLs implements Serializable {
     public final static String TWEET_DETAIL = "http://192.168.0.108:8080/v1.1/tweets/${id}.xml";
 //    public final static String TWEET_PUB = URL_API_HOST + "action/api/tweet_pub";
     public final static String TWEET_PUB = "http://192.168.0.108:8080/v1.1/pubTweet.xml";
-    public final static String TWEET_DELETE = URL_API_HOST + "action/api/tweet_delete";
+//    public final static String TWEET_DELETE = URL_API_HOST + "action/api/tweet_delete";
+    public final static String TWEET_DELETE = "http://192.168.0.108:8080/v1.1/delTweet.xml";
     //	public final static String WORD_LIST = URL_API_HOST+"action/api/active_list";
     public final static String WORD_LIST = "http://192.168.0.108:8080/v1.1/words.xml";
 
@@ -93,7 +94,8 @@ public class URLs implements Serializable {
     public final static String MY_INFORMATION = "http://192.168.0.108:8080/v1.1/user/${uid}.xml";
 //    public final static String USER_INFORMATION = URL_API_HOST + "action/api/user_information";
     public final static String USER_INFORMATION ="http://192.168.0.108:8080/v1.1/userActive.xml";
-    public final static String USER_UPDATERELATION = URL_API_HOST + "action/api/user_updaterelation";
+//    public final static String USER_UPDATERELATION = URL_API_HOST + "action/api/user_updaterelation";
+    public final static String USER_UPDATERELATION = "http://192.168.0.108:8080/v1.1/fo.xml";
     //	public final static String USER_NOTICE = URL_API_HOST+"action/api/user_notice";
     public final static String USER_NOTICE = "http://192.168.0.108:8080/v1.1/notifications.xml";
     public final static String NOTICE_CLEAR = URL_API_HOST + "action/api/notice_clear";

@@ -31,7 +31,7 @@
     <string name="publishing">发布中...</string>
     <string name="choose_image">请选择图片文件！</string>
     <string name="delete_image">确定删除该图片吗？</string>
-    <string name="delete_tweet">确定删除该动弹吗？</string>
+    <string name="delete_tweet">确定删除这条消息吗？</string>
     <string name="delete_blog">确定删除该博客吗？</string>
     <string name="republish_tweet">网络超时，是否重新发布？</string>
     <string name="clearwords">清除文字吗？</string>

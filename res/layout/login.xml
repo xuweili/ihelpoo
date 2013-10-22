@@ -38,7 +38,7 @@
                 android:background="#00ffffff"
                 android:hint="邮箱/手机号"
                 android:textColor="@color/grayslate"
-                android:inputType="textAutoComplete"
+                android:inputType="textEmailAddress"
                 android:paddingLeft="10dp" />
         </LinearLayout>
 

@@ -856,6 +856,12 @@ public class Main extends BaseActivity {
                 if (_tweet == null)
                     return false;
 
+                AppContext ac = (AppContext)Main.this.getApplicationContext();
+                int uid = ac.getLoginUid();
+                if(!(uid == _tweet.getAuthorId())){
+                    return false;
+                }
+
                 final Tweet tweet = _tweet;
 
                 // 删除操作
@@ -879,8 +885,7 @@ public class Main extends BaseActivity {
                     public void run() {
                         Message msg = new Message();
                         try {
-                            Result res = appContext.delTweet(
-                                    appContext.getLoginUid(), tweet.getId());
+                            Result res = appContext.delTweet(appContext.getLoginUid(), tweet.getId());
                             msg.what = 1;
                             msg.obj = res;
                         } catch (AppException e) {

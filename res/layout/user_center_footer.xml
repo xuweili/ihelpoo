@@ -17,7 +17,7 @@
 	<RadioButton
 	    android:id="@+id/user_center_footbar_message"
 	    style="@style/user_center_footbar"
-	    android:layout_marginLeft="15dip"
+	    android:layout_marginLeft="1dip"
 	    android:drawableLeft="@drawable/widget_bar_mail"
 	    android:text="悄悄话"/>
 	<ImageView
@@ -26,7 +26,7 @@
 	<RadioButton
 	    android:id="@+id/user_center_footbar_atme"
 	    style="@style/user_center_footbar"
-	    android:layout_marginLeft="6dip"
+	    android:layout_marginLeft="5dip"
 	    android:drawableLeft="@drawable/widget_bar_atme"
 	    android:text="提到Ta"/>
 </LinearLayout>
