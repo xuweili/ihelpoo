@@ -12,7 +12,7 @@ import android.view.View;
 public class SchoolLetterListView extends View {
 
     OnTouchingLetterChangedListener onTouchingLetterChangedListener;
-    String[] b = {"#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+    String[] letters = {"#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
     int choose = -1;
     Paint paint = new Paint();
     boolean showBkg = false;
@@ -38,8 +38,8 @@ public class SchoolLetterListView extends View {
 
         int height = getHeight();
         int width = getWidth();
-        int singleHeight = height / b.length;
-        for (int i = 0; i < b.length; i++) {
+        int singleHeight = height / letters.length;
+        for (int i = 0; i < letters.length; i++) {
             paint.setColor(Color.WHITE);
             paint.setTypeface(Typeface.DEFAULT_BOLD);
             paint.setAntiAlias(true);
@@ -47,9 +47,9 @@ public class SchoolLetterListView extends View {
                 paint.setColor(Color.parseColor("#3399ff"));
                 paint.setFakeBoldText(true);
             }
-            float xPos = width / 2 - paint.measureText(b[i]) / 2;
+            float xPos = width / 2 - paint.measureText(letters[i]) / 2;
             float yPos = singleHeight * i + singleHeight;
-            canvas.drawText(b[i], xPos, yPos, paint);
+            canvas.drawText(letters[i], xPos, yPos, paint);
             paint.reset();
         }
 
@@ -61,14 +61,14 @@ public class SchoolLetterListView extends View {
         final float y = event.getY();
         final int oldChoose = choose;
         final OnTouchingLetterChangedListener listener = onTouchingLetterChangedListener;
-        final int c = (int) (y / getHeight() * b.length);
+        final int c = (int) (y / getHeight() * letters.length);
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 showBkg = true;
                 if (oldChoose != c && listener != null) {
-                    if (c > 0 && c < b.length) {
-                        listener.onTouchingLetterChanged(b[c]);
+                    if (c > 0 && c < letters.length) {
+                        listener.onTouchingLetterChanged(letters[c]);
                         choose = c;
                         invalidate();
                     }
@@ -77,8 +77,8 @@ public class SchoolLetterListView extends View {
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (oldChoose != c && listener != null) {
-                    if (c > 0 && c < b.length) {
-                        listener.onTouchingLetterChanged(b[c]);
+                    if (c > 0 && c < letters.length) {
+                        listener.onTouchingLetterChanged(letters[c]);
                         choose = c;
                         invalidate();
                     }

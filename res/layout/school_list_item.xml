@@ -7,11 +7,11 @@
         android:id="@+id/alpha"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#333333"
+        android:background="#2eb0ea"
         android:paddingLeft="13dip"
         android:textAllCaps="true"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="#99CCFF"
+        android:textColor="#ffffff"
         android:visibility="gone" />
 
     <ImageView
@@ -39,7 +39,7 @@
         android:singleLine="true"
         android:text="name"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="#212121" />
+        android:textColor="@color/bright_foreground_light_disabled"/>
     <!-- android:layout_toRightOf="@id/image_view" -->
 
     <TextView

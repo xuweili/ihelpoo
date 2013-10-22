@@ -17,6 +17,8 @@
             android:layout_height="wrap_content"
             android:cacheColorHint="#00000000"
             android:background="#E8E8E8"
+            android:divider="#cecece"
+            android:dividerHeight="1dip"
             android:scrollbars="none" />
 
         <com.ihelpoo.app.widget.SchoolLetterListView

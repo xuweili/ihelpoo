@@ -79,7 +79,7 @@ public class SchoolListActivity extends BaseActivity {
                     overlayThread = new OverlayThread();
                     initOverlay();
                     setAdapter(schoolInfos);
-                    mSchoolLit.setOnItemClickListener(new CityListOnItemClick());
+                    mSchoolLit.setOnItemClickListener(new SchoolListOnItemClick());
                 } else {
                     ((AppException) msg.obj).makeToast(SchoolListActivity.this);
                 }
@@ -107,7 +107,7 @@ public class SchoolListActivity extends BaseActivity {
     /**
      * @author sy
      */
-    class CityListOnItemClick implements OnItemClickListener {
+    class SchoolListOnItemClick implements OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> arg0, View arg1, int pos, long arg3) {
