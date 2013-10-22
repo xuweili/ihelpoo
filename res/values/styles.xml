@@ -54,7 +54,7 @@
 	</style>
 	<style name="GreenDroid.Widget.QuickAction.Grid.Item" parent="@style/GreenDroid.Widget.QuickAction.Item">
 		<item name="android:layout_width">fill_parent</item>
-		<item name="android:layout_height">65dp</item>
+		<item name="android:layout_height">85dp</item>
 	</style>
 	   
 	<!-- GreenDroid PopDownMenu -->

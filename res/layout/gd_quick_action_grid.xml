@@ -27,7 +27,6 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/gdi_arrow_up"
-		android:layout_marginTop="-1px"
 		android:background="@null" 
 		android:visibility="gone"/>
 
@@ -37,7 +36,7 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@id/gdi_header"
-		android:layout_marginTop="-1px" />
+        android:background="#d4d4d4"/>
 
 	<FrameLayout
 		android:id="@+id/gdi_footer"
@@ -58,7 +57,6 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_below="@id/gdi_footer"
-		android:layout_marginTop="-1px"
 		android:src="@drawable/gd_quick_action_bar_arrow_down" />
 
 </RelativeLayout>

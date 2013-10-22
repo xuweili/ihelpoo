@@ -294,7 +294,7 @@ public class Main extends BaseActivity {
             }
         } else if (intent.getBooleanExtra("NOTICE", false)) {
             // 查看最新信息
-            mScrollLayout.scrollToScreen(3);
+            mScrollLayout.scrollToScreen(1);
         }
     }
 
