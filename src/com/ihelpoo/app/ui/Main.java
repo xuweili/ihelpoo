@@ -400,7 +400,8 @@ public class Main extends BaseActivity {
                     UIHelper.showUserInfo(Main.this);
                     break;
                 case QUICKACTION_SOFTWARE:// 开源软件
-                    UIHelper.showSoftware(Main.this);
+//                    UIHelper.showSoftware(Main.this);
+                    mScrollLayout.scrollToScreen(3);
                     break;
                 case QUICKACTION_SEARCH:// 搜索
                     UIHelper.showSearch(Main.this);

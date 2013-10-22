@@ -19,7 +19,7 @@
     <string name="main_menu_login">用户登录</string>
     <string name="main_menu_logout">注销登录</string>
     <string name="main_menu_myinfo">我的资料</string>
-    <string name="main_menu_software">开源软件</string>
+    <string name="main_menu_software">排行</string>
     <string name="main_menu_search">搜索</string>
     <string name="main_menu_picshow">显示图片</string>
     <string name="main_menu_picnoshow">隐藏图片</string>
