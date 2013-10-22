@@ -15,7 +15,7 @@ public class MyQuickAction extends QuickAction {
     
     public static Drawable buildDrawable(Context ctx, int drawableId) {
         Drawable d = ctx.getResources().getDrawable(drawableId);
-        d.setColorFilter(BLACK_CF);
+//        d.setColorFilter(BLACK_CF);
         return d;
     }
 }

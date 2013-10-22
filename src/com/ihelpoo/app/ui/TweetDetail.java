@@ -65,7 +65,7 @@ import android.widget.ViewSwitcher;
  */
 public class TweetDetail extends BaseActivity {
 
-    private ImageView mBack;
+    private Button mBack;
     private ImageView mRefresh;
     private LinearLayout mLinearlayout;
     private ProgressBar mProgressbar;
@@ -167,7 +167,7 @@ public class TweetDetail extends BaseActivity {
 
         if (curId > 0) tempCommentKey = AppConfig.TEMP_COMMENT + "_" + curCatalog + "_" + curId;
 
-        mBack = (ImageView) findViewById(R.id.tweet_detail_back);
+        mBack = (Button) findViewById(R.id.tweet_detail_back);
         mRefresh = (ImageView) findViewById(R.id.tweet_detail_refresh);
         mLinearlayout = (LinearLayout) findViewById(R.id.tweet_detail_linearlayout);
         mProgressbar = (ProgressBar) findViewById(R.id.tweet_detail_head_progress);

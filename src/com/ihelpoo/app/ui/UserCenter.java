@@ -746,6 +746,8 @@ public class UserCenter extends BaseActivity {
                     dialogTitle = "确定圈Ta吗？";
                     relationAction = User.RELATION_ACTION_ADD;
                     break;
+                default:
+                    dialogTitle = "未知操作";
             }
             new AlertDialog.Builder(v.getContext())
                     .setIcon(android.R.drawable.ic_dialog_info)

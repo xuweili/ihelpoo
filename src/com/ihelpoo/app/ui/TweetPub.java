@@ -71,7 +71,7 @@ import android.widget.Toast;
 public class TweetPub extends BaseActivity{
 
 	private FrameLayout mForm;
-	private ImageView mBack;
+	private Button mBack;
 	private EditText mContent;
 	private Button mPublish;
 	private ImageView mFace;
@@ -149,7 +149,7 @@ public class TweetPub extends BaseActivity{
     private void initView()
     {    	
     	mForm = (FrameLayout)findViewById(R.id.tweet_pub_form);
-    	mBack = (ImageView)findViewById(R.id.tweet_pub_back);
+    	mBack = (Button)findViewById(R.id.tweet_pub_back);
     	mMessage = (LinearLayout)findViewById(R.id.tweet_pub_message);
     	mImage = (ImageView)findViewById(R.id.tweet_pub_image);
     	mPublish = (Button)findViewById(R.id.tweet_pub_publish);
