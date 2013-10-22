@@ -104,7 +104,7 @@ public class Main extends BaseActivity {
     private int mViewCount;
     private int mCurSel;
 
-//    private ImageView mHeadLogo;
+    //    private ImageView mHeadLogo;
     private TextView mHeadTitle;
     private ProgressBar mHeadProgress;
     private ImageButton mHead_search;
@@ -285,7 +285,7 @@ public class Main extends BaseActivity {
                 if (lvWordData.isEmpty()) {
                     this.loadLvWordData(curWordCatalog, 0, lvWordHandler, UIHelper.LISTVIEW_ACTION_INIT);
                 }
-                if(lvNoticeData.isEmpty()){
+                if (lvNoticeData.isEmpty()) {
                     this.loadLvNoticeData(curWordCatalog, 0, lvNoticeHandler, UIHelper.LISTVIEW_ACTION_INIT);
                 }
                 if (lvMsgData.isEmpty()) {
@@ -404,7 +404,7 @@ public class Main extends BaseActivity {
                     mScrollLayout.scrollToScreen(3);
                     break;
                 case QUICKACTION_SEARCH:// 搜索
-                    UIHelper.showSearch(Main.this);
+                    toSelectSchool();
                     break;
                 case QUICKACTION_SETTING:// 设置
                     UIHelper.showSetting(Main.this);
@@ -415,6 +415,12 @@ public class Main extends BaseActivity {
             }
         }
     };
+
+    private void toSelectSchool() {
+        Intent ii = new Intent();
+        ii.setClass(this, SchoolListActivity.class);
+        startActivityForResult(ii, REQUEST_CODE_SCHOOL);
+    }
 
     /**
      * 初始化所有ListView
@@ -857,9 +863,9 @@ public class Main extends BaseActivity {
                 if (_tweet == null)
                     return false;
 
-                AppContext ac = (AppContext)Main.this.getApplicationContext();
+                AppContext ac = (AppContext) Main.this.getApplicationContext();
                 int uid = ac.getLoginUid();
-                if(!(uid == _tweet.getAuthorId())){
+                if (!(uid == _tweet.getAuthorId())) {
                     return false;
                 }
 
@@ -1160,7 +1166,7 @@ public class Main extends BaseActivity {
 
         SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
         String otherSchoolName = preferences.getString(NavWelcome.CHOOSE_SCHOOL_NAME, NavWelcome.DEFAULT_SCHOOL_NAME);
-        if(otherSchoolName != null){
+        if (otherSchoolName != null) {
             setHomeHeader(otherSchoolName);
         } else {
             mHeadTitle.setOnClickListener(null);
@@ -1362,21 +1368,20 @@ public class Main extends BaseActivity {
     View.OnClickListener schoolSelectListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent ii = new Intent();
-            ii.setClass(Main.this, SchoolListActivity.class);
-            startActivityForResult(ii, REQUEST_CODE_SCHOOL);
+            toSelectSchool();
         }
     };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(data == null){
+        if (data == null) {
             return;
         }
         String schoolNameSelected = data.getStringExtra(SchoolListActivity.SCHOOL_NAME_SELECTED);
         switch (requestCode) {
             case REQUEST_CODE_SCHOOL:
                 setHomeHeader(schoolNameSelected);
+                mScrollLayout.setToScreen(0);
                 lvHome.clickRefresh();
                 break;
             default:
@@ -1403,7 +1408,7 @@ public class Main extends BaseActivity {
         mButtons[index].setChecked(true);
 
         mHeadTitle.setText(mHeadTitles[index]);
-        if(index == 0){
+        if (index == 0) {
             SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
             String otherSchoolName = preferences.getString(NavWelcome.CHOOSE_SCHOOL_NAME, NavWelcome.DEFAULT_SCHOOL_NAME);
             setHomeHeader(otherSchoolName);
