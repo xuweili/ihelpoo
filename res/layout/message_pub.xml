@@ -27,15 +27,25 @@
 	        android:layout_marginTop="6dip"
 	        android:layout_marginLeft="2dip"
 	        android:text="* 悄悄话内容(最多222个字)"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingTop="@dimen/space_4"
 	        android:textSize="12sp"
 	        android:textColor="@color/grayslate"/>
 	    <EditText
 	        android:id="@+id/message_pub_content"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:lines="5"
+            android:background="@drawable/message_edit_bg"
+            android:lines="5"
+            android:layout_marginTop="@dimen/space_3"
+            android:layout_marginRight="@dimen/space_10"
+            android:layout_marginBottom="@dimen/space_10"
+            android:layout_marginLeft="@dimen/space_10"
+            android:padding="@dimen/space_5"
 	        android:autoLink="web"
 	        android:gravity="top"
+            android:textSize="@dimen/space_15"
+            android:textColor="#4d4948"
 	        android:hint="输入悄悄话"/>
 	</LinearLayout>
 
