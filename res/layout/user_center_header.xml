@@ -14,13 +14,18 @@
    		android:clickable="true"
    		android:background="@drawable/head_text_light"
    		android:text="@string/user_center_head_title"/>
-   	<ImageView
-   		android:id="@+id/user_center_back"
-	   	android:layout_width="wrap_content" 
-	   	android:layout_height="wrap_content" 
-	   	android:layout_gravity="left|center"
-	   	android:clickable="true" 
-	   	android:background="@drawable/head_back"/>
+    <Button
+        android:id="@+id/user_center_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center"
+        android:clickable="true"
+        android:background="@drawable/head_back"
+        android:textColor="@color/listitem_white"
+        android:width="50dip"
+        android:paddingLeft="@dimen/space_10"
+        android:paddingBottom="2dip"
+        android:text="返回"/>
 	<ProgressBar 
 		android:id="@+id/user_center_head_progress" 
 		style="@style/loading_small"

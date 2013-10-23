@@ -57,7 +57,7 @@ import android.widget.TextView;
  */
 public class UserCenter extends BaseActivity {
 
-    private ImageView mBack;
+    private Button mBack;
     private ImageView mRefresh;
     private TextView mHeadTitle;
     private ProgressBar mProgressbar;
@@ -127,7 +127,7 @@ public class UserCenter extends BaseActivity {
         _username = getIntent().getStringExtra("his_name");
         _uid = ((AppContext) getApplication()).getLoginUid();
 
-        mBack = (ImageView) findViewById(R.id.user_center_back);
+        mBack = (Button) findViewById(R.id.user_center_back);
         mRefresh = (ImageView) findViewById(R.id.user_center_refresh);
         mHeadTitle = (TextView) findViewById(R.id.user_center_head_title);
         mProgressbar = (ProgressBar) findViewById(R.id.user_center_head_progress);
