@@ -8,17 +8,17 @@
 		android:layout_height="35.0dip"
 		android:orientation="horizontal" 
 		android:gravity="center_vertical">
-     	<Button 
+     	<Button
      		android:id="@+id/frame_btn_home_stream"
      		style="@style/frame_button"
          	android:text="@string/frame_title_tweet_lastest"/>
         <ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
-     	<Button 
+     	<Button
      		android:id="@+id/frame_btn_home_mine"
      		style="@style/frame_button"
          	android:text="@string/frame_title_tweet_hot"/>
 	    <ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
-     	<Button 
+     	<Button
      		android:id="@+id/frame_btn_home_help"
      		style="@style/frame_button"
          	android:text="@string/frame_title_tweet_my"/>
