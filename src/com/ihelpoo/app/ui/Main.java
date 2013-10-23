@@ -160,7 +160,7 @@ public class Main extends BaseActivity {
     private RadioButton fbNest;
     private RadioButton fbRank;
     private RadioButton fbWord;
-    private ImageView fbSetting;
+    private Button fbSetting;
 
     private Button framebtn_Nest_lastest;
     private Button framebtn_Nest_blog;
@@ -1227,7 +1227,7 @@ public class Main extends BaseActivity {
         fbNest = (RadioButton) findViewById(R.id.main_footbar_nest);
         fbWord = (RadioButton) findViewById(R.id.main_footbar_word);
 
-        fbSetting = (ImageView) findViewById(R.id.main_footbar_setting);
+        fbSetting = (Button) findViewById(R.id.main_footbar_setting);
         fbSetting.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // 展示快捷栏&判断是否登录&是否加载文章图片

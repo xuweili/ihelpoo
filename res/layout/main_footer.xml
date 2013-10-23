@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
-              android:id="@+id/main_linearlayout_footer"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:gravity="center_vertical"
-              android:background="@drawable/widget_bar_bg_n">
-    <RadioButton
-            android:id="@+id/main_footbar_home"
-            style="@style/main_footbar_radio"
-            android:drawableTop="@drawable/widget_bar_home"
-            android:drawablePadding="-20dp"
-            android:text="首页"/>
-
-    <ImageView
-            style="@style/main_footbar_cutline"
-            android:src="@drawable/widget_bar_cut_off"/>
+    android:orientation="horizontal"
+    android:id="@+id/main_linearlayout_footer"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:background="@drawable/widget_bar_bg_n">
 
     <RadioButton
-            android:id="@+id/main_footbar_word"
-            style="@style/main_footbar_radio"
-            android:drawableTop="@drawable/widget_bar_question"
-            android:drawablePadding="-20dp"
-            android:text="消息"/>
+        android:id="@+id/main_footbar_home"
+        style="@style/main_footbar_radio"
+        android:drawableTop="@drawable/widget_bar_home"
+        android:drawablePadding="-20dp"
+        android:text="首页" />
 
     <ImageView
-            style="@style/main_footbar_cutline"
-            android:src="@drawable/widget_bar_cut_off"/>
+        style="@style/main_footbar_cutline"
+        android:src="@drawable/widget_bar_cut_off" />
 
     <RadioButton
-            android:id="@+id/main_footbar_nest"
-            style="@style/main_footbar_radio"
-            android:drawableTop="@drawable/widget_bar_tweet"
-            android:drawablePadding="-20dp"
-            android:text="小窝"/>
+        android:id="@+id/main_footbar_word"
+        style="@style/main_footbar_radio"
+        android:drawableTop="@drawable/widget_bar_question"
+        android:drawablePadding="-20dp"
+        android:text="消息" />
 
     <ImageView
-            style="@style/main_footbar_cutline"
-            android:src="@drawable/widget_bar_cut_off"
-            android:visibility="gone"/>
+        style="@style/main_footbar_cutline"
+        android:src="@drawable/widget_bar_cut_off" />
 
     <RadioButton
-            android:id="@+id/main_footbar_rank"
-            style="@style/main_footbar_radio"
-            android:drawableTop="@drawable/widget_bar_active"
-            android:drawablePadding="-20dp"
-            android:text="排行"
-            android:visibility="gone"/>
+        android:id="@+id/main_footbar_nest"
+        style="@style/main_footbar_radio"
+        android:drawableTop="@drawable/widget_bar_tweet"
+        android:drawablePadding="-20dp"
+        android:text="小窝" />
 
     <ImageView
-            style="@style/main_footbar_cutline"
-            android:src="@drawable/widget_bar_cut_off"/>
+        style="@style/main_footbar_cutline"
+        android:src="@drawable/widget_bar_cut_off"
+        android:visibility="gone" />
+
+    <RadioButton
+        android:id="@+id/main_footbar_rank"
+        style="@style/main_footbar_radio"
+        android:drawableTop="@drawable/widget_bar_active"
+        android:drawablePadding="-20dp"
+        android:text="排行"
+        android:visibility="gone" />
+
     <ImageView
-            android:id="@+id/main_footbar_setting"
-            style="@style/main_footbar_image"
-            android:src="@drawable/widget_bar_more"
-            android:drawablePadding="-20dp"
-            android:text="更多"/>
+        style="@style/main_footbar_cutline"
+        android:src="@drawable/widget_bar_cut_off" />
 
-
+    <Button
+        android:id="@+id/main_footbar_setting"
+        style="@style/main_footbar_radio"
+        android:drawableTop="@drawable/widget_bar_active"
+        android:drawablePadding="-20dp"
+        android:text="更多" />
 </LinearLayout>
