@@ -42,18 +42,22 @@
         <ImageView
             style="@style/main_footbar_cutline"
             android:src="@drawable/widget_bar_cut_off"/>
+        <ImageView
+            android:id="@+id/tweet_pub_footbar_help"
+            style="@style/main_footbar_image"
+            android:src="@drawable/widget_bar_help"/>
 
         <Spinner
             android:id="@+id/tweet_pub_footbar_reward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:entries="@array/tweet_help_reward"
             android:prompt="@string/reward_prompt"/>
 	</LinearLayout>
 	
     <GridView 
         android:id="@+id/tweet_pub_faces"
-        android:layout_width="fill_parent" 
+        android:layout_width="fill_parent"
 		android:layout_height="220dip"
 		android:numColumns="auto_fit"
 		android:columnWidth="50dip"

@@ -3,7 +3,7 @@
 
     <!-- share items -->
     <string-array name="tweet_help_reward">
-        <item>help</item>
+        <item>普通消息</item>
         <item>0</item>
         <item>10</item>
         <item>20</item>
