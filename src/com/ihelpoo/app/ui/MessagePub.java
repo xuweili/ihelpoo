@@ -40,7 +40,7 @@ import android.widget.TextView;
  */
 public class MessagePub extends BaseActivity{
 	
-	private ImageView mBack;
+	private Button mBack;
 	private TextView mReceiver;
 	private EditText mContent;
 	private Button mPublish;
@@ -72,7 +72,7 @@ public class MessagePub extends BaseActivity{
     	
 		if(_friendid > 0) tempMessageKey = AppConfig.TEMP_MESSAGE + "_" + _friendid;
 		
-    	mBack = (ImageView)findViewById(R.id.message_pub_back);
+    	mBack = (Button)findViewById(R.id.message_pub_back);
     	mPublish = (Button)findViewById(R.id.message_pub_publish);
     	mContent = (EditText)findViewById(R.id.message_pub_content);
     	mReceiver = (TextView)findViewById(R.id.message_pub_receiver);

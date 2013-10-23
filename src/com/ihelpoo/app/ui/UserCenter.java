@@ -410,29 +410,33 @@ public class UserCenter extends BaseActivity {
         }.start();
     }
 
-    //加载博客列表
     private void loadLvBlogData(final Handler handler, final int pageIndex, final int action) {
-        headButtonSwitch(DATA_LOAD_ING);
-        new Thread() {
-            public void run() {
-                Message msg = new Message();
-                boolean isRefresh = false;
-                if (action == UIHelper.LISTVIEW_ACTION_REFRESH || action == UIHelper.LISTVIEW_ACTION_SCROLL)
-                    isRefresh = true;
-                try {
-                    BlogList bloglist = ((AppContext) getApplication()).getUserBlogList(_hisuid, _hisname, pageIndex, isRefresh);
-                    msg.what = bloglist.getPageSize();
-                    msg.obj = bloglist;
-                } catch (AppException e) {
-                    e.printStackTrace();
-                    msg.what = -1;
-                    msg.obj = e;
-                }
-                msg.arg1 = action;//告知handler当前action
-                handler.sendMessage(msg);
-            }
-        }.start();
+
     }
+
+    //加载博客列表
+//    private void loadLvBlogData(final Handler handler, final int pageIndex, final int action) {
+//        headButtonSwitch(DATA_LOAD_ING);
+//        new Thread() {
+//            public void run() {
+//                Message msg = new Message();
+//                boolean isRefresh = false;
+//                if (action == UIHelper.LISTVIEW_ACTION_REFRESH || action == UIHelper.LISTVIEW_ACTION_SCROLL)
+//                    isRefresh = true;
+//                try {
+//                    BlogList bloglist = ((AppContext) getApplication()).getUserBlogList(_hisuid, _hisname, pageIndex, isRefresh);
+//                    msg.what = bloglist.getPageSize();
+//                    msg.obj = bloglist;
+//                } catch (AppException e) {
+//                    e.printStackTrace();
+//                    msg.what = -1;
+//                    msg.obj = e;
+//                }
+//                msg.arg1 = action;//告知handler当前action
+//                handler.sendMessage(msg);
+//            }
+//        }.start();
+//    }
 
     private void loadUserRelation(int relation) {
         switch (relation) {
