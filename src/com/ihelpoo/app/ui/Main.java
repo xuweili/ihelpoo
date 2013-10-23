@@ -108,7 +108,7 @@ public class Main extends BaseActivity {
     private TextView mHeadTitle;
     private ProgressBar mHeadProgress;
     private ImageButton mHead_search;
-    private ImageButton mHeadPub_post;
+    private ImageButton mHeadPub_post, mHead_refresh;
     private ImageButton mHeadPub_tweet;
 
     private int curNestCatalog = NewsList.CATALOG_ALL;
@@ -1175,6 +1175,7 @@ public class Main extends BaseActivity {
         mHeadProgress = (ProgressBar) findViewById(R.id.main_head_progress);
         mHead_search = (ImageButton) findViewById(R.id.main_head_search);
         mHeadPub_post = (ImageButton) findViewById(R.id.main_head_pub_post);
+        mHead_refresh = (ImageButton) findViewById(R.id.main_head_pub_refresh);
         mHeadPub_tweet = (ImageButton) findViewById(R.id.main_head_pub_tweet);
 
         mHead_search.setOnClickListener(new View.OnClickListener() {
@@ -1185,6 +1186,29 @@ public class Main extends BaseActivity {
         mHeadPub_post.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 UIHelper.showTweetPub(Main.this);
+            }
+        });
+        mHead_refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (mCurSel) {
+                    case 0:// 首页
+                        lvHome.clickRefresh();
+                        break;
+                    case 1:// 消息
+                        if (lvWord.getVisibility() == View.VISIBLE)
+                            lvWord.clickRefresh();
+                        else if (lvChat.getVisibility() == View.VISIBLE)
+                            lvChat.clickRefresh();
+                        else lvNotice.clickRefresh();
+                        break;
+                    case 2:// 小窝
+                        lvNest.clickRefresh();
+                        break;
+                    case 3:// 排行
+                        lvRank.clickRefresh();
+                        break;
+                }
             }
         });
         mHeadPub_tweet.setOnClickListener(new View.OnClickListener() {
@@ -1430,10 +1454,11 @@ public class Main extends BaseActivity {
 //            mHeadPub_post.setVisibility(View.VISIBLE);
         } else if (index == 0) {
 //            mHeadLogo.setImageResource(R.drawable.frame_logo_tweet);
-            mHeadPub_tweet.setVisibility(View.VISIBLE);
+//            mHeadPub_tweet.setVisibility(View.VISIBLE);
+            mHeadPub_post.setVisibility(View.VISIBLE);
         } else if (index == 3) {
 //            mHeadLogo.setImageResource(R.drawable.frame_logo_active);
-            mHeadPub_tweet.setVisibility(View.VISIBLE);
+            mHeadPub_post.setVisibility(View.VISIBLE);
         }
     }
 
