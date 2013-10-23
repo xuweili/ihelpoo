@@ -103,8 +103,8 @@ public class TweetDetail extends BaseActivity {
 
     private ViewSwitcher mFootViewSwitcher;
     private ImageView mFootEditebox;
-    private ImageView mFootPlus;
-    private ImageView mFootDiffuse;
+    private Button mFootPlus;
+    private Button mFootDiffuse;
     private EditText mFootEditer;
     private Button mFootPubcomment;
     private Button mFootPubdiffuse;
@@ -185,8 +185,8 @@ public class TweetDetail extends BaseActivity {
         mFootPubdiffuse = (Button) findViewById(R.id.tweet_detail_foot_diffuse);
         mFootPubdiffuse.setOnClickListener(diffuseWithViewClickListener);
         mFootEditebox = (ImageView) findViewById(R.id.tweet_detail_footbar_editebox);
-        mFootPlus = (ImageView) findViewById(R.id.tweet_detail_footbar_plus);
-        mFootDiffuse = (ImageView) findViewById(R.id.tweet_detail_footbar_diffuse);
+        mFootPlus = (Button) findViewById(R.id.tweet_detail_footbar_plus);
+        mFootDiffuse = (Button) findViewById(R.id.tweet_detail_footbar_diffuse);
         mFootEditebox.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 mFootViewSwitcher.showNext();
@@ -683,7 +683,7 @@ public class TweetDetail extends BaseActivity {
                                 UIHelper.ToastMessage(TweetDetail.this, "您已扩散过这条消息");
                             }else{
                                 tweetDetail.setDiffuseByMe(1);
-                                mFootDiffuse.setImageResource(R.drawable.widget_bar_share_over);
+                                mFootDiffuse.setBackgroundResource(R.drawable.widget_bar_share_over);
                                 UIHelper.ToastMessage(TweetDetail.this, res.getErrorMessage());
                             }
                             //发送通知广播
@@ -741,10 +741,10 @@ public class TweetDetail extends BaseActivity {
                         if (res.OK()) {
                             if(tweetDetail.getPlusByMe() == 1){
                                 tweetDetail.setPlusByMe(0);
-                                mFootPlus.setImageResource(R.drawable.widget_bar_favorite);
+                                mFootPlus.setBackgroundResource(R.drawable.widget_bar_favorite);
                             }else{
                                 tweetDetail.setPlusByMe(1);
-                                mFootPlus.setImageResource(R.drawable.widget_bar_favorite2);
+                                mFootPlus.setBackgroundResource(R.drawable.widget_bar_favorite2);
                             }
                             //发送通知广播
                             if (res.getNotice() != null) {
