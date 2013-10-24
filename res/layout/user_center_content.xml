@@ -115,7 +115,7 @@
             <ImageView
                 android:id="@+id/user_center_userface"
                 android:layout_width="60dip"
-                android:layout_height="60dip"
+                android:layout_height="45dip"
                 android:layout_marginTop="1.0dip"
                 android:layout_marginRight="1.0dip"
                 android:scaleType="fitCenter"
