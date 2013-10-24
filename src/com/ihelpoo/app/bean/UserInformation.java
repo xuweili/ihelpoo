@@ -79,27 +79,47 @@ public class UserInformation extends Entity{
 			    		}
 			    		else if (user != null)
 			    		{
-			    			if(tag.equalsIgnoreCase("uid")){
-								user.setUid(StringUtils.toInt(xmlParser.nextText(), 0));
-							}else if(tag.equalsIgnoreCase("from")){
-								user.setLocation(xmlParser.nextText());
-							}else if(tag.equalsIgnoreCase("name")){
-								user.setName(xmlParser.nextText());
-							}else if(depth==3 && tag.equalsIgnoreCase("portrait")){
-								user.setFace(xmlParser.nextText());
-							}else if(tag.equalsIgnoreCase("jointime")){
-								user.setJointime(xmlParser.nextText());
-							}else if(tag.equalsIgnoreCase("gender")){
-								user.setGender(xmlParser.nextText());
-							}else if(tag.equalsIgnoreCase("devplatform")){
-								user.setDevplatform(xmlParser.nextText());
-							}else if(tag.equalsIgnoreCase("expertise")){
-								user.setExpertise(xmlParser.nextText());
-							}else if(tag.equalsIgnoreCase("relation")){
-								user.setRelation(StringUtils.toInt(xmlParser.nextText(), 0));
-							}else if(tag.equalsIgnoreCase("latestonline")){
-								user.setLatestonline(xmlParser.nextText());
-							}
+                            if (tag.equalsIgnoreCase("uid")) {
+                                user.setUid(StringUtils.toInt(xmlParser.nextText(), 0));
+                            } else if (tag.equalsIgnoreCase("nickname")) {
+                                user.setNickname(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("gender")) {
+                                user.setGender(StringUtils.toInt(xmlParser.nextText()));
+                            } else if (tag.equalsIgnoreCase("birthday")) {
+                                user.setBirthday(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("enrol_time")) {
+                                user.setEnrol_time(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("user_type")) {
+                                user.setUser_type(StringUtils.toInt(xmlParser.nextText()));
+                            } else if (tag.equalsIgnoreCase("login_days")) {
+                                user.setLogin_days(StringUtils.toInt(xmlParser.nextText()));
+                            } else if (tag.equalsIgnoreCase("online_status")) {
+                                user.setOnline_status(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("active_credits")) {
+                                user.setActive_credits(StringUtils.toInt(xmlParser.nextText()));
+                            } else if (tag.equalsIgnoreCase("avatar_url")) {
+                                user.setAvatar_url(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("self_intro")) {
+                                user.setSelf_intro(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("followers_count")) {
+                                user.setFollowers_count(StringUtils.toInt(xmlParser.nextText()));
+                            } else if (tag.equalsIgnoreCase("friends_count")) {
+                                user.setFriends_count(StringUtils.toInt(xmlParser.nextText()));
+                            } else if (tag.equalsIgnoreCase("school_id")) {
+                                user.setSchool_id(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("school_name")) {
+                                user.setSchool_name(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("academy_name")) {
+                                user.setAcademy_name(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("major_name")) {
+                                user.setAcademy_name(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("school_domain")) {
+                                user.setSchool_domain(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("level")) {
+                                user.setLevel(StringUtils.toInt(xmlParser.nextText()));
+                            } else if (tag.equalsIgnoreCase("relation")) {
+                                user.setRelation(StringUtils.toInt(xmlParser.nextText()));
+                            }
 			    		}
 			    		else if (active != null)
 			    		{	

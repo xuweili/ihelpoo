@@ -189,12 +189,12 @@ public class Register extends BaseActivity implements android.view.View.OnClickL
                                 UIHelper.ToastMessage(Register.this, "注册成功");
                                 User user = new User();
                                 user.setUid(res.getUser().getUid());
-                                user.setAccount(mobileNo);
+                                user.setEmail(mobileNo);
                                 user.setPwd(pwd);
                                 user.setRemember(true);
-                                user.setStatus("1");
-                                user.setName(res.getUser().getNickname());
-                                user.setLocation(String.valueOf(res.getUser().getSchoolId()));
+                                user.setOnline_status("1");
+                                user.setNickname(res.getUser().getNickname());
+                                user.setSchool_id(String.valueOf(res.getUser().getSchoolId()));
                                 ac.saveLoginInfo(user);
                                 Intent intent = new Intent(Register.this, Main.class);
                                 intent.putExtra("LOGIN", true);

@@ -361,21 +361,21 @@ public class UserCenter extends BaseActivity {
             public void handleMessage(Message msg) {
                 headButtonSwitch(DATA_LOAD_COMPLETE);
                 if (mUser != null) {
-                    _username = mUser.getName();
+                    _username = mUser.getNickname();
                     mHeadTitle.setText(_username + " ▼");
-                    mUsername.setText(mUser.getName());
-                    mFrom.setText(mUser.getLocation());
-                    mGender.setText(mUser.getGender());
-                    mJointime.setText(StringUtils.friendly_time(mUser.getJointime()));
-                    mDevplatform.setText(mUser.getDevplatform());
-                    mExpertise.setText(mUser.getExpertise());
-                    mLatestonline.setText(StringUtils.friendly_time(mUser.getLatestonline()));
+                    mUsername.setText(mUser.getNickname());
+                    mFrom.setText(mUser.getSchool_name());
+                    mGender.setText(String.valueOf(mUser.getGender()));
+                    mJointime.setText(mUser.getEnrol_time());
+                    mDevplatform.setText(mUser.getAcademy_name());
+                    mExpertise.setText(String.valueOf(mUser.getFollowers_count()));
+                    mLatestonline.setText(mUser.getOnline_status());
 
                     //初始化用户关系 & 点击事件
                     loadUserRelation(mUser.getRelation());
 
                     //加载用户头像
-                    UIHelper.showUserFace(mUserface, mUser.getFace());
+                    UIHelper.showUserFace(mUserface, mUser.getAvatar_url());
                 }
                 lvActiveHandleMessage(msg);
             }
@@ -395,7 +395,7 @@ public class UserCenter extends BaseActivity {
                 if (action == UIHelper.LISTVIEW_ACTION_REFRESH || action == UIHelper.LISTVIEW_ACTION_SCROLL)
                     isRefresh = true;
                 try {
-                    UserInformation uinfo = ((AppContext) getApplication()).getInformation(_hisuid, pageIndex, isRefresh);
+                    UserInformation uinfo = ((AppContext) getApplication()).getInformation(_hisuid, _hisname, _uid, pageIndex, isRefresh);
                     mUser = uinfo.getUser();
                     msg.what = uinfo.getPageSize();
                     msg.obj = uinfo;
@@ -438,13 +438,14 @@ public class UserCenter extends BaseActivity {
 //        }.start();
 //    }
 
+    // 0 没圈没屏蔽，1：圈， 2：屏蔽 3: 自己
     private void loadUserRelation(int relation) {
         switch (relation) {
-            case User.RELATION_TYPE_BOTH:
+            case User.RELATION_TYPE_SHIELD:
                 mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_del, 0, 0, 0);
-                mRelation.setText("取消互粉");
+                mRelation.setText("取消屏蔽");
                 break;
-            case User.RELATION_TYPE_FANS_HIM:
+            case User.RELATION_TYPE_FRIEND:
                 mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_del, 0, 0, 0);
                 mRelation.setText("取消圈");
                 break;
@@ -454,7 +455,7 @@ public class UserCenter extends BaseActivity {
                 break;
             case User.RELATION_TYPE_NULL:
                 mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_add, 0, 0, 0);
-                mRelation.setText("圈Ta");
+                mRelation.setText("圈Ta");//屏蔽他
                 break;
         }
         if (relation > 0)
@@ -664,13 +665,13 @@ public class UserCenter extends BaseActivity {
     private View.OnClickListener messageClickListener = new View.OnClickListener() {
         public void onClick(View v) {
             if (mUser == null) return;
-            UIHelper.showMessagePub(UserCenter.this, mUser.getUid(), mUser.getName());
+            UIHelper.showMessagePub(UserCenter.this, mUser.getUid(), mUser.getNickname());
         }
     };
     private View.OnClickListener atmeClickListener = new View.OnClickListener() {
         public void onClick(View v) {
             if (mUser == null) return;
-            UIHelper.showTweetPub(UserCenter.this, "@" + mUser.getName() + " ", mUser.getUid());
+            UIHelper.showTweetPub(UserCenter.this, "@" + mUser.getNickname() + " ", mUser.getUid());
         }
     };
     private View.OnClickListener relationClickListener = new View.OnClickListener() {
@@ -689,12 +690,12 @@ public class UserCenter extends BaseActivity {
                         Result res = (Result) msg.obj;
                         if (res.OK()) {
                             switch (mUser.getRelation()) {
-                                case User.RELATION_TYPE_BOTH:
+                                case User.RELATION_TYPE_SHIELD:
                                     mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_add, 0, 0, 0);
                                     mRelation.setText("圈Ta");
                                     mUser.setRelation(User.RELATION_TYPE_FANS_ME);
                                     break;
-                                case User.RELATION_TYPE_FANS_HIM:
+                                case User.RELATION_TYPE_FRIEND:
                                     mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_add, 0, 0, 0);
                                     mRelation.setText("圈Ta");
                                     mUser.setRelation(User.RELATION_TYPE_NULL);
@@ -702,12 +703,12 @@ public class UserCenter extends BaseActivity {
                                 case User.RELATION_TYPE_FANS_ME:
                                     mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_del, 0, 0, 0);
                                     mRelation.setText("取消互粉");
-                                    mUser.setRelation(User.RELATION_TYPE_BOTH);
+                                    mUser.setRelation(User.RELATION_TYPE_SHIELD);
                                     break;
                                 case User.RELATION_TYPE_NULL:
                                     mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_del, 0, 0, 0);
                                     mRelation.setText("取消圈");
-                                    mUser.setRelation(User.RELATION_TYPE_FANS_HIM);
+                                    mUser.setRelation(User.RELATION_TYPE_FRIEND);
                                     break;
                             }
                         }
@@ -734,11 +735,11 @@ public class UserCenter extends BaseActivity {
             };
             String dialogTitle = "";
             switch (mUser.getRelation()) {
-                case User.RELATION_TYPE_BOTH:
-                    dialogTitle = "确定取消互粉吗？";
+                case User.RELATION_TYPE_SHIELD:
+                    dialogTitle = "确定取消屏蔽吗？";
                     relationAction = User.RELATION_ACTION_DELETE;
                     break;
-                case User.RELATION_TYPE_FANS_HIM:
+                case User.RELATION_TYPE_FRIEND:
                     dialogTitle = "确定取消圈吗？";
                     relationAction = User.RELATION_ACTION_DELETE;
                     break;

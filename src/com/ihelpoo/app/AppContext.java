@@ -313,18 +313,17 @@ public class AppContext extends Application {
     /**
      * 获取用户信息个人专页（包含该用户的动态信息以及个人信息）
      *
-     *
+     * @param hisUid
      * @param uid       自己的uid
-     * @param pageIndex 页面索引
-     * @return
+     * @param pageIndex 页面索引  @return
      * @throws AppException
      */
-    public UserInformation getInformation(int uid, int pageIndex, boolean isRefresh) throws AppException {
+    public UserInformation getInformation(int hisUid, String hisName, int uid, int pageIndex, boolean isRefresh) throws AppException {
         UserInformation userinfo = null;
-        String key = "userinfo_" + uid + "_" + pageIndex + "_" + PAGE_SIZE;
+        String key = "userinfo_" + hisUid + "_" + hisName + "_" + uid + "_" + pageIndex + "_" + PAGE_SIZE;
         if (isNetworkConnected() && (!isReadDataCache(key) || isRefresh)) {
             try {
-                userinfo = ApiClient.information(this, uid, pageIndex, PAGE_SIZE);
+                userinfo = ApiClient.information(this, hisUid, hisName, uid, pageIndex, PAGE_SIZE);
                 if (userinfo != null && pageIndex == 0) {
                     Notice notice = userinfo.getNotice();
                     userinfo.setNotice(null);
@@ -907,10 +906,9 @@ public class AppContext extends Application {
     /**
      * 动弹列表
      *
-     *
      * @param catalog   -1 help，0 stream，Min_value, mine
      * @param schoolId
-     *@param pageIndex @return  @throws AppException
+     * @param pageIndex @return  @throws AppException
      */
     public TweetList getTweetList(int catalog, String schoolId, int pageIndex, boolean isRefresh) throws AppException {
         TweetList list = null;
@@ -1075,7 +1073,6 @@ public class AppContext extends Application {
 
     /**
      * 评论列表
-     *
      *
      * @param uid
      * @param catalog   1新闻 2帖子 3动弹 4动态
@@ -1342,18 +1339,15 @@ public class AppContext extends Application {
         //TODO, if any different, here it will exit with warning
         setProperties(new Properties() {{
             setProperty("user.uid", String.valueOf(user.getUid()));
-            setProperty("user.name", user.getName());
-            //http://static.oschina.net/uploads/user/457/915579_100.jpg?t=1370707416000
-            setProperty("user.face", "http://static.oschina.net/uploads/user/457/915579_100.jpg?t=1370707416000");//用户头像-文件名
-//			setProperty("user.face", FileUtils.getFileName(user.getFace()));//用户头像-文件名
-            setProperty("user.account", user.getAccount());
+            setProperty("user.name", user.getNickname());
+            setProperty("user.face", user.getAvatar_url());
+            setProperty("user.account", user.getEmail());
             setProperty("user.pwd", CyptoUtils.encode("ihelpooApp", user.getPwd()));
-//			setProperty("user.location", user.getLocation());
-            setProperty("user.location", user.getLocation());
-            setProperty("user.followers", String.valueOf(user.getFollowers()));
-            setProperty("user.fans", String.valueOf(user.getFans()));
-            setProperty("user.score", String.valueOf(user.getScore()));
-            setProperty("user.isRemember", String.valueOf(user.isRemember()));//是否记住我的信息
+            setProperty("user.location", user.getSchool_id());
+            setProperty("user.followers", String.valueOf(user.getFriends_count()));
+            setProperty("user.fans", String.valueOf(user.getFollowers_count()));
+            setProperty("user.score", String.valueOf(user.getActive_credits()));
+            setProperty("user.isRemember", String.valueOf(user.isRemember()));
         }});
     }
 
@@ -1375,14 +1369,14 @@ public class AppContext extends Application {
     public User getLoginInfo() {
         User lu = new User();
         lu.setUid(StringUtils.toInt(getProperty("user.uid"), 0));
-        lu.setName(getProperty("user.name"));
-        lu.setFace(getProperty("user.face"));
-        lu.setAccount(getProperty("user.account"));
+        lu.setNickname(getProperty("user.name"));
+        lu.setAvatar_url(getProperty("user.face"));
+        lu.setEmail(getProperty("user.account"));
         lu.setPwd(CyptoUtils.decode("ihelpooApp", getProperty("user.pwd")));
-        lu.setLocation(getProperty("user.location"));
-        lu.setFollowers(StringUtils.toInt(getProperty("user.followers"), 0));
-        lu.setFans(StringUtils.toInt(getProperty("user.fans"), 0));
-        lu.setScore(StringUtils.toInt(getProperty("user.score"), 0));
+        lu.setSchool_id(getProperty("user.location"));
+        lu.setFriends_count(StringUtils.toInt(getProperty("user.followers"), 0));
+        lu.setFollowers_count(StringUtils.toInt(getProperty("user.fans"), 0));
+        lu.setActive_credits(StringUtils.toInt(getProperty("user.score"), 0));
         lu.setRemember(StringUtils.toBool(getProperty("user.isRemember")));
         return lu;
     }

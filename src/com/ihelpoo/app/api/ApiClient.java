@@ -509,17 +509,21 @@ public class ApiClient {
 	
 	/**
 	 * 获取用户信息个人专页（包含该用户的动态信息以及个人信息）
-	 * @param uid 自己的uid
-	 * @param pageIndex 页面索引
-	 * @param pageSize 每页读取的动态个数
-	 * @return
-	 * @throws AppException
+	 *
+     * @param hisUid
+     * @param hisName @return
+     * @param uid 自己的uid
+     * @param pageIndex 页面索引
+     * @param pageSize 每页读取的动态个数
+     * @throws AppException
 	 */
-	public static UserInformation information(AppContext appContext, int uid, int pageIndex, int pageSize) throws AppException {
+	public static UserInformation information(AppContext appContext, int hisUid, String hisName, int uid, int pageIndex, int pageSize) throws AppException {
 		Map<String,Object> params = new HashMap<String,Object>();
+        params.put("his_uid", hisUid);
+        params.put("his_name", hisName);
 		params.put("uid", uid);
-		params.put("pageIndex", pageIndex);
-		params.put("pageSize", pageSize);
+		params.put("page_index", pageIndex);
+		params.put("page_size", pageSize);
 				
 		try{
 			return UserInformation.parse(_post(appContext, URLs.USER_INFORMATION, params, null));
@@ -892,7 +896,7 @@ public class ApiClient {
         if(!StringUtils.isEmpty(schoolId) && !school.equals(schoolId)){
             school = schoolId;
         } else {
-            school = user.getLocation();
+            school = String.valueOf(user.getSchool_id());
         }
         final String finalSchool = school;
         String newUrl = _MakeURL(URLs.TWEET_LIST, new HashMap<String, Object>(){{
@@ -991,7 +995,7 @@ public class ApiClient {
 		String newUrl = _MakeURL(URLs.WORD_LIST, new HashMap<String, Object>(){{
 			put("uid", uid);
 			put("catalog", catalog);
-            put("schoolId", user.getLocation());
+            put("schoolId", user.getSchool_id());
 			put("pageIndex", pageIndex);
 			put("pageSize", pageSize);
 		}});

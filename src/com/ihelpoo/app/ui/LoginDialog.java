@@ -199,11 +199,11 @@ public class LoginDialog extends BaseActivity {
         AppContext ac = (AppContext) getApplication();
         User user = ac.getLoginInfo();
         if (user == null || !user.isRemember()) return;
-        if (!StringUtils.isEmpty(user.getAccount())) {
-            mAccount.setText(user.getAccount());
+        if (!StringUtils.isEmpty(user.getEmail())) {
+            mAccount.setText(user.getEmail());
             mAccount.selectAll();
             chb_remember.setChecked(user.isRemember());
-            chb_status.setChecked(Boolean.valueOf(user.getStatus()));
+            chb_status.setChecked(Boolean.valueOf(user.getOnline_status()));
         }
         if (!StringUtils.isEmpty(user.getPwd())) {
             mPwd.setText(user.getPwd());
@@ -260,10 +260,10 @@ public class LoginDialog extends BaseActivity {
                 try {
                     AppContext ac = (AppContext) getApplication();
                     User user = ac.loginVerify(account, pwd, status);
-                    user.setAccount(account);
+                    user.setEmail(account);
                     user.setPwd(pwd);
                     user.setRemember(isRemember);
-                    user.setStatus(status);
+                    user.setOnline_status(status);
                     Result res = user.getValidate();
                     if (res.OK()) {
                         ac.saveLoginInfo(user);//保存登录信息
