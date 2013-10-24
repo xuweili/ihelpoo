@@ -36,7 +36,10 @@
     
     <color name="frame_button_text_nor">#F5F5F5</color>
     <color name="frame_button_text_select">#FFFFFF</color>
-    
+
+    <color name="listitem_content">#313131</color>
+    <color name="listitem_link">#4a7aaa</color>
+
     <color name="listitem_transparent">#00000000</color>
     <color name="listitem_black">#ff000000</color>
     <color name="listitem_white">#ffffffff</color>

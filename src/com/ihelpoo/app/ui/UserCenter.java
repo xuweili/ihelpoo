@@ -395,7 +395,7 @@ public class UserCenter extends BaseActivity {
                 if (action == UIHelper.LISTVIEW_ACTION_REFRESH || action == UIHelper.LISTVIEW_ACTION_SCROLL)
                     isRefresh = true;
                 try {
-                    UserInformation uinfo = ((AppContext) getApplication()).getInformation(_uid, _hisuid, _hisname, pageIndex, isRefresh);
+                    UserInformation uinfo = ((AppContext) getApplication()).getInformation(_hisuid, pageIndex, isRefresh);
                     mUser = uinfo.getUser();
                     msg.what = uinfo.getPageSize();
                     msg.obj = uinfo;

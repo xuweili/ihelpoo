@@ -116,13 +116,13 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
             listItemView.content = (LinkView) convertView.findViewById(R.id.tweet_listitem_content);
             listItemView.image = (ImageView) convertView.findViewById(R.id.tweet_listitem_image);
             listItemView.date = (TextView) convertView.findViewById(R.id.tweet_listitem_date);
-            listItemView.commentCount = (TextView) convertView.findViewById(R.id.tweet_listitem_commentCount);
+            listItemView.commentCount = (TextView) convertView.findViewById(R.id.tweet_listitem_comment_count);
             listItemView.client = (TextView) convertView.findViewById(R.id.tweet_listitem_client);
 
             listItemView.redirect = (ImageView) convertView.findViewById(R.id.tweet_listitem_redirect);
             listItemView.type_gossip = (TextView) convertView.findViewById(R.id.tweet_listitem_type_gossip);
-            listItemView.diffusionCount = (TextView) convertView.findViewById(R.id.tweet_listitem_diffusionCount);
-            listItemView.plusCount = (TextView) convertView.findViewById(R.id.tweet_listitem_plusCount);
+            listItemView.diffusionCount = (TextView) convertView.findViewById(R.id.tweet_listitem_diffusion_count);
+            listItemView.plusCount = (TextView) convertView.findViewById(R.id.tweet_listitem_plus_count);
             listItemView.online = (TextView) convertView.findViewById(R.id.tweet_listitem_online);
             listItemView.academy = (TextView) convertView.findViewById(R.id.tweet_listitem_academy);
             listItemView.rank = (TextView) convertView.findViewById(R.id.tweet_listitem_rank);

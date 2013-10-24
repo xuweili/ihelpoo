@@ -510,25 +510,16 @@ public class ApiClient {
 	/**
 	 * 获取用户信息个人专页（包含该用户的动态信息以及个人信息）
 	 * @param uid 自己的uid
-	 * @param hisuid 被查看用户的uid
-	 * @param hisname 被查看用户的用户名
 	 * @param pageIndex 页面索引
 	 * @param pageSize 每页读取的动态个数
 	 * @return
 	 * @throws AppException
 	 */
-	public static UserInformation information(AppContext appContext, int uid, int hisuid, String hisname, int pageIndex, int pageSize) throws AppException {
+	public static UserInformation information(AppContext appContext, int uid, int pageIndex, int pageSize) throws AppException {
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("uid", uid);
-		params.put("hisuid", hisuid);
-		params.put("hisname", hisname);
 		params.put("pageIndex", pageIndex);
 		params.put("pageSize", pageSize);
-//        params.put("uid", 915579);
-//        params.put("hisuid", 12);
-//        params.put("hisname", "");
-//        params.put("pageIndex", 0);
-//        params.put("pageSize", 20);
 				
 		try{
 			return UserInformation.parse(_post(appContext, URLs.USER_INFORMATION, params, null));

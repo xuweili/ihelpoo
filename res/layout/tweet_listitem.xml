@@ -1,78 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:descendantFocusability="blocksDescendants"
-              android:paddingLeft="6dip"
-              android:paddingRight="6dip"
-              android:paddingTop="8dip"
-              android:paddingBottom="7dip">
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content">
-
-        <ImageView
-                android:id="@+id/tweet_listitem_userface"
-                style="@style/user_face_image"
-                android:layout_width="fill_parent"/>
-
-        <TextView
-                android:id="@+id/tweet_listitem_type_gossip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="@dimen/space_7"
-                android:layout_marginTop="3dp"
-                android:textColor="@color/listitem_gray"/>
-    </LinearLayout>
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:paddingLeft="5dip"
+    android:paddingRight="6dip"
+    android:background="@color/graywhite"
+    android:paddingTop="6dip"
+    android:paddingBottom="6dip">
 
     <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="6dip">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/frame_home_content_area">
 
         <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="17dp"
-                android:layout_gravity="left|center_vertical">
-            <TextView
-                    android:id="@+id/tweet_listitem_username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:includeFontPadding="false"
-                    android:textSize="@dimen/text_size_12"
-                    android:layout_alignParentBottom="true"
-                    android:textColor="@color/listitem_blue"/>
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="left|center_vertical">
 
-            <TextView
-                    android:id="@+id/tweet_listitem_rank"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/space_7"
-                    android:textColor="@color/white"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/tweet_listitem_username"
-                    android:layout_marginLeft="@dimen/space_3"
-                    android:layout_marginBottom="@dimen/space_2"
-                    android:background="@drawable/bg_rounded_rank"
-                    android:paddingLeft="@dimen/space_2"
-                    android:paddingRight="@dimen/space_2"/>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="6dip">
 
-            <TextView
-                    android:id="@+id/tweet_listitem_academy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:includeFontPadding="false"
-                    android:textSize="@dimen/text_size_10"
-                    android:textColor="@color/listitem_gray"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/tweet_listitem_rank"
-                    android:layout_marginLeft="4dp"/>
+                <ImageView
+                    android:id="@+id/tweet_listitem_userface"
+                    style="@style/user_face_image" />
 
-            <TextView
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="6dip">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tweet_listitem_username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:textSize="@dimen/text_size_15"
+                            android:layout_alignParentBottom="true"
+                            android:text="用户名"
+                            android:layout_marginLeft="@dimen/space_3"
+                            android:textColor="@color/listitem_blue" />
+
+                        <TextView
+                            android:id="@+id/tweet_listitem_rank"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/space_12"
+                            android:textColor="@color/white"
+                            android:layout_alignParentBottom="true"
+                            android:layout_toRightOf="@+id/tweet_listitem_username"
+                            android:layout_marginLeft="@dimen/space_3"
+                            android:layout_marginBottom="@dimen/space_2"
+                            android:background="@drawable/bg_rounded_rank"
+                            android:paddingLeft="@dimen/space_3"
+                            android:text="2"
+                            android:paddingRight="@dimen/space_3" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tweet_listitem_type_gossip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_vertical"
+                            android:layout_marginLeft="@dimen/space_3"
+                            android:textSize="@dimen/space_12"
+                            android:text="大二"
+                            android:textColor="@color/listitem_gray" />
+
+                        <TextView
+                            android:id="@+id/tweet_listitem_academy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_vertical"
+                            android:layout_marginLeft="@dimen/space_3"
+                            android:textSize="@dimen/space_12"
+                            android:textColor="@color/listitem_gray"
+                            android:text="[财务管理]"
+                            android:layout_toRightOf="@+id/tweet_listitem_type_gossip" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tweet_listitem_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_10"
+                            android:textColor="@color/listitem_gray"
+                            android:paddingTop="@dimen/space_1"
+                            android:layout_marginLeft="@dimen/space_3"
+                            android:layout_alignParentBottom="true"
+                            android:text="10月22 09:21 来自iPhone客户端"
+                            android:layout_toRightOf="@+id/tweet_listitem_client" />
+
+                        <TextView
+                            android:id="@+id/tweet_listitem_client"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_10"
+                            android:textColor="@color/listitem_gray"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
                     android:id="@+id/tweet_listitem_online"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -82,120 +135,136 @@
                     android:layout_marginRight="5dp"
                     android:layout_gravity="right|center_vertical"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentRight="true" />
+
+            </LinearLayout>
+
 
         </RelativeLayout>
 
         <com.ihelpoo.app.widget.LinkView
-                android:id="@+id/tweet_listitem_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dip"
-                android:textSize="@dimen/text_size_15"
-                android:textColor="@color/listitem_black"
-                android:textColorLink="@color/listitem_blue"
-                android:lineSpacingMultiplier="1.2"
-                android:autoLink="web|email"/>
+            android:id="@+id/tweet_listitem_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dip"
+            android:layout_marginLeft="6dip"
+            android:textSize="@dimen/text_size_15"
+            android:textColor="@color/listitem_content"
+            android:textColorLink="@color/listitem_link"
+            android:lineSpacingMultiplier="1.2"
+            android:text="清江看似在静静的流淌，其实非常湍急。今天我找了个没人的地方脱光就下去了，脚还没踩实，就给冲倒了，可能是人类的求生本能，我赶紧抓住了一块儿石尖才没有被冲走。水非常冷，我还呛了几口水，清江水还稍微有点儿甜。后怕是肯定的，回去的路上两条腿不断的抽筋，疼的我爽极了~~~这算是我在恩施独自干的又一件蠢事吧~~~~"
+            android:autoLink="web|email" />
 
 
         <ImageView
-                android:id="@+id/tweet_listitem_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dip"
-                android:scaleType="fitCenter"
-                android:src="@drawable/image_loading"
-                android:adjustViewBounds="true"
-                android:visibility="gone"/>
+            android:id="@+id/tweet_listitem_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dip"
+            android:layout_marginLeft="5dip"
+            android:scaleType="fitCenter"
+            android:src="@drawable/image_loading"
+            android:adjustViewBounds="true"
+            android:visibility="gone" />
 
         <RelativeLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="17dp"
-                android:layout_marginTop="8dip"
-                >
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="17dp"
+            android:layout_marginTop="8dip">
 
-            <TextView
-                    android:id="@+id/tweet_listitem_client"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_10"
-                    android:textColor="@color/listitem_gray"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"/>
-
-            <TextView
-                    android:id="@+id/tweet_listitem_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_10"
-                    android:textColor="@color/listitem_gray"
-                    android:layout_marginLeft="5dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/tweet_listitem_client"/>
-
-            <TextView
-                    android:id="@+id/tweet_listitem_commentCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_10"
-                    android:textColor="@color/listitem_gray"
-                    android:layout_marginRight="5dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toLeftOf="@+id/tweet_listitem_commentIcon"/>
-
-            <ImageView
-                    android:id="@+id/tweet_listitem_commentIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/widget_comment_count_icon"
-                    android:layout_marginRight="7dp"
-                    android:layout_alignBottom="@+id/tweet_listitem_commentCount"
-                    android:layout_toLeftOf="@+id/tweet_listitem_diffusionCount"
-                    android:paddingBottom="@dimen/space_1"/>
-
-            <TextView
-                    android:id="@+id/tweet_listitem_diffusionCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_10"
-                    android:textColor="@color/listitem_gray"
-                    android:layout_marginRight="5dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toLeftOf="@+id/tweet_listitem_redirect"/>
-
-            <ImageView
-                    android:id="@+id/tweet_listitem_redirect"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/widget_redirect_icon"
-                    android:layout_marginRight="7dp"
-                    android:layout_alignParentBottom="true"
-                    android:paddingBottom="@dimen/space_1"
-                    android:layout_toLeftOf="@+id/tweet_listitem_plusCount"/>
-
-            <TextView
-                android:id="@+id/tweet_listitem_plusCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_10"
-                android:textColor="@color/listitem_gray"
-                android:layout_marginRight="5dp"
-                android:layout_alignParentBottom="true"
-                android:layout_toLeftOf="@+id/tweet_listitem_plus"/>
 
             <ImageView
                 android:id="@+id/tweet_listitem_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/widget_plus_count_icon"
-                android:layout_marginRight="5dp"
+                android:src="@drawable/home_content_count_plus"
+                android:layout_marginRight="3dp"
+                android:adjustViewBounds="true"
+                android:layout_alignParentBottom="true"
+                android:paddingBottom="@dimen/space_1"
+                android:layout_toLeftOf="@+id/tweet_listitem_plus_count" />
+
+            <TextView
+                android:id="@+id/tweet_listitem_plus_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_12"
+                android:textColor="@color/listitem_gray"
+                android:layout_marginRight="15dp"
+                android:layout_alignParentBottom="true"
+                android:text="赞"
+                android:layout_toLeftOf="@+id/tweet_listitem_redirect" />
+
+            <ImageView
+                android:id="@+id/tweet_listitem_redirect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/home_content_count_diffusion"
+                android:layout_marginRight="3dp"
+                android:layout_alignParentBottom="true"
+                android:adjustViewBounds="true"
+                android:paddingBottom="@dimen/space_1"
+                android:layout_toLeftOf="@+id/tweet_listitem_diffusion_count" />
+
+            <TextView
+                android:id="@+id/tweet_listitem_diffusion_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_12"
+                android:textColor="@color/listitem_gray"
+                android:layout_marginRight="15dp"
+                android:layout_alignParentBottom="true"
+                android:text="扩散"
+                android:layout_toLeftOf="@+id/tweet_listitem_comment_icon" />
+
+            <ImageView
+                android:id="@+id/tweet_listitem_comment_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/home_content_count_comment"
+                android:layout_marginRight="3dp"
+                android:adjustViewBounds="true"
+                android:paddingBottom="@dimen/space_1"
+                android:layout_toLeftOf="@+id/tweet_listitem_comment_count" />
+
+            <TextView
+                android:id="@+id/tweet_listitem_comment_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_12"
+                android:textColor="@color/listitem_gray"
+                android:layout_marginRight="15dp"
+                android:layout_alignParentBottom="true"
+                android:text="评论"
+                android:layout_toLeftOf="@+id/tweet_listitem_help" />
+
+
+            <ImageView
+                android:id="@+id/tweet_listitem_help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/home_content_count_help"
+                android:layout_marginRight="3dp"
+                android:layout_alignParentBottom="true"
+                android:paddingBottom="@dimen/space_1"
+                android:layout_toLeftOf="@+id/tweet_listitem_help_count" />
+
+            <TextView
+                android:id="@+id/tweet_listitem_help_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_12"
+                android:textColor="@color/listitem_gray"
+                android:layout_marginRight="4dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:paddingBottom="@dimen/space_1"/>
+                android:text="帮助" />
 
         </RelativeLayout>
 

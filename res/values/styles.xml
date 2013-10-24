@@ -227,12 +227,11 @@
     </style>
    	
     <style name="user_face_image">
-		<item name="android:layout_width">40.0dip</item>
-		<item name="android:layout_height">30.0dip</item>
+		<item name="android:layout_width">60.0dip</item>
+		<item name="android:layout_height">45.0dip</item>
+        <item name="android:paddingTop">1dip</item>
 		<item name="android:scaleType">centerCrop</item>
-		<item name="android:padding">1dip</item>
 		<item name="android:clickable">true</item>
-		<item name="android:background">@drawable/widget_dface_border</item>
 		<item name="android:src">@drawable/widget_dface_loading</item>
     </style> 
     

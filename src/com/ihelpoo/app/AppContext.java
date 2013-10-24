@@ -313,23 +313,18 @@ public class AppContext extends Application {
     /**
      * 获取用户信息个人专页（包含该用户的动态信息以及个人信息）
      *
+     *
      * @param uid       自己的uid
-     * @param hisuid    被查看用户的uid
-     * @param hisname   被查看用户的用户名
      * @param pageIndex 页面索引
      * @return
      * @throws AppException
      */
-    public UserInformation getInformation(int uid, int hisuid, String hisname, int pageIndex, boolean isRefresh) throws AppException {
-        String _hisname = "";
-        if (!StringUtils.isEmpty(hisname)) {
-            _hisname = hisname;
-        }
+    public UserInformation getInformation(int uid, int pageIndex, boolean isRefresh) throws AppException {
         UserInformation userinfo = null;
-        String key = "userinfo_" + uid + "_" + hisuid + "_" + (URLEncoder.encode(hisname)) + "_" + pageIndex + "_" + PAGE_SIZE;
+        String key = "userinfo_" + uid + "_" + pageIndex + "_" + PAGE_SIZE;
         if (isNetworkConnected() && (!isReadDataCache(key) || isRefresh)) {
             try {
-                userinfo = ApiClient.information(this, uid, hisuid, _hisname, pageIndex, PAGE_SIZE);
+                userinfo = ApiClient.information(this, uid, pageIndex, PAGE_SIZE);
                 if (userinfo != null && pageIndex == 0) {
                     Notice notice = userinfo.getNotice();
                     userinfo.setNotice(null);
