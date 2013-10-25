@@ -610,8 +610,8 @@ public class ApiClient {
 		String newUrl = _MakeURL(URLs.FRIENDS_LIST, new HashMap<String, Object>(){{
 			put("uid", uid);
 			put("relation", relation);
-			put("pageIndex", pageIndex);
-			put("pageSize", pageSize);
+			put("page_index", pageIndex);
+			put("page_size", pageSize);
 		}});
 		
 		try{

@@ -217,7 +217,7 @@ public class UserInfo extends BaseActivity {
         public void onClick(View v) {
             int followers = user != null ? user.getFriends_count() : 0;
             int fans = user != null ? user.getFollowers_count() : 0;
-            UIHelper.showUserFriend(v.getContext(), FriendList.TYPE_FANS, followers, fans);
+            UIHelper.showUserFriend(v.getContext(), FriendList.TYPE_FOLLOWER, followers, fans);
         }
     };
 
@@ -225,7 +225,7 @@ public class UserInfo extends BaseActivity {
         public void onClick(View v) {
             int followers = user != null ? user.getFriends_count() : 0;
             int fans = user != null ? user.getFollowers_count() : 0;
-            UIHelper.showUserFriend(v.getContext(), FriendList.TYPE_FOLLOWER, followers, fans);
+            UIHelper.showUserFriend(v.getContext(), FriendList.TYPE_FRIEND, followers, fans);
         }
     };
 

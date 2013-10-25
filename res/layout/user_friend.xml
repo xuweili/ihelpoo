@@ -46,12 +46,12 @@
 	   		android:orientation="horizontal" 
 	   		android:gravity="center_vertical">
 			<Button 
-				android:id="@+id/friend_type_follower"
+				android:id="@+id/friend_type_friends"
 				style="@style/frame_button"
 	         	android:text="@string/user_friend_follower"/>
 	       	<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"/>
 	       	<Button 
-		        android:id="@+id/friend_type_fans"
+		        android:id="@+id/friend_type_followers"
 				style="@style/frame_button"
 	         	android:text="@string/user_friend_fans"/>
 		</LinearLayout>

@@ -99,7 +99,7 @@ public class URLs implements Serializable {
     //	public final static String USER_NOTICE = URL_API_HOST+"action/api/user_notice";
     public final static String USER_NOTICE = "http://192.168.0.108:8080/v1.1/notifications.xml";
     public final static String NOTICE_CLEAR = URL_API_HOST + "action/api/notice_clear";
-    public final static String FRIENDS_LIST = "http://192.168.0.108:8080/v1.1/fos.xml";
+    public final static String FRIENDS_LIST = "http://192.168.0.108:8080/v1.1/buddies.xml";
 //    public final static String FRIENDS_LIST = URL_API_HOST + "action/api/friends_list";
     public final static String FAVORITE_LIST = URL_API_HOST + "action/api/favorite_list";
     public final static String FAVORITE_ADD = URL_API_HOST + "action/api/favorite_add";

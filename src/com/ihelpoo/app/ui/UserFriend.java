@@ -34,7 +34,6 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -48,8 +47,8 @@ public class UserFriend extends BaseActivity {
 	private Button mBack;
 	private ProgressBar mProgressbar;
 	
-	private Button friend_type_fans;
-	private Button friend_type_follower;
+	private Button btn_followers;
+	private Button btn_friends;
 	
 	private PullToRefreshListView mlvFriend;
 	private ListViewFriendAdapter lvFriendAdapter;
@@ -98,25 +97,25 @@ public class UserFriend extends BaseActivity {
     	mBack.setOnClickListener(UIHelper.finish(this));
     	mProgressbar = (ProgressBar)findViewById(R.id.friend_head_progress);
     	
-    	friend_type_fans = (Button)findViewById(R.id.friend_type_fans);
-    	friend_type_follower = (Button)findViewById(R.id.friend_type_follower);
+    	btn_followers = (Button)findViewById(R.id.friend_type_followers);
+    	btn_friends = (Button)findViewById(R.id.friend_type_friends);
     	
-    	friend_type_fans.setOnClickListener(this.friendBtnClick(friend_type_fans,FriendList.TYPE_FANS));
-    	friend_type_follower.setOnClickListener(this.friendBtnClick(friend_type_follower,FriendList.TYPE_FOLLOWER));
+    	btn_followers.setOnClickListener(this.friendBtnClick(btn_followers, FriendList.TYPE_FOLLOWER));
+    	btn_friends.setOnClickListener(this.friendBtnClick(btn_friends, FriendList.TYPE_FRIEND));
     	
     	//设置当前分类
-    	curLvCatalog = getIntent().getIntExtra("friend_type", FriendList.TYPE_FOLLOWER);
-    	if(curLvCatalog == FriendList.TYPE_FANS) {
-        	friend_type_fans.setEnabled(false);
+    	curLvCatalog = getIntent().getIntExtra("friend_type", FriendList.TYPE_FRIEND);
+    	if(curLvCatalog == FriendList.TYPE_FOLLOWER) {
+        	btn_followers.setEnabled(false);
     	} else {
-    		friend_type_follower.setEnabled(false);
+    		btn_friends.setEnabled(false);
     	}
     	
     	//设置粉丝与关注的数量
     	int followers = getIntent().getIntExtra("friend_followers", 0);
     	int fans = getIntent().getIntExtra("friend_fans", 0);
-    	friend_type_follower.setText(getString(R.string.user_friend_follower, followers));
-    	friend_type_fans.setText(getString(R.string.user_friend_fans, fans));
+    	btn_friends.setText(getString(R.string.user_friend_follower, followers));
+    	btn_followers.setText(getString(R.string.user_friend_fans, fans));
     	
     	lvFriend_footer = getLayoutInflater().inflate(R.layout.listview_footer, null);
     	lvFriend_foot_more = (TextView)lvFriend_footer.findViewById(R.id.listview_foot_more);
@@ -138,7 +137,7 @@ public class UserFriend extends BaseActivity {
         		if(friend == null) return;
         		
         		//跳转
-        		UIHelper.showUserCenter(view.getContext(), friend.getUserid(), friend.getName());
+        		UIHelper.showUserCenter(view.getContext(), friend.getUid(), friend.getNickname());
         	}
 		});
     	mlvFriend.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -205,7 +204,7 @@ public class UserFriend extends BaseActivity {
 							for(FriendList.Friend friend1 : list.getFriendlist()){
 								boolean b = false;
 								for(FriendList.Friend friend2 : lvFriendData){
-									if(friend1.getUserid() == friend2.getUserid()){
+									if(friend1.getUid() == friend2.getUid()){
 										b = true;
 										break;
 									}
@@ -289,14 +288,14 @@ public class UserFriend extends BaseActivity {
 	private View.OnClickListener friendBtnClick(final Button btn,final int catalog){
     	return new View.OnClickListener() {
 			public void onClick(View v) {
-		    	if(btn == friend_type_fans)
-		    		friend_type_fans.setEnabled(false);
+		    	if(btn == btn_followers)
+		    		btn_followers.setEnabled(false);
 		    	else
-		    		friend_type_fans.setEnabled(true);
-		    	if(btn == friend_type_follower)
-		    		friend_type_follower.setEnabled(false);
+		    		btn_followers.setEnabled(true);
+		    	if(btn == btn_friends)
+		    		btn_friends.setEnabled(false);
 		    	else
-		    		friend_type_follower.setEnabled(true);		    	
+		    		btn_friends.setEnabled(true);
 		    	
 				lvFriend_foot_more.setText(R.string.load_more);
 				lvFriend_foot_progress.setVisibility(View.GONE);

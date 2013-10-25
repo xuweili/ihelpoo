@@ -103,16 +103,16 @@ public class ListViewFriendAdapter extends BaseAdapter {
 		//设置文字和图片
 		Friend friend = listItems.get(position);
 		
-		listItemView.name.setText(friend.getName());
+		listItemView.name.setText(friend.getNickname());
 		listItemView.name.setTag(friend);//设置隐藏参数(实体类)
-		listItemView.expertise.setText(friend.getExpertise());
+		listItemView.expertise.setText("0".equals(friend.getOnline_status())? "":"在线");
 		
 		if(friend.getGender() == 1)
 			listItemView.gender.setImageResource(R.drawable.widget_gender_man);
 		else
 			listItemView.gender.setImageResource(R.drawable.widget_gender_woman);
 		
-		String faceURL = friend.getFace();
+		String faceURL = friend.getAvatar_url();
 		if(faceURL.endsWith("portrait.gif") || StringUtils.isEmpty(faceURL)){
 			listItemView.face.setImageResource(R.drawable.widget_dface);
 		}else{
