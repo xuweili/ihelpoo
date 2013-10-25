@@ -139,7 +139,6 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:button="@null"
-            android:checked="true"
             android:drawableLeft="@drawable/register_checkbox_bg"
             android:paddingLeft="6dp"
             android:text="隐身登录"

@@ -71,10 +71,8 @@ public class Setting extends PreferenceActivity {
 		localListView.setBackgroundColor(0);
 		localListView.setCacheColorHint(0);
 		((ViewGroup) localListView.getParent()).removeView(localListView);
-		ViewGroup localViewGroup = (ViewGroup) getLayoutInflater().inflate(
-				R.layout.setting, null);
-		((ViewGroup) localViewGroup.findViewById(R.id.setting_content))
-				.addView(localListView, -1, -1);
+		ViewGroup localViewGroup = (ViewGroup) getLayoutInflater().inflate(R.layout.setting, null);
+		((ViewGroup) localViewGroup.findViewById(R.id.setting_content)).addView(localListView, -1, -1);
 		setContentView(localViewGroup);
 
 		final AppContext ac = (AppContext) getApplication();

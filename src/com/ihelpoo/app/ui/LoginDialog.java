@@ -271,6 +271,7 @@ public class LoginDialog extends BaseActivity {
                         msg.obj = user;
                     } else {
                         ac.cleanLoginInfo();//清除登录信息
+                        ac.cleanAccountInfo();
                         msg.what = 0;//失败
                         msg.obj = res.getErrorMessage();
                     }

@@ -238,7 +238,12 @@ public class AppContext extends Application {
     /**
      * 用户注销
      */
-    public void Logout() {
+    public void logout() {
+        User loginUser = getLoginInfo();
+        if(!loginUser.isRemember()){
+            cleanAccountInfo();
+        }
+        cleanLoginInfo();//清除登录信息
         ApiClient.cleanCookie();
         this.cleanCookie();
         this.login = false;
@@ -257,11 +262,11 @@ public class AppContext extends Application {
      */
     public void initLoginInfo() {
         User loginUser = getLoginInfo();
-        if (loginUser != null && loginUser.getUid() > 0 && loginUser.isRemember()) {
+        if (loginUser.getUid() > 0 && loginUser.isRemember()) {
             this.loginUid = loginUser.getUid();
             this.login = true;
         } else {
-            this.Logout();
+            this.logout();
         }
     }
 
@@ -1336,7 +1341,6 @@ public class AppContext extends Application {
     public void saveLoginInfo(final User user) {
         this.loginUid = user.getUid();
         this.login = true;
-        //TODO, if any different, here it will exit with warning
         setProperties(new Properties() {{
             setProperty("user.uid", String.valueOf(user.getUid()));
             setProperty("user.name", user.getNickname());
@@ -1357,8 +1361,28 @@ public class AppContext extends Application {
     public void cleanLoginInfo() {
         this.loginUid = 0;
         this.login = false;
-        removeProperty("user.uid", "user.name", "user.face", "user.account", "user.pwd",
-                "user.location", "user.followers", "user.fans", "user.score", "user.isRemember");
+        removeProperty(
+                "user.uid",
+                "user.name",
+                "user.face",
+                "user.location",
+                "user.followers",
+                "user.fans",
+                "user.score"
+        );
+    }
+
+
+    /**
+     * 清除登录信息
+     */
+    public void cleanAccountInfo() {
+        this.loginUid = 0;
+        this.login = false;
+        removeProperty(
+                "user.account",
+                "user.pwd"
+        );
     }
 
     /**

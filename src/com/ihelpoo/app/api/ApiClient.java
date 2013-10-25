@@ -55,7 +55,6 @@ import com.ihelpoo.app.bean.User;
 import com.ihelpoo.app.bean.UserInformation;
 import com.ihelpoo.app.common.DeviceUtil;
 import com.ihelpoo.app.common.StringUtils;
-import com.ihelpoo.app.ui.NavWelcome;
 
 import org.apache.commons.httpclient.Cookie;
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
@@ -71,7 +70,6 @@ import org.apache.commons.httpclient.methods.multipart.Part;
 import org.apache.commons.httpclient.methods.multipart.StringPart;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -232,7 +230,7 @@ public class ApiClient {
 			try {
 				Result res = Result.parse(new ByteArrayInputStream(responseBody.getBytes()));
 				if(res.getErrorCode() == 0){
-					appContext.Logout();
+					appContext.logout();
 					appContext.getUnLoginHandler().sendEmptyMessage(1);
 				}
 			} catch (Exception e) {
@@ -338,7 +336,7 @@ public class ApiClient {
 			try {
 				Result res = Result.parse(new ByteArrayInputStream(responseBody.getBytes()));	
 				if(res.getErrorCode() == 0){
-					appContext.Logout();
+					appContext.logout();
 					appContext.getUnLoginHandler().sendEmptyMessage(1);
 				}
 			} catch (Exception e) {
