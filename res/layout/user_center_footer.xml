@@ -6,27 +6,37 @@
 	android:gravity="center_horizontal"
 	android:background="@drawable/widget_bar_bg_n">
 	<RadioButton
-	    android:id="@+id/user_center_footbar_relation"
+	    android:id="@+id/user_center_footbar_follow"
 	    style="@style/user_center_footbar"
 	    android:layout_marginLeft="5dip"
-	    android:drawableLeft="@drawable/widget_bar_relation_add"
+	    android:drawableLeft="@drawable/widget_bar_relation_follow"
 	    android:text="圈Ta"/>
 	<ImageView
+        android:id="@+id/user_center_footbar_follow_cut"
 		style="@style/main_footbar_cutline"
 		android:src="@drawable/widget_bar_cut_off"/>
+    <RadioButton
+        android:id="@+id/user_center_footbar_shield"
+        style="@style/user_center_footbar"
+        android:layout_marginLeft="5dip"
+        android:drawableLeft="@drawable/widget_bar_relation_shield"
+        android:text="屏蔽Ta"/>
+    <ImageView
+        style="@style/main_footbar_cutline"
+        android:src="@drawable/widget_bar_cut_off"/>
+    <RadioButton
+        android:id="@+id/user_center_footbar_atme"
+        style="@style/user_center_footbar"
+        android:layout_marginLeft="5dip"
+        android:drawableLeft="@drawable/widget_bar_atme"
+        android:text="提到Ta"/>
+    <ImageView
+        style="@style/main_footbar_cutline"
+        android:src="@drawable/widget_bar_cut_off"/>
 	<RadioButton
 	    android:id="@+id/user_center_footbar_message"
 	    style="@style/user_center_footbar"
 	    android:layout_marginLeft="1dip"
 	    android:drawableLeft="@drawable/widget_bar_mail"
 	    android:text="悄悄话"/>
-	<ImageView
-		style="@style/main_footbar_cutline"
-		android:src="@drawable/widget_bar_cut_off"/>
-	<RadioButton
-	    android:id="@+id/user_center_footbar_atme"
-	    style="@style/user_center_footbar"
-	    android:layout_marginLeft="5dip"
-	    android:drawableLeft="@drawable/widget_bar_atme"
-	    android:text="提到Ta"/>
 </LinearLayout>

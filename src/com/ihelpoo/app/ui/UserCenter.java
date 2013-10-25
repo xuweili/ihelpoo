@@ -22,7 +22,6 @@ import com.ihelpoo.app.AppException;
 import com.ihelpoo.app.adapter.ListViewBlogAdapter;
 import com.ihelpoo.app.adapter.ListViewWordAdapter;
 import com.ihelpoo.app.bean.User;
-import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.widget.PullToRefreshListView;
 import com.ihelpoo.app.AppContext;
@@ -45,6 +44,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -61,7 +61,8 @@ public class UserCenter extends BaseActivity {
     private ImageView mRefresh;
     private TextView mHeadTitle;
     private ProgressBar mProgressbar;
-    private RadioButton mRelation;
+    private RadioButton mFollow;
+    private RadioButton mShield;
     private RadioButton mMessage;
     private RadioButton mAtme;
     private UserInfoDialog mUserinfoDialog;
@@ -131,7 +132,8 @@ public class UserCenter extends BaseActivity {
         mRefresh = (ImageView) findViewById(R.id.user_center_refresh);
         mHeadTitle = (TextView) findViewById(R.id.user_center_head_title);
         mProgressbar = (ProgressBar) findViewById(R.id.user_center_head_progress);
-        mRelation = (RadioButton) findViewById(R.id.user_center_footbar_relation);
+        mFollow = (RadioButton) findViewById(R.id.user_center_footbar_follow);
+        mShield = (RadioButton) findViewById(R.id.user_center_footbar_shield);
         mMessage = (RadioButton) findViewById(R.id.user_center_footbar_message);
         mAtme = (RadioButton) findViewById(R.id.user_center_footbar_atme);
 
@@ -440,26 +442,42 @@ public class UserCenter extends BaseActivity {
 
     // 0 没圈没屏蔽，1：圈， 2：屏蔽 3: 自己
     private void loadUserRelation(int relation) {
+        mAtme.setText("提到Ta");
         switch (relation) {
             case User.RELATION_TYPE_SHIELD:
-                mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_del, 0, 0, 0);
-                mRelation.setText("取消屏蔽");
+                mShield.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_unshield, 0, 0, 0);
+                mShield.setVisibility(View.VISIBLE);
+                mFollow.setVisibility(View.GONE);
+                mMessage.setVisibility(View.VISIBLE);
+                mShield.setText("取消屏蔽");
                 break;
             case User.RELATION_TYPE_FRIEND:
-                mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_del, 0, 0, 0);
-                mRelation.setText("取消圈");
-                break;
-            case User.RELATION_TYPE_FANS_ME:
-                mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_add, 0, 0, 0);
-                mRelation.setText("圈Ta");
+                mFollow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_unfollow, 0, 0, 0);
+                mShield.setVisibility(View.GONE);
+                mFollow.setVisibility(View.VISIBLE);
+                mMessage.setVisibility(View.VISIBLE);
+                mFollow.setText("取消圈");
                 break;
             case User.RELATION_TYPE_NULL:
-                mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_add, 0, 0, 0);
-                mRelation.setText("圈Ta");//屏蔽他
+                mFollow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_follow, 0, 0, 0);
+                mFollow.setVisibility(View.VISIBLE);
+                mShield.setVisibility(View.VISIBLE);
+                mMessage.setVisibility(View.VISIBLE);
+                mShield.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_shield, 0, 0, 0);
+                mFollow.setText("圈Ta");//屏蔽他
+                mShield.setText("屏蔽Ta");
+                break;
+            case User.RELATION_TYPE_MYSELF:
+                mFollow.setVisibility(View.GONE);
+                mShield.setVisibility(View.GONE);
+                mMessage.setVisibility(View.GONE);
+                mAtme.setText("提到自己");
                 break;
         }
-        if (relation > 0)
-            mRelation.setOnClickListener(relationClickListener);
+        if (relation >= 0) {
+            mFollow.setOnClickListener(relationClickListener);
+            mShield.setOnClickListener(relationClickListener);
+        }
     }
 
     private void lvActiveHandleMessage(Message msg) {
@@ -675,7 +693,7 @@ public class UserCenter extends BaseActivity {
         }
     };
     private View.OnClickListener relationClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
+        public void onClick(final View v) {
             if (mUser == null) return;
             //判断登录
             final AppContext ac = (AppContext) getApplication();
@@ -686,29 +704,40 @@ public class UserCenter extends BaseActivity {
 
             final Handler handler = new Handler() {
                 public void handleMessage(Message msg) {
+                    mMessage.setVisibility(View.VISIBLE);
                     if (msg.what == 1) {
                         Result res = (Result) msg.obj;
                         if (res.OK()) {
                             switch (mUser.getRelation()) {
                                 case User.RELATION_TYPE_SHIELD:
-                                    mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_add, 0, 0, 0);
-                                    mRelation.setText("圈Ta");
-                                    mUser.setRelation(User.RELATION_TYPE_FANS_ME);
-                                    break;
                                 case User.RELATION_TYPE_FRIEND:
-                                    mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_add, 0, 0, 0);
-                                    mRelation.setText("圈Ta");
                                     mUser.setRelation(User.RELATION_TYPE_NULL);
+                                    mShield.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_shield, 0, 0, 0);
+                                    mShield.setText("屏蔽Ta");
+                                    mShield.setVisibility(View.VISIBLE);
+                                    mFollow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_follow, 0, 0, 0);
+                                    mFollow.setText("圈Ta");
+                                    mFollow.setVisibility(View.VISIBLE);
                                     break;
-                                case User.RELATION_TYPE_FANS_ME:
-                                    mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_del, 0, 0, 0);
-                                    mRelation.setText("取消互粉");
-                                    mUser.setRelation(User.RELATION_TYPE_SHIELD);
+                                case User.RELATION_TYPE_MYSELF:
+                                    mFollow.setVisibility(View.GONE);
+                                    mShield.setVisibility(View.GONE);
+                                    mMessage.setVisibility(View.GONE);
                                     break;
                                 case User.RELATION_TYPE_NULL:
-                                    mRelation.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_del, 0, 0, 0);
-                                    mRelation.setText("取消圈");
-                                    mUser.setRelation(User.RELATION_TYPE_FRIEND);
+                                    if (mFollow.getId() == ((RadioButton) v).getId()) {
+                                        mShield.setVisibility(View.GONE);
+                                        mFollow.setVisibility(View.VISIBLE);
+                                        mFollow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_unfollow, 0, 0, 0);
+                                        mFollow.setText("取消圈");
+                                        mUser.setRelation(User.RELATION_TYPE_FRIEND);
+                                    } else if (mShield.getId() == ((RadioButton) v).getId()) {
+                                        mShield.setVisibility(View.VISIBLE);
+                                        mFollow.setVisibility(View.GONE);
+                                        mShield.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_unshield, 0, 0, 0);
+                                        mShield.setText("取消屏蔽");
+                                        mUser.setRelation(User.RELATION_TYPE_SHIELD);
+                                    }
                                     break;
                             }
                         }
@@ -737,19 +766,20 @@ public class UserCenter extends BaseActivity {
             switch (mUser.getRelation()) {
                 case User.RELATION_TYPE_SHIELD:
                     dialogTitle = "确定取消屏蔽吗？";
-                    relationAction = User.RELATION_ACTION_DELETE;
+                    relationAction = User.RELATION_ACTION_UNSHIELD;
                     break;
                 case User.RELATION_TYPE_FRIEND:
                     dialogTitle = "确定取消圈吗？";
-                    relationAction = User.RELATION_ACTION_DELETE;
-                    break;
-                case User.RELATION_TYPE_FANS_ME:
-                    dialogTitle = "确定圈Ta吗？";
-                    relationAction = User.RELATION_ACTION_ADD;
+                    relationAction = User.RELATION_ACTION_UNFOLLOW;
                     break;
                 case User.RELATION_TYPE_NULL:
-                    dialogTitle = "确定圈Ta吗？";
-                    relationAction = User.RELATION_ACTION_ADD;
+                    if (mFollow.getId() == ((RadioButton) v).getId()) {
+                        dialogTitle = "确定圈Ta吗？";
+                        relationAction = User.RELATION_ACTION_FOLLOW;
+                    } else if (mShield.getId() == ((RadioButton) v).getId()) {
+                        dialogTitle = "确定屏蔽Ta吗？";
+                        relationAction = User.RELATION_ACTION_SHIELD;
+                    }
                     break;
                 default:
                     dialogTitle = "未知操作";

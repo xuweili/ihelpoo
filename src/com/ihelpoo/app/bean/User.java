@@ -33,13 +33,16 @@ import android.util.Xml;
  */
 public class User extends Base {
 
-    public final static int RELATION_ACTION_DELETE = 0x05;//取消关注
-    public final static int RELATION_ACTION_ADD = 0x06;//加关注
+    public final static int RELATION_ACTION_UNFOLLOW = 0x00;//取消圈
+    public final static int RELATION_ACTION_FOLLOW = 0x01;//加关注
+    public final static int RELATION_ACTION_UNSHIELD = 0x02;//取消屏蔽
+    public final static int RELATION_ACTION_SHIELD = 0x03;//取消屏蔽
+
 
     public final static int RELATION_TYPE_SHIELD = 0x02;//双方互为粉丝
     public final static int RELATION_TYPE_FRIEND = 0x01;//圈了他
     public final static int RELATION_TYPE_NULL = 0x00;//互不关注
-    public final static int RELATION_TYPE_FANS_ME = 0x04;//只有他关注我
+    public final static int RELATION_TYPE_MYSELF = 0x03;//只有他关注我
 
 
     private int uid;

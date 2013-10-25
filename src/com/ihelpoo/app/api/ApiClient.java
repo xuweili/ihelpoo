@@ -545,8 +545,8 @@ public class ApiClient {
 	public static Result updateRelation(AppContext appContext, int uid, int hisuid, int newrelation) throws AppException {
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("uid", uid);
-		params.put("hisuid", hisuid);
-		params.put("newrelation", newrelation);
+		params.put("his_uid", hisuid);
+		params.put("relation", newrelation);
 				
 		try{
 			return Result.parse(_post(appContext, URLs.USER_UPDATERELATION, params, null));		
