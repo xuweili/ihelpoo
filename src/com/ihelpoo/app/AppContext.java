@@ -290,7 +290,7 @@ public class AppContext extends Application {
         if (isNetworkConnected() && (!isReadDataCache(key) || isRefresh)) {
             try {
                 myinfo = ApiClient.myInformation(this, loginUid);
-                if (myinfo != null && myinfo.getName().length() > 0) {
+                if (myinfo != null && myinfo.getAcademy_name().length() > 0) {
                     Notice notice = myinfo.getNotice();
                     myinfo.setNotice(null);
                     myinfo.setCacheKey(key);

@@ -136,7 +136,7 @@ public class User extends Base {
                             } else if (tag.equalsIgnoreCase("academy_name")) {
                                 user.setAcademy_name(xmlParser.nextText());
                             } else if (tag.equalsIgnoreCase("major_name")) {
-                                user.setAcademy_name(xmlParser.nextText());
+                                user.setMajor_name(xmlParser.nextText());
                             } else if (tag.equalsIgnoreCase("school_domain")) {
                                 user.setSchool_domain(xmlParser.nextText());
                             } else if (tag.equalsIgnoreCase("level")) {

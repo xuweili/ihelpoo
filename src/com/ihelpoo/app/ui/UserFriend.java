@@ -45,7 +45,7 @@ import android.widget.TextView;
  */
 public class UserFriend extends BaseActivity {
 
-	private ImageView mBack;
+	private Button mBack;
 	private ProgressBar mProgressbar;
 	
 	private Button friend_type_fans;
@@ -94,7 +94,7 @@ public class UserFriend extends BaseActivity {
 	//初始化视图控件
     private void initView()
     {	
-    	mBack = (ImageView)findViewById(R.id.friend_head_back);
+    	mBack = (Button)findViewById(R.id.friend_head_back);
     	mBack.setOnClickListener(UIHelper.finish(this));
     	mProgressbar = (ProgressBar)findViewById(R.id.friend_head_progress);
     	

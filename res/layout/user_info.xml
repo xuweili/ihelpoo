@@ -13,13 +13,18 @@
 	   	android:gravity="center_vertical"
 	   	android:orientation="horizontal"
 	   	android:background="@drawable/head_bg">
-	   	<ImageView 
-	   		android:id="@+id/user_info_back"
-		   	android:layout_width="wrap_content" 
-		   	android:layout_height="wrap_content" 
-		   	android:layout_gravity="left|center"
-		   	android:clickable="true" 
-		   	android:background="@drawable/head_back"/>
+        <Button
+            android:id="@+id/user_info_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:clickable="true"
+            android:background="@drawable/head_back"
+            android:textColor="@color/listitem_white"
+            android:width="50dip"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingBottom="2dip"
+            android:text="返回"/>
 	   	<TextView 
 	   		style="@style/detail_head_title"
 	   		android:layout_gravity="center"
@@ -68,7 +73,7 @@
 			        android:scaleType="fitCenter"
 			        android:src="@drawable/widget_gender_man"/>
 			   	<TextView
-		       		android:id="@+id/user_info_username"
+		       		android:id="@+id/user_info_nickname"
 		    		android:layout_width="wrap_content"
 		           	android:layout_height="wrap_content"
 		           	android:layout_marginBottom="10dip"
@@ -77,20 +82,23 @@
 		           	android:textSize="@dimen/text_size_15"
 		            android:textColor="@color/author_text"/>
 			    <Button
-			    	android:id="@+id/user_info_editer"
+			    	android:id="@+id/user_info_change_avatar"
 			        android:layout_width="wrap_content"
 			    	android:layout_height="wrap_content"
 			    	android:layout_alignParentRight="true"
 			    	android:layout_alignParentBottom="true"
 			    	android:background="@drawable/login_btn_selector"
+                    android:paddingLeft="@dimen/space_10"
+                    android:paddingRight="@dimen/space_10"
 			    	android:textSize="@dimen/text_size_12"
+                    android:textColor="@color/white"
 			        android:text="编辑头像"/>
 		    </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/user_info_favorites_ll"
            		android:layout_width="fill_parent"
-	            android:layout_height="wrap_content"
+	            android:layout_height="40dip"
 	            android:layout_marginTop="10dip"
 	            android:gravity="center_vertical"
 	            android:focusable="true"
@@ -157,7 +165,7 @@
 	        <LinearLayout
 	            android:id="@+id/user_info_fans_ll"
             	android:layout_width="fill_parent"
-	            android:layout_height="wrap_content"
+	            android:layout_height="40dip"
 	            android:gravity="center_vertical"
 	            android:focusable="true"
 	            android:clickable="true"
@@ -190,7 +198,7 @@
 
             <LinearLayout
            		android:layout_width="fill_parent"
-	            android:layout_height="wrap_content"
+                android:layout_height="35dip"
 	            android:layout_marginTop="10dip"
 	            android:gravity="center_vertical"
 	            android:focusable="true"
@@ -204,9 +212,9 @@
 	                android:textSize="@dimen/text_size_15"
 	                android:textStyle="bold"
 	                android:textColor="@color/grayslate"
-	                android:text="加入时间：" />
+	                android:text="登录名：" />
                 <TextView
-               		android:id="@+id/user_info_jointime"
+               		android:id="@+id/user_info_account"
 	                android:layout_width="fill_parent"
 	                android:layout_height="wrap_content"
 	                android:layout_weight="1"
@@ -215,57 +223,135 @@
 	                android:textSize="@dimen/text_size_14"
 	                android:textColor="#ff000000"/>
             </LinearLayout>
-	        <LinearLayout
-            	android:layout_width="fill_parent"
-	            android:layout_height="wrap_content"
-	            android:gravity="center_vertical"
-	            android:focusable="true"
-	            android:clickable="true"
-	            android:background="@drawable/table_mid_bg">
-	            <TextView
-           			android:layout_width="wrap_content"
-                  	android:layout_height="wrap_content"
-                  	android:layout_marginLeft="10dip"
-                  	android:duplicateParentState="true"
-                  	android:textSize="@dimen/text_size_15"
-                	android:textStyle="bold"
-                  	android:textColor="@color/grayslate"
-                  	android:text="等级：" />
-             	<TextView
-               		android:id="@+id/user_info_from"
-                  	android:layout_width="fill_parent"
-                  	android:layout_height="wrap_content"
-                  	android:layout_weight="1"
-                  	android:layout_marginRight="10dip"
-                  	android:duplicateParentState="true"
-                  	android:textSize="@dimen/text_size_14"
-                  	android:textColor="#ff000000"/>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="35dip"
+                android:gravity="center_vertical"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/table_mid_bg">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:duplicateParentState="true"
+                    android:textSize="@dimen/text_size_15"
+                    android:textStyle="bold"
+                    android:textColor="@color/grayslate"
+                    android:text="入学年份：" />
+                <TextView
+                    android:id="@+id/user_info_enrol"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dip"
+                    android:duplicateParentState="true"
+                    android:textSize="@dimen/text_size_14"
+                    android:textColor="#ff000000"/>
             </LinearLayout>
-	        <LinearLayout
-            	android:layout_width="fill_parent"
-	            android:layout_height="wrap_content"
-	            android:gravity="center_vertical"
-	            android:focusable="true"
-	            android:clickable="true"
-	            android:background="@drawable/table_mid_bg">
-	            <TextView
-           			android:layout_width="wrap_content"
-                  	android:layout_height="wrap_content"
-                  	android:layout_marginLeft="10dip"
-                  	android:duplicateParentState="true"
-                  	android:textSize="@dimen/text_size_15"
-                	android:textStyle="bold"
-                  	android:textColor="@color/grayslate"
-                  	android:text="活跃：" />
-             	<TextView
-               		android:id="@+id/user_info_devplatform"
-                  	android:layout_width="fill_parent"
-                  	android:layout_height="wrap_content"
-                  	android:layout_weight="1"
-                  	android:layout_marginRight="10dip"
-                  	android:duplicateParentState="true"
-                  	android:textSize="@dimen/text_size_14"
-                  	android:textColor="#ff000000"/>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="35dip"
+                android:gravity="center_vertical"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/table_mid_bg">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:duplicateParentState="true"
+                    android:textSize="@dimen/text_size_15"
+                    android:textStyle="bold"
+                    android:textColor="@color/grayslate"
+                    android:text="学校：" />
+                <TextView
+                    android:id="@+id/user_info_school"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dip"
+                    android:duplicateParentState="true"
+                    android:textSize="@dimen/text_size_14"
+                    android:textColor="#ff000000"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="35dip"
+                android:gravity="center_vertical"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/table_mid_bg">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:duplicateParentState="true"
+                    android:textSize="@dimen/text_size_15"
+                    android:textStyle="bold"
+                    android:textColor="@color/grayslate"
+                    android:text="学院：" />
+                <TextView
+                    android:id="@+id/user_info_academy"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dip"
+                    android:duplicateParentState="true"
+                    android:textSize="@dimen/text_size_14"
+                    android:textColor="#ff000000"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="35dip"
+                android:gravity="center_vertical"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/table_mid_bg">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:duplicateParentState="true"
+                    android:textSize="@dimen/text_size_15"
+                    android:textStyle="bold"
+                    android:textColor="@color/grayslate"
+                    android:text="专业：" />
+                <TextView
+                    android:id="@+id/user_info_major"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dip"
+                    android:duplicateParentState="true"
+                    android:textSize="@dimen/text_size_14"
+                    android:textColor="#ff000000"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="35dip"
+                android:gravity="center_vertical"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="@drawable/table_mid_bg">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:duplicateParentState="true"
+                    android:textSize="@dimen/text_size_15"
+                    android:textStyle="bold"
+                    android:textColor="@color/grayslate"
+                    android:text="寝室楼栋：" />
+                <TextView
+                    android:id="@+id/user_info_dorm"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dip"
+                    android:duplicateParentState="true"
+                    android:textSize="@dimen/text_size_14"
+                    android:textColor="#ff000000"/>
             </LinearLayout>
 	        <LinearLayout
             	android:layout_width="fill_parent"
@@ -282,16 +368,17 @@
 	                android:textSize="@dimen/text_size_15"
 	                android:textStyle="bold"
 	                android:textColor="@color/grayslate"
-	                android:text="连续登录：" />
+	                android:text="自我简介：" />
                	<TextView
-              		android:id="@+id/user_info_expertise"
+              		android:id="@+id/user_info_self"
 	                android:layout_width="fill_parent"
 	                android:layout_height="wrap_content"
 	                android:layout_weight="1"
 	                android:layout_marginRight="10dip"
 	                android:duplicateParentState="true"
 	                android:textSize="@dimen/text_size_14" 
-	                android:textColor="#ff000000"/>
+	                android:textColor="#ff000000"
+                    />
 	        </LinearLayout>
         </LinearLayout>	
     </ScrollView>
