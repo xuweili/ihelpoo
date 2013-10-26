@@ -148,22 +148,26 @@ public class CommentList extends Entity{
 			    		}
 			            else if(commlist.getNotice() != null)
 			    		{
-			    			if(tag.equalsIgnoreCase("atmeCount"))
-				            {			      
-			    				commlist.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("msgCount"))
-				            {			            	
-				            	commlist.getNotice().setMsgCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("reviewCount"))
-				            {			            	
-				            	commlist.getNotice().setReviewCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("newFansCount"))
-				            {			            	
-				            	commlist.getNotice().setNewFansCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
+                            if(tag.equalsIgnoreCase("systemCount"))
+                            {
+                                commlist.getNotice().setSystemCount(StringUtils.toInt(xmlParser.nextText(), 0));
+                            }
+                            else if(tag.equalsIgnoreCase("atmeCount"))
+                            {
+                                commlist.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("commentCount"))
+                            {
+                                commlist.getNotice().setCommentCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("activeCount"))
+                            {
+                                commlist.getNotice().setActiveCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("chatCount"))
+                            {
+                                commlist.getNotice().setChatCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
 			    		}
 			    		break;
 			    	case XmlPullParser.END_TAG:	

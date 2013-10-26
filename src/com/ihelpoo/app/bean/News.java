@@ -273,22 +273,26 @@ public class News extends Entity{
 				    		}
 				            else if(news.getNotice() != null)
 				    		{
-				    			if(tag.equalsIgnoreCase("atmeCount"))
-					            {			      
-				    				news.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("msgCount"))
-					            {			            	
-					            	news.getNotice().setMsgCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("reviewCount"))
-					            {			            	
-					            	news.getNotice().setReviewCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("newFansCount"))
-					            {			            	
-					            	news.getNotice().setNewFansCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
+                                if(tag.equalsIgnoreCase("systemCount"))
+                                {
+                                    news.getNotice().setSystemCount(StringUtils.toInt(xmlParser.nextText(), 0));
+                                }
+                                else if(tag.equalsIgnoreCase("atmeCount"))
+                                {
+                                    news.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("commentCount"))
+                                {
+                                    news.getNotice().setCommentCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("activeCount"))
+                                {
+                                    news.getNotice().setActiveCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("chatCount"))
+                                {
+                                    news.getNotice().setChatCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
 				    		}
 			    		}
 			    		break;

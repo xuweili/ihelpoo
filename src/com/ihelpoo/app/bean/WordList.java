@@ -35,11 +35,11 @@ import android.util.Xml;
  */
 public class WordList extends Entity{
 
-	public final static int CATALOG_SYSTEM = 1;//最新
-	public final static int CATALOG_ATME = 2;//@我
-	public final static int CATALOG_COMMENT = 3;//评论
-	public final static int CATALOG_ACTIVE = 4;//我自己
-    public final static int CATALOG_CHAT = 0;//我自己
+	public final static int CATALOG_SYSTEM = 0;//最新
+	public final static int CATALOG_ATME = 1;//@我
+	public final static int CATALOG_COMMENT = 2;//评论
+	public final static int CATALOG_ACTIVE = 3;//我自己
+    public final static int CATALOG_CHAT = 4;//我自己
 	
 	private int pageSize;
 	private int activeCount;
@@ -181,22 +181,26 @@ public class WordList extends Entity{
 			    		}
 			            else if(activelist.getNotice() != null)
 			    		{
-			    			if(tag.equalsIgnoreCase("atmeCount"))
-				            {			      
-			    				activelist.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("msgCount"))
-				            {			            	
-				            	activelist.getNotice().setMsgCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("reviewCount"))
-				            {			            	
-				            	activelist.getNotice().setReviewCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("newFansCount"))
-				            {			            	
-				            	activelist.getNotice().setNewFansCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
+                            if(tag.equalsIgnoreCase("systemCount"))
+                            {
+                                activelist.getNotice().setSystemCount(StringUtils.toInt(xmlParser.nextText(), 0));
+                            }
+                            else if(tag.equalsIgnoreCase("atmeCount"))
+                            {
+                                activelist.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("commentCount"))
+                            {
+                                activelist.getNotice().setCommentCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("activeCount"))
+                            {
+                                activelist.getNotice().setActiveCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("chatCount"))
+                            {
+                                activelist.getNotice().setChatCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
 			    		}
 			    		break;
 			    	case XmlPullParser.END_TAG:	

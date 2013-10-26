@@ -376,13 +376,15 @@ public class AppContext extends Application {
     /**
      * 清空通知消息
      *
+     *
      * @param uid
      * @param type 1:@我的信息 2:未读消息 3:评论个数 4:新粉丝个数
+     * @param fromUid
      * @return
      * @throws AppException
      */
-    public Result noticeClear(int uid, int type) throws AppException {
-        return ApiClient.noticeClear(this, uid, type);
+    public Result noticeClear(int uid, int type, int fromUid) throws AppException {
+        return ApiClient.noticeClear(this, uid, type, fromUid);
     }
 
     /**

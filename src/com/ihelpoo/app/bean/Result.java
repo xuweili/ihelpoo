@@ -150,22 +150,26 @@ public class Result extends Base {
 			    		}
 			            else if(res.getNotice() != null)
 			    		{
-			    			if(tag.equalsIgnoreCase("atmeCount"))
-				            {			      
-			    				res.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("msgCount"))
-				            {			            	
-				            	res.getNotice().setMsgCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("reviewCount"))
-				            {			            	
-				            	res.getNotice().setReviewCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("newFansCount"))
-				            {			            	
-				            	res.getNotice().setNewFansCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
+                            if(tag.equalsIgnoreCase("systemCount"))
+                            {
+                                res.getNotice().setSystemCount(StringUtils.toInt(xmlParser.nextText(), 0));
+                            }
+                            else if(tag.equalsIgnoreCase("atmeCount"))
+                            {
+                                res.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("commentCount"))
+                            {
+                                res.getNotice().setCommentCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("activeCount"))
+                            {
+                                res.getNotice().setActiveCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("chatCount"))
+                            {
+                                res.getNotice().setChatCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
 			    		}
 					}
 					break;

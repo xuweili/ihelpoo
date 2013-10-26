@@ -117,22 +117,26 @@ public class FavoriteList extends Entity{
 			    		}
 			            else if(favoritelist.getNotice() != null)
 			    		{
-			    			if(tag.equalsIgnoreCase("atmeCount"))
-				            {			      
-			    				favoritelist.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("msgCount"))
-				            {			            	
-				            	favoritelist.getNotice().setMsgCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("reviewCount"))
-				            {			            	
-				            	favoritelist.getNotice().setReviewCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("newFansCount"))
-				            {			            	
-				            	favoritelist.getNotice().setNewFansCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
+                            if(tag.equalsIgnoreCase("systemCount"))
+                            {
+                                favoritelist.getNotice().setSystemCount(StringUtils.toInt(xmlParser.nextText(), 0));
+                            }
+                            else if(tag.equalsIgnoreCase("atmeCount"))
+                            {
+                                favoritelist.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("commentCount"))
+                            {
+                                favoritelist.getNotice().setCommentCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("activeCount"))
+                            {
+                                favoritelist.getNotice().setActiveCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("chatCount"))
+                            {
+                                favoritelist.getNotice().setChatCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
 			    		}
 			    		break;
 			    	case XmlPullParser.END_TAG:	

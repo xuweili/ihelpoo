@@ -193,22 +193,26 @@ public class Comment extends Entity {
 				    		}
 				            else if(comm.getNotice() != null)
 				    		{
-				    			if(tag.equalsIgnoreCase("atmeCount"))
-					            {			      
-				    				comm.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("msgCount"))
-					            {			            	
-					            	comm.getNotice().setMsgCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("reviewCount"))
-					            {			            	
-					            	comm.getNotice().setReviewCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("newFansCount"))
-					            {			            	
-					            	comm.getNotice().setNewFansCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
+                                if(tag.equalsIgnoreCase("systemCount"))
+                                {
+                                    comm.getNotice().setSystemCount(StringUtils.toInt(xmlParser.nextText(), 0));
+                                }
+                                else if(tag.equalsIgnoreCase("atmeCount"))
+                                {
+                                    comm.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("commentCount"))
+                                {
+                                    comm.getNotice().setCommentCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("activeCount"))
+                                {
+                                    comm.getNotice().setActiveCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("chatCount"))
+                                {
+                                    comm.getNotice().setChatCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
 				    		}
 			    		}
 			    		break;

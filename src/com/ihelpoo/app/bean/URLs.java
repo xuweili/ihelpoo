@@ -97,8 +97,10 @@ public class URLs implements Serializable {
 //    public final static String USER_UPDATERELATION = URL_API_HOST + "action/api/user_updaterelation";
     public final static String USER_UPDATERELATION = "http://192.168.0.108:8080/v1.1/updateRelation.xml";
     //	public final static String USER_NOTICE = URL_API_HOST+"action/api/user_notice";
-    public final static String USER_NOTICE = "http://192.168.0.108:8080/v1.1/notifications.xml";
-    public final static String NOTICE_CLEAR = URL_API_HOST + "action/api/notice_clear";
+    public final static String USER_NOTICE = "http://192.168.0.108:8080/v1.1/noticeBound.xml";
+//    public final static String NOTICE_CLEAR = URL_API_HOST + "action/api/notice_clear";
+    public final static String NOTICE_CLEAR = "http://192.168.0.108:8080/v1.1/noticeClear.xml";
+
     public final static String FRIENDS_LIST = "http://192.168.0.108:8080/v1.1/buddies.xml";
 //    public final static String FRIENDS_LIST = URL_API_HOST + "action/api/friends_list";
     public final static String FAVORITE_LIST = URL_API_HOST + "action/api/favorite_list";

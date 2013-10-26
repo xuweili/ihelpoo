@@ -123,22 +123,26 @@ public class BlogList extends Entity{
 			    		}
 			            else if(bloglist.getNotice() != null)
 			    		{
-			    			if(tag.equalsIgnoreCase("atmeCount"))
-				            {			      
-			    				bloglist.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("msgCount"))
-				            {			            	
-				            	bloglist.getNotice().setMsgCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("reviewCount"))
-				            {			            	
-				            	bloglist.getNotice().setReviewCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
-				            else if(tag.equalsIgnoreCase("newFansCount"))
-				            {			            	
-				            	bloglist.getNotice().setNewFansCount(StringUtils.toInt(xmlParser.nextText(),0));
-				            }
+                            if(tag.equalsIgnoreCase("systemCount"))
+                            {
+                                bloglist.getNotice().setSystemCount(StringUtils.toInt(xmlParser.nextText(), 0));
+                            }
+                            else if(tag.equalsIgnoreCase("atmeCount"))
+                            {
+                                bloglist.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("commentCount"))
+                            {
+                                bloglist.getNotice().setCommentCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("activeCount"))
+                            {
+                                bloglist.getNotice().setActiveCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase("chatCount"))
+                            {
+                                bloglist.getNotice().setChatCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
 			    		}
 			    		break;
 			    	case XmlPullParser.END_TAG:	

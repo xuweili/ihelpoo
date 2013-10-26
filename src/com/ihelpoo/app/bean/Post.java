@@ -226,22 +226,26 @@ public class Post extends Entity{
 				    		}
 				            else if(post.getNotice() != null)
 				    		{
-				    			if(tag.equalsIgnoreCase("atmeCount"))
-					            {			      
-				    				post.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("msgCount"))
-					            {			            	
-					            	post.getNotice().setMsgCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("reviewCount"))
-					            {			            	
-					            	post.getNotice().setReviewCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("newFansCount"))
-					            {			            	
-					            	post.getNotice().setNewFansCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
+                                if(tag.equalsIgnoreCase("systemCount"))
+                                {
+                                    post.getNotice().setSystemCount(StringUtils.toInt(xmlParser.nextText(), 0));
+                                }
+                                else if(tag.equalsIgnoreCase("atmeCount"))
+                                {
+                                    post.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("commentCount"))
+                                {
+                                    post.getNotice().setCommentCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("activeCount"))
+                                {
+                                    post.getNotice().setActiveCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("chatCount"))
+                                {
+                                    post.getNotice().setChatCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
 				    		}
 			    		}
 			    		break;

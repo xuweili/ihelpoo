@@ -249,7 +249,7 @@ public class ApiClient {
 	 */
 	private static InputStream _post(AppContext appContext, String url, Map<String, Object> params, Map<String,File> files) throws AppException {
 		//System.out.println("post_url==> "+url);
-		String cookie = getCookie(appContext);
+ 		String cookie = getCookie(appContext);
 		String userAgent = getUserAgent(appContext);
 		
 		HttpClient httpClient = null;
@@ -576,15 +576,18 @@ public class ApiClient {
 	
 	/**
 	 * 清空通知消息
-	 * @param uid
-	 * @param type 1:@我的信息 2:未读消息 3:评论个数 4:新粉丝个数
-	 * @return
+	 *
+     * @param uid
+     * @param type 1:@我的信息 2:未读消息 3:评论个数 4:新粉丝个数
+     * @param fromUid
+     * @return
 	 * @throws AppException
 	 */
-	public static Result noticeClear(AppContext appContext, int uid, int type) throws AppException {
+	public static Result noticeClear(AppContext appContext, int uid, int type, int fromUid) throws AppException {
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("uid", uid);
 		params.put("type", type);
+        params.put("from_uid", fromUid);
 				
 		try{
 			return Result.parse(_post(appContext, URLs.NOTICE_CLEAR, params, null));		

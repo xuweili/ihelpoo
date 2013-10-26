@@ -34,41 +34,19 @@ import android.util.Xml;
 public class Notice implements Serializable {
 	
 	public final static String UTF8 = "UTF-8";
-	
-	public final static int	TYPE_ATME = 1;
-	public final static int	TYPE_MESSAGE = 2;
-	public final static int	TYPE_COMMENT = 3;
-	public final static int	TYPE_NEWFAN = 4;
 
-	private int atmeCount;
-	private int msgCount;
-	private int reviewCount;
-	private int newFansCount;
-	
-	public int getAtmeCount() {
-		return atmeCount;
-	}
-	public void setAtmeCount(int atmeCount) {
-		this.atmeCount = atmeCount;
-	}
-	public int getMsgCount() {
-		return msgCount;
-	}
-	public void setMsgCount(int msgCount) {
-		this.msgCount = msgCount;
-	}
-	public int getReviewCount() {
-		return reviewCount;
-	}
-	public void setReviewCount(int reviewCount) {
-		this.reviewCount = reviewCount;
-	}
-	public int getNewFansCount() {
-		return newFansCount;
-	}
-	public void setNewFansCount(int newFansCount) {
-		this.newFansCount = newFansCount;
-	}	
+    public final static int TYPE_SYSTEM = 0;
+	public final static int	TYPE_ATME = 1;
+    public final static int	TYPE_COMMENT = 2;
+	public final static int TYPE_ACTIVE = 3;
+    public final static int TYPE_CHAT = 4;
+
+
+    private int systemCount;
+    private int atmeCount;
+    private int commentCount;
+    private int activeCount;
+    private int chatCount;
 	
 	public static Notice parse(InputStream inputStream) throws IOException, AppException {
 		Notice notice = null;
@@ -90,22 +68,26 @@ public class Notice implements Serializable {
 			    		}
 			            else if(notice != null)
 			    		{
-			    			if(tag.equalsIgnoreCase("atmeCount"))
+			    			if(tag.equalsIgnoreCase("systemCount"))
 				            {			      
-			    				notice.setAtmeCount(StringUtils.toInt(xmlParser.nextText(), 0));
+			    				notice.setSystemCount(StringUtils.toInt(xmlParser.nextText(), 0));
 				            }
-				            else if(tag.equalsIgnoreCase("msgCount"))
+				            else if(tag.equalsIgnoreCase("atmeCount"))
 				            {			            	
-				            	notice.setMsgCount(StringUtils.toInt(xmlParser.nextText(),0));
+				            	notice.setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
 				            }
-				            else if(tag.equalsIgnoreCase("reviewCount"))
+				            else if(tag.equalsIgnoreCase("commentCount"))
 				            {			            	
-				            	notice.setReviewCount(StringUtils.toInt(xmlParser.nextText(),0));
+				            	notice.setCommentCount(StringUtils.toInt(xmlParser.nextText(),0));
 				            }
-				            else if(tag.equalsIgnoreCase("newFansCount"))
+				            else if(tag.equalsIgnoreCase("activeCount"))
 				            {			            	
-				            	notice.setNewFansCount(StringUtils.toInt(xmlParser.nextText(),0));
+				            	notice.setActiveCount(StringUtils.toInt(xmlParser.nextText(),0));
 				            }
+                            else if(tag.equalsIgnoreCase("chatCount"))
+                            {
+                                notice.setChatCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
 			    		}
 			    		break;
 			    	case XmlPullParser.END_TAG:		    		
@@ -121,4 +103,44 @@ public class Notice implements Serializable {
         }      
         return notice;       
 	}
+
+    public int getSystemCount() {
+        return systemCount;
+    }
+
+    public void setSystemCount(int systemCount) {
+        this.systemCount = systemCount;
+    }
+
+    public int getAtmeCount() {
+        return atmeCount;
+    }
+
+    public void setAtmeCount(int atmeCount) {
+        this.atmeCount = atmeCount;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
+
+    public int getActiveCount() {
+        return activeCount;
+    }
+
+    public void setActiveCount(int activeCount) {
+        this.activeCount = activeCount;
+    }
+
+    public int getChatCount() {
+        return chatCount;
+    }
+
+    public void setChatCount(int chatCount) {
+        this.chatCount = chatCount;
+    }
 }

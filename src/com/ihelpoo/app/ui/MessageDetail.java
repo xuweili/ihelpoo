@@ -341,6 +341,44 @@ public class MessageDetail extends BaseActivity{
 		};
         if((_uid = checkUid()) == 0) return;
 		this.loadLvCommentData(_uid, curFriendId,curCatalog,0,mHandler,UIHelper.LISTVIEW_ACTION_INIT);
+        ClearNotice(_uid, 4, curFriendId);
+    }
+
+
+    /**
+     * 通知信息处理
+     *
+     * @param type 4:悄悄话
+     *
+     */
+    private void ClearNotice(final int uid, final int type, final int fromUid) {
+        final Handler handler = new Handler() {
+            public void handleMessage(Message msg) {
+                if (msg.what == 1 && msg.obj != null) {
+                    Result res = (Result) msg.obj;
+                    if (res.OK() && res.getNotice() != null) {
+                        UIHelper.sendBroadCast(MessageDetail.this, res.getNotice());
+                    }
+                } else {
+                    ((AppException) msg.obj).makeToast(MessageDetail.this);
+                }
+            }
+        };
+        new Thread() {
+            public void run() {
+                Message msg = new Message();
+                try {
+                    Result res = ((AppContext)getApplication()).noticeClear(uid, type, fromUid);
+                    msg.what = 1;
+                    msg.obj = res;
+                } catch (AppException e) {
+                    e.printStackTrace();
+                    msg.what = -1;
+                    msg.obj = e;
+                }
+                handler.sendMessage(msg);
+            }
+        }.start();
     }
     /**
      * 线程加载评论数据

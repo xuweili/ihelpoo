@@ -342,22 +342,26 @@ public class Active extends Entity {
 				    		}
 				            else if(active.getNotice() != null)
 				    		{
-				    			if(tag.equalsIgnoreCase("atmeCount"))
-					            {			      
-				    				active.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("msgCount"))
-					            {			            	
-					            	active.getNotice().setMsgCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("reviewCount"))
-					            {			            	
-					            	active.getNotice().setReviewCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("newFansCount"))
-					            {			            	
-					            	active.getNotice().setNewFansCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
+                                if(tag.equalsIgnoreCase("systemCount"))
+                                {
+                                    active.getNotice().setSystemCount(StringUtils.toInt(xmlParser.nextText(), 0));
+                                }
+                                else if(tag.equalsIgnoreCase("atmeCount"))
+                                {
+                                    active.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("commentCount"))
+                                {
+                                    active.getNotice().setCommentCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("activeCount"))
+                                {
+                                    active.getNotice().setActiveCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("chatCount"))
+                                {
+                                    active.getNotice().setChatCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
 				    		}
 			    		}
 			    		break;

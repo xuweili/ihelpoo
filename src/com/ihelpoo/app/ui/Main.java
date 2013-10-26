@@ -76,7 +76,6 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -97,6 +96,7 @@ public class Main extends BaseActivity {
     public static final int QUICKACTION_SETTING = 4;
     public static final int QUICKACTION_EXIT = 5;
     public static final int REQUEST_CODE_SCHOOL = 0;
+    public static final int POLLING_NOTICE_INTERVAL = 30;
 
     private ScrollLayout mScrollLayout;
     private RadioButton[] mButtons;
@@ -157,27 +157,30 @@ public class Main extends BaseActivity {
     private int lvNoticeSumData;
 
     private RadioButton fbHome;
+    private RadioButton fbWord;
     private RadioButton fbNest;
     private RadioButton fbRank;
-    private RadioButton fbWord;
     private Button fbSetting;
 
-    private Button framebtn_Nest_lastest;
-    private Button framebtn_Nest_blog;
-    private Button framebtn_Nest_recommend;
-    private Button framebtn_Rank_ask;
-    private Button framebtn_Rank_share;
-    private Button framebtn_Rank_other;
-    private Button framebtn_Rank_job;
-    private Button framebtn_Rank_site;
     private Button framebtn_Home_stream;
     private Button framebtn_Home_mine;
     private Button framebtn_Home_help;
+
     private Button framebtn_Word_system;
     private Button framebtn_Word_atme;
     private Button framebtn_Word_comment;
     private Button framebtn_Word_active;
     private Button framebtn_Word_chat;
+
+    private Button framebtn_Nest_lastest;
+    private Button framebtn_Nest_blog;
+    private Button framebtn_Nest_recommend;
+
+    private Button framebtn_Rank_ask;
+    private Button framebtn_Rank_share;
+    private Button framebtn_Rank_other;
+    private Button framebtn_Rank_job;
+    private Button framebtn_Rank_site;
 
     private View lvNest_footer;
     private View lvBlog_footer;
@@ -203,10 +206,13 @@ public class Main extends BaseActivity {
     private ProgressBar lvMsg_foot_progress;
     private ProgressBar lvNotice_foot_progress;
 
+    public static BadgeView bv_system;
     public static BadgeView bv_active;
     public static BadgeView bv_chat;
     public static BadgeView bv_atme;
     public static BadgeView bv_comment;
+
+    public static BadgeView bv_Word;
 
     private QuickActionWidget mGrid;// 快捷栏控件
 
@@ -259,9 +265,9 @@ public class Main extends BaseActivity {
 
         if (mCurSel == 0 && !fbHome.isChecked()) {// here it is the default config of first screen!!!
             fbHome.setChecked(true);
-            fbRank.setChecked(false);
-            fbNest.setChecked(false);
             fbWord.setChecked(false);
+            fbNest.setChecked(false);
+            fbRank.setChecked(false);
         }
         // 读取左右滑动配置
         mScrollLayout.setIsScroll(appContext.isScroll());
@@ -444,31 +450,13 @@ public class Main extends BaseActivity {
      */
     private void initFrameListViewData() {
         // 初始化Handler
-        lvNestHandler = this.getLvHandler(lvNest, lvNestAdapter,
-                lvNest_foot_more, lvNest_foot_progress, AppContext.PAGE_SIZE);
-        lvBlogHandler = this.getLvHandler(lvBlog, lvBlogAdapter,
-                lvBlog_foot_more, lvBlog_foot_progress, AppContext.PAGE_SIZE);
-        lvRankHandler = this.getLvHandler(lvRank, lvRankAdapter,
-                lvRank_foot_more, lvRank_foot_progress,
-                AppContext.PAGE_SIZE);
-        lvHomeHandler = this.getLvHandler(lvHome, lvTweetAdapter,
-                lvTweet_foot_more, lvTweet_foot_progress, AppContext.PAGE_SIZE);
-        lvWordHandler = this.getLvHandler(lvWord, lvWordAdapter,
-                lvWord_foot_more, lvWord_foot_progress,
-                AppContext.PAGE_SIZE);
-        lvMsgHandler = this.getLvHandler(lvChat, lvMsgAdapter, lvMsg_foot_more,
-                lvMsg_foot_progress, AppContext.PAGE_SIZE);
-        lvNoticeHandler = this.getLvHandler(lvNotice, lvNoticeAdapter,
-                lvNotice_foot_more, lvNotice_foot_progress, AppContext.PAGE_SIZE);
-
-        // 加载资讯数据
-//		if (lvNestData.isEmpty()) {
-//			loadLvNewsData(curNestCatalog, 0, lvNestHandler, UIHelper.LISTVIEW_ACTION_INIT);
-//        }
-
-//        if(lvRankData.isEmpty()){
-//            loadLvQuestionData(curRankCatalog, 0,lvRankHandler,UIHelper.LISTVIEW_ACTION_INIT);
-//        }
+        lvNestHandler = this.getLvHandler(lvNest, lvNestAdapter, lvNest_foot_more, lvNest_foot_progress, AppContext.PAGE_SIZE);
+        lvBlogHandler = this.getLvHandler(lvBlog, lvBlogAdapter, lvBlog_foot_more, lvBlog_foot_progress, AppContext.PAGE_SIZE);
+        lvRankHandler = this.getLvHandler(lvRank, lvRankAdapter, lvRank_foot_more, lvRank_foot_progress, AppContext.PAGE_SIZE);
+        lvHomeHandler = this.getLvHandler(lvHome, lvTweetAdapter, lvTweet_foot_more, lvTweet_foot_progress, AppContext.PAGE_SIZE);
+        lvWordHandler = this.getLvHandler(lvWord, lvWordAdapter, lvWord_foot_more, lvWord_foot_progress, AppContext.PAGE_SIZE);
+        lvMsgHandler = this.getLvHandler(lvChat, lvMsgAdapter, lvMsg_foot_more, lvMsg_foot_progress, AppContext.PAGE_SIZE);
+        lvNoticeHandler = this.getLvHandler(lvNotice, lvNoticeAdapter, lvNotice_foot_more, lvNotice_foot_progress, AppContext.PAGE_SIZE);
         if (lvHomeData.isEmpty()) {
             loadLvTweetData(curHomeCatalog, 0, lvHomeHandler, UIHelper.LISTVIEW_ACTION_INIT);
         }
@@ -913,8 +901,7 @@ public class Main extends BaseActivity {
         });
         lvHome.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
             public void onRefresh() {
-                loadLvTweetData(curHomeCatalog, 0, lvHomeHandler,
-                        UIHelper.LISTVIEW_ACTION_REFRESH);
+                loadLvTweetData(curHomeCatalog, 0, lvHomeHandler, UIHelper.LISTVIEW_ACTION_REFRESH);
             }
         });
     }
@@ -996,18 +983,15 @@ public class Main extends BaseActivity {
         lvWord.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
             public void onRefresh() {
                 // 处理通知信息
-                if (curWordCatalog == WordList.CATALOG_ATME
-                        && bv_atme.isShown()) {
+                if (curWordCatalog == WordList.CATALOG_ATME && bv_atme.isShown()) {
                     isClearNotice = true;
                     curClearNoticeType = Notice.TYPE_ATME;
-                } else if (curWordCatalog == WordList.CATALOG_COMMENT
-                        && bv_comment.isShown()) {
+                } else if (curWordCatalog == WordList.CATALOG_COMMENT && bv_comment.isShown()) {
                     isClearNotice = true;
                     curClearNoticeType = Notice.TYPE_COMMENT;
                 }
                 // 刷新数据
-                loadLvWordData(curWordCatalog, 0, lvWordHandler,
-                        UIHelper.LISTVIEW_ACTION_REFRESH);
+                loadLvWordData(curWordCatalog, 0, lvWordHandler, UIHelper.LISTVIEW_ACTION_REFRESH);
             }
         });
     }
@@ -1150,7 +1134,7 @@ public class Main extends BaseActivity {
                 // 清除通知信息
                 if (bv_chat.isShown()) {
                     isClearNotice = true;
-                    curClearNoticeType = Notice.TYPE_MESSAGE;
+                    curClearNoticeType = Notice.TYPE_ACTIVE;
                 }
                 // 刷新数据
                 loadLvMsgData(0, lvMsgHandler, UIHelper.LISTVIEW_ACTION_REFRESH);
@@ -1223,16 +1207,15 @@ public class Main extends BaseActivity {
      */
     private void initFootBar() {
         fbHome = (RadioButton) findViewById(R.id.main_footbar_home);
-        fbRank = (RadioButton) findViewById(R.id.main_footbar_rank);
-        fbNest = (RadioButton) findViewById(R.id.main_footbar_nest);
         fbWord = (RadioButton) findViewById(R.id.main_footbar_word);
+        fbNest = (RadioButton) findViewById(R.id.main_footbar_nest);
+        fbRank = (RadioButton) findViewById(R.id.main_footbar_rank);
 
         fbSetting = (Button) findViewById(R.id.main_footbar_setting);
         fbSetting.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // 展示快捷栏&判断是否登录&是否加载文章图片
-                UIHelper.showSettingLoginOrLogout(Main.this,
-                        mGrid.getQuickAction(0));
+                UIHelper.showSettingLoginOrLogout(Main.this, mGrid.getQuickAction(0));
                 mGrid.show(v);
             }
         });
@@ -1242,12 +1225,12 @@ public class Main extends BaseActivity {
      * 初始化通知信息标签控件
      */
     private void initBadgeView() {
-        bv_active = new BadgeView(this, fbWord);
-        bv_active.setBackgroundResource(R.drawable.widget_count_bg);
-        bv_active.setIncludeFontPadding(false);
-        bv_active.setGravity(Gravity.CENTER);
-        bv_active.setTextSize(8f);
-        bv_active.setTextColor(Color.WHITE);
+        bv_system = new BadgeView(this, framebtn_Word_system);
+        bv_system.setBackgroundResource(R.drawable.widget_count_bg);
+        bv_system.setIncludeFontPadding(false);
+        bv_system.setGravity(Gravity.CENTER);
+        bv_system.setTextSize(8f);
+        bv_system.setTextColor(Color.WHITE);
 
         bv_atme = new BadgeView(this, framebtn_Word_atme);
         bv_atme.setBackgroundResource(R.drawable.widget_count_bg);
@@ -1263,12 +1246,26 @@ public class Main extends BaseActivity {
         bv_comment.setTextSize(8f);
         bv_comment.setTextColor(Color.WHITE);
 
+        bv_active = new BadgeView(this, framebtn_Word_active);
+        bv_active.setBackgroundResource(R.drawable.widget_count_bg);
+        bv_active.setIncludeFontPadding(false);
+        bv_active.setGravity(Gravity.CENTER);
+        bv_active.setTextSize(8f);
+        bv_active.setTextColor(Color.WHITE);
+
         bv_chat = new BadgeView(this, framebtn_Word_chat);
         bv_chat.setBackgroundResource(R.drawable.widget_count_bg);
         bv_chat.setIncludeFontPadding(false);
         bv_chat.setGravity(Gravity.CENTER);
         bv_chat.setTextSize(8f);
         bv_chat.setTextColor(Color.WHITE);
+
+        bv_Word = new BadgeView(this, fbWord);
+        bv_Word.setBackgroundResource(R.drawable.widget_count_bg);
+        bv_Word.setIncludeFontPadding(false);
+        bv_Word.setGravity(Gravity.CENTER);
+        bv_Word.setTextSize(8f);
+        bv_Word.setTextColor(Color.WHITE);
     }
 
     /**
@@ -1349,12 +1346,16 @@ public class Main extends BaseActivity {
                                     break;
                                 }
                                 // 处理通知信息
-                                if (bv_atme.isShown())
+                                if (bv_system.isShown())
+                                    frameActiveBtnOnClick(framebtn_Word_system, WordList.CATALOG_SYSTEM, UIHelper.LISTVIEW_ACTION_REFRESH);
+                                else if (bv_atme.isShown())
                                     frameActiveBtnOnClick(framebtn_Word_atme, WordList.CATALOG_ATME, UIHelper.LISTVIEW_ACTION_REFRESH);
                                 else if (bv_comment.isShown())
                                     frameActiveBtnOnClick(framebtn_Word_comment, WordList.CATALOG_COMMENT, UIHelper.LISTVIEW_ACTION_REFRESH);
+                                else if (bv_active.isShown())
+                                    frameActiveBtnOnClick(framebtn_Word_active, WordList.CATALOG_ACTIVE, UIHelper.LISTVIEW_ACTION_REFRESH);
                                 else if (bv_chat.isShown())
-                                    frameActiveBtnOnClick(framebtn_Word_chat, 0, UIHelper.LISTVIEW_ACTION_REFRESH);
+                                    frameActiveBtnOnClick(framebtn_Word_chat, WordList.CATALOG_CHAT, UIHelper.LISTVIEW_ACTION_REFRESH);
                                 else if (lvWord.getVisibility() == View.VISIBLE && lvWordData.isEmpty())
                                     loadLvWordData(curWordCatalog, 0, lvWordHandler, UIHelper.LISTVIEW_ACTION_INIT);
                                 else if (lvChat.getVisibility() == View.VISIBLE && lvMsgData.isEmpty())
@@ -1466,57 +1467,51 @@ public class Main extends BaseActivity {
      * 初始化各个主页的按钮(资讯、问答、动弹、动态、留言)
      */
     private void initFrameButton() {
-        // 初始化按钮控件
-        framebtn_Nest_lastest = (Button) findViewById(R.id.frame_btn_nest_lastest);
-        framebtn_Nest_blog = (Button) findViewById(R.id.frame_btn_nest_blog);
-        framebtn_Nest_recommend = (Button) findViewById(R.id.frame_btn_nest_recommend);
-        framebtn_Rank_ask = (Button) findViewById(R.id.frame_btn_rank_ask);
-        framebtn_Rank_share = (Button) findViewById(R.id.frame_btn_rank_share);
-        framebtn_Rank_other = (Button) findViewById(R.id.frame_btn_rank_other);
-        framebtn_Rank_job = (Button) findViewById(R.id.frame_btn_rank_job);
-        framebtn_Rank_site = (Button) findViewById(R.id.frame_btn_rank_site);
+
         framebtn_Home_stream = (Button) findViewById(R.id.frame_btn_home_stream);
         framebtn_Home_mine = (Button) findViewById(R.id.frame_btn_home_mine);
         framebtn_Home_help = (Button) findViewById(R.id.frame_btn_home_help);
+
         framebtn_Word_system = (Button) findViewById(R.id.frame_btn_word_system);
         framebtn_Word_atme = (Button) findViewById(R.id.frame_btn_word_atme);
         framebtn_Word_comment = (Button) findViewById(R.id.frame_btn_word_comment);
         framebtn_Word_active = (Button) findViewById(R.id.frame_btn_word_active);
         framebtn_Word_chat = (Button) findViewById(R.id.frame_btn_word_chat);
+
+        framebtn_Nest_lastest = (Button) findViewById(R.id.frame_btn_nest_lastest);
+        framebtn_Nest_blog = (Button) findViewById(R.id.frame_btn_nest_blog);
+        framebtn_Nest_recommend = (Button) findViewById(R.id.frame_btn_nest_recommend);
+
+        framebtn_Rank_ask = (Button) findViewById(R.id.frame_btn_rank_ask);
+        framebtn_Rank_share = (Button) findViewById(R.id.frame_btn_rank_share);
+        framebtn_Rank_other = (Button) findViewById(R.id.frame_btn_rank_other);
+        framebtn_Rank_job = (Button) findViewById(R.id.frame_btn_rank_job);
+        framebtn_Rank_site = (Button) findViewById(R.id.frame_btn_rank_site);
         // 设置首选择项
-        framebtn_Nest_lastest.setEnabled(false);
-        framebtn_Rank_ask.setEnabled(false);
         framebtn_Home_stream.setEnabled(false);
         framebtn_Word_system.setEnabled(false);
-        // 资讯+博客
-        framebtn_Nest_lastest.setOnClickListener(frameNewsBtnClick(
-                framebtn_Nest_lastest, NewsList.CATALOG_ALL));
-        framebtn_Nest_blog.setOnClickListener(frameNewsBtnClick(
-                framebtn_Nest_blog, BlogList.CATALOG_LATEST));
-        framebtn_Nest_recommend.setOnClickListener(frameNewsBtnClick(
-                framebtn_Nest_recommend, BlogList.CATALOG_RECOMMEND));
-        // 问答
-        framebtn_Rank_ask.setOnClickListener(frameQuestionBtnClick(
-                framebtn_Rank_ask, PostList.CATALOG_ASK));
-        framebtn_Rank_share.setOnClickListener(frameQuestionBtnClick(
-                framebtn_Rank_share, PostList.CATALOG_SHARE));
-        framebtn_Rank_other.setOnClickListener(frameQuestionBtnClick(
-                framebtn_Rank_other, PostList.CATALOG_OTHER));
-        framebtn_Rank_job.setOnClickListener(frameQuestionBtnClick(
-                framebtn_Rank_job, PostList.CATALOG_JOB));
-        framebtn_Rank_site.setOnClickListener(frameQuestionBtnClick(
-                framebtn_Rank_site, PostList.CATALOG_SITE));
-        // 动弹
+        framebtn_Nest_lastest.setEnabled(false);
+        framebtn_Rank_ask.setEnabled(false);
+        // 首页
         framebtn_Home_stream.setOnClickListener(frameTweetBtnClick(framebtn_Home_stream, TweetList.CATALOG_STREAM));
         framebtn_Home_help.setOnClickListener(frameTweetBtnClick(framebtn_Home_help, TweetList.CATALOG_HELP));
         framebtn_Home_mine.setOnClickListener(frameTweetBtnClick(framebtn_Home_mine, TweetList.CATALOG_MINE));
-
-        // 动态+留言
+        // 消息
         framebtn_Word_system.setOnClickListener(frameActiveBtnClick(framebtn_Word_system, WordList.CATALOG_SYSTEM));
         framebtn_Word_atme.setOnClickListener(frameActiveBtnClick(framebtn_Word_atme, WordList.CATALOG_ATME));
         framebtn_Word_comment.setOnClickListener(frameActiveBtnClick(framebtn_Word_comment, WordList.CATALOG_COMMENT));
         framebtn_Word_active.setOnClickListener(frameActiveBtnClick(framebtn_Word_active, WordList.CATALOG_ACTIVE));
         framebtn_Word_chat.setOnClickListener(frameActiveBtnClick(framebtn_Word_chat, WordList.CATALOG_CHAT));
+        // 小窝
+        framebtn_Nest_lastest.setOnClickListener(frameNewsBtnClick(framebtn_Nest_lastest, NewsList.CATALOG_ALL));
+        framebtn_Nest_blog.setOnClickListener(frameNewsBtnClick(framebtn_Nest_blog, BlogList.CATALOG_LATEST));
+        framebtn_Nest_recommend.setOnClickListener(frameNewsBtnClick(framebtn_Nest_recommend, BlogList.CATALOG_RECOMMEND));
+        // 排行
+        framebtn_Rank_ask.setOnClickListener(frameQuestionBtnClick(framebtn_Rank_ask, PostList.CATALOG_ASK));
+        framebtn_Rank_share.setOnClickListener(frameQuestionBtnClick(framebtn_Rank_share, PostList.CATALOG_SHARE));
+        framebtn_Rank_other.setOnClickListener(frameQuestionBtnClick(framebtn_Rank_other, PostList.CATALOG_OTHER));
+        framebtn_Rank_job.setOnClickListener(frameQuestionBtnClick(framebtn_Rank_job, PostList.CATALOG_JOB));
+        framebtn_Rank_site.setOnClickListener(frameQuestionBtnClick(framebtn_Rank_site, PostList.CATALOG_SITE));
     }
 
     private View.OnClickListener frameNewsBtnClick(final Button btn,
@@ -1669,7 +1664,12 @@ public class Main extends BaseActivity {
             framebtn_Word_chat.setEnabled(true);
 
         // 是否处理通知信息
-        if (btn == framebtn_Word_atme && bv_atme.isShown()) {
+
+        if (btn == framebtn_Word_system && bv_system.isShown()) {
+            action = UIHelper.LISTVIEW_ACTION_REFRESH;
+            this.isClearNotice = true;
+            this.curClearNoticeType = Notice.TYPE_SYSTEM;
+        } else if (btn == framebtn_Word_atme && bv_atme.isShown()) {
             action = UIHelper.LISTVIEW_ACTION_REFRESH;
             this.isClearNotice = true;
             this.curClearNoticeType = Notice.TYPE_ATME;
@@ -1677,10 +1677,14 @@ public class Main extends BaseActivity {
             action = UIHelper.LISTVIEW_ACTION_REFRESH;
             this.isClearNotice = true;
             this.curClearNoticeType = Notice.TYPE_COMMENT;
+        } else if (btn == framebtn_Word_active && bv_active.isShown()) {
+            action = UIHelper.LISTVIEW_ACTION_REFRESH;
+            this.isClearNotice = true;
+            this.curClearNoticeType = Notice.TYPE_ACTIVE;
         } else if (btn == framebtn_Word_chat && bv_chat.isShown()) {
             action = UIHelper.LISTVIEW_ACTION_REFRESH;
             this.isClearNotice = true;
-            this.curClearNoticeType = Notice.TYPE_MESSAGE;
+            this.curClearNoticeType = Notice.TYPE_CHAT;
         }
 
         // 非留言展示动态列表
@@ -2400,7 +2404,7 @@ public class Main extends BaseActivity {
             public void run() {
                 Message msg = new Message();
                 try {
-                    sleep(60 * 1000);
+                    sleep(POLLING_NOTICE_INTERVAL * 1000);
                     if (uid > 0) {
                         Notice notice = appContext.getUserNotice(uid);
                         msg.what = 1;
@@ -2423,7 +2427,8 @@ public class Main extends BaseActivity {
     /**
      * 通知信息处理
      *
-     * @param type 1:@我的信息 2:未读消息 3:评论个数 4:新粉丝个数
+     * @param type 0:系统消息 1:@我 2:评论 3:活跃
+     *
      */
     private void ClearNotice(final int type) {
         final int uid = appContext.getLoginUid();
@@ -2443,7 +2448,7 @@ public class Main extends BaseActivity {
             public void run() {
                 Message msg = new Message();
                 try {
-                    Result res = appContext.noticeClear(uid, type);
+                    Result res = appContext.noticeClear(uid, type, 0);
                     msg.what = 1;
                     msg.obj = res;
                 } catch (AppException e) {

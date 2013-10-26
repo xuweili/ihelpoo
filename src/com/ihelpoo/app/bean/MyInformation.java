@@ -131,14 +131,25 @@ public class MyInformation extends Entity {
                             else if (tag.equalsIgnoreCase("notice")) {
                                 user.setNotice(new Notice());
                             } else if (user.getNotice() != null) {
-                                if (tag.equalsIgnoreCase("atmeCount")) {
-                                    user.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(), 0));
-                                } else if (tag.equalsIgnoreCase("msgCount")) {
-                                    user.getNotice().setMsgCount(StringUtils.toInt(xmlParser.nextText(), 0));
-                                } else if (tag.equalsIgnoreCase("reviewCount")) {
-                                    user.getNotice().setReviewCount(StringUtils.toInt(xmlParser.nextText(), 0));
-                                } else if (tag.equalsIgnoreCase("newFansCount")) {
-                                    user.getNotice().setNewFansCount(StringUtils.toInt(xmlParser.nextText(), 0));
+                                if(tag.equalsIgnoreCase("systemCount"))
+                                {
+                                    user.getNotice().setSystemCount(StringUtils.toInt(xmlParser.nextText(), 0));
+                                }
+                                else if(tag.equalsIgnoreCase("atmeCount"))
+                                {
+                                    user.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("commentCount"))
+                                {
+                                    user.getNotice().setCommentCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("activeCount"))
+                                {
+                                    user.getNotice().setActiveCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("chatCount"))
+                                {
+                                    user.getNotice().setChatCount(StringUtils.toInt(xmlParser.nextText(),0));
                                 }
                             }
                         }

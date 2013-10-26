@@ -1152,14 +1152,15 @@ public class UIHelper {
      * @param notice
      */
     public static void sendBroadCast(Context context, Notice notice) {
-        if (!((AppContext) context.getApplicationContext()).isLogin()
-                || notice == null)
+        if (!((AppContext) context.getApplicationContext()).isLogin() || notice == null)
             return;
         Intent intent = new Intent("com.ihelpoo.app.action.APPWIDGET_UPDATE");
+        intent.putExtra("systemCount", notice.getSystemCount());
         intent.putExtra("atmeCount", notice.getAtmeCount());
-        intent.putExtra("msgCount", notice.getMsgCount());
-        intent.putExtra("reviewCount", notice.getReviewCount());
-        intent.putExtra("newFansCount", notice.getNewFansCount());
+        intent.putExtra("commentCount", notice.getCommentCount());
+        intent.putExtra("activeCount", notice.getActiveCount());
+        intent.putExtra("chatCount", notice.getChatCount());
+
         context.sendBroadcast(intent);
     }
 

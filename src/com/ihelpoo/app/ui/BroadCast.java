@@ -39,14 +39,44 @@ public class  BroadCast extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		String ACTION_NAME = intent.getAction();
 		if("com.ihelpoo.app.action.APPWIDGET_UPDATE".equals(ACTION_NAME))
-		{	
+		{
+            int systemCount = intent.getIntExtra("systemCount", 0);//首页system消息
 			int atmeCount = intent.getIntExtra("atmeCount", 0);//@我
-			int msgCount = intent.getIntExtra("msgCount", 0);//留言
-			int reviewCount = intent.getIntExtra("reviewCount", 0);//评论
-			int newFansCount = intent.getIntExtra("newFansCount", 0);//新粉丝
-			int activeCount = atmeCount + reviewCount + msgCount + newFansCount;//信息总数
-			
-			//动态-总数
+			int commentCount = intent.getIntExtra("commentCount", 0);//评论
+			int activeCount = intent.getIntExtra("activeCount", 0);//活跃
+			int chatCount = intent.getIntExtra("chatCount", 0);//悄悄话
+			int totalCount = systemCount+ atmeCount + commentCount + activeCount + chatCount;//信息总数
+            //首页system消息
+            if(Main.bv_system != null){
+                if(systemCount > 0){
+                    Main.bv_system.setText(systemCount+"");
+                    Main.bv_system.show();
+                }else{
+                    Main.bv_system.setText("");
+                    Main.bv_system.hide();
+                }
+            }
+            //@我
+            if(Main.bv_atme != null){
+                if(atmeCount > 0){
+                    Main.bv_atme.setText(atmeCount+"");
+                    Main.bv_atme.show();
+                }else{
+                    Main.bv_atme.setText("");
+                    Main.bv_atme.hide();
+                }
+            }
+            //评论
+            if(Main.bv_comment != null){
+                if(commentCount > 0){
+                    Main.bv_comment.setText(commentCount+"");
+                    Main.bv_comment.show();
+                }else{
+                    Main.bv_comment.setText("");
+                    Main.bv_comment.hide();
+                }
+            }
+			//活跃
 			if(Main.bv_active != null){
 				if(activeCount > 0){
 					Main.bv_active.setText(activeCount+"");
@@ -56,43 +86,33 @@ public class  BroadCast extends BroadcastReceiver {
 					Main.bv_active.hide();
 				}
 			}
-			//@我
-			if(Main.bv_atme != null){
-				if(atmeCount > 0){
-					Main.bv_atme.setText(atmeCount+"");
-					Main.bv_atme.show();
-				}else{
-					Main.bv_atme.setText("");
-					Main.bv_atme.hide();
-				}
-			}
-			//评论
-			if(Main.bv_comment != null){
-				if(reviewCount > 0){
-					Main.bv_comment.setText(reviewCount+"");
-					Main.bv_comment.show();
-				}else{
-					Main.bv_comment.setText("");
-					Main.bv_comment.hide();
-				}
-			}
 			//留言
 			if(Main.bv_chat != null){
-				if(msgCount > 0){
-					Main.bv_chat.setText(msgCount+"");
+				if(chatCount > 0){
+					Main.bv_chat.setText(chatCount+"");
 					Main.bv_chat.show();
 				}else{
 					Main.bv_chat.setText("");
 					Main.bv_chat.hide();
 				}
 			}
-			
-			//通知栏显示
-			this.notification(context, activeCount);
+            //动态-总数
+            if(Main.bv_Word != null){
+                if(totalCount > 0){
+                    Main.bv_Word.setText(totalCount+"");
+                    Main.bv_Word.show();
+                }else{
+                    Main.bv_Word.setText("");
+                    Main.bv_Word.hide();
+                }
+            }
+
+            //通知栏显示
+			this.notification(context, totalCount);
 		}
 	}
 
-	private void notification(Context context, int noticeCount){		
+	private void notification(Context context, int noticeCount){
 		//创建 NotificationManager
 		NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 		
@@ -120,7 +140,7 @@ public class  BroadCast extends BroadcastReceiver {
 		//创建通知 Notification
 		Notification notification = null;
 		
-		if(noticeCount > _lastNoticeCount) 
+		if(noticeCount > _lastNoticeCount)
 		{
 			String noticeTitle = "您有 " + (noticeCount-_lastNoticeCount) + " 条最新信息";
 			notification = new Notification(R.drawable.icon, noticeTitle, System.currentTimeMillis());
@@ -143,7 +163,7 @@ public class  BroadCast extends BroadcastReceiver {
 		//设置点击清除通知
 		notification.flags = Notification.FLAG_AUTO_CANCEL;
 		
-		if(noticeCount > _lastNoticeCount) 
+		if(noticeCount > _lastNoticeCount)
 		{
 			//设置通知方式
 			notification.defaults |= Notification.DEFAULT_LIGHTS;

@@ -177,22 +177,26 @@ public class Blog extends Entity {
 				    		}
 				            else if(blog.getNotice() != null)
 				    		{
-				    			if(tag.equalsIgnoreCase("atmeCount"))
-					            {			      
-				    				blog.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("msgCount"))
-					            {			            	
-					            	blog.getNotice().setMsgCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("reviewCount"))
-					            {			            	
-					            	blog.getNotice().setReviewCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
-					            else if(tag.equalsIgnoreCase("newFansCount"))
-					            {			            	
-					            	blog.getNotice().setNewFansCount(StringUtils.toInt(xmlParser.nextText(),0));
-					            }
+                                if(tag.equalsIgnoreCase("systemCount"))
+                                {
+                                    blog.getNotice().setSystemCount(StringUtils.toInt(xmlParser.nextText(), 0));
+                                }
+                                else if(tag.equalsIgnoreCase("atmeCount"))
+                                {
+                                    blog.getNotice().setAtmeCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("commentCount"))
+                                {
+                                    blog.getNotice().setCommentCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("activeCount"))
+                                {
+                                    blog.getNotice().setActiveCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
+                                else if(tag.equalsIgnoreCase("chatCount"))
+                                {
+                                    blog.getNotice().setChatCount(StringUtils.toInt(xmlParser.nextText(),0));
+                                }
 				    		}
 			    		}
 			    		break;
