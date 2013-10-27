@@ -219,9 +219,9 @@ public class ListViewWordAdapter extends MyBaseAdapter {
         }
 
 //        if (active.getActiveType() == Active.CATALOG_OTHER)
-//            listItemView.redirect.setVisibility(ImageView.GONE);
+//            listItemView.diffuse.setVisibility(ImageView.GONE);
 //        else
-//            listItemView.redirect.setVisibility(ImageView.VISIBLE);
+//            listItemView.diffuse.setVisibility(ImageView.VISIBLE);
 
         String faceURL = active.getFace();
         if (faceURL.endsWith("portrait.gif") || StringUtils.isEmpty(faceURL)) {

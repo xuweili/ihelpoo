@@ -24,17 +24,12 @@ import com.ihelpoo.app.common.BitmapManager;
 import com.ihelpoo.app.common.UIHelper;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
-import android.text.SpannableString;
-import android.text.style.StyleSpan;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -55,18 +50,22 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
         public TextView username;
         public TextView date;
         public LinkView content;
+        public TextView plusCount;
+        public TextView diffusionCount;
         public TextView commentCount;
+        public TextView helpCount;
+        public ImageView commentIcon;
+        public ImageView helpIcon;
+
+
+
         public TextView by;
         public ImageView image;
 
-
-        public ImageView redirect;
         public TextView type_gossip;
         public TextView rank;
         public TextView academy;
         public TextView online;
-        public TextView diffusionCount;
-        public TextView plusCount;
     }
 
     /**
@@ -116,13 +115,18 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
             listItemView.content = (LinkView) convertView.findViewById(R.id.tweet_listitem_content);
             listItemView.image = (ImageView) convertView.findViewById(R.id.tweet_listitem_image);
             listItemView.date = (TextView) convertView.findViewById(R.id.tweet_listitem_date);
+            listItemView.plusCount = (TextView) convertView.findViewById(R.id.tweet_listitem_plus_count);
+            listItemView.diffusionCount = (TextView) convertView.findViewById(R.id.tweet_listitem_diffusion_count);
+
+            listItemView.commentIcon = (ImageView) convertView.findViewById(R.id.tweet_listitem_comment_icon);
             listItemView.commentCount = (TextView) convertView.findViewById(R.id.tweet_listitem_comment_count);
+            listItemView.helpIcon = (ImageView) convertView.findViewById(R.id.tweet_listitem_help_icon);
+            listItemView.helpCount = (TextView) convertView.findViewById(R.id.tweet_listitem_help_count);
+
+
             listItemView.by = (TextView) convertView.findViewById(R.id.tweet_listitem_by);
 
-            listItemView.redirect = (ImageView) convertView.findViewById(R.id.tweet_listitem_redirect);
             listItemView.type_gossip = (TextView) convertView.findViewById(R.id.tweet_listitem_type_gossip);
-            listItemView.diffusionCount = (TextView) convertView.findViewById(R.id.tweet_listitem_diffusion_count);
-            listItemView.plusCount = (TextView) convertView.findViewById(R.id.tweet_listitem_plus_count);
             listItemView.online = (TextView) convertView.findViewById(R.id.tweet_listitem_online);
             listItemView.academy = (TextView) convertView.findViewById(R.id.tweet_listitem_academy);
             listItemView.rank = (TextView) convertView.findViewById(R.id.tweet_listitem_rank);
@@ -145,6 +149,22 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
         listItemView.diffusionCount.setText(tweet.getSpreadCount() + "");
         listItemView.plusCount.setText(tweet.getPlusCount() + "");
 
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)listItemView.diffusionCount.getLayoutParams();
+        if("1".equals(tweet.getSayType())){
+            listItemView.helpIcon.setVisibility(View.VISIBLE);
+            listItemView.helpCount.setVisibility(View.VISIBLE);
+            listItemView.commentIcon.setVisibility(View.GONE);
+            listItemView.commentCount.setVisibility(View.GONE);
+            params.addRule(RelativeLayout.LEFT_OF, R.id.tweet_listitem_help_icon);
+        } else {
+            listItemView.helpIcon.setVisibility(View.GONE);
+            listItemView.helpCount.setVisibility(View.GONE);
+            listItemView.commentIcon.setVisibility(View.VISIBLE);
+            listItemView.commentCount.setVisibility(View.VISIBLE);
+            listItemView.commentCount.setText(tweet.getCommentCount() + "");
+            params.addRule(RelativeLayout.LEFT_OF, R.id.tweet_listitem_comment_icon);
+        }
+
 
         listItemView.username.setText(tweet.getAuthor());
         listItemView.username.setTag(tweet);//设置隐藏参数(实体类)
@@ -157,7 +177,6 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
         listItemView.content.setLinkClickListener(linkClickListener);
 
         listItemView.date.setText(StringUtils.friendly_time(tweet.getPubDate()));
-        listItemView.commentCount.setText(tweet.getCommentCount() + "");
         listItemView.by.setText("来自："+tweet.getBy());
 
         String faceURL = tweet.getFace();

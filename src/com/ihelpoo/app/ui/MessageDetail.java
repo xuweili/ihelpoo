@@ -341,7 +341,7 @@ public class MessageDetail extends BaseActivity{
 		};
         if((_uid = checkUid()) == 0) return;
 		this.loadLvCommentData(_uid, curFriendId,curCatalog,0,mHandler,UIHelper.LISTVIEW_ACTION_INIT);
-        ClearNotice(_uid, 4, curFriendId);
+//        clearNotice(_uid, 4, curFriendId);
     }
 
 
@@ -351,7 +351,7 @@ public class MessageDetail extends BaseActivity{
      * @param type 4:悄悄话
      *
      */
-    private void ClearNotice(final int uid, final int type, final int fromUid) {
+    private void clearNotice(final int uid, final int type, final int fromUid) {
         final Handler handler = new Handler() {
             public void handleMessage(Message msg) {
                 if (msg.what == 1 && msg.obj != null) {

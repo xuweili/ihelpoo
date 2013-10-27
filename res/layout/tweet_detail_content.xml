@@ -171,10 +171,10 @@
                     android:textColor="@color/listitem_gray"
                     android:layout_marginRight="5dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_toLeftOf="@+id/tweet_listitem_redirect" />
+                    android:layout_toLeftOf="@+id/tweet_listitem_diffuse_icon" />
 
                 <ImageView
-                    android:id="@+id/tweet_listitem_redirect"
+                    android:id="@+id/tweet_listitem_diffuse_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -192,10 +192,10 @@
                     android:textColor="@color/listitem_gray"
                     android:layout_marginRight="5dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_toLeftOf="@+id/tweet_listitem_plus" />
+                    android:layout_toLeftOf="@+id/tweet_listitem_plus_icon" />
 
                 <ImageView
-                    android:id="@+id/tweet_listitem_plus"
+                    android:id="@+id/tweet_listitem_plus_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

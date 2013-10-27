@@ -902,6 +902,8 @@ public class Main extends BaseActivity {
         lvHome.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
             public void onRefresh() {
                 loadLvTweetData(curHomeCatalog, 0, lvHomeHandler, UIHelper.LISTVIEW_ACTION_REFRESH);
+                isClearNotice = true;
+                curClearNoticeType = Notice.TYPE_SYSTEM;
             }
         });
     }
@@ -1134,7 +1136,7 @@ public class Main extends BaseActivity {
                 // 清除通知信息
                 if (bv_chat.isShown()) {
                     isClearNotice = true;
-                    curClearNoticeType = Notice.TYPE_ACTIVE;
+                    curClearNoticeType = Notice.TYPE_CHAT;
                 }
                 // 刷新数据
                 loadLvMsgData(0, lvMsgHandler, UIHelper.LISTVIEW_ACTION_REFRESH);
@@ -1748,7 +1750,7 @@ public class Main extends BaseActivity {
                     }
                     // 是否清除通知信息
                     if (isClearNotice) {
-                        ClearNotice(curClearNoticeType);
+                        clearNotice(curClearNoticeType);
                         isClearNotice = false;// 重置
                         curClearNoticeType = 0;
                     }
@@ -2430,7 +2432,7 @@ public class Main extends BaseActivity {
      * @param type 0:系统消息 1:@我 2:评论 3:活跃
      *
      */
-    private void ClearNotice(final int type) {
+    private void clearNotice(final int type) {
         final int uid = appContext.getLoginUid();
         final Handler handler = new Handler() {
             public void handleMessage(Message msg) {

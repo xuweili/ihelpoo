@@ -124,6 +124,10 @@ public class TweetList extends Entity{
                             {
                                 tweet.setBy(xmlParser.nextText());
                             }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_SAY_TYPE))
+                            {
+                                tweet.setSayType(xmlParser.nextText());
+                            }
                             else if(tag.equalsIgnoreCase(Tweet.NODE_academy))
                             {
                                 tweet.setAcademy(xmlParser.nextText());

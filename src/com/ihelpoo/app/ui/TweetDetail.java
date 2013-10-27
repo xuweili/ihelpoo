@@ -236,7 +236,7 @@ public class TweetDetail extends BaseActivity {
         commentCount = (TextView) lvHeader.findViewById(R.id.tweet_listitem_commentCount);
         image = (ImageView) lvHeader.findViewById(R.id.tweet_listitem_image);
 
-        redirect = (ImageView) lvHeader.findViewById(R.id.tweet_listitem_redirect);
+        redirect = (ImageView) lvHeader.findViewById(R.id.tweet_listitem_diffuse_icon);
         type_gossip = (TextView) lvHeader.findViewById(R.id.tweet_listitem_type_gossip);
         diffusionCount = (TextView) lvHeader.findViewById(R.id.tweet_listitem_diffusionCount);
         plusCount = (TextView) lvHeader.findViewById(R.id.tweet_listitem_plusCount);
