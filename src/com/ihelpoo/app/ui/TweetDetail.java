@@ -424,6 +424,18 @@ public class TweetDetail extends BaseActivity {
                         image.setOnClickListener(imageClickListener);
                     }
 
+                    if(tweetDetail.getPlusByMe() > 0){
+                        mFootPlus.setBackgroundResource(R.drawable.widget_bar_favorite2);
+                    } else {
+                        mFootPlus.setBackgroundResource(R.drawable.widget_bar_favorite);
+                    }
+
+                    if(tweetDetail.getDiffuseByMe() > 0){
+                        mFootDiffuse.setBackgroundResource(R.drawable.widget_bar_share_over);
+                    } else {
+                        mFootDiffuse.setBackgroundResource(R.drawable.widget_bar_share_nor);
+                    }
+
                     //发送通知广播
                     if (msg.obj != null) {
                         UIHelper.sendBroadCast(TweetDetail.this, (Notice) msg.obj);
@@ -548,11 +560,14 @@ public class TweetDetail extends BaseActivity {
 
         this.headButtonSwitch(DATA_LOAD_ING, 1);
 
+        final AppContext ac = (AppContext)getApplication();
+        final int uid = ac.getLoginUid();
+
         new Thread() {
             public void run() {
                 Message msg = new Message();
                 try {
-                    tweetDetail = ((AppContext) getApplication()).getTweet(tweetId, isRefresh);
+                    tweetDetail = ((AppContext) getApplication()).getTweet(tweetId, uid, isRefresh);
                     msg.what = (tweetDetail != null && tweetDetail.getId() > 0) ? 1 : 0;
                     msg.obj = (tweetDetail != null) ? tweetDetail.getNotice() : null;
                 } catch (AppException e) {
@@ -801,7 +816,7 @@ public class TweetDetail extends BaseActivity {
 
             _uid = ac.getLoginUid();
 
-            mProgress = ProgressDialog.show(v.getContext(), null, "发布中···", true, true);
+            mProgress = ProgressDialog.show(v.getContext(), null, "正在扩散···", true, true);
 
             final Handler handler = new Handler() {
                 public void handleMessage(Message msg) {
@@ -880,7 +895,7 @@ public class TweetDetail extends BaseActivity {
             }
             _uid = ac.getLoginUid();
 
-            mProgress = ProgressDialog.show(v.getContext(), null, "扩散中···", true, true);
+            mProgress = ProgressDialog.show(v.getContext(), null, "正在扩散···", true, true);
 
             final Handler handler = new Handler() {
                 public void handleMessage(Message msg) {

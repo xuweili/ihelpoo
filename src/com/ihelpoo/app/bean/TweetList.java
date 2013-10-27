@@ -92,6 +92,14 @@ public class TweetList extends Entity{
 				            {			            	
 				            	tweet.setBody(xmlParser.nextText());		            	
 				            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_plusByMe))
+                            {
+                                tweet.setPlusByMe(StringUtils.toInt(xmlParser.nextText()));
+                            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_diffuseByMe))
+                            {
+                                tweet.setDiffuseByMe(StringUtils.toInt(xmlParser.nextText()));
+                            }
 				            else if(tag.equalsIgnoreCase(Tweet.NODE_AUTHOR))
 				            {			            	
 				            	tweet.setAuthor(xmlParser.nextText());		            	

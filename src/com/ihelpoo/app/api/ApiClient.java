@@ -921,13 +921,16 @@ public class ApiClient {
 	
 	/**
 	 * 获取动弹详情
-	 * @param tweet_id
-	 * @return
+	 *
+     * @param tweet_id
+     * @param uid
+     * @return
 	 * @throws AppException
 	 */
-	public static Tweet getTweetDetail(AppContext appContext, final int tweet_id) throws AppException {
+	public static Tweet getTweetDetail(AppContext appContext, final int tweet_id, final int uid) throws AppException {
 		String newUrl = _MakeURL(URLs.TWEET_DETAIL.replace("${id}", String.valueOf(tweet_id)), new HashMap<String, Object>(){{
 			put("sid", tweet_id);
+            put("uid", uid);
 		}});
 		try{
 			return Tweet.parse(http_get(appContext, newUrl));			
@@ -1266,7 +1269,7 @@ public class ApiClient {
 
     public static Result plus(AppContext appContext, int id, int uid) throws AppException {
         Map<String,Object> params = new HashMap<String,Object>();
-        params.put("id", id);
+        params.put("sid", id);
         params.put("uid", uid);
 
         try{
@@ -1281,7 +1284,7 @@ public class ApiClient {
 
     public static Result diffuse(AppContext appContext, int id, int uid, String content)throws AppException {
         Map<String,Object> params = new HashMap<String,Object>();
-        params.put("id", id);
+        params.put("sid", id);
         params.put("uid", uid);
         params.put("content", content);
 

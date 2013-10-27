@@ -66,12 +66,6 @@ public class Tweet extends Entity{
     public final static String NODE_rank = "rank";
     public final static String NODE_plusByMe = "plusByMe";
     public final static String NODE_diffuseByMe = "diffuseByMe";
-
-	
-	public final static int CLIENT_MOBILE = 2;
-	public final static int CLIENT_ANDROID = 3;
-	public final static int CLIENT_IPHONE = 4;
-	public final static int CLIENT_WINDOWS_PHONE = 5;
 	
 	private String face;
 	private String body;
@@ -339,7 +333,7 @@ public class Tweet extends Entity{
                             }
                             else if(tag.equalsIgnoreCase(Tweet.NODE_diffuseByMe))
                             {
-                                tweet.setPlusByMe(StringUtils.toInt(xmlParser.nextText(), 1));
+                                tweet.setDiffuseByMe(StringUtils.toInt(xmlParser.nextText(), 1));
                             }
                             else if(tag.equalsIgnoreCase(Tweet.NODE_spreadCount))
                             {

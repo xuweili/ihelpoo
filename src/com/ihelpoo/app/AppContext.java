@@ -946,16 +946,18 @@ public class AppContext extends Application {
     /**
      * 获取动弹详情
      *
+     *
      * @param tweet_id
+     * @param uid
      * @return
      * @throws AppException
      */
-    public Tweet getTweet(int tweet_id, boolean isRefresh) throws AppException {
+    public Tweet getTweet(int tweet_id, int uid, boolean isRefresh) throws AppException {
         Tweet tweet = null;
         String key = "tweet_" + tweet_id;
         if (isNetworkConnected() && (!isReadDataCache(key) || isRefresh)) {
             try {
-                tweet = ApiClient.getTweetDetail(this, tweet_id);
+                tweet = ApiClient.getTweetDetail(this, tweet_id, uid);
                 if (tweet != null) {
                     Notice notice = tweet.getNotice();
                     tweet.setNotice(null);
