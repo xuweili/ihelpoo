@@ -55,6 +55,7 @@ import com.ihelpoo.app.bean.User;
 import com.ihelpoo.app.bean.UserInformation;
 import com.ihelpoo.app.common.DeviceUtil;
 import com.ihelpoo.app.common.StringUtils;
+import com.ihelpoo.app.ui.NavWelcome;
 
 import org.apache.commons.httpclient.Cookie;
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
@@ -70,6 +71,7 @@ import org.apache.commons.httpclient.methods.multipart.Part;
 import org.apache.commons.httpclient.methods.multipart.StringPart;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -943,11 +945,15 @@ public class ApiClient {
 	 * @throws AppException
 	 */
 	public static Result pubTweet(AppContext appContext, Tweet tweet) throws AppException {
-		Map<String,Object> params = new HashMap<String,Object>();
+
+        SharedPreferences preferences = appContext.getSharedPreferences(NavWelcome.GLOBAL_CONFIG, AppContext.MODE_PRIVATE);
+        int targetSchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
+
+        Map<String,Object> params = new HashMap<String,Object>();
 		params.put("uid", tweet.getAuthorId());
 		params.put("msg", tweet.getBody());
         params.put("reward", tweet.getReward());
-        params.put("by", tweet.getBy());
+        params.put("target_school", targetSchool);
 				
 		Map<String, File> files = new HashMap<String, File>();
 		if(tweet.getImageFile() != null)
