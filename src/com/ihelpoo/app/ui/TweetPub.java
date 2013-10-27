@@ -579,7 +579,7 @@ public class TweetPub extends BaseActivity {
 
             String content = mContent.getText().toString();
             if (StringUtils.isEmpty(content)) {
-                UIHelper.ToastMessage(v.getContext(), "请输入动弹内容");
+                UIHelper.ToastMessage(v.getContext(), "请输入消息内容");
                 return;
             }
 
