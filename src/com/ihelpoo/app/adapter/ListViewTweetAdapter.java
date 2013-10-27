@@ -56,7 +56,7 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
         public TextView date;
         public LinkView content;
         public TextView commentCount;
-        public TextView client;
+        public TextView by;
         public ImageView image;
 
 
@@ -117,7 +117,7 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
             listItemView.image = (ImageView) convertView.findViewById(R.id.tweet_listitem_image);
             listItemView.date = (TextView) convertView.findViewById(R.id.tweet_listitem_date);
             listItemView.commentCount = (TextView) convertView.findViewById(R.id.tweet_listitem_comment_count);
-            listItemView.client = (TextView) convertView.findViewById(R.id.tweet_listitem_client);
+            listItemView.by = (TextView) convertView.findViewById(R.id.tweet_listitem_by);
 
             listItemView.redirect = (ImageView) convertView.findViewById(R.id.tweet_listitem_redirect);
             listItemView.type_gossip = (TextView) convertView.findViewById(R.id.tweet_listitem_type_gossip);
@@ -158,28 +158,7 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
 
         listItemView.date.setText(StringUtils.friendly_time(tweet.getPubDate()));
         listItemView.commentCount.setText(tweet.getCommentCount() + "");
-
-        switch (tweet.getAppClient()) {
-            default:
-                listItemView.client.setText("");
-                break;
-            case Tweet.CLIENT_MOBILE:
-                listItemView.client.setText("来自:手机");
-                break;
-            case Tweet.CLIENT_ANDROID:
-                listItemView.client.setText("来自:Android");
-                break;
-            case Tweet.CLIENT_IPHONE:
-                listItemView.client.setText("来自:iPhone");
-                break;
-            case Tweet.CLIENT_WINDOWS_PHONE:
-                listItemView.client.setText("来自:Windows Phone");
-                break;
-        }
-        if (StringUtils.isEmpty(listItemView.client.getText().toString()))
-            listItemView.client.setVisibility(View.GONE);
-        else
-            listItemView.client.setVisibility(View.VISIBLE);
+        listItemView.by.setText("来自："+tweet.getBy());
 
         String faceURL = tweet.getFace();
         if (faceURL.endsWith("portrait.gif") || StringUtils.isEmpty(faceURL)) {

@@ -52,6 +52,8 @@ public class Tweet extends Entity{
 	public final static String NODE_IMGBIG = "imgBig";
 	public final static String NODE_APPCLIENT = "appclient";
 	public final static String NODE_START = "tweet";
+    public final static String NODE_BY = "by";
+
 
     public final static String NODE_spreadCount = "spreadCount";
     public final static String NODE_plusCount = "plusCount";
@@ -80,6 +82,7 @@ public class Tweet extends Entity{
 	private String imgBig;
 	private File imageFile;
 	private int appClient;
+    private String by;
 
     private int spreadCount;
     private int plusCount;
@@ -91,6 +94,14 @@ public class Tweet extends Entity{
     private int reward;
     private int plusByMe;
     private int diffuseByMe;
+
+    public String getBy() {
+        return by;
+    }
+
+    public void setBy(String by) {
+        this.by = by;
+    }
 
     public int getPlusCount() {
         return plusCount;
@@ -327,6 +338,10 @@ public class Tweet extends Entity{
                             else if(tag.equalsIgnoreCase(Tweet.NODE_plusCount))
                             {
                                 tweet.setPlusCount(StringUtils.toInt(xmlParser.nextText(), 0));
+                            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_BY))
+                            {
+                                tweet.setBy(xmlParser.nextText());
                             }
 				            //通知信息
 				            else if(tag.equalsIgnoreCase("notice"))

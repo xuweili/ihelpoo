@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -139,7 +138,7 @@ public class SchoolListActivity extends BaseActivity {
         SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
         int mySchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
         if (isFirstIn(mySchool)) {
-            UIHelper.ToastMessage(this.getApplicationContext(), "初次进入系统，请选择您所在的学校:\n" + Build.MODEL + ":" + Build.MANUFACTURER);
+            UIHelper.ToastMessage(this.getApplicationContext(), "初次进入系统，请选择您所在的学校");
             return false;
         }
 

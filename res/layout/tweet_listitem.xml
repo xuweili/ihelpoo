@@ -110,13 +110,15 @@
                             android:paddingTop="@dimen/space_1"
                             android:layout_marginLeft="@dimen/space_3"
                             android:layout_alignParentBottom="true"
-                            android:text="10月22 09:21 来自iPhone客户端"
+                            android:text="10月22 09:21"
                             android:layout_toRightOf="@+id/tweet_listitem_client" />
 
                         <TextView
-                            android:id="@+id/tweet_listitem_client"
+                            android:id="@+id/tweet_listitem_by"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="来自Android客户端"
+                            android:paddingLeft="@dimen/space_10"
                             android:textSize="@dimen/text_size_10"
                             android:textColor="@color/listitem_gray"
                             android:layout_alignParentBottom="true"
