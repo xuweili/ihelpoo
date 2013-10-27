@@ -334,17 +334,17 @@ public class ApiClient {
 		}while(time < RETRY_TIME);
         
         responseBody = responseBody.replaceAll("\\p{Cntrl}", "");
-		if(responseBody.contains("result") && responseBody.contains("errorCode") && appContext.containsProperty("user.uid")){
-			try {
-				Result res = Result.parse(new ByteArrayInputStream(responseBody.getBytes()));	
-				if(res.getErrorCode() == 0){
-					appContext.logout();
-					appContext.getUnLoginHandler().sendEmptyMessage(1);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}			
-		}
+//		if(responseBody.contains("result") && responseBody.contains("errorCode") && appContext.containsProperty("user.uid")){//FIXME
+//			try {
+//				Result res = Result.parse(new ByteArrayInputStream(responseBody.getBytes()));
+//				if(res.getErrorCode() == 0){
+//					appContext.logout();
+//					appContext.getUnLoginHandler().sendEmptyMessage(1);
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
         return new ByteArrayInputStream(responseBody.getBytes());
 	}
 	

@@ -693,6 +693,7 @@ public class TweetDetail extends BaseActivity {
                 public void handleMessage(Message msg) {
                     if (msg.what == 1 && msg.obj != null) {
                         Result res = (Result) msg.obj;
+                        UIHelper.ToastMessage(TweetDetail.this, res.getErrorMessage());
                         if (res.OK()) {
                             if(tweetDetail.getDiffuseByMe() == 1){
                                 UIHelper.ToastMessage(TweetDetail.this, "您已扩散过这条消息");
@@ -706,6 +707,8 @@ public class TweetDetail extends BaseActivity {
                                 UIHelper.sendBroadCast(TweetDetail.this, res.getNotice());
                             }
                         }
+                    } else {
+                        ((AppException) msg.obj).makeToast(TweetDetail.this);
                     }
                 }
             };
@@ -766,6 +769,8 @@ public class TweetDetail extends BaseActivity {
                                 UIHelper.sendBroadCast(TweetDetail.this, res.getNotice());
                             }
                         }
+                    } else {
+                        ((AppException) msg.obj).makeToast(TweetDetail.this);
                     }
                 }
             };
@@ -816,7 +821,7 @@ public class TweetDetail extends BaseActivity {
 
             _uid = ac.getLoginUid();
 
-            mProgress = ProgressDialog.show(v.getContext(), null, "正在扩散···", true, true);
+            mProgress = ProgressDialog.show(v.getContext(), null, "发表中···", true, true);
 
             final Handler handler = new Handler() {
                 public void handleMessage(Message msg) {
