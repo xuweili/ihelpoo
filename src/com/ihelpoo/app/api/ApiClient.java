@@ -177,7 +177,7 @@ public class ApiClient {
 	 * @throws com.ihelpoo.app.AppException
 	 */
 	private static InputStream http_get(AppContext appContext, String url) throws AppException {
-		System.out.println("get_url==> "+url);
+//		System.out.println("get_url==> "+url);
 		String cookie = getCookie(appContext);
 		String userAgent = getUserAgent(appContext);
 		
@@ -196,7 +196,7 @@ public class ApiClient {
 					throw AppException.http(statusCode);
 				}
 				responseBody = httpGet.getResponseBodyAsString();
-				System.out.println("XMLDATA=====>"+responseBody);
+//				System.out.println("XMLDATA=====>"+responseBody);
 				break;				
 			} catch (HttpException e) {
 				time++;
@@ -302,7 +302,7 @@ public class ApiClient {
 	        		}
 		        }
 		     	responseBody = httpPost.getResponseBodyAsString();
-		        System.out.println("XMLDATA=====>"+responseBody);
+//		        System.out.println("XMLDATA=====>"+responseBody);
 		     	break;	     	
 			} catch (HttpException e) {
 				time++;
@@ -1538,6 +1538,7 @@ public class ApiClient {
         params.put("mobile", mobileNo);
         params.put("pwd", pwd);
         params.put("schoolId", schoolId);
+        params.put("ip", DeviceUtil.getIPAddress(true));
 
         try{
             return MobileRegisterResult.parse(_post(appContext, URLs.MOBILE_REGISTER, params, null));

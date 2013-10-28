@@ -22,7 +22,7 @@ public class MobileRegisterResult {
 
     private int errorCode;
     private String errorMessage;
-    private RegisterUser user;
+    private User user;
 
 
     public boolean OK() {
@@ -68,21 +68,51 @@ public class MobileRegisterResult {
                             }
                             else if(tag.equalsIgnoreCase("user"))
                             {
-                                res.user = new RegisterUser();
+                                res.user = new User();
                             }
                             else if(res.user != null)
                             {
-                                if(tag.equalsIgnoreCase(NODE_UID))
-                                {
+
+                                if (tag.equalsIgnoreCase("uid")) {
                                     res.user.setUid(StringUtils.toInt(xmlParser.nextText(), 0));
-                                }
-                                else if(tag.equalsIgnoreCase(NODE_NICKNAME))
-                                {
+                                } else if (tag.equalsIgnoreCase("nickname")) {
                                     res.user.setNickname(xmlParser.nextText());
-                                }
-                                else if(tag.equalsIgnoreCase(NODE_SCHOOL_ID))
-                                {
-                                    res.user.setSchoolId(StringUtils.toInt(xmlParser.nextText()));
+                                } else if (tag.equalsIgnoreCase("gender")) {
+                                    res.user.setGender(StringUtils.toInt(xmlParser.nextText()));
+                                } else if (tag.equalsIgnoreCase("birthday")) {
+                                    res.user.setBirthday(xmlParser.nextText());
+                                } else if (tag.equalsIgnoreCase("enrol_time")) {
+                                    res.user.setEnrol_time(xmlParser.nextText());
+                                } else if (tag.equalsIgnoreCase("user_type")) {
+                                    res.user.setUser_type(StringUtils.toInt(xmlParser.nextText()));
+                                } else if (tag.equalsIgnoreCase("login_days")) {
+                                    res.user.setLogin_days(StringUtils.toInt(xmlParser.nextText()));
+                                } else if (tag.equalsIgnoreCase("online_status")) {
+                                    res.user.setOnline_status(xmlParser.nextText());
+                                } else if (tag.equalsIgnoreCase("active_credits")) {
+                                    res.user.setActive_credits(StringUtils.toInt(xmlParser.nextText()));
+                                } else if (tag.equalsIgnoreCase("avatar_url")) {
+                                    res.user.setAvatar_url(xmlParser.nextText());
+                                } else if (tag.equalsIgnoreCase("self_intro")) {
+                                    res.user.setSelf_intro(xmlParser.nextText());
+                                } else if (tag.equalsIgnoreCase("followers_count")) {
+                                    res.user.setFollowers_count(StringUtils.toInt(xmlParser.nextText()));
+                                } else if (tag.equalsIgnoreCase("friends_count")) {
+                                    res.user.setFriends_count(StringUtils.toInt(xmlParser.nextText()));
+                                } else if (tag.equalsIgnoreCase("school_id")) {
+                                    res.user.setSchool_id(xmlParser.nextText());
+                                } else if (tag.equalsIgnoreCase("school_name")) {
+                                    res.user.setSchool_name(xmlParser.nextText());
+                                } else if (tag.equalsIgnoreCase("academy_name")) {
+                                    res.user.setAcademy_name(xmlParser.nextText());
+                                } else if (tag.equalsIgnoreCase("major_name")) {
+                                    res.user.setMajor_name(xmlParser.nextText());
+                                } else if (tag.equalsIgnoreCase("school_domain")) {
+                                    res.user.setSchool_domain(xmlParser.nextText());
+                                } else if (tag.equalsIgnoreCase("level")) {
+                                    res.user.setLevel(StringUtils.toInt(xmlParser.nextText()));
+                                } else if (tag.equalsIgnoreCase("relation")) {
+                                    res.user.setRelation(StringUtils.toInt(xmlParser.nextText()));
                                 }
                             }
                         }
@@ -104,65 +134,16 @@ public class MobileRegisterResult {
 
     }
 
-
-    public int getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
+    public User getUser() {
+        return user;
     }
 
     public String getErrorMessage() {
         return errorMessage;
     }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-
-    public RegisterUser getUser() {
-        return user;
-    }
-
-    public void setUser(RegisterUser user) {
-        this.user = user;
-    }
-
     @Override
     public String toString(){
         return String.format("RESULT: CODE:%d,MSG:%s", errorCode, errorMessage);
-    }
-    public static class RegisterUser extends Base {
-
-        private Integer uid;
-        private Integer schoolId;
-        private String nickname;
-
-
-        public Integer getUid() {
-            return uid;
-        }
-
-        public void setUid(Integer uid) {
-            this.uid = uid;
-        }
-
-        public Integer getSchoolId() {
-            return schoolId;
-        }
-
-        public void setSchoolId(Integer schoolId) {
-            this.schoolId = schoolId;
-        }
-
-        public String getNickname() {
-            return nickname;
-        }
-
-        public void setNickname(String nickname) {
-            this.nickname = nickname;
-        }
-
     }
 }

@@ -192,9 +192,10 @@ public class Register extends BaseActivity implements android.view.View.OnClickL
                                 user.setEmail(mobileNo);
                                 user.setPwd(pwd);
                                 user.setRemember(true);
+                                user.setAvatar_url("http://img.ihelpoo.cn/useralbum/default_avatar.jpg!app");
                                 user.setOnline_status("1");
                                 user.setNickname(res.getUser().getNickname());
-                                user.setSchool_id(String.valueOf(res.getUser().getSchoolId()));
+                                user.setSchool_id(res.getUser().getSchool_id());
                                 ac.saveLoginInfo(user);
                                 Intent intent = new Intent(Register.this, Main.class);
                                 intent.putExtra("LOGIN", true);

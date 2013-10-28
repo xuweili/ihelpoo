@@ -324,7 +324,7 @@ public class NewsDetail extends BaseActivity {
 
 					body += "<div style='margin-bottom: 80px'/>";
 
-					System.out.println(body);
+//					System.out.println(body);
 
 					mWebView.loadDataWithBaseURL(null, body, "text/html",
 							"utf-8", null);

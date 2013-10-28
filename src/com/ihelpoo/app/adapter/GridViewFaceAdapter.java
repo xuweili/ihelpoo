@@ -23,6 +23,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.util.Arrays;
+
 /**
  * 用户表情Adapter类
  *
@@ -102,6 +104,10 @@ public class GridViewFaceAdapter extends BaseAdapter {
     // 获取图片ID
     public long getItemId(int position) {
         return mImageIds[position];
+    }
+
+    public int getPosition(String emotionText){
+        return Arrays.asList(emotionsText).indexOf(emotionText);
     }
 
 

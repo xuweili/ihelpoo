@@ -295,7 +295,7 @@ public class BlogDetail extends BaseActivity {
 						body = body.replaceAll("(<img[^>]+src=\")(\\S+)\"",
 								"$1$2\" onClick=\"javascript:mWebViewImageListener.onImageClick('$2')\"");
 						
-						System.out.println(body);
+//						System.out.println(body);
 					}else{
 						body = body.replaceAll("<\\s*img\\s+([^>]*)\\s*>","");
 					}
