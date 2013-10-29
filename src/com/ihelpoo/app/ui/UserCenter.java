@@ -367,7 +367,7 @@ public class UserCenter extends BaseActivity {
                     mHeadTitle.setText(_username + " ▼");
                     mUsername.setText(mUser.getNickname());
                     mFrom.setText(mUser.getSchool_name());
-                    mGender.setText(String.valueOf(mUser.getGender()));
+                    mGender.setText(mUser.getGender() == 1 ? "男" : "女");
                     mJointime.setText(mUser.getEnrol_time());
                     mDevplatform.setText(mUser.getAcademy_name());
                     mExpertise.setText(String.valueOf(mUser.getFollowers_count()));

@@ -34,7 +34,7 @@
                         android:includeFontPadding="false"
                         android:textSize="@dimen/text_size_13"
                         android:textColor="@color/lightblue"
-                        android:text="用户：" />
+                        android:text="昵称：" />
 
                     <TextView
                         android:id="@+id/user_center_username"
@@ -100,7 +100,7 @@
                         android:includeFontPadding="false"
                         android:textSize="@dimen/text_size_13"
                         android:textColor="@color/lightblue"
-                        android:text="加入时间：" />
+                        android:text="入学：" />
 
                     <TextView
                         android:id="@+id/user_center_jointime"
@@ -136,7 +136,7 @@
                 android:includeFontPadding="false"
                 android:textSize="@dimen/text_size_13"
                 android:textColor="@color/lightblue"
-                android:text="开发平台：" />
+                android:text="学院：" />
 
             <TextView
                 android:id="@+id/user_center_devplatform"
@@ -150,6 +150,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginTop="5dip">
 
             <TextView
@@ -158,13 +159,15 @@
                 android:includeFontPadding="false"
                 android:textSize="@dimen/text_size_13"
                 android:textColor="@color/lightblue"
-                android:text="专长领域：" />
+                android:visibility="gone"
+                android:text="专业：" />
 
             <TextView
                 android:id="@+id/user_center_expertise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
+                android:visibility="gone"
                 android:textSize="@dimen/text_size_13"
                 android:textColor="@color/white" />
         </LinearLayout>
@@ -172,6 +175,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginTop="5dip">
 
             <TextView
@@ -180,6 +184,7 @@
                 android:includeFontPadding="false"
                 android:textSize="@dimen/text_size_13"
                 android:textColor="@color/lightblue"
+                android:visibility="gone"
                 android:text="最近登录：" />
 
             <TextView
@@ -188,6 +193,7 @@
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
                 android:textSize="@dimen/text_size_13"
+                android:visibility="gone"
                 android:textColor="@color/white" />
         </LinearLayout>
 

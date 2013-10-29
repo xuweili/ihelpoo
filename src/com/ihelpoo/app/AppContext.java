@@ -809,18 +809,20 @@ public class AppContext extends Application {
     /**
      * 帖子列表
      *
+     *
+     * @param schoolId
      * @param catalog
      * @param pageIndex
      * @param isRefresh
      * @return
      * @throws AppException
      */
-    public PostList getPostList(int catalog, int pageIndex, boolean isRefresh) throws AppException {
+    public PostList getPostList(String schoolId, int catalog, int pageIndex, boolean isRefresh) throws AppException {
         PostList list = null;
         String key = "postlist_" + catalog + "_" + pageIndex + "_" + PAGE_SIZE;
         if (isNetworkConnected() && (!isReadDataCache(key) || isRefresh)) {
             try {
-                list = ApiClient.getPostList(this, catalog, pageIndex, PAGE_SIZE);
+                list = ApiClient.getPostList(this, schoolId, catalog, pageIndex, PAGE_SIZE);
                 if (list != null && pageIndex == 0) {
                     Notice notice = list.getNotice();
                     list.setNotice(null);

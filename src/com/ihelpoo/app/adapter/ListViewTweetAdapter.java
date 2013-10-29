@@ -171,13 +171,13 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
 
 //		listItemView.content.setText(tweet.getBody());
 //		listItemView.content.parseLinkText();
-        listItemView.content.setLinkText(tweet.getBody());
+        listItemView.content.setLinkText(tweet.getBody().replaceAll("\\\\",""));
         listItemView.content.setTag(tweet);//设置隐藏参数(实体类)
         listItemView.content.setOnClickListener(linkViewClickListener);
         listItemView.content.setLinkClickListener(linkClickListener);
 
         listItemView.date.setText(StringUtils.friendly_time(tweet.getPubDate()));
-        listItemView.by.setText("来自："+tweet.getBy());
+        listItemView.by.setText(tweet.getBy());
 
         String faceURL = tweet.getFace();
         if (faceURL.endsWith("portrait.gif") || StringUtils.isEmpty(faceURL)) {

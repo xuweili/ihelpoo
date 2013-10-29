@@ -118,7 +118,7 @@ public class ListViewQuestionAdapter extends BaseAdapter {
 		listItemView.title.setTag(post);//设置隐藏参数(实体类)
 		listItemView.author.setText(post.getAuthor());
 		listItemView.date.setText(post.getPubDate());
-		listItemView.count.setText(post.getAnswerCount()+"回|"+post.getViewCount()+"阅");
+		listItemView.count.setText(post.getAnswerCount()+"回复 | "+post.getViewCount()+"浏览");
 		
 		return convertView;
 	}

@@ -177,7 +177,7 @@ public class ApiClient {
 	 * @throws com.ihelpoo.app.AppException
 	 */
 	private static InputStream http_get(AppContext appContext, String url) throws AppException {
-//		System.out.println("get_url==> "+url);
+		System.out.println("get_url==> "+url);
 		String cookie = getCookie(appContext);
 		String userAgent = getUserAgent(appContext);
 		
@@ -251,7 +251,7 @@ public class ApiClient {
 	 */
 	private static InputStream _post(AppContext appContext, String url, Map<String, Object> params, Map<String,File> files) throws AppException {
 		//System.out.println("post_url==> "+url);
- 		String cookie = getCookie(appContext);
+     		String cookie = getCookie(appContext);
 		String userAgent = getUserAgent(appContext);
 		
 		HttpClient httpClient = null;
@@ -791,17 +791,19 @@ public class ApiClient {
 	
 	/**
 	 * 获取帖子列表
-	 * @param url
-	 * @param catalog
-	 * @param pageIndex
-	 * @return
+	 *
+     * @param schoolId
+     * @param catalog
+     * @param pageIndex
+     * @return
 	 * @throws AppException
 	 */
-	public static PostList getPostList(AppContext appContext, final int catalog, final int pageIndex, final int pageSize) throws AppException {
+	public static PostList getPostList(AppContext appContext, final String schoolId, final int catalog, final int pageIndex, final int pageSize) throws AppException {
 		String newUrl = _MakeURL(URLs.POST_LIST, new HashMap<String, Object>(){{
+            put("school_id", schoolId);
 			put("catalog", catalog);
-			put("pageIndex", pageIndex);
-			put("pageSize", pageSize);
+			put("page_index", pageIndex);
+			put("page_size", pageSize);
 		}});
 
 		try{
@@ -918,7 +920,7 @@ public class ApiClient {
 			throw AppException.network(e);
 		}
 	}
-	
+
 	/**
 	 * 获取动弹详情
 	 *

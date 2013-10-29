@@ -28,10 +28,12 @@
         android:id="@+id/user_center_footbar_atme"
         style="@style/user_center_footbar"
         android:layout_marginLeft="5dip"
+        android:visibility="gone"
         android:drawableLeft="@drawable/widget_bar_atme"
         android:text="提到Ta"/>
     <ImageView
         style="@style/main_footbar_cutline"
+        android:visibility="gone"
         android:src="@drawable/widget_bar_cut_off"/>
 	<RadioButton
 	    android:id="@+id/user_center_footbar_message"

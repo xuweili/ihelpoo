@@ -3,9 +3,10 @@
     android:orientation="horizontal" 
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content"
-    android:descendantFocusability="blocksDescendants" 
-    android:paddingLeft="6dip"
-    android:paddingRight="6dip"
+    android:descendantFocusability="blocksDescendants"
+    android:background="@color/white"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip"
     android:paddingTop="10dip"
     android:paddingBottom="9dip">   
 
@@ -17,18 +18,19 @@
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content"
     	android:orientation="vertical"
-    	android:layout_marginLeft="6dip"> 
+    	android:layout_marginLeft="9dip">
 
 	    <TextView android:id="@+id/question_listitem_title" 
 	        android:layout_width="fill_parent" 
 	     	android:layout_height="wrap_content"
             android:includeFontPadding="false"
-            android:textSize="@dimen/text_size_15"
+            android:textSize="@dimen/text_size_16"
 	     	android:textColor="@color/listitem_black"
 	     	android:maxLines="2"
+            android:text="我刚刚加入了我帮圈圈我刚刚加入了我帮圈圈我刚刚加入了我帮圈圈"
 	    	android:ellipsize="end"/> 	
 	
-	    <LinearLayout 
+	    <RelativeLayout
 	    	android:orientation="horizontal" 
 	        android:layout_width="fill_parent"  
 	        android:layout_height="wrap_content"
@@ -37,31 +39,41 @@
 	       	<TextView android:id="@+id/question_listitem_author"  
 	    		android:layout_width="wrap_content" 
 	           	android:layout_height="wrap_content" 
-	           	android:textSize="@dimen/text_size_10"
-	            android:textColor="@color/listitem_gray"/>
+	           	android:textSize="@dimen/text_size_12"
+	            android:textColor="@color/listitem_blue"
+                android:layout_alignParentLeft="true"
+                android:text="123"/>
 	       	
 	       	<TextView android:id="@+id/question_listitem_date"  
 	    		android:layout_width="wrap_content" 
 	           	android:layout_height="wrap_content" 
-	           	android:layout_marginLeft="10dip"
+	           	android:layout_marginLeft="5dp"
 	           	android:textSize="@dimen/text_size_10"
-	            android:textColor="@color/listitem_gray"/>
+	            android:textColor="@color/listitem_gray"
+                android:text="456"
+                android:layout_alignBottom="@+id/question_listitem_author"
+                android:layout_toRightOf="@+id/question_listitem_author" />
 	            
-		    <ImageView 
-		      	android:layout_width="wrap_content" 
+		    <ImageView
+                android:id="@+id/question_listitem_count_icon"
+                android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_marginLeft="10dip"
 		        android:layout_gravity="center_vertical"
-		        android:src="@drawable/home_content_count_comment"/>
+		        android:src="@drawable/home_content_count_comment"
+                android:layout_toLeftOf="@+id/question_listitem_count" />
 		        
 	       	<TextView android:id="@+id/question_listitem_count"  
 	    		android:layout_width="wrap_content" 
 	           	android:layout_height="wrap_content" 
 	           	android:layout_marginLeft="3dip"
 	           	android:textSize="@dimen/text_size_10"
-	            android:textColor="@color/listitem_gray"/>
+	            android:textColor="@color/listitem_gray"
+                android:layout_alignBottom="@+id/question_listitem_count_icon"
+                android:text="789"
+                android:layout_alignParentRight="true"/>
 	            
-       	</LinearLayout>
+       	</RelativeLayout>
        	
     </LinearLayout>
 

@@ -2263,8 +2263,11 @@ public class Main extends BaseActivity {
                 if (action == UIHelper.LISTVIEW_ACTION_REFRESH
                         || action == UIHelper.LISTVIEW_ACTION_SCROLL)
                     isRefresh = true;
+
+                SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
+                int mySchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
                 try {
-                    PostList list = appContext.getPostList(catalog, pageIndex,
+                    PostList list = appContext.getPostList(String.valueOf(mySchool), catalog, pageIndex,
                             isRefresh);
                     msg.what = list.getPageSize();
                     msg.obj = list;
