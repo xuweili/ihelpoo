@@ -470,28 +470,28 @@ public class UserInfoEdit extends BaseActivity {
     private View.OnClickListener onClickSchool = new View.OnClickListener() {
         public void onClick(View v) {
             Intent intent = new Intent(UserInfoEdit.this, UserInfoMajor.class);
-            intent.putExtra("school_name", school.getText());
+            intent.putExtra("school_name", school.getText().toString());
             startActivityForResult(intent, REQUEST_CODE_EDIT_MAJOR);
         }
     };
     private View.OnClickListener onClickAcademy = new View.OnClickListener() {
         public void onClick(View v) {
             Intent intent = new Intent(UserInfoEdit.this, UserInfoMajor.class);
-            intent.putExtra("academy_name", academy.getText());
+            intent.putExtra("academy_name", academy.getText().toString());
             startActivityForResult(intent, REQUEST_CODE_EDIT_MAJOR);
         }
     };
     private View.OnClickListener onClickMajor = new View.OnClickListener() {
         public void onClick(View v) {
             Intent intent = new Intent(UserInfoEdit.this, UserInfoMajor.class);
-            intent.putExtra("major_name", major.getText());
+            intent.putExtra("major_name", major.getText().toString());
             startActivityForResult(intent, REQUEST_CODE_EDIT_MAJOR);
         }
     };
     private View.OnClickListener onClickDorm = new View.OnClickListener() {
         public void onClick(View v) {
             Intent intent = new Intent(UserInfoEdit.this, UserInfoMajor.class);
-            intent.putExtra("dorm_name", dorm.getText());
+            intent.putExtra("dorm_name", dorm.getText().toString());
             startActivityForResult(intent, REQUEST_CODE_EDIT_MAJOR);
         }
     };
