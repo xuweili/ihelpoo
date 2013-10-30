@@ -1890,4 +1890,8 @@ public class AppContext extends Application {
     public DormList getDormList(int schoolId) throws AppException {
         return ApiClient.getDormList(this, schoolId);
     }
+
+    public Result updateMajor(int loginUid, String schoolId, String academyId, String majorId, String dormId) throws AppException {
+        return ApiClient.updateMajor(this, loginUid, schoolId, academyId, majorId, dormId);
+    }
 }

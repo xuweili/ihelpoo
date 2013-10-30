@@ -1713,4 +1713,21 @@ public class ApiClient {
             throw AppException.network(e);
         }
     }
+
+    public static Result updateMajor(AppContext appContext, int uid, String schoolId, String academyId, String majorId, String dormId) throws AppException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("uid", uid);
+        params.put("school_id", schoolId);
+        params.put("academy_id", academyId);
+        params.put("major_id", majorId);
+        params.put("dorm_id", dormId);
+
+        try {
+            return Result.parse(_post(appContext, URLs.USER_UPDATE_MAJOR, params, null));
+        } catch (Exception e) {
+            if (e instanceof AppException)
+                throw (AppException) e;
+            throw AppException.network(e);
+        }
+    }
 }

@@ -24,7 +24,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.ihelpoo.app.AppContext;
@@ -96,7 +95,7 @@ public class UserInfoMajor extends BaseActivity {
         back = (Button) findViewById(R.id.user_nickname_back);
         refresh = (ImageView) findViewById(R.id.user_nickname_refresh);
         back.setOnClickListener(UIHelper.finish(this));
-        refresh.setOnClickListener(refreshClickListener);
+        refresh.setOnClickListener(saveClickListener);
 
         spSchool = (Spinner) findViewById(R.id.sp_user_major_school);
         spAcademy = (Spinner) findViewById(R.id.sp_user_major_academy);
@@ -180,9 +179,6 @@ public class UserInfoMajor extends BaseActivity {
     private AdapterView.OnItemSelectedListener onSelectSchool = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-//            if(!enrol.getText().toString().equals(spEnrol.getSelectedItem().toString())){
-//                updateEnrol();
-//            }
             schoolFlag += 1;
             if (schoolFlag <= 1) return;
 
@@ -249,9 +245,6 @@ public class UserInfoMajor extends BaseActivity {
     private AdapterView.OnItemSelectedListener onSelectAcademy = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-//            if(!enrol.getText().toString().equals(spEnrol.getSelectedItem().toString())){
-//                updateEnrol();
-//            }
             academyFlag += 1;
 
             if (academyFlag <= 1) return;
@@ -301,7 +294,24 @@ public class UserInfoMajor extends BaseActivity {
         }
     };
 
-    private void updateGender(final String gender) {
+    private void finishEdit(final String schoolName, final String academyName, final String majorName, final String dormName) {
+        Intent intent = new Intent(this, UserInfoEdit.class);
+        setResult(UserInfoEdit.REQUEST_CODE_EDIT_MAJOR, intent);
+        intent.putExtra("school_name", schoolName);
+        intent.putExtra("academy_name", academyName);
+        intent.putExtra("major_name", majorName);
+        intent.putExtra("dorm_name", dormName);
+        finish();
+    }
+
+
+    private void updateMajor() {
+
+        final String schoolName = ((SchoolInfo) spSchool.getSelectedItem()).getSchool();
+        final String academyName = ((AcademyInfo) spAcademy.getSelectedItem()).getAcademyName();
+        final String majorName = ((MajorInfo) spMajor.getSelectedItem()).getMajorName();
+        final String dormName = ((DormInfo) spDorm.getSelectedItem()).getDormName();
+
         final Handler handler = new Handler() {
             public void handleMessage(Message msg) {
                 if (loading != null) loading.dismiss();
@@ -310,7 +320,7 @@ public class UserInfoMajor extends BaseActivity {
                     //提示信息
                     UIHelper.ToastMessage(UserInfoMajor.this, res.getErrorMessage());
                     if (res.OK()) {
-                        finishEdit(gender);
+                        finishEdit(schoolName, academyName, majorName, dormName);
                     }
                 } else if (msg.what == -1 && msg.obj != null) {
                     ((AppException) msg.obj).makeToast(UserInfoMajor.this);
@@ -320,16 +330,24 @@ public class UserInfoMajor extends BaseActivity {
         };
 
         if (loading != null) {
-            loading.setLoadText("正在修改性别···");
+            loading.setLoadText("正在修改···");
             loading.show();
         }
+
+        final String schoolId = String.valueOf(((SchoolInfo) spSchool.getSelectedItem()).getId());
+        final String academyId = String.valueOf(((AcademyInfo) spAcademy.getSelectedItem()).getId());
+        final String majorId = String.valueOf(((MajorInfo) spMajor.getSelectedItem()).getId());
+        final String dormId = String.valueOf(((DormInfo) spDorm.getSelectedItem()).getId());
 
         new Thread() {
             public void run() {
                 AppContext appContext = (AppContext) getApplication();
                 Message msg = new Message();
                 try {
-                    Result res = appContext.updateGender(appContext.getLoginUid(), gender);
+                    Result res = appContext.updateMajor(appContext.getLoginUid(), schoolId, academyId, majorId, dormId);
+                    if (res != null && res.OK()) {
+                        appContext.setProperty("user.location", schoolId);
+                    }
                     msg.what = 1;
                     msg.obj = res;
                 } catch (AppException e) {
@@ -343,16 +361,9 @@ public class UserInfoMajor extends BaseActivity {
 
     }
 
-
-    private void finishEdit(final String gender) {
-        Intent intent = new Intent(this, UserInfoEdit.class);
-        setResult(UserInfoEdit.REQUEST_CODE_EDIT_GENDER, intent);
-        intent.putExtra("gender", gender);
-        finish();
-    }
-
-    private View.OnClickListener refreshClickListener = new View.OnClickListener() {
+    private View.OnClickListener saveClickListener = new View.OnClickListener() {
         public void onClick(View v) {
+            updateMajor();
         }
     };
 }

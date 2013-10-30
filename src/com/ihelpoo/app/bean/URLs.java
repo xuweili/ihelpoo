@@ -40,6 +40,7 @@ public class URLs implements Serializable {
     private final static String URL_API_HOST = HTTP + HOST + URL_SPLITTER;
 
 
+    public static final String USER_UPDATE_MAJOR = "http://192.168.0.108:8080/v1.1/updateMajor.xml";
     public static final String USER_UPDATE_NICKNAME = "http://192.168.0.108:8080/v1.1/updateNickname.xml";
     public static final String USER_UPDATE_GENDER = "http://192.168.0.108:8080/v1.1/updateGender.xml";
     public static final String USER_UPDATE_ENROL = "http://192.168.0.108:8080/v1.1/updateEnrol.xml";

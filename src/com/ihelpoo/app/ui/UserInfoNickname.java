@@ -88,7 +88,6 @@ public class UserInfoNickname extends BaseActivity {
             } else {
                 finish();
             }
-
         }
     };
 
