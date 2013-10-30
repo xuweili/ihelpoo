@@ -4,6 +4,10 @@ package com.ihelpoo.app.bean;
  * @author sy
  */
 public class SchoolInfo {
+    public String toString(){
+        return school;
+    }
+
     private String school;
     private String initial;
 

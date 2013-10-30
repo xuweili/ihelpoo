@@ -27,6 +27,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.webkit.CacheManager;
 
+import com.ihelpoo.app.bean.AcademyInfo;
+import com.ihelpoo.app.bean.AcademyList;
+import com.ihelpoo.app.bean.DormList;
+import com.ihelpoo.app.bean.MajorList;
 import com.ihelpoo.app.bean.MobileCodeResult;
 import com.ihelpoo.app.bean.MobileRegisterResult;
 import com.ihelpoo.app.bean.SchoolList;
@@ -1857,5 +1861,33 @@ public class AppContext extends Application {
     //TODO cache and flush
     public SchoolList getSchoolList() throws AppException {
         return ApiClient.getSchoolList(this);
+    }
+
+    public Result updateNickname(int loginUid, String nickname) throws AppException {
+        return ApiClient.updateNickname(this, loginUid, nickname);
+    }
+
+    public Result updateGender(int loginUid, String gender) throws AppException {
+        return ApiClient.updateGender(this, loginUid, gender);
+    }
+
+    public Result updateEnrol(int loginUid, String newEnrol) throws AppException {
+        return ApiClient.updateEnrol(this, loginUid, newEnrol);
+    }
+
+    public Result updateIntro(int loginUid, String intro) throws AppException {
+        return ApiClient.updateIntro(this, loginUid, intro);
+    }
+
+    public AcademyList getAcademyList(int schoolId) throws AppException {
+        return ApiClient.getAcademyList(this, schoolId);
+    }
+
+    public MajorList getMajorList(int schoolId, Integer academyId) throws AppException {
+        return ApiClient.getMajorList(this, schoolId, academyId);
+    }
+
+    public DormList getDormList(int schoolId) throws AppException {
+        return ApiClient.getDormList(this, schoolId);
     }
 }

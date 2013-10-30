@@ -96,6 +96,8 @@ public class UserCenter extends BaseActivity {
     private Handler mBlogHandler;
     private int lvBlogSumData;
 
+    LinearLayout user_center_footer_lyt;
+
     private User mUser;
     private Handler mUserHandler;
     private int relationAction;
@@ -155,6 +157,8 @@ public class UserCenter extends BaseActivity {
         mTabActive.setEnabled(false);
         mTabActive.setOnClickListener(tabBtnClick(mTabActive));
         mTabBlog.setOnClickListener(tabBtnClick(mTabBlog));
+
+        user_center_footer_lyt = (LinearLayout)findViewById(R.id.user_center_footer_lyt);
 
         mBack.setOnClickListener(UIHelper.finish(this));
         mRefresh.setOnClickListener(refreshClickListener);
@@ -442,7 +446,7 @@ public class UserCenter extends BaseActivity {
 
     // 0 没圈没屏蔽，1：圈， 2：屏蔽 3: 自己
     private void loadUserRelation(int relation) {
-        mAtme.setText("提到Ta");
+        user_center_footer_lyt.setVisibility(View.VISIBLE);
         switch (relation) {
             case User.RELATION_TYPE_SHIELD:
                 mShield.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_unshield, 0, 0, 0);
@@ -468,10 +472,7 @@ public class UserCenter extends BaseActivity {
                 mShield.setText("屏蔽Ta");
                 break;
             case User.RELATION_TYPE_MYSELF:
-                mFollow.setVisibility(View.GONE);
-                mShield.setVisibility(View.GONE);
-                mMessage.setVisibility(View.GONE);
-                mAtme.setText("提到自己");
+                user_center_footer_lyt.setVisibility(View.GONE);
                 break;
         }
         if (relation >= 0) {

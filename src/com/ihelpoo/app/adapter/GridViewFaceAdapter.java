@@ -37,13 +37,13 @@ public class GridViewFaceAdapter extends BaseAdapter {
     // 定义整型数组 即图片源
     private static int[] mImageIds = new int[]{
             R.drawable.f001, R.drawable.f002, R.drawable.f003, R.drawable.f004, R.drawable.f005,//微笑 撇嘴 色   发呆 得意
-            R.drawable.f006, R.drawable.f007, R.drawable.f008, R.drawable.f009, R.drawable.f010,//流泪 害羞 闭嘴 睡   大哭
+            R.drawable.f006, R.drawable.f007, R.drawable.f008, R.drawable.f009, R.drawable.f010,//大哭 害羞 闭嘴 睡   流泪
             R.drawable.f011, R.drawable.f012, R.drawable.f013, R.drawable.f014, R.drawable.f015,//尴尬 发怒 调皮 呲牙 惊讶
             R.drawable.f016, R.drawable.f017, R.drawable.f018, R.drawable.f019, R.drawable.f020,//难过 酷   冷汗 抓狂 吐
             R.drawable.f021, R.drawable.f022, R.drawable.f023, R.drawable.f024, R.drawable.f025,//偷笑 可爱 白眼 傲慢 饥饿
             R.drawable.f026, R.drawable.f027, R.drawable.f028, R.drawable.f029, R.drawable.f030,//困   惊恐 流汗 憨笑 大兵
             R.drawable.f031, R.drawable.f032, R.drawable.f033, R.drawable.f034, R.drawable.f035,//奋斗 咒骂 疑问 嘘   晕
-            R.drawable.f036, R.drawable.f037, R.drawable.f038, R.drawable.f039, R.drawable.f040,//折磨 哀   骷髅 敲打 再见
+            R.drawable.f036, R.drawable.f037, R.drawable.f038, R.drawable.f039, R.drawable.f040,//折磨 衰   骷髅 敲打 再见
             R.drawable.f041, R.drawable.f042, R.drawable.f043, R.drawable.f044, R.drawable.f045,//擦汗 抠鼻 鼓掌 糗大了 坏笑
             R.drawable.f046, R.drawable.f047, R.drawable.f048, R.drawable.f049, R.drawable.f050,//左哼哼 右哼哼 哈欠 鄙视 委屈
             R.drawable.f051, R.drawable.f052, R.drawable.f053, R.drawable.f054, R.drawable.f055,//快哭了 阴险 亲亲 吓 可怜
@@ -60,13 +60,13 @@ public class GridViewFaceAdapter extends BaseAdapter {
     };
     private static String[] emotionsText = new String[]{
             "微笑", "撇嘴", "色", "发呆", "得意",
-            "流泪", "害羞", "闭嘴", "睡", "大哭",
+            "大哭", "害羞", "闭嘴", "睡", "流泪",
             "尴尬", "发怒", "调皮", "呲牙", "惊讶",
             "难过", "酷", "冷汗", "抓狂", "吐",
             "偷笑", "可爱", "白眼", "傲慢", "饥饿",
             "困", "惊恐", "流汗", "憨笑", "大兵",
             "奋斗", "咒骂", "疑问", "嘘", "晕",
-            "折磨", "哀", "骷髅", "敲打", "再见",
+            "折磨", "衰", "骷髅", "敲打", "再见",
             "擦汗", "抠鼻", "鼓掌", "糗大了", "坏笑",
             "左哼哼", "右哼哼", "哈欠", "鄙视", "委屈",
             "快哭了", "阴险", "亲亲", "吓", "可怜",

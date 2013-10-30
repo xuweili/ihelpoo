@@ -39,6 +39,15 @@ public class URLs implements Serializable {
 
     private final static String URL_API_HOST = HTTP + HOST + URL_SPLITTER;
 
+
+    public static final String USER_UPDATE_NICKNAME = "http://192.168.0.108:8080/v1.1/updateNickname.xml";
+    public static final String USER_UPDATE_GENDER = "http://192.168.0.108:8080/v1.1/updateGender.xml";
+    public static final String USER_UPDATE_ENROL = "http://192.168.0.108:8080/v1.1/updateEnrol.xml";
+    public static final String USER_UPDATE_INTRO = "http://192.168.0.108:8080/v1.1/updateIntro.xml";
+
+    public static final String MAJOR_LIST = "http://192.168.0.108:8080/v1.1/majors.xml";
+    public static final String DORM_LIST = "http://192.168.0.108:8080/v1.1/dorms.xml";
+    public final static String ACADEMY_LIST = "http://192.168.0.108:8080/v1.1/academies.xml";
     public final static String SCHOOL_LIST = "http://192.168.0.108:8080/v1.1/schools.xml";
     public final static String MOBILE_CODE = "http://192.168.0.108:8080/v1.1/mobileCode.xml";
     public final static String MOBILE_REGISTER = "http://192.168.0.108:8080/v1.1/mobileRegister.xml";

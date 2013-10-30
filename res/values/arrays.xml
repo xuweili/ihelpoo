@@ -2,6 +2,18 @@
 <resources>
 
     <!-- share items -->
+    <string-array name="user_info_edit_enrol_array">
+        <item>2013</item>
+        <item>2012</item>
+        <item>2011</item>
+        <item>2010</item>
+        <item>2009</item>
+        <item>2008</item>
+        <item>2007</item>
+        <item>2006</item>
+        <item>2005</item>
+        <item>2004</item>
+    </string-array>
     <string-array name="tweet_help_reward">
         <item>普通消息</item>
         <item>0</item>
