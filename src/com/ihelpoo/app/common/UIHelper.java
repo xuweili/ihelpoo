@@ -1266,12 +1266,10 @@ public class UIHelper {
      * @return
      */
     public static SpannableString parseActiveReply(String name, String body) {
-        SpannableString sp = new SpannableString(name + "：" + body);
-        // 设置用户名字体加粗、高亮
-        sp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0,
-                name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sp.setSpan(new ForegroundColorSpan(Color.parseColor("#0e5986")), 0,
-                name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        String content = name + "：" + body;
+        SpannableString sp = new SpannableString(content);
+        sp.setSpan(new ForegroundColorSpan(Color.parseColor("#0e5986")), 0, name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(Color.parseColor("#666666")), name.length() + 1, content.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return sp;
     }
 

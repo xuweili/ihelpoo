@@ -72,11 +72,7 @@ public class StringUtils {
             String curDate = dateFormater2.get().format(cal.getTime());
             String paramDate = dateFormater2.get().format(time);
             if (curDate.equals(paramDate)) {
-                int hour = (int) ((cal.getTimeInMillis() - time.getTime()) / 3600000);
-                if (hour == 0)
-                    ftime = Math.max((cal.getTimeInMillis() - time.getTime()) / 60000, 1) + "分钟前";
-                else
-                    ftime = hour + "小时前";
+                ftime = getFriendlyMinute(time, cal);
                 return ftime;
             }
 
@@ -84,11 +80,7 @@ public class StringUtils {
             long ct = cal.getTimeInMillis() / 86400000;
             int days = (int) (ct - lt);
             if (days == 0) {
-                int hour = (int) ((cal.getTimeInMillis() - time.getTime()) / 3600000);
-                if (hour == 0)
-                    ftime = Math.max((cal.getTimeInMillis() - time.getTime()) / 60000, 1) + "分钟前";
-                else
-                    ftime = hour + "小时前";
+                ftime = getFriendlyMinute(time, cal);
             } else if (days == 1) {
                 ftime = "昨天";
             } else if (days == 2) {
@@ -101,6 +93,20 @@ public class StringUtils {
             return ftime;
         }
 
+    }
+
+    private static String getFriendlyMinute(Date time, Calendar cal) {
+        String ftime;
+        int hour = (int) ((cal.getTimeInMillis() - time.getTime()) / 3600000);
+        if (hour == 0) {
+            ftime = getTimeInterval(time, cal) < 1 ? "刚刚" : getTimeInterval(time, cal) + "分钟前";
+        } else
+            ftime = hour + "小时前";
+        return ftime;
+    }
+
+    private static long getTimeInterval(Date time, Calendar cal) {
+        return (cal.getTimeInMillis() - time.getTime()) / 60000;
     }
 
     /**

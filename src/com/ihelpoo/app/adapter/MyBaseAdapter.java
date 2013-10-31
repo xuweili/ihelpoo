@@ -14,10 +14,18 @@
 
 package com.ihelpoo.app.adapter;
 
+import android.view.View;
 import android.widget.BaseAdapter;
 
+import com.ihelpoo.app.common.UIHelper;
+
 public abstract class MyBaseAdapter extends BaseAdapter {
-	//标识LinkView上的链接
+    protected View.OnClickListener imageClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            UIHelper.showImageDialog(v.getContext(), (String) v.getTag());
+        }
+    };
+    //标识LinkView上的链接
 	private boolean isLinkViewClick = false;
 
 	public boolean isLinkViewClick() {

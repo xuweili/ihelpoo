@@ -189,9 +189,13 @@ public class UserInformation extends Entity{
 				            {			            	
 				            	active.setTweetimage(xmlParser.nextText());			            	
 				            }
+                            else if(tag.equalsIgnoreCase("imgBig"))
+                            {
+                                active.setImgBig(xmlParser.nextText());
+                            }
 				            else if(tag.equalsIgnoreCase("appclient"))
 				            {			            	
-				            	active.setAppClient(StringUtils.toInt(xmlParser.nextText(),0));			            	
+				            	active.setAppClient(xmlParser.nextText());
 				            }
 				            else if(tag.equalsIgnoreCase("url"))
 				            {			            	

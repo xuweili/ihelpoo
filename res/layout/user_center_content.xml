@@ -78,10 +78,10 @@
                         android:includeFontPadding="false"
                         android:textSize="@dimen/text_size_13"
                         android:textColor="@color/lightblue"
-                        android:text="来自：" />
+                        android:text="入学：" />
 
                     <TextView
-                        android:id="@+id/user_center_from"
+                        android:id="@+id/user_center_jointime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
@@ -100,10 +100,10 @@
                         android:includeFontPadding="false"
                         android:textSize="@dimen/text_size_13"
                         android:textColor="@color/lightblue"
-                        android:text="入学：" />
+                        android:text="学校：" />
 
                     <TextView
-                        android:id="@+id/user_center_jointime"
+                        android:id="@+id/user_center_from"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"

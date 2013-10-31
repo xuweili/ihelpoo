@@ -208,12 +208,6 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
         }
     };
 
-    private View.OnClickListener imageClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            UIHelper.showImageDialog(v.getContext(), (String) v.getTag());
-        }
-    };
-
     private View.OnClickListener linkViewClickListener = new View.OnClickListener() {
         public void onClick(View v) {
             if (!isLinkViewClick()) {

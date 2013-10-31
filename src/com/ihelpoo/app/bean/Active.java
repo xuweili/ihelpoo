@@ -65,7 +65,8 @@ public class Active extends Entity {
 	private int commentCount;
 	private String pubDate;
 	private String tweetimage;
-	private int appClient;
+    private String imgBig;
+	private String appClient;
 	private String url;
     private String academy;
     private String authorType;
@@ -213,10 +214,10 @@ public class Active extends Entity {
 	public void setPubDate(String pubDate) {
 		this.pubDate = pubDate;
 	}
-	public int getAppClient() {
+	public String getAppClient() {
 		return appClient;
 	}
-	public void setAppClient(int appClient) {
+	public void setAppClient(String appClient) {
 		this.appClient = appClient;
 	}	
 	public String getUrl() {
@@ -225,8 +226,16 @@ public class Active extends Entity {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
-	public static Active parse(InputStream inputStream) throws IOException, AppException {
+
+    public String getImgBig() {
+        return imgBig;
+    }
+
+    public void setImgBig(String imgBig) {
+        this.imgBig = imgBig;
+    }
+
+    public static Active parse(InputStream inputStream) throws IOException, AppException {
 		Active active = null;
         //获得XmlPullParser解析器
         XmlPullParser xmlParser = Xml.newPullParser();
@@ -309,9 +318,13 @@ public class Active extends Entity {
 				            {			            	
 				            	active.setTweetimage(xmlParser.nextText());			            	
 				            }
+                            else if(tag.equalsIgnoreCase("imgBig"))
+                            {
+                                active.setImgBig(xmlParser.nextText());
+                            }
 				            else if(tag.equalsIgnoreCase("appclient"))
 				            {			            	
-				            	active.setAppClient(StringUtils.toInt(xmlParser.nextText(),0));			            	
+				            	active.setAppClient(xmlParser.nextText());
 				            }
                             else if(tag.equalsIgnoreCase("diffusionCo")){
                                 active.setDiffusionCount(StringUtils.toInt(xmlParser.nextText(),0));

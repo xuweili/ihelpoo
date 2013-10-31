@@ -4,87 +4,99 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:descendantFocusability="blocksDescendants"
-    android:paddingLeft="6dip"
+    android:paddingLeft="5dip"
     android:paddingRight="6dip"
-    android:paddingTop="8dip"
-    android:paddingBottom="7dip">
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/active_listitem_userface"
-            style="@style/user_face_image"
-            android:layout_width="wrap_content" />
-
-        <TextView
-            android:id="@+id/active_listitem_type_gossip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="@dimen/space_7"
-            android:layout_marginTop="3dp"
-            android:textColor="@color/listitem_gray" />
-    </LinearLayout>
+    android:background="@color/graywhite"
+    android:paddingTop="6dip"
+    android:paddingBottom="6dip">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="6dip">
+        android:background="@drawable/frame_home_content_area">
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="17dp"
+            android:layout_height="35dp"
             android:layout_gravity="left|center_vertical">
 
-            <TextView
-                android:id="@+id/word_listitem_username"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:includeFontPadding="false"
-                android:textSize="@dimen/text_size_12"
-                android:layout_alignParentBottom="true"
-                android:textColor="@color/lightblue" />
+                android:orientation="horizontal"
+                android:layout_marginLeft="6dip">
 
-            <!--<TextView-->
-                <!--android:id="@+id/active_listitem_rank"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textSize="@dimen/space_7"-->
-                <!--android:textColor="@color/white"-->
-                <!--android:layout_alignParentBottom="true"-->
-                <!--android:layout_toRightOf="@+id/word_listitem_username"-->
-                <!--android:layout_marginLeft="@dimen/space_3"-->
-                <!--android:layout_marginBottom="@dimen/space_2"-->
-                <!--android:background="@drawable/bg_rounded_rank"-->
-                <!--android:paddingLeft="@dimen/space_2"-->
-                <!--android:paddingRight="@dimen/space_2" />-->
+                <ImageView
+                    android:id="@+id/active_listitem_userface"
+                    style="@style/user_face_image" />
 
-            <TextView
-                android:id="@+id/active_listitem_academy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:includeFontPadding="false"
-                android:textSize="@dimen/text_size_10"
-                android:textColor="@color/listitem_gray"
-                android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/word_listitem_username"
-                android:layout_marginLeft="4dp" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="6dip">
 
-            <TextView
-                android:id="@+id/active_listitem_online"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:includeFontPadding="false"
-                android:textSize="@dimen/text_size_10"
-                android:textColor="@color/lightblue"
-                android:layout_marginRight="5dp"
-                android:layout_gravity="right|center_vertical"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true" />
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="18dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/word_listitem_username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:textSize="@dimen/text_size_16"
+                            android:layout_alignParentBottom="true"
+                            android:text="用户名"
+                            android:layout_marginLeft="@dimen/space_3"
+                            android:textColor="@color/listitem_blue" />
+
+                        <TextView
+                            android:id="@+id/active_listitem_online"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:textSize="@dimen/text_size_10"
+                            android:textColor="@color/lightblue"
+                            android:text="在线"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/active_listitem_type_gossip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_vertical"
+                            android:layout_marginLeft="@dimen/space_3"
+                            android:textSize="@dimen/space_12"
+                            android:text="大二"
+                            android:textColor="@color/listitem_gray" />
+
+                        <TextView
+                            android:id="@+id/active_listitem_academy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_vertical"
+                            android:layout_marginLeft="@dimen/space_3"
+                            android:textSize="@dimen/space_12"
+                            android:textColor="@color/listitem_gray"
+                            android:text="[财务管理]"
+                            android:layout_toRightOf="@+id/tweet_listitem_type_gossip" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
 
         </RelativeLayout>
 
@@ -93,101 +105,116 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dip"
-            android:textSize="@dimen/text_size_15"
-            android:textColor="@color/listitem_black"
-            android:textColorLink="@color/listitem_blue"
+            android:layout_marginLeft="6dip"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/listitem_content"
+            android:textColorLink="@color/listitem_link"
+            android:lineSpacingMultiplier="1.2"
+            android:text="清江看似在静静的流淌，其实非常湍急。今天我找了个没人的地方脱光就下去了，脚还没踩实，就给冲倒了，可能是人类的求生本能，我赶紧抓住了一块儿石尖才没有被冲走。水非常冷，我还呛了几口水，清江水还稍微有点儿甜。后怕是肯定的，回去的路上两条腿不断的抽筋，疼的我爽极了~~~这算是我在恩施独自干的又一件蠢事吧~~~~"
             android:autoLink="web|email" />
+
 
         <ImageView
             android:id="@+id/active_listitem_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dip"
+            android:layout_marginLeft="5dip"
             android:scaleType="fitCenter"
             android:src="@drawable/image_loading"
+            android:adjustViewBounds="true"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/active_listitem_reply"
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dip"
-            android:textSize="@dimen/text_size_15"
-            android:textColor="@color/listitem_black"
-            android:background="@drawable/review_bg_top" />
-
-        <RelativeLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="17dp"
-            android:layout_marginTop="8dip">
+            android:orientation="vertical"
+            android:layout_marginLeft="6dip">
 
             <TextView
-                android:id="@+id/active_listitem_client"
-                android:layout_width="wrap_content"
+                android:id="@+id/active_listitem_reply"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_10"
-                android:textColor="@color/listitem_gray"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true" />
+                android:layout_marginTop="8dip"
+                android:textSize="@dimen/text_size_15"
+                android:textColor="@color/listitem_black"
+                android:text="评论"
+                android:background="@drawable/review_bg_top" />
 
-            <TextView
-                android:id="@+id/active_listitem_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_10"
-                android:textColor="@color/listitem_gray"
-                android:layout_marginLeft="5dp"
-                android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/active_listitem_client" />
+            <RelativeLayout
+                android:id="@+id/word_count_lyt"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="17dp"
+                android:layout_marginTop="8dip">
 
-            <TextView
-                android:id="@+id/active_listitem_commentCount"
-                android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_10"
-                android:textColor="@color/listitem_gray"
-                android:layout_marginRight="5dp"
-                android:layout_alignParentBottom="true"
-                android:layout_toLeftOf="@+id/active_listitem_commentIcon" />
+                <TextView
+                    android:id="@+id/active_listitem_client"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_10"
+                    android:textColor="@color/listitem_gray"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true" />
 
-            <ImageView
-                android:id="@+id/active_listitem_commentIcon"
-                android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/home_content_count_comment"
-                android:layout_marginRight="7dp"
-                android:layout_alignBottom="@+id/active_listitem_commentCount"
-                android:layout_toLeftOf="@+id/active_listitem_diffusionCount"
-                android:paddingBottom="@dimen/space_1" />
+                <TextView
+                    android:id="@+id/active_listitem_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_10"
+                    android:textColor="@color/listitem_gray"
+                    android:layout_marginLeft="5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/active_listitem_client" />
 
-            <TextView
-                android:id="@+id/active_listitem_diffusionCount"
-                android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_10"
-                android:textColor="@color/listitem_gray"
-                android:layout_marginRight="5dp"
-                android:layout_alignParentBottom="true"
-                android:layout_toLeftOf="@+id/active_listitem_redirect" />
+                <TextView
+                    android:id="@+id/active_listitem_commentCount"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_10"
+                    android:textColor="@color/listitem_gray"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toLeftOf="@+id/active_listitem_commentIcon" />
 
-            <ImageView
-                android:id="@+id/active_listitem_redirect"
-                android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/home_content_count_diffusion"
-                android:layout_marginRight="5dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:paddingBottom="@dimen/space_1" />
+                <ImageView
+                    android:id="@+id/active_listitem_commentIcon"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/home_content_count_comment"
+                    android:layout_marginRight="7dp"
+                    android:layout_alignBottom="@+id/active_listitem_commentCount"
+                    android:layout_toLeftOf="@+id/active_listitem_diffusionCount"
+                    android:paddingBottom="@dimen/space_1" />
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/active_listitem_diffusionCount"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_10"
+                    android:textColor="@color/listitem_gray"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toLeftOf="@+id/active_listitem_redirect" />
+
+                <ImageView
+                    android:id="@+id/active_listitem_redirect"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/home_content_count_diffusion"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:paddingBottom="@dimen/space_1" />
+
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout> 

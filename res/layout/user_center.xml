@@ -17,11 +17,13 @@
 			android:layout_width="fill_parent" 
 			android:layout_height="35.0dip"
 			android:orientation="horizontal" 
-			android:gravity="center_vertical">
+			android:gravity="center_vertical"
+            android:visibility="gone">
 	     	<Button 
 	     		android:id="@+id/user_center_btn_active"
 	     		style="@style/frame_button"
-	         	android:text="动态"/>
+	         	android:text="动态"
+                />
 	     	<ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"

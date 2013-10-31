@@ -177,32 +177,33 @@ public class ListViewWordAdapter extends MyBaseAdapter {
         // 把相对路径改成绝对路径
         String message = modifyPath(active.getMessage());
 
-        listItemView.content.setLinkText(message);
+        listItemView.content.setLinkText(parseBody(message));
         listItemView.content.setTag(active);// 设置隐藏参数(实体类)
         listItemView.content.setOnClickListener(linkViewClickListener);
         listItemView.content.setLinkClickListener(linkClickListener);
 
-        listItemView.date
-                .setText(StringUtils.friendly_time(active.getPubDate()));
+        if(!StringUtils.isEmpty(active.getPubDate()))
+            listItemView.date.setText(StringUtils.friendly_time(active.getPubDate()));
         listItemView.commentCount.setText(active.getCommentCount() + "");
 
-        switch (active.getAppClient()) {
-            default:
-                listItemView.client.setText("");
-                break;
-            case Active.CLIENT_MOBILE:
-                listItemView.client.setText("来自:手机");
-                break;
-            case Active.CLIENT_ANDROID:
-                listItemView.client.setText("来自:Android");
-                break;
-            case Active.CLIENT_IPHONE:
-                listItemView.client.setText("来自:iPhone");
-                break;
-            case Active.CLIENT_WINDOWS_PHONE:
-                listItemView.client.setText("来自:Windows Phone");
-                break;
-        }
+//        switch (active.getAppClient()) {
+//            default:
+//                listItemView.client.setText("");
+//                break;
+//            case Active.CLIENT_MOBILE:
+//                listItemView.client.setText("来自:手机");
+//                break;
+//            case Active.CLIENT_ANDROID:
+//                listItemView.client.setText("来自:Android");
+//                break;
+//            case Active.CLIENT_IPHONE:
+//                listItemView.client.setText("来自:iPhone");
+//                break;
+//            case Active.CLIENT_WINDOWS_PHONE:
+//                listItemView.client.setText("来自:Windows Phone");
+//                break;
+//        }
+        listItemView.client.setText(active.getAppClient());
         if (StringUtils.isEmpty(listItemView.client.getText().toString()))
             listItemView.client.setVisibility(View.GONE);
         else
@@ -236,9 +237,9 @@ public class ListViewWordAdapter extends MyBaseAdapter {
 
         String imgSmall = active.getTweetimage();
         if (!StringUtils.isEmpty(imgSmall)) {
-            bmpManager.loadBitmap(imgSmall, listItemView.image, BitmapFactory
-                    .decodeResource(context.getResources(),
-                            R.drawable.image_loading));
+            bmpManager.loadBitmap(imgSmall, listItemView.image, BitmapFactory.decodeResource(context.getResources(),R.drawable.image_loading));
+            listItemView.image.setOnClickListener(imageClickListener);
+            listItemView.image.setTag(active.getImgBig());
             listItemView.image.setVisibility(ImageView.VISIBLE);
         } else {
             listItemView.image.setVisibility(ImageView.GONE);
