@@ -28,4 +28,7 @@ public abstract class MyBaseAdapter extends BaseAdapter {
 		this.isLinkViewClick = isLinkViewClick;
 	}
 
+    protected String parseBody(String body){
+        return body == null ? "" : body.replaceAll("\\\\","");
+    }
 }

@@ -171,7 +171,7 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
 
 //		listItemView.content.setText(tweet.getBody());
 //		listItemView.content.parseLinkText();
-        listItemView.content.setLinkText(tweet.getBody().replaceAll("\\\\",""));
+        listItemView.content.setLinkText(parseBody(tweet.getBody()));
         listItemView.content.setTag(tweet);//设置隐藏参数(实体类)
         listItemView.content.setOnClickListener(linkViewClickListener);
         listItemView.content.setLinkClickListener(linkClickListener);

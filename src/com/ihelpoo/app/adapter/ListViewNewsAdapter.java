@@ -34,7 +34,7 @@ import android.widget.TextView;
  * @version 1.0
  * @created 2012-3-21
  */
-public class ListViewNewsAdapter extends BaseAdapter {
+public class ListViewNewsAdapter extends MyBaseAdapter {
     private Context context;//运行上下文
     private List<News> listItems;//数据集合
     private LayoutInflater listContainer;//视图容器
@@ -106,7 +106,7 @@ public class ListViewNewsAdapter extends BaseAdapter {
         //设置文字和图片
         News news = listItems.get(position);
 
-        listItemView.title.setText(news.getTitle());
+        listItemView.title.setText(parseBody(news.getTitle()));
         listItemView.title.setTag(news);//设置隐藏参数(实体类)
         listItemView.author.setText(news.getAuthor());
         if(listItemView.inout != null){//小窝 if null
