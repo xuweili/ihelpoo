@@ -30,7 +30,7 @@ public class UserInfoDialog extends Dialog {
 	private LayoutParams lp;
 
 	public UserInfoDialog(Context context) {
-		super(context, R.style.Dialog);		
+		super(context, R.style.Dialog);
 		setContentView(R.layout.user_center_content);
 		
 		// 设置点击对话框之外能消失

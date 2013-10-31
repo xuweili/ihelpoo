@@ -99,6 +99,8 @@ public class UserInformation extends Entity{
                                 user.setActive_credits(StringUtils.toInt(xmlParser.nextText()));
                             } else if (tag.equalsIgnoreCase("avatar_url")) {
                                 user.setAvatar_url(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("avatar_preview")) {
+                                user.setAvatar_preview(xmlParser.nextText());
                             } else if (tag.equalsIgnoreCase("self_intro")) {
                                 user.setSelf_intro(xmlParser.nextText());
                             } else if (tag.equalsIgnoreCase("followers_count")) {

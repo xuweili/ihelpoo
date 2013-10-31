@@ -36,6 +36,7 @@ import com.ihelpoo.app.widget.UserInfoDialog;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -377,6 +378,9 @@ public class UserCenter extends BaseActivity {
                     mExpertise.setText(String.valueOf(mUser.getFollowers_count()));
                     mLatestonline.setText(mUser.getOnline_status());
 
+                    mUserface.setOnClickListener(avatarClickListener);
+                    mUserface.setTag(mUser.getAvatar_preview());
+
                     //初始化用户关系 & 点击事件
                     loadUserRelation(mUser.getRelation());
 
@@ -390,6 +394,12 @@ public class UserCenter extends BaseActivity {
         this.loadLvActiveData(mUserHandler, 0, UIHelper.LISTVIEW_ACTION_INIT);
         this.loadLvBlogData(mBlogHandler, 0, UIHelper.LISTVIEW_ACTION_INIT);
     }
+
+    private View.OnClickListener avatarClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            UIHelper.showImageDialog(UserCenter.this, (String) v.getTag());
+        }
+    };
 
     //加载动态列表
     private void loadLvActiveData(final Handler handler, final int pageIndex, final int action) {
