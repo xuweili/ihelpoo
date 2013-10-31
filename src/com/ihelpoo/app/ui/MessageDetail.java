@@ -55,7 +55,7 @@ import android.widget.ViewSwitcher;
  */
 public class MessageDetail extends BaseActivity{
 	
-	private ImageView mBack;
+	private Button mBack;
 	private ImageView mRefresh;
 	private TextView mHeadTitle;
 	private ProgressBar mProgressbar;
@@ -124,7 +124,7 @@ public class MessageDetail extends BaseActivity{
 
 		if(curFriendId > 0) tempMessageKey = AppConfig.TEMP_MESSAGE + "_" + curFriendId;
 		
-    	mBack = (ImageView)findViewById(R.id.message_detail_back);
+    	mBack = (Button)findViewById(R.id.message_detail_back);
     	mRefresh = (ImageView)findViewById(R.id.message_detail_refresh);
     	mHeadTitle = (TextView)findViewById(R.id.message_detail_head_title);
     	mProgressbar = (ProgressBar)findViewById(R.id.message_detail_head_progress);
