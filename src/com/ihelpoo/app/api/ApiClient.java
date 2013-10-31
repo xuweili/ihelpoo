@@ -1248,6 +1248,8 @@ public class ApiClient {
     /**
      * 获取评论列表
      *
+     *
+     * @param isHelp
      * @param catalog   1新闻  2帖子  3动弹  4动态
      * @param uid
      * @param id
@@ -1255,13 +1257,14 @@ public class ApiClient {
      * @param pageSize  @return
      * @throws AppException
      */
-    public static CommentList getCommentList(AppContext appContext, final int catalog, final int uid, final int id, final int pageIndex, final int pageSize) throws AppException {
+    public static CommentList getCommentList(AppContext appContext, final boolean isHelp, final int catalog, final int uid, final int id, final int pageIndex, final int pageSize) throws AppException {
         String newUrl = _MakeURL(URLs.COMMENT_LIST, new HashMap<String, Object>() {{
+            put("is_help", isHelp);
             put("catalog", catalog);
             put("uid", uid);
-            put("id", id);
-            put("pageIndex", pageIndex);
-            put("pageSize", pageSize);
+            put("sid", id);
+            put("page_index", pageIndex);
+            put("page_size", pageSize);
         }});
 
         try {

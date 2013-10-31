@@ -67,7 +67,7 @@ public class FeedBack extends BaseActivity{
 			Intent i = new Intent(Intent.ACTION_SEND);  
 			//i.setType("text/plain"); //模拟器
 			i.setType("message/rfc822") ; //真机
-			i.putExtra(Intent.EXTRA_EMAIL, new String[]{"ld@oschina.net"});  
+			i.putExtra(Intent.EXTRA_EMAIL, new String[]{"service@ihelpoo.cn"});
 			i.putExtra(Intent.EXTRA_SUBJECT,"用户反馈-Android客户端");  
 			i.putExtra(Intent.EXTRA_TEXT,content);  
 			startActivity(Intent.createChooser(i, "Sending mail..."));

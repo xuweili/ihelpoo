@@ -719,7 +719,7 @@ public class Main extends BaseActivity {
                         // 跳转到问答详情
 //                        UIHelper.showQuestionDetail(view.getContext(),
 //                                post.getId());
-                        UIHelper.showTweetDetail(view.getContext(), post.getId());
+                        UIHelper.showTweetDetail(view.getContext(), post.getId(), false);//FIXME help
                     }
                 });
         lvRank.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -797,7 +797,7 @@ public class Main extends BaseActivity {
                 if (tweet == null)
                     return;
                 // 跳转到动弹详情&评论页面
-                UIHelper.showTweetDetail(view.getContext(), tweet.getId());
+                UIHelper.showTweetDetail(view.getContext(), tweet.getId(), "1".equals(tweet.getSayType()));
             }
         });
         lvHome.setOnScrollListener(new AbsListView.OnScrollListener() {

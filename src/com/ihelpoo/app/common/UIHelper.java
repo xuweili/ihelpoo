@@ -231,10 +231,12 @@ public class UIHelper {
      *
      * @param context
      * @param tweetId
+     * @param isHelp
      */
-    public static void showTweetDetail(Context context, int tweetId) {
+    public static void showTweetDetail(Context context, int tweetId, boolean isHelp) {
         Intent intent = new Intent(context, TweetDetail.class);
         intent.putExtra("tweet_id", tweetId);
+        intent.putExtra("is_help", isHelp);
         context.startActivity(intent);
     }
 
@@ -296,7 +298,7 @@ public class UIHelper {
             String objId = news.getNewType().attachment;
             switch (newsType) {
                 case News.NEWSTYPE_NEWS:
-                    showTweetDetail(context, newsId);
+                    showTweetDetail(context, newsId, false);
 //				showNewsDetail(context, newsId);
                     break;
                 case News.NEWSTYPE_SOFTWARE:
@@ -338,10 +340,10 @@ public class UIHelper {
                     showQuestionDetail(context, id);
                     break;
                 case Active.CATALOG_TWEET:
-                    showTweetDetail(context, id);
+                    showTweetDetail(context, id, false);
                     break;
                 case Active.CATALOG_BLOG:
-                    showTweetDetail(context, active.getId());
+                    showTweetDetail(context, active.getId(), false);
 //				showBlogDetail(context, id);
                     break;
             }
@@ -998,7 +1000,7 @@ public class UIHelper {
                 showUserCenter(context, objId, objKey);
                 break;
             case URLs.URL_OBJ_TYPE_TWEET:
-                showTweetDetail(context, objId);
+                showTweetDetail(context, objId, false);
                 break;
             case URLs.URL_OBJ_TYPE_BLOG:
                 showBlogDetail(context, objId);

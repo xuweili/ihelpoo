@@ -27,7 +27,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.webkit.CacheManager;
 
-import com.ihelpoo.app.bean.AcademyInfo;
 import com.ihelpoo.app.bean.AcademyList;
 import com.ihelpoo.app.bean.DormList;
 import com.ihelpoo.app.bean.MajorList;
@@ -1089,6 +1088,9 @@ public class AppContext extends Application {
     /**
      * 评论列表
      *
+     *
+     *
+     * @param isHelp
      * @param uid
      * @param catalog   1新闻 2帖子 3动弹 4动态
      * @param id        某条新闻，帖子，动弹的id 或者某条留言的friendid
@@ -1096,12 +1098,12 @@ public class AppContext extends Application {
      * @return
      * @throws AppException
      */
-    public CommentList getCommentList(int uid, int catalog, int id, int pageIndex, boolean isRefresh) throws AppException {
+    public CommentList getCommentList(boolean isHelp, int uid, int catalog, int id, int pageIndex, boolean isRefresh) throws AppException {
         CommentList list = null;
         String key = "commentlist_" + catalog + "_" + id + "_" + pageIndex + "_" + PAGE_SIZE;
         if (isNetworkConnected() && (!isReadDataCache(key) || isRefresh)) {
             try {
-                list = ApiClient.getCommentList(this, catalog, uid, id, pageIndex, PAGE_SIZE);
+                list = ApiClient.getCommentList(this, isHelp, catalog, uid, id, pageIndex, PAGE_SIZE);
                 if (list != null && pageIndex == 0) {
                     Notice notice = list.getNotice();
                     list.setNotice(null);

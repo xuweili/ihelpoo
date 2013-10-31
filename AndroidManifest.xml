@@ -31,7 +31,7 @@
 		<activity android:name=".ui.QuestionDetail" android:theme="@style/Theme.SlideTop" android:configChanges="keyboardHidden|orientation|screenSize"/>
 		<activity android:name=".ui.QuestionPub" android:theme="@style/Theme.ZoomLight" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:windowSoftInputMode="stateVisible|adjustResize"/>
 		<activity android:name=".ui.TweetDetail" android:theme="@style/Theme.SlideTop" android:configChanges="keyboardHidden|orientation|screenSize"/>
-		<activity android:name=".ui.TweetPub" android:theme="@style/Theme.ZoomLight" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:windowSoftInputMode="stateVisible|adjustResize"/>
+        <activity android:name=".ui.TweetPub" android:theme="@style/Theme.ZoomLight" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:windowSoftInputMode="stateVisible|adjustResize"/>
 		<activity android:name=".ui.MessageDetail" android:theme="@style/Theme.SlideTop" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation"/>
 		<activity android:name=".ui.MessagePub" android:theme="@style/Theme.SlideTop" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:windowSoftInputMode="stateVisible|adjustResize"/>
 		<activity android:name=".ui.MessageForward" android:theme="@style/Theme.SlideTop" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:windowSoftInputMode="stateVisible|adjustResize"/>

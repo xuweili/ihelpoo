@@ -98,6 +98,7 @@ public class TweetDetail extends BaseActivity {
     private TextView rank;
 
     private int curId;
+    private boolean isHelp;
     private int curCatalog;
     private int curLvDataState;
 
@@ -163,6 +164,7 @@ public class TweetDetail extends BaseActivity {
     //初始化视图控件
     private void initView() {
         curId = getIntent().getIntExtra("tweet_id", 0);
+        isHelp = getIntent().getBooleanExtra("is_help", false);
         curCatalog = CommentList.CATALOG_TWEET;
 
         if (curId > 0) tempCommentKey = AppConfig.TEMP_COMMENT + "_" + curCatalog + "_" + curId;
@@ -532,11 +534,13 @@ public class TweetDetail extends BaseActivity {
         new Thread() {
             public void run() {
                 Message msg = new Message();
+                AppContext ac = (AppContext) getApplicationContext();
+                final int uid = ac.getLoginUid();
                 boolean isRefresh = false;
                 if (action == UIHelper.LISTVIEW_ACTION_REFRESH || action == UIHelper.LISTVIEW_ACTION_SCROLL)
                     isRefresh = true;
                 try {
-                    CommentList commentlist = ((AppContext) getApplication()).getCommentList(0, catalog, id, pageIndex, isRefresh);
+                    CommentList commentlist = ((AppContext) getApplication()).getCommentList(isHelp, uid, catalog, id, pageIndex, isRefresh);
                     msg.what = commentlist.getPageSize();
                     msg.obj = commentlist;
                 } catch (AppException e) {

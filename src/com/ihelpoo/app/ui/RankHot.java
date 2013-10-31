@@ -33,7 +33,6 @@ import com.ihelpoo.app.R;
 import com.ihelpoo.app.adapter.ListViewQuestionAdapter;
 import com.ihelpoo.app.adapter.ListViewSoftwareAdapter;
 import com.ihelpoo.app.adapter.ListViewSoftwareCatalogAdapter;
-import com.ihelpoo.app.bean.Notice;
 import com.ihelpoo.app.bean.Post;
 import com.ihelpoo.app.bean.PostList;
 import com.ihelpoo.app.bean.SoftwareCatalogList;
@@ -45,7 +44,6 @@ import com.ihelpoo.app.widget.PullToRefreshListView;
 import com.ihelpoo.app.widget.ScrollLayout;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -191,7 +189,7 @@ public class RankHot extends BaseActivity{
                         // 跳转到问答详情
 //                        UIHelper.showQuestionDetail(view.getContext(),
 //                                post.getId());
-                        UIHelper.showTweetDetail(view.getContext(), post.getId());
+                        UIHelper.showTweetDetail(view.getContext(), post.getId(), false);
                     }
                 });
         lvRank.setOnScrollListener(new AbsListView.OnScrollListener() {

@@ -217,7 +217,7 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
     private View.OnClickListener linkViewClickListener = new View.OnClickListener() {
         public void onClick(View v) {
             if (!isLinkViewClick()) {
-                UIHelper.showTweetDetail(v.getContext(), ((Tweet) v.getTag()).getId());
+                UIHelper.showTweetDetail(v.getContext(), ((Tweet) v.getTag()).getId(), false);
             }
             setLinkViewClick(false);
         }

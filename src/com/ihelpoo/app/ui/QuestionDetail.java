@@ -726,7 +726,7 @@ public class QuestionDetail extends BaseActivity {
 				if(action == UIHelper.LISTVIEW_ACTION_REFRESH || action == UIHelper.LISTVIEW_ACTION_SCROLL)
 					isRefresh = true;
 				try {
-					CommentList commentlist = ((AppContext)getApplication()).getCommentList(0, catalog, id, pageIndex, isRefresh);
+					CommentList commentlist = ((AppContext)getApplication()).getCommentList(false, 0, catalog, id, pageIndex, isRefresh);
 					msg.what = commentlist.getPageSize();
 					msg.obj = commentlist;
 	            } catch (AppException e) {

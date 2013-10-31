@@ -400,7 +400,7 @@ public class MessageDetail extends BaseActivity{
 				if(action == UIHelper.LISTVIEW_ACTION_REFRESH || action == UIHelper.LISTVIEW_ACTION_SCROLL)
 					isRefresh = true;
 				try {
-					CommentList commentlist = ((AppContext)getApplication()).getCommentList(uid, catalog, id, pageIndex, isRefresh);
+					CommentList commentlist = ((AppContext)getApplication()).getCommentList(false, uid, catalog, id, pageIndex, isRefresh);
 					msg.what = commentlist.getPageSize();
 					msg.obj = commentlist;
 	            } catch (AppException e) {

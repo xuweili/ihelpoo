@@ -1,63 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="fill_parent"
-             android:layout_height="fill_parent"
-             android:orientation="vertical"
-             android:background="@drawable/about_bg">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/about_bg">
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|bottom"
-            android:layout_marginBottom="200dip"
-            android:textSize="@dimen/text_size_16"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="我帮圈圈"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="200dip"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="我帮圈圈" />
 
     <TextView
-            android:id="@+id/about_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|bottom"
-            android:layout_marginBottom="160dip"
-            android:textColor="@color/black"
-            android:text="Version 1.0.0"/>
+        android:id="@+id/about_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="160dip"
+        android:textColor="@color/black"
+        android:text="Version 1.0.0" />
 
     <Button
-            android:id="@+id/about_update"
-            android:layout_width="100dip"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|bottom"
-            android:layout_marginBottom="110dip"
-            android:background="@drawable/login_btn_selector"
-            android:text="新版本检测"/>
+        android:id="@+id/about_update"
+        android:layout_width="100dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="110dip"
+        android:background="@drawable/login_btn_selector"
+        android:textColor="@color/white"
+        android:text="新版本检测" />
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|bottom"
-            android:layout_marginBottom="60dip"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/space_10"
-            android:text="Thanks to OSChina.NET"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="60dip"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/space_10"
+        android:text="Thanks to OSChina.NET" />
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|bottom"
-            android:layout_marginBottom="40dip"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/space_10"
-            android:text="我帮网络 版权所有"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="40dip"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/space_10"
+        android:text="我帮网络 版权所有" />
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|bottom"
-            android:layout_marginBottom="20dip"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/space_10"
-            android:text="Copyright ©2013 ihelpoo All Rights Reserved."/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="20dip"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/space_10"
+        android:text="Copyright ©2013 ihelpoo All Rights Reserved." />
 
 </FrameLayout>
