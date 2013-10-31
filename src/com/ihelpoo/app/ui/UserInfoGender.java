@@ -19,9 +19,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -42,13 +40,10 @@ import com.ihelpoo.app.widget.LoadingDialog;
 public class UserInfoGender extends BaseActivity {
 
     private Button back;
-    private ImageView refresh;
     private LinearLayout lytFemale;
     private LinearLayout lytMale;
 
     private LoadingDialog loading;
-    private MyInformation user;
-    private Handler mHandler;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,9 +57,7 @@ public class UserInfoGender extends BaseActivity {
 
     private void initView() {
         back = (Button) findViewById(R.id.user_nickname_back);
-        refresh = (ImageView) findViewById(R.id.user_nickname_refresh);
         back.setOnClickListener(UIHelper.finish(this));
-        refresh.setOnClickListener(refreshClickListener);
 
 
         lytFemale = (LinearLayout) findViewById(R.id.user_gender_female_lyt);
@@ -142,9 +135,4 @@ public class UserInfoGender extends BaseActivity {
         intent.putExtra("gender", gender);
         finish();
     }
-
-    private View.OnClickListener refreshClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
-        }
-    };
 }

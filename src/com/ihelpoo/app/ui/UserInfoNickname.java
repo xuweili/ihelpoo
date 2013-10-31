@@ -19,23 +19,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.AppException;
 import com.ihelpoo.app.R;
 import com.ihelpoo.app.bean.MyInformation;
 import com.ihelpoo.app.bean.Result;
-import com.ihelpoo.app.common.FileUtils;
-import com.ihelpoo.app.common.ImageUtils;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.widget.LoadingDialog;
-
-import java.io.IOException;
 
 /**
  * 用户资料
@@ -46,7 +40,7 @@ import java.io.IOException;
 public class UserInfoNickname extends BaseActivity {
 
     private Button back;
-    private ImageView refresh;
+    private Button submit;
     private EditText nickname;
 
     private LoadingDialog loading;
@@ -65,9 +59,9 @@ public class UserInfoNickname extends BaseActivity {
 
     private void initView() {
         back = (Button) findViewById(R.id.user_nickname_back);
-        refresh = (ImageView) findViewById(R.id.user_nickname_refresh);
+        submit = (Button) findViewById(R.id.user_nickname_submit);
         back.setOnClickListener(UIHelper.finish(this));
-        refresh.setOnClickListener(saveClickListener);
+        submit.setOnClickListener(saveClickListener);
 
 
         nickname = (EditText) findViewById(R.id.user_nickname_nickname);

@@ -23,7 +23,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.ihelpoo.app.AppContext;
@@ -54,7 +53,7 @@ import java.util.List;
 public class UserInfoMajor extends BaseActivity {
 
     private Button back;
-    private ImageView refresh;
+    private Button submit;
 
     private LoadingDialog loading;
     private MyInformation user;
@@ -92,10 +91,10 @@ public class UserInfoMajor extends BaseActivity {
     }
 
     private void initView() {
-        back = (Button) findViewById(R.id.user_nickname_back);
-        refresh = (ImageView) findViewById(R.id.user_nickname_refresh);
+        back = (Button) findViewById(R.id.user_major_back);
+        submit = (Button) findViewById(R.id.user_major_submit);
         back.setOnClickListener(UIHelper.finish(this));
-        refresh.setOnClickListener(saveClickListener);
+        submit.setOnClickListener(saveClickListener);
 
         spSchool = (Spinner) findViewById(R.id.sp_user_major_school);
         spAcademy = (Spinner) findViewById(R.id.sp_user_major_academy);

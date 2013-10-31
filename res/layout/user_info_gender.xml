@@ -15,7 +15,7 @@
         android:background="@drawable/head_bg">
 
         <Button
-            android:id="@+id/user_nickname_back"
+            android:id="@+id/user_gender_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left|center"
@@ -30,15 +30,7 @@
         <TextView
             style="@style/detail_head_title"
             android:layout_gravity="center"
-            android:text="修改性别" />
-
-        <ImageView
-            android:id="@+id/user_nickname_refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|center"
-            android:clickable="true"
-            android:background="@drawable/head_refresh" />
+            android:text="选择性别" />
     </FrameLayout>
 
     <LinearLayout

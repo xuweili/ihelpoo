@@ -21,7 +21,6 @@ import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.AppException;
@@ -40,7 +39,7 @@ import com.ihelpoo.app.widget.LoadingDialog;
 public class UserInfoIntro extends BaseActivity {
 
     private Button back;
-    private ImageView refresh;
+    private Button submit;
     private EditText intro;
 
     private LoadingDialog loading;
@@ -59,9 +58,9 @@ public class UserInfoIntro extends BaseActivity {
 
     private void initView() {
         back = (Button) findViewById(R.id.user_intro_back);
-        refresh = (ImageView) findViewById(R.id.user_intro_refresh);
+        submit = (Button) findViewById(R.id.user_intro_submit);
         back.setOnClickListener(UIHelper.finish(this));
-        refresh.setOnClickListener(saveClickListener);
+        submit.setOnClickListener(saveClickListener);
 
 
         intro = (EditText) findViewById(R.id.user_intro_intro);

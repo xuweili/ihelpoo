@@ -16,6 +16,7 @@
 
         <Button
             android:id="@+id/user_nickname_back"
+            android:text="取消"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left|center"
@@ -24,21 +25,22 @@
             android:textColor="@color/listitem_white"
             android:width="50dip"
             android:paddingLeft="@dimen/space_10"
-            android:paddingBottom="2dip"
-            android:text="取消" />
+            android:paddingBottom="2dip"/>
 
         <TextView
             style="@style/detail_head_title"
             android:layout_gravity="center"
             android:text="修改昵称" />
-
-        <ImageView
-            android:id="@+id/user_nickname_refresh"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/user_nickname_submit"
+            android:layout_width="55dip"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_gravity="right|center"
-            android:clickable="true"
-            android:background="@drawable/head_refresh" />
+            android:layout_centerVertical="true"
+            android:background="@drawable/login_btn_selector"
+            android:textColor="@color/listitem_white"
+            android:text="提交"/>
     </FrameLayout>
 
     <LinearLayout

@@ -31,14 +31,16 @@
             style="@style/detail_head_title"
             android:layout_gravity="center"
             android:text="修改自我简介" />
-
-        <ImageView
-            android:id="@+id/user_intro_refresh"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/user_intro_submit"
+            android:layout_width="55dip"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_gravity="right|center"
-            android:clickable="true"
-            android:background="@drawable/head_refresh" />
+            android:layout_centerVertical="true"
+            android:background="@drawable/login_btn_selector"
+            android:textColor="@color/listitem_white"
+            android:text="提交"/>
     </FrameLayout>
 
     <LinearLayout
