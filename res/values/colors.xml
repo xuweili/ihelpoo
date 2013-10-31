@@ -40,6 +40,8 @@
     <color name="listitem_content">#313131</color>
     <color name="listitem_link">#4a7aaa</color>
 
+    <color name="listitem_black_gray">#666666</color>
+
     <color name="listitem_transparent">#00000000</color>
     <color name="listitem_black">#ff000000</color>
     <color name="listitem_white">#ffffffff</color>

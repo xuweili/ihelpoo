@@ -1,64 +1,87 @@
-<?xml version="1.0" encoding="utf-8"?>  
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
-    android:orientation="vertical" 
-    android:layout_width="fill_parent" 
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:descendantFocusability="blocksDescendants"
-    android:background="@color/white"
-    android:paddingLeft="6dip"
+    android:paddingLeft="5dip"
     android:paddingRight="6dip"
-    android:paddingTop="8dip"
-    android:paddingBottom="7dip">   
+    android:background="@color/graywhite"
+    android:paddingTop="6dip"
+    android:paddingBottom="6dip">
 
-    <LinearLayout 
-        android:orientation="horizontal" 
-        android:layout_width="fill_parent"  
-        android:layout_height="wrap_content">
-        
-        <ImageView 
-            android:id="@+id/news_listitem_flag"
-	      	android:layout_width="14.0dip" 
-	        android:layout_height="14.0dip"
-	        android:layout_marginRight="2dip"
-	        android:layout_gravity="center_vertical"
-	        android:src="@drawable/widget_today_icon"
-	        android:visibility="gone"/>
-
-        <TextView android:id="@+id/news_listitem_inout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_15"
-            android:textColor="@color/green"
-            android:textStyle="bold"
-
-            />
-	    <TextView android:id="@+id/news_listitem_title"
-	        android:layout_width="fill_parent" 
-	     	android:layout_height="wrap_content"
-	     	android:textSize="@dimen/text_size_15"
-	     	android:textColor="@color/listitem_black"/>
-	    
-   	</LinearLayout>
-
-    <LinearLayout 
-    	android:orientation="horizontal" 
-        android:layout_width="fill_parent"  
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dip">
+        android:orientation="vertical"
+        android:background="@drawable/frame_home_content_area">
 
-       	<TextView android:id="@+id/news_listitem_author"
-    		android:layout_width="wrap_content"
-           	android:layout_height="wrap_content"
-           	android:textSize="@dimen/text_size_10"
-            android:textColor="@color/green"/>
-       	
-       	<TextView android:id="@+id/news_listitem_date"  
-    		android:layout_width="wrap_content" 
-           	android:layout_height="wrap_content"
-           	android:layout_marginLeft="2dip" 
-           	android:textSize="@dimen/text_size_10"
-            android:textColor="@color/listitem_gray"/>
-       	
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/news_listitem_flag"
+                android:layout_width="14.0dip"
+                android:layout_height="14.0dip"
+                android:layout_marginRight="2dip"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/widget_today_icon"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/news_listitem_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_15"
+                android:text="评论或回复他人的记录 (每天最多加15次，包含回复帮助次数)"
+                android:textColor="@color/listitem_black_gray" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dip"
+            android:paddingLeft="5dip"
+            >
+
+            <TextView
+                android:id="@+id/news_listitem_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_10"
+                android:text="一天前"
+                android:textColor="@color/listitem_gray"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:id="@+id/news_listitem_inout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"
+                android:textColor="@color/green"
+                android:textStyle="bold"
+                android:text="+5"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/news_listitem_author"
+                android:layout_marginRight="5dp" />
+
+            <TextView
+                android:id="@+id/news_listitem_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_15"
+                android:text="[123] "
+                android:textColor="@color/listitem_gray"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
     </LinearLayout>
+
 
 </LinearLayout> 

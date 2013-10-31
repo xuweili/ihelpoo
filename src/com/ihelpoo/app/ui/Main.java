@@ -1766,6 +1766,7 @@ public class Main extends BaseActivity {
                 }
                 progress.setVisibility(ProgressBar.GONE);
                 mHeadProgress.setVisibility(ProgressBar.GONE);
+                mHead_refresh.setVisibility(View.VISIBLE);
                 if (msg.arg1 == UIHelper.LISTVIEW_ACTION_REFRESH) {
                     lv.onRefreshComplete(getString(R.string.pull_to_refresh_update)
                             + new Date().toLocaleString());
@@ -2141,6 +2142,7 @@ public class Main extends BaseActivity {
     private void loadLvNoticeData(final int catalog, final int pageIndex,
                                   final Handler handler, final int action) {
         mHeadProgress.setVisibility(ProgressBar.VISIBLE);
+        mHead_refresh.setVisibility(View.GONE);
         new Thread() {
             public void run() {
                 Message msg = new Message();
@@ -2175,6 +2177,7 @@ public class Main extends BaseActivity {
     private void loadLvNewsData(final int catalog, final int pageIndex,
                                 final Handler handler, final int action) {
         mHeadProgress.setVisibility(ProgressBar.VISIBLE);
+        mHead_refresh.setVisibility(View.GONE);
         new Thread() {
             public void run() {
                 Message msg = new Message();
@@ -2256,6 +2259,7 @@ public class Main extends BaseActivity {
     private void loadLvQuestionData(final int catalog, final int pageIndex,
                                     final Handler handler, final int action) {
         mHeadProgress.setVisibility(ProgressBar.VISIBLE);
+        mHead_refresh.setVisibility(View.GONE);
         new Thread() {
             public void run() {
                 Message msg = new Message();
@@ -2299,6 +2303,7 @@ public class Main extends BaseActivity {
         final int mySchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
 
         mHeadProgress.setVisibility(ProgressBar.VISIBLE);
+        mHead_refresh.setVisibility(View.GONE);
         new Thread() {
             public void run() {
                 Message msg = new Message();
@@ -2335,6 +2340,7 @@ public class Main extends BaseActivity {
     private void loadLvWordData(final int catalog, final int pageIndex,
                                 final Handler handler, final int action) {
         mHeadProgress.setVisibility(ProgressBar.VISIBLE);
+        mHead_refresh.setVisibility(View.GONE);
         new Thread() {
             public void run() {
                 Message msg = new Message();
@@ -2368,6 +2374,7 @@ public class Main extends BaseActivity {
     private void loadLvMsgData(final int pageIndex, final Handler handler,
                                final int action) {
         mHeadProgress.setVisibility(ProgressBar.VISIBLE);
+        mHead_refresh.setVisibility(View.GONE);
         new Thread() {
             public void run() {
                 Message msg = new Message();

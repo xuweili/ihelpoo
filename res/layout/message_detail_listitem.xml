@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>  
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
-    android:orientation="horizontal" 
-    android:layout_width="fill_parent" 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:descendantFocusability="blocksDescendants" 
-    android:paddingLeft="6dip"
+    android:descendantFocusability="blocksDescendants"
+    android:paddingLeft="5dip"
     android:paddingRight="6dip"
-    android:paddingTop="15dip"
-    android:paddingBottom="10dip">   
+    android:background="@color/white"
+    android:paddingTop="6dip"
+    android:paddingBottom="6dip">
 
     <ImageView 
     	android:id="@+id/messagedetail_listitem_userface1"
@@ -17,11 +18,12 @@
 	    android:id="@+id/messagedetail_listitem_contentll"
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content"
-    	android:layout_weight="1"
-    	android:layout_marginLeft="5dip"
-    	android:layout_marginRight="5dip"
-    	android:orientation="vertical"
-    	android:background="@drawable/review_bg_left"> 
+        android:layout_weight="1"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:orientation="vertical"
+        android:padding="10dip"
+        android:background="@drawable/review_bg_left">
         
 		<com.ihelpoo.app.widget.LinkView
 			android:id="@+id/messagedetail_listitem_username" 
@@ -29,7 +31,7 @@
 			android:layout_height="wrap_content"
 			android:includeFontPadding="false"
 			android:textSize="@dimen/text_size_15"
-			android:textColor="@color/listitem_black"
+			android:textColor="@color/listitem_black_gray"
 			android:textColorLink="@color/listitem_blue"
 			android:autoLink="web|email"/>
        	
@@ -37,7 +39,7 @@
 	    	android:orientation="horizontal" 
 	        android:layout_width="wrap_content"  
 	        android:layout_height="wrap_content"
-	        android:layout_marginTop="8dip">  
+	        android:layout_marginTop="5dip">
 	        <TextView 
 	        	android:id="@+id/messagedetail_listitem_client" 
 	            android:layout_width="wrap_content" 

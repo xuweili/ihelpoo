@@ -1314,8 +1314,8 @@ public class UIHelper {
         }
 
         // 设置用户名字体加粗、高亮
-        style.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), start,
-                end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        style.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), start,
+//                end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         style.setSpan(new ForegroundColorSpan(Color.parseColor("#0e5986")),
                 start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         view.setText(style);
