@@ -20,13 +20,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.AppException;
 import com.ihelpoo.app.R;
-import com.ihelpoo.app.bean.MyInformation;
 import com.ihelpoo.app.bean.Result;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.widget.LoadingDialog;
@@ -56,7 +54,7 @@ public class UserInfoGender extends BaseActivity {
     }
 
     private void initView() {
-        back = (Button) findViewById(R.id.user_nickname_back);
+        back = (Button) findViewById(R.id.user_gender_back);
         back.setOnClickListener(UIHelper.finish(this));
 
 
