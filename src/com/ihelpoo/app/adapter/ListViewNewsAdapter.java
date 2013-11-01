@@ -103,6 +103,8 @@ public class ListViewNewsAdapter extends MyBaseAdapter {
             listItemView = (ListItemView) convertView.getTag();
         }
 
+
+
         //设置文字和图片
         News news = listItems.get(position);
 

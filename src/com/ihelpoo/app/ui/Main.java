@@ -25,10 +25,14 @@ import java.util.List;
 
 import com.ihelpoo.app.adapter.ListViewNoticeAdapter;
 import com.ihelpoo.app.adapter.ListViewWordAdapter;
+import com.ihelpoo.app.bean.FriendList;
+import com.ihelpoo.app.bean.MyInformation;
+import com.ihelpoo.app.bean.User;
 import com.ihelpoo.app.bean.WordList;
 import com.ihelpoo.app.bean.MessageList;
 import com.ihelpoo.app.bean.Post;
 import com.ihelpoo.app.bean.TweetList;
+import com.ihelpoo.app.widget.LoadingDialog;
 import com.ihelpoo.app.widget.NewDataToast;
 import com.ihelpoo.app.AppConfig;
 import com.ihelpoo.app.AppContext;
@@ -55,6 +59,7 @@ import com.ihelpoo.app.common.UpdateManager;
 import com.ihelpoo.app.widget.BadgeView;
 import com.ihelpoo.app.widget.PullToRefreshListView;
 import com.ihelpoo.app.widget.ScrollLayout;
+import com.ihelpoo.app.widget.ScrollViewForNest;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -76,9 +81,11 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -96,6 +103,7 @@ public class Main extends BaseActivity {
     public static final int QUICKACTION_SETTING = 4;
     public static final int QUICKACTION_EXIT = 5;
     public static final int REQUEST_CODE_SCHOOL = 0;
+    public static final int REQUEST_CODE_LOGIN = 1;
     public static final int POLLING_NOTICE_INTERVAL = 30;
 
     private ScrollLayout mScrollLayout;
@@ -105,6 +113,7 @@ public class Main extends BaseActivity {
     private int mCurSel;
 
     //    private ImageView mHeadLogo;
+    private RelativeLayout mainHeaderLyt;
     private TextView mHeadTitle;
     private ProgressBar mHeadProgress;
     private ImageButton mHead_search;
@@ -171,10 +180,6 @@ public class Main extends BaseActivity {
     private Button framebtn_Word_comment;
     private Button framebtn_Word_active;
     private Button framebtn_Word_chat;
-
-    private Button framebtn_Nest_lastest;
-    private Button framebtn_Nest_blog;
-    private Button framebtn_Nest_recommend;
 
     private Button framebtn_Rank_ask;
     private Button framebtn_Rank_share;
@@ -407,8 +412,7 @@ public class Main extends BaseActivity {
                     break;
                 case QUICKACTION_SOFTWARE:// 排行
 //                    UIHelper.showSoftware(Main.this);
-                    mScrollLayout.setToScreen(3);
-                    lvRank.clickRefresh();
+                    showRank();
                     break;
                 case QUICKACTION_SEARCH:// 串校
                     toSelectSchool();
@@ -423,11 +427,24 @@ public class Main extends BaseActivity {
         }
     };
 
+    private void showRank() {
+        mScrollLayout.setToScreen(3);
+        lvRank.clickRefresh();
+    }
+
     private void toSelectSchool() {
         Intent ii = new Intent();
         ii.setClass(this, SchoolListActivity.class);
         startActivityForResult(ii, REQUEST_CODE_SCHOOL);
     }
+
+    private void toLogin() {
+        Intent ii = new Intent();
+        ii.setClass(this, LoginDialog.class);
+        ii.putExtra("LOGINTYPE", LoginDialog.LOGIN_MAIN);
+        startActivityForResult(ii, REQUEST_CODE_LOGIN);
+    }
+
 
     /**
      * 初始化所有ListView
@@ -517,10 +534,184 @@ public class Main extends BaseActivity {
         });
     }
 
+    private void setHeadBgMargin(int top){
+
+        if(headViewHeight == 0)
+            headViewHeight = getResources().getDimensionPixelSize(R.dimen.image_profile_headbg_height);
+
+        if(lp == null)
+            lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,headViewHeight);
+        lp.setMargins(0, top, 0, 0);
+        nestThemeBg.setLayoutParams(lp);
+    }
+
+    private int headViewHeight = 0;
+    private RelativeLayout.LayoutParams lp;
+    private float speed = 0.5f;
+    private ScrollViewForNest nestScrollView;
+    private ImageView nestThemeBg;
+    private ImageView nestProfileAvartar;
+    private TextView nestProfileNickname;
+    private ImageView nestProfileGender;
+    private TextView nestProfileIntro;
+    private LinearLayout nestFriendFollowing;
+    private LinearLayout nestFriendFollower;
+    private LinearLayout nestActionTrends;
+    private LinearLayout nestActionInfo;
+    private LinearLayout nestActionFind;
+    private LinearLayout nestActionRank;
+
+
+    private MyInformation user;
+    private LoadingDialog loading;
+    private View.OnClickListener fansClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            int followers = user != null ? user.getFriends_count() : 0;
+            int fans = user != null ? user.getFollowers_count() : 0;
+            UIHelper.showUserFriend(v.getContext(), FriendList.TYPE_FOLLOWER, followers, fans);
+        }
+    };
+
+    private View.OnClickListener followersClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            int followers = user != null ? user.getFriends_count() : 0;
+            int fans = user != null ? user.getFollowers_count() : 0;
+            UIHelper.showUserFriend(v.getContext(), FriendList.TYPE_FRIEND, followers, fans);
+        }
+    };
+    private View.OnClickListener trendsClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            if(!appContext.isLogin()){
+                UIHelper.showLoginDialog(Main.this);
+                return;
+            }
+            User user = appContext.getLoginInfo();
+            UIHelper.showUserCenter(v.getContext(), user.getUid(), user.getNickname());
+        }
+    };
+    private View.OnClickListener infoClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            UIHelper.showUserInfo(Main.this);
+        }
+    };
+    private View.OnClickListener findClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            toSelectSchool();
+        }
+    };
+    private View.OnClickListener rankClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            showRank();
+        }
+    };
+    private View.OnClickListener avatarClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            UIHelper.showImageDialog(Main.this, (String) v.getTag());
+        }
+    };
+
+
+    private void loadUserInfoThread(final boolean isRefresh) {
+//        loading = new LoadingDialog(this);
+//        loading.show();
+
+        final Handler mHandler = new Handler() {
+            public void handleMessage(Message msg) {
+//                if (loading != null) loading.dismiss();
+                if (msg.what == 1 && msg.obj != null) {
+                    user = (MyInformation) msg.obj;
+
+                    //加载用户头像
+                    UIHelper.showUserFace(nestProfileAvartar, user.getAvatar_url());
+
+                    //用户性别
+                    if (user.getGender() == 1)
+                        nestProfileGender.setImageResource(R.drawable.widget_gender_man);
+                    else
+                        nestProfileGender.setImageResource(R.drawable.widget_gender_woman);
+
+                    nestProfileNickname.setText(user.getNickname());
+                    nestProfileIntro.setText(user.getSelf_intro());
+                    nestProfileAvartar.setOnClickListener(avatarClickListener);
+                    nestProfileAvartar.setTag(user.getAvatar_preview());
+
+                } else if (msg.obj != null) {
+                    ((AppException) msg.obj).makeToast(Main.this);
+                }
+            }
+        };
+        new Thread() {
+            public void run() {
+                Message msg = new Message();
+                try {
+                    MyInformation user = ((AppContext) getApplication()).getMyInformation(isRefresh);
+                    msg.what = 1;
+                    msg.obj = user;
+                } catch (AppException e) {
+                    e.printStackTrace();
+                    msg.what = -1;
+                    msg.obj = e;
+                }
+                mHandler.sendMessage(msg);
+            }
+        }.start();
+    }
+    private void createNestData() {
+        this.loadUserInfoThread(false);
+    }
+    private void createNestView(){
+        nestScrollView = (ScrollViewForNest)findViewById(R.id.nest_scroll_view);
+        nestThemeBg = (ImageView)findViewById(R.id.nest_theme_bg);
+        nestProfileAvartar = (ImageView)findViewById(R.id.nest_profile_avartar);
+        nestProfileNickname = (TextView)findViewById(R.id.nest_profile_nickname);
+        nestProfileGender = (ImageView)findViewById(R.id.nest_profile_gender);
+        nestProfileIntro = (TextView)findViewById(R.id.nest_profile_intro);
+
+        nestFriendFollowing = (LinearLayout)findViewById(R.id.nest_friend_following);
+        nestFriendFollower = (LinearLayout)findViewById(R.id.nest_friend_follower);
+        nestActionTrends = (LinearLayout)findViewById(R.id.nest_action_trends);
+        nestActionInfo = (LinearLayout)findViewById(R.id.nest_action_info);
+        nestActionFind = (LinearLayout)findViewById(R.id.nest_action_find);
+        nestActionRank = (LinearLayout)findViewById(R.id.nest_action_rank);
+
+        nestFriendFollowing.setOnClickListener(followersClickListener);
+        nestFriendFollower.setOnClickListener(fansClickListener);
+        nestActionTrends.setOnClickListener(trendsClickListener);
+        nestActionInfo.setOnClickListener(infoClickListener);
+        nestActionFind.setOnClickListener(findClickListener);
+        nestActionRank.setOnClickListener(rankClickListener);
+
+
+
+        nestScrollView.setOnScrollListener(new ScrollViewForNest.OnScrollListener() {
+            @Override
+            public void onBottom() {
+                setHeadBgMargin(0);
+            }
+
+            @Override
+            public void onTop() {
+            }
+
+            @Override
+            public void onScroll(int height) {
+                setHeadBgMargin(0 - (int) (height * speed));
+            }
+
+            @Override
+            public void onScrollStop() {
+            }
+        });
+        nestScrollView.getView();
+    }
+
     /**
-     * 初始化新闻列表
+     * 初始化小窝列表
      */
     private void initNewsListView() {
+
+        createNestView();
+
         lvNestAdapter = new ListViewNewsAdapter(this, lvNestData,
                 R.layout.news_listitem);
         lvNest_footer = getLayoutInflater().inflate(R.layout.listview_footer,
@@ -852,8 +1043,7 @@ public class Main extends BaseActivity {
                 if (_tweet == null)
                     return false;
 
-                AppContext ac = (AppContext) Main.this.getApplicationContext();
-                int uid = ac.getLoginUid();
+                int uid = appContext.getLoginUid();
                 if (!(uid == _tweet.getAuthorId())) {
                     return false;
                 }
@@ -1149,6 +1339,7 @@ public class Main extends BaseActivity {
      */
     private void initHeadView() {
 //        mHeadLogo = (ImageView) findViewById(R.id.main_head_logo);
+        mainHeaderLyt = (RelativeLayout) findViewById(R.id.main_relativelayout_header);
         mHeadTitle = (TextView) findViewById(R.id.main_head_title);
 
         SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
@@ -1189,7 +1380,7 @@ public class Main extends BaseActivity {
                         else lvNotice.clickRefresh();
                         break;
                     case 2:// 小窝
-                        lvNest.clickRefresh();
+//                        lvNest.clickRefresh();
                         break;
                     case 3:// 排行
                         lvRank.clickRefresh();
@@ -1302,7 +1493,7 @@ public class Main extends BaseActivity {
                                 else lvNotice.clickRefresh();
                                 break;
                             case 2:// 小窝
-                                lvNest.clickRefresh();
+//                                lvNest.clickRefresh();
                                 break;
                             case 3:// 排行
                                 lvRank.clickRefresh();
@@ -1322,6 +1513,7 @@ public class Main extends BaseActivity {
                 .SetOnViewChangeListener(new ScrollLayout.OnViewChangeListener() {
                     public void OnViewChange(int viewIndex) {
                         // 切换列表视图-如果列表数据为空：加载数据
+                        mainHeaderLyt.setVisibility(View.VISIBLE);
                         switch (viewIndex) {
                             case 0:// 首页
                                 if (lvHomeData.isEmpty()) {
@@ -1366,18 +1558,11 @@ public class Main extends BaseActivity {
                                     loadLvNoticeData(curWordCatalog, 0, lvNoticeHandler, UIHelper.LISTVIEW_ACTION_INIT);
                                 break;
                             case 2:// 小窝
-                                if (lvNest.getVisibility() == View.VISIBLE) {
-                                    if (lvNestData.isEmpty()) {
-                                        loadLvNewsData(curNestCatalog, 0,
-                                                lvNestHandler,
-                                                UIHelper.LISTVIEW_ACTION_INIT);
-                                    }
+                                mainHeaderLyt.setVisibility(View.GONE);
+                                if(!appContext.isLogin()){
+                                    toLogin();
                                 } else {
-                                    if (lvBlogData.isEmpty()) {
-                                        loadLvBlogData(curNestCatalog, 0,
-                                                lvBlogHandler,
-                                                UIHelper.LISTVIEW_ACTION_INIT);
-                                    }
+                                    createNestData();
                                 }
                                 break;
                             case 3:// 排行
@@ -1402,14 +1587,20 @@ public class Main extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data == null) {
-            return;
+        String schoolNameSelected = "请选择学校";
+        if (data != null) {
+            schoolNameSelected = data.getStringExtra(SchoolListActivity.SCHOOL_NAME_SELECTED);
         }
-        String schoolNameSelected = data.getStringExtra(SchoolListActivity.SCHOOL_NAME_SELECTED);
+
         switch (requestCode) {
             case REQUEST_CODE_SCHOOL:
-                setHomeHeader(schoolNameSelected);
+                mScrollLayout.setToScreen(0);
                 lvHome.clickRefresh();
+                setHomeHeader(schoolNameSelected);
+                break;
+            case REQUEST_CODE_LOGIN:
+                mScrollLayout.setToScreen(2);
+                loadUserInfoThread(false);
                 break;
             default:
                 mHeadTitle.setText(schoolNameSelected);
@@ -1480,10 +1671,6 @@ public class Main extends BaseActivity {
         framebtn_Word_active = (Button) findViewById(R.id.frame_btn_word_active);
         framebtn_Word_chat = (Button) findViewById(R.id.frame_btn_word_chat);
 
-        framebtn_Nest_lastest = (Button) findViewById(R.id.frame_btn_nest_lastest);
-        framebtn_Nest_blog = (Button) findViewById(R.id.frame_btn_nest_blog);
-        framebtn_Nest_recommend = (Button) findViewById(R.id.frame_btn_nest_recommend);
-
         framebtn_Rank_ask = (Button) findViewById(R.id.frame_btn_rank_ask);
         framebtn_Rank_share = (Button) findViewById(R.id.frame_btn_rank_share);
         framebtn_Rank_other = (Button) findViewById(R.id.frame_btn_rank_other);
@@ -1492,7 +1679,6 @@ public class Main extends BaseActivity {
         // 设置首选择项
         framebtn_Home_stream.setEnabled(false);
         framebtn_Word_system.setEnabled(false);
-        framebtn_Nest_lastest.setEnabled(false);
         framebtn_Rank_ask.setEnabled(false);
         // 首页
         framebtn_Home_stream.setOnClickListener(frameTweetBtnClick(framebtn_Home_stream, TweetList.CATALOG_STREAM));
@@ -1504,10 +1690,6 @@ public class Main extends BaseActivity {
         framebtn_Word_comment.setOnClickListener(frameActiveBtnClick(framebtn_Word_comment, WordList.CATALOG_COMMENT));
         framebtn_Word_active.setOnClickListener(frameActiveBtnClick(framebtn_Word_active, WordList.CATALOG_ACTIVE));
         framebtn_Word_chat.setOnClickListener(frameActiveBtnClick(framebtn_Word_chat, WordList.CATALOG_CHAT));
-        // 小窝
-        framebtn_Nest_lastest.setOnClickListener(frameNewsBtnClick(framebtn_Nest_lastest, NewsList.CATALOG_ALL));
-        framebtn_Nest_blog.setOnClickListener(frameNewsBtnClick(framebtn_Nest_blog, BlogList.CATALOG_LATEST));
-        framebtn_Nest_recommend.setOnClickListener(frameNewsBtnClick(framebtn_Nest_recommend, BlogList.CATALOG_RECOMMEND));
         // 排行
         framebtn_Rank_ask.setOnClickListener(frameQuestionBtnClick(framebtn_Rank_ask, PostList.CATALOG_ASK));
         framebtn_Rank_share.setOnClickListener(frameQuestionBtnClick(framebtn_Rank_share, PostList.CATALOG_SHARE));
@@ -1520,38 +1702,15 @@ public class Main extends BaseActivity {
                                                    final int catalog) {
         return new View.OnClickListener() {
             public void onClick(View v) {
-                if (btn == framebtn_Nest_lastest) {
-                    framebtn_Nest_lastest.setEnabled(false);
-                } else {
-                    framebtn_Nest_lastest.setEnabled(true);
-                }
-                if (btn == framebtn_Nest_blog) {
-                    framebtn_Nest_blog.setEnabled(false);
-                } else {
-                    framebtn_Nest_blog.setEnabled(true);
-                }
-                if (btn == framebtn_Nest_recommend) {
-                    framebtn_Nest_recommend.setEnabled(false);
-                } else {
-                    framebtn_Nest_recommend.setEnabled(true);
-                }
 
                 curNestCatalog = catalog;
 
                 // 非新闻列表
-                if (btn == framebtn_Nest_lastest) {
-                    lvNest.setVisibility(View.VISIBLE);
-                    lvBlog.setVisibility(View.GONE);
+                lvNest.setVisibility(View.GONE);
+                lvBlog.setVisibility(View.VISIBLE);
 
-                    loadLvNewsData(curNestCatalog, 0, lvNestHandler,
-                            UIHelper.LISTVIEW_ACTION_CHANGE_CATALOG);
-                } else {
-                    lvNest.setVisibility(View.GONE);
-                    lvBlog.setVisibility(View.VISIBLE);
-
-                    loadLvBlogData(curNestCatalog, 0, lvBlogHandler,
-                            UIHelper.LISTVIEW_ACTION_CHANGE_CATALOG);
-                }
+                loadLvBlogData(curNestCatalog, 0, lvBlogHandler,
+                        UIHelper.LISTVIEW_ACTION_CHANGE_CATALOG);
             }
         };
     }
@@ -2440,7 +2599,6 @@ public class Main extends BaseActivity {
      * 通知信息处理
      *
      * @param type 0:系统消息 1:@我 2:评论 3:活跃
-     *
      */
     private void clearNotice(final int type) {
         final int uid = appContext.getLoginUid();

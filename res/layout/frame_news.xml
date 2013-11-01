@@ -1,41 +1,345 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" 
-    android:layout_width="fill_parent" 
-    android:layout_height="fill_parent">
-	<LinearLayout 
-		android:layout_width="fill_parent" 
-		android:layout_height="35.0dip"
-		android:orientation="horizontal" 
-		android:gravity="center_vertical">
-     	<Button 
-     		android:id="@+id/frame_btn_nest_lastest"
-     		style="@style/frame_button"
-         	android:text="@string/frame_title_news_lastest"
-            android:visibility="gone"/>
-     	<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"
-            android:visibility="gone"/>
-     	<Button 
-     		android:id="@+id/frame_btn_nest_blog"
-     		style="@style/frame_button"
-         	android:text="@string/frame_title_news_blog"
-            android:visibility="gone"/>
-     	<ImageView android:layout_width="wrap_content" android:layout_height="fill_parent" android:background="@drawable/frame_button_cutline"
-            android:visibility="gone"/>
-     	<Button 
-     		android:id="@+id/frame_btn_nest_recommend"
-     		style="@style/frame_button"
-         	android:text="@string/frame_title_news_recommend"
-            android:visibility="gone"/>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/listitem_black_gray">
+
+    <ImageView
+        android:id="@+id/nest_theme_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/image_profile_headbg_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/nest_theme_default_bg" />
+
+    <com.ihelpoo.app.widget.ScrollViewForNest
+        android:id="@+id/nest_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/nest_theme_header_lyt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true">
+
+                <LinearLayout
+                    android:id="@+id/nest_theme_header_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/image_profile_headbg_height"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:orientation="vertical" />
+
+                <View
+                    android:id="@+id/nest_profile_hear_bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/view_profile_headbottom_height"
+                    android:layout_below="@+id/nest_theme_header_bg"
+                    android:layout_centerHorizontal="true"
+                    android:background="#FFFFFF" />
+
+                <ImageView
+                    android:id="@+id/nest_profile_avartar"
+                    android:layout_width="120dip"
+                    android:layout_height="90dip"
+                    android:layout_alignBottom="@+id/nest_profile_hear_bottom"
+                    android:layout_marginLeft="20dip"
+                    android:background="@drawable/widget_dface_loading" />
+
+                <TextView
+                    android:id="@+id/nest_profile_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/nest_profile_hear_bottom"
+                    android:layout_toRightOf="@+id/nest_profile_avartar"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginBottom="50dip"
+                    android:text="昵称"
+                    android:textSize="16dip"
+                    android:textColor="@color/white" />
+
+                <ImageView
+                    android:id="@+id/nest_profile_gender"
+                    android:layout_width="16dip"
+                    android:layout_height="16dip"
+                    android:layout_alignBottom="@+id/nest_profile_hear_bottom"
+                    android:layout_toRightOf="@+id/nest_profile_nickname"
+                    android:layout_marginLeft="15dip"
+                    android:layout_marginBottom="50dip"
+                    android:background="@drawable/widget_gender_woman" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_profile2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nest_theme_header_lyt"
+                android:layout_centerHorizontal="true"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/nest_profile_intro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="20dip"
+                    android:text="简介"
+                    android:textSize="12dip"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/nest_friends_area"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_below="@+id/nest_profile_intro"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="20dip"
+                    android:paddingRight="20dip"
+                    android:paddingBottom="20dip"
+                    android:paddingTop="2dip"
+                    >
+
+                    <LinearLayout
+                        android:id="@+id/nest_friend_following"
+                        android:layout_width="fill_parent"
+                        android:layout_height="60dip"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/space_5"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:background="@drawable/table_above_bg">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dip"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/nest_my_trends" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/space_10"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/text_size_16"
+                            android:text="我圈"
+                            android:textColor="#ff000000" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dip"
+                            android:src="@drawable/widget_right_icon" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/nest_friend_follower"
+                        android:layout_width="fill_parent"
+                        android:layout_height="60dip"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/space_5"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:background="@drawable/table_mid_bg">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dip"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/nest_my_info" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/space_10"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/text_size_16"
+                            android:text="圈子"
+                            android:textColor="#ff000000" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dip"
+                            android:src="@drawable/widget_right_icon" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_below="@+id/nest_friends_area"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:padding="20dip">
+
+                    <LinearLayout
+                        android:id="@+id/nest_action_trends"
+                        android:layout_width="fill_parent"
+                        android:layout_height="60dip"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/space_5"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:background="@drawable/table_above_bg">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dip"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/nest_my_trends" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/space_10"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/text_size_16"
+                            android:text="我的动态"
+                            android:textColor="#ff000000" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dip"
+                            android:src="@drawable/widget_right_icon" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/nest_action_info"
+                        android:layout_width="fill_parent"
+                        android:layout_height="60dip"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/space_5"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:background="@drawable/table_mid_bg">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dip"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/nest_my_info" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/space_10"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/text_size_16"
+                            android:text="我的资料"
+                            android:textColor="#ff000000" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dip"
+                            android:src="@drawable/widget_right_icon" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/nest_action_find"
+                        android:layout_width="fill_parent"
+                        android:layout_height="60dip"
+                        android:padding="@dimen/space_5"
+                        android:gravity="center_vertical"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:background="@drawable/table_mid_bg">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dip"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/nest_visit_school" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/space_10"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/text_size_16"
+                            android:text="串校去"
+                            android:textColor="#ff000000" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dip"
+                            android:src="@drawable/widget_right_icon" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/nest_action_rank"
+                        android:layout_width="fill_parent"
+                        android:layout_height="60dip"
+                        android:padding="@dimen/space_5"
+                        android:gravity="center_vertical"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:background="@drawable/table_below_bg">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dip"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/nest_trends_rank" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/space_10"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/text_size_16"
+                            android:text="看看排行"
+                            android:textColor="#ff000000" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dip"
+                            android:src="@drawable/widget_right_icon" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </com.ihelpoo.app.widget.ScrollViewForNest>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <com.ihelpoo.app.widget.PullToRefreshListView
+            android:id="@+id/frame_listview_nest"
+            style="@style/widget_listview"
+            android:visibility="gone" />
+
+        <com.ihelpoo.app.widget.PullToRefreshListView
+            android:id="@+id/frame_listview_blog"
+            style="@style/widget_listview"
+            android:visibility="gone" />
+
     </LinearLayout>
-    
-	<com.ihelpoo.app.widget.PullToRefreshListView
-	  	android:id="@+id/frame_listview_nest"
-	    style="@style/widget_listview"/>
-	
-	<com.ihelpoo.app.widget.PullToRefreshListView
-	  	android:id="@+id/frame_listview_blog"
-	    style="@style/widget_listview"
-	    android:visibility="gone"/>
-	
-</LinearLayout>
+
+</RelativeLayout>

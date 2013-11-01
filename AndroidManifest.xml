@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.ihelpoo.app"
       android:versionCode="1"
-      android:versionName="Version 1.0.1"
+      android:versionName="Version 1.0.0"
     android:installLocation="preferExternal"
     >
     <uses-sdk android:minSdkVersion="4" />
@@ -22,7 +22,7 @@
 		<activity android:name=".ui.FeedBack" android:theme="@style/Theme.HalfTranslucent" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
 		<activity android:name=".ui.Main" android:theme="@style/Theme.NoTitleBar" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask"/>
         <activity android:name=".ui.Register" android:theme="@style/Theme.ZoomLight" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask"/>
-        <activity android:name=".ui.LoginDialog" android:theme="@style/Theme.HalfTranslucent" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".ui.LoginDialog" android:theme="@style/Theme.HalfTranslucent" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
 		<activity android:name=".ui.NewsDetail" android:theme="@style/Theme.SlideTop" android:configChanges="keyboardHidden|orientation|screenSize"/>
 		<activity android:name=".ui.SoftwareLib" android:theme="@style/Theme.ZoomLight" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask"/>
 		<activity android:name=".ui.SoftwareDetail" android:theme="@style/Theme.SlideTop" android:configChanges="keyboardHidden|orientation|screenSize"/>

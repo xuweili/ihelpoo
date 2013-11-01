@@ -225,16 +225,12 @@ public class LoginDialog extends BaseActivity {
                         UIHelper.ToastMessage(LoginDialog.this, R.string.msg_login_success);
                         if (curLoginType == LOGIN_MAIN) {
                             //跳转--加载用户动态
-                            Intent intent = new Intent(LoginDialog.this, Main.class);
-                            intent.putExtra("LOGIN", true);
-                            startActivity(intent);
+                            redirectToMain();
                         } else if (curLoginType == LOGIN_SETTING) {
                             //跳转--用户设置页面
-                            Intent intent = new Intent(LoginDialog.this, Setting.class);
-                            intent.putExtra("LOGIN", true);
-                            startActivity(intent);
+                            redirectToSetting();
                         }
-                        finish();
+                        LoginDialog.this.finish();
                     }
                 } else if (msg.what == 0) {
                     mViewSwitcher.showPrevious();
@@ -283,6 +279,20 @@ public class LoginDialog extends BaseActivity {
                 handler.sendMessage(msg);
             }
         }.start();
+    }
+
+    private void redirectToSetting() {
+        Intent intent = new Intent(this, Setting.class);
+        intent.putExtra("LOGIN", true);
+        startActivity(intent);
+    }
+
+    private void redirectToMain() {
+        Intent intent = new Intent(this, Main.class);
+        intent.putExtra("LOGIN", true);
+        setResult(Main.REQUEST_CODE_LOGIN, intent);
+        startActivity(intent);
+        finish();
     }
 
     @Override

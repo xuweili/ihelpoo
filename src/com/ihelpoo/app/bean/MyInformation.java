@@ -50,6 +50,7 @@ public class MyInformation extends Entity {
     private int active_credits;
     private String avatar_type;
     private String avatar_url;
+    private String avatar_preview;
     private String web_theme;
     private String self_intro;
     private String real_name;
@@ -102,6 +103,8 @@ public class MyInformation extends Entity {
                                 user.setOnline_status(xmlParser.nextText());
                             } else if (tag.equalsIgnoreCase("active_credits")) {
                                 user.setActive_credits(StringUtils.toInt(xmlParser.nextText()));
+                            } else if (tag.equalsIgnoreCase("avatar_preview")) {
+                                user.setAvatar_preview(xmlParser.nextText());
                             } else if (tag.equalsIgnoreCase("avatar_url")) {
                                 user.setAvatar_url(xmlParser.nextText());
                             } else if (tag.equalsIgnoreCase("self_intro")) {
@@ -399,5 +402,13 @@ public class MyInformation extends Entity {
 
     public void setDorm_name(String dorm_name) {
         this.dorm_name = dorm_name;
+    }
+
+    public String getAvatar_preview() {
+        return avatar_preview;
+    }
+
+    public void setAvatar_preview(String avatar_preview) {
+        this.avatar_preview = avatar_preview;
     }
 }

@@ -53,7 +53,7 @@ public class NavWhatsnewAnimation extends Activity {
             public void run() {
                 redirectTo();
             }
-        }, 1000);
+        }, 2000);
 
 
         //兼容低版本cookie（1.5版本以下，包括1.5.0,1.5.1）
@@ -116,6 +116,7 @@ public class NavWhatsnewAnimation extends Activity {
             return;
         }
         Intent intent = new Intent(this, Main.class);
+        setResult(Main.REQUEST_CODE_SCHOOL, intent);
         startActivity(intent);
         finish();
     }
