@@ -120,12 +120,12 @@ public class SchoolListActivity extends BaseActivity {
             editor.putString(NavWelcome.CHOOSE_SCHOOL_NAME, schoolInfo.getSchool());
             editor.commit();
 
-            Intent intent = new Intent(SchoolListActivity.this, Main.class);
+            Intent intent = new Intent(SchoolListActivity.this, NavWhatsnewAnimation.class);
             intent.putExtra(SCHOOL_NAME_SELECTED, schoolInfo.getSchool());
             intent.putExtra(IS_SELECT, true);
-            if (isFirstIn(mySchool)) {
+//            if (isFirstIn(mySchool)) {
                 startActivity(intent);
-            }
+//            }
             SchoolListActivity.this.setResult(Main.REQUEST_CODE_SCHOOL, intent);
             SchoolListActivity.this.finish();
         }
@@ -142,12 +142,12 @@ public class SchoolListActivity extends BaseActivity {
             return false;
         }
 
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            Intent intent = new Intent(SchoolListActivity.this, Main.class);
-            SchoolListActivity.this.setResult(Main.REQUEST_CODE_SCHOOL, intent);
-            startActivity(intent);
-            finish();
-        }
+//        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+//            Intent intent = new Intent(SchoolListActivity.this, NavWhatsnewAnimation.class);
+//            SchoolListActivity.this.setResult(Main.REQUEST_CODE_SCHOOL, intent);
+//            startActivity(intent);
+//            finish();
+//        }
         return super.onKeyDown(keyCode, event);
     }
 

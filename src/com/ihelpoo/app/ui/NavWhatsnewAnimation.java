@@ -1,12 +1,15 @@
 package com.ihelpoo.app.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
@@ -17,6 +20,7 @@ import com.ihelpoo.app.R;
 import com.ihelpoo.app.common.StringUtils;
 
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -36,11 +40,12 @@ public class NavWhatsnewAnimation extends Activity {
         editor.putBoolean("isFirstIn", false);
         // 提交修改
         editor.commit();
-        setContentView(R.layout.nav_whatnew_animation);
         img_left = (ImageView) findViewById(R.id.doorpage_left);
-//        img_right = (ImageView) findViewById(R.id.doorpage_right);
-        Bitmap bmp=getBitmapFromURL("http://static.ihelpoo.cn/img/mobile/start/school_1.jpg");
-        img_left.setImageBitmap(bmp);
+        int targetSchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
+
+        int schoolResId = getResId("school_layout_" + targetSchool, R.layout.class);
+        schoolResId = schoolResId == -1 ? R.layout.school_layout_0 : schoolResId;
+        setContentView(schoolResId);
 
 
         new Handler().postDelayed(new Runnable() {
@@ -62,6 +67,16 @@ public class NavWhatsnewAnimation extends Activity {
                 appContext.setProperty("cookie", cookie);
                 appContext.removeProperty("cookie_domain", "cookie_name", "cookie_value", "cookie_version", "cookie_path");
             }
+        }
+    }
+
+    public static int getResId(String drawableName, Class<?> clazz) {
+        try {
+            Field field = clazz.getField(drawableName);
+            return field.getInt(null);
+        } catch (Exception e) {
+            Log.e("MyTag", "Failure to get drawable id.", e);
+            return -1;
         }
     }
 
@@ -95,7 +110,7 @@ public class NavWhatsnewAnimation extends Activity {
         SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
         int mySchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
         if (mySchool == NavWelcome.DEFAULT_SCHOOL) {
-            Intent intent = new Intent(this, SchoolListActivity.class);
+            Intent intent = new Intent(this, Main.class);
             startActivity(intent);
             finish();
             return;
