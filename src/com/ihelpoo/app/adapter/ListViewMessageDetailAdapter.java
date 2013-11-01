@@ -113,7 +113,7 @@ public class ListViewMessageDetailAdapter extends BaseAdapter {
 
         //设置文字和图片
         Comment msg = listItems.get(position);
-        listItemView.username.setLinkText("<font color='#0e5986'>" + msg.getAuthor() + "</font>：" + msg.getContent());
+        listItemView.username.setLinkText(msg.getContent());
         //listItemView.username.setText(UIHelper.parseMessageSpan(msg.getAuthor(), msg.getContent(), ""));
         //listItemView.username.parseLinkText();
         listItemView.username.setTag(msg);//设置隐藏参数(实体类)

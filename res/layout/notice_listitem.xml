@@ -43,7 +43,7 @@
         <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="16dip"
             android:layout_marginTop="3dip"
             android:paddingLeft="5dip"
             >
@@ -55,6 +55,7 @@
                 android:textSize="@dimen/text_size_10"
                 android:text="一天前"
                 android:textColor="@color/listitem_gray"
+                android:layout_alignParentBottom="true"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true" />
 
@@ -66,7 +67,7 @@
                 android:textColor="@color/green"
                 android:textStyle="bold"
                 android:text="+5"
-                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
                 android:layout_toLeftOf="@+id/news_listitem_author"
                 android:layout_marginRight="5dp" />
 
@@ -74,10 +75,10 @@
                 android:id="@+id/news_listitem_author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_15"
+                android:textSize="@dimen/text_size_12"
                 android:text="[123] "
                 android:textColor="@color/listitem_gray"
-                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true" />
 
         </RelativeLayout>

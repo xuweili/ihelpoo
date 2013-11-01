@@ -93,17 +93,6 @@
                     android:textColor="@color/black"
                     android:textSize="14dip"
                     android:text="评论" />
-
-                <Button
-                    android:id="@+id/tweet_detail_foot_diffuse"
-                    android:layout_width="45dip"
-                    android:layout_height="34dip"
-                    android:layout_marginLeft="5dip"
-                    android:layout_marginRight="5dip"
-                    android:background="@drawable/widget_button_bg"
-                    android:textColor="@color/black"
-                    android:textSize="14dip"
-                    android:text="扩散" />
             </LinearLayout>
 
             <GridView

@@ -12,21 +12,13 @@
 	    android:layout_height="fill_parent"
 	    android:layout_weight="1"
 	    android:orientation="vertical">
-	   	<TextView 
-	   		android:id="@+id/message_pub_receiver"
-	        android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content"
-	        android:padding="5dip"
-	        android:autoLink="web"
-	        android:textSize="14sp"
-	        android:textColor="@color/white"
-	        android:background="@drawable/line_blue"/>
-	    <TextView 
+	    <TextView
+            android:id="@+id/message_pub_receiver"
 	        android:layout_height="wrap_content"
 	        android:layout_width="wrap_content"
 	        android:layout_marginTop="6dip"
 	        android:layout_marginLeft="2dip"
-	        android:text="* 悄悄话内容(最多222个字)"
+	        android:text="谁"
             android:paddingLeft="@dimen/space_10"
             android:paddingTop="@dimen/space_4"
 	        android:textSize="12sp"
@@ -46,7 +38,7 @@
 	        android:gravity="top"
             android:textSize="@dimen/space_15"
             android:textColor="#4d4948"
-	        android:hint="输入悄悄话"/>
+	        android:hint="输入悄悄话(最多222个字)"/>
 	</LinearLayout>
 
 </LinearLayout>

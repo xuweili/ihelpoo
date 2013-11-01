@@ -1331,8 +1331,6 @@ public class UIHelper {
     public static SpannableString parseQuoteSpan(String name, String body) {
         SpannableString sp = new SpannableString("回复：" + name + "\n" + body);
         // 设置用户名字体加粗、高亮
-        sp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 3,
-                3 + name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         sp.setSpan(new ForegroundColorSpan(Color.parseColor("#0e5986")), 3,
                 3 + name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return sp;

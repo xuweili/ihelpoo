@@ -108,7 +108,6 @@ public class TweetDetail extends BaseActivity {
     private Button mFootDiffuse;
     private EditText mFootEditer;
     private Button mFootPubcomment;
-    private Button mFootPubdiffuse;
     private ProgressDialog mProgress;
     private InputMethodManager imm;
     private String tempCommentKey = AppConfig.TEMP_COMMENT;
@@ -184,8 +183,6 @@ public class TweetDetail extends BaseActivity {
         mFootViewSwitcher = (ViewSwitcher) findViewById(R.id.tweet_detail_foot_viewswitcher);
         mFootPubcomment = (Button) findViewById(R.id.tweet_detail_foot_pubcomment);
         mFootPubcomment.setOnClickListener(commentpubClickListener);
-        mFootPubdiffuse = (Button) findViewById(R.id.tweet_detail_foot_diffuse);
-        mFootPubdiffuse.setOnClickListener(diffuseWithViewClickListener);
         mFootEditebox = (ImageView) findViewById(R.id.tweet_detail_footbar_editebox);
         mFootPlus = (Button) findViewById(R.id.tweet_detail_footbar_plus);
         mFootDiffuse = (Button) findViewById(R.id.tweet_detail_footbar_diffuse);
@@ -235,13 +232,13 @@ public class TweetDetail extends BaseActivity {
         userface = (ImageView) lvHeader.findViewById(R.id.tweet_listitem_userface);
         username = (TextView) lvHeader.findViewById(R.id.tweet_listitem_username);
         date = (TextView) lvHeader.findViewById(R.id.tweet_listitem_date);
-        commentCount = (TextView) lvHeader.findViewById(R.id.tweet_listitem_commentCount);
+        commentCount = (TextView) lvHeader.findViewById(R.id.tweet_listitem_comment_count);
         image = (ImageView) lvHeader.findViewById(R.id.tweet_listitem_image);
 
         redirect = (ImageView) lvHeader.findViewById(R.id.tweet_listitem_diffuse_icon);
         type_gossip = (TextView) lvHeader.findViewById(R.id.tweet_listitem_type_gossip);
-        diffusionCount = (TextView) lvHeader.findViewById(R.id.tweet_listitem_diffusionCount);
-        plusCount = (TextView) lvHeader.findViewById(R.id.tweet_listitem_plusCount);
+        diffusionCount = (TextView) lvHeader.findViewById(R.id.tweet_listitem_diffusion_count);
+        plusCount = (TextView) lvHeader.findViewById(R.id.tweet_listitem_plus_count);
         online = (TextView) lvHeader.findViewById(R.id.tweet_listitem_online);
         academy = (TextView) lvHeader.findViewById(R.id.tweet_listitem_academy);
         rank = (TextView) lvHeader.findViewById(R.id.tweet_listitem_rank);
@@ -419,9 +416,9 @@ public class TweetDetail extends BaseActivity {
                     userface.setOnClickListener(faceClickListener);
 
                     //加载图片
-                    String imgSmall = tweetDetail.getImgSmall();
-                    if (!StringUtils.isEmpty(imgSmall)) {
-                        UIHelper.showLoadImage(image, imgSmall, null);
+                    String imgBig = tweetDetail.getImgBig();
+                    if (!StringUtils.isEmpty(imgBig)) {
+                        UIHelper.showLoadImage(image, imgBig, null);
                         image.setVisibility(View.VISIBLE);
                         image.setOnClickListener(imageClickListener);
                     }
@@ -868,85 +865,6 @@ public class TweetDetail extends BaseActivity {
                     try {
                         //发表评论
                         res = ac.pubComment(_catalog, _id, _uid, _content, _isPostToMyZone);
-                        msg.what = 1;
-                        msg.obj = res;
-                    } catch (AppException e) {
-                        e.printStackTrace();
-                        msg.what = -1;
-                        msg.obj = e;
-                    }
-                    handler.sendMessage(msg);
-                }
-            }.start();
-        }
-    };
-
-    private View.OnClickListener diffuseWithViewClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            _id = curId;
-
-            if (curId == 0) {
-                return;
-            }
-
-            _catalog = curCatalog;
-
-            _content = mFootEditer.getText().toString();
-            if (StringUtils.isEmpty(_content)) {
-                UIHelper.ToastMessage(v.getContext(), "请加入扩散观点");
-                return;
-            }
-
-            final AppContext ac = (AppContext) getApplication();
-            if (!ac.isLogin()) {
-                UIHelper.showLoginDialog(TweetDetail.this);
-                return;
-            }
-            _uid = ac.getLoginUid();
-
-            mProgress = ProgressDialog.show(v.getContext(), null, "正在扩散···", true, true);
-
-            final Handler handler = new Handler() {
-                public void handleMessage(Message msg) {
-
-                    if (mProgress != null) mProgress.dismiss();
-
-                    if (msg.what == 1 && msg.obj != null) {
-                        Result res = (Result) msg.obj;
-                        UIHelper.ToastMessage(TweetDetail.this, res.getErrorMessage());
-                        if (res.OK()) {
-                            //发送通知广播
-                            if (res.getNotice() != null) {
-                                UIHelper.sendBroadCast(TweetDetail.this, res.getNotice());
-                            }
-                            //恢复初始底部栏
-                            mFootViewSwitcher.setDisplayedChild(0);
-                            mFootEditer.clearFocus();
-                            mFootEditer.setText("");
-                            mFootEditer.setVisibility(View.GONE);
-                            //隐藏软键盘
-                            imm.hideSoftInputFromWindow(mFootEditer.getWindowToken(), 0);
-                            //隐藏表情
-                            hideFace();
-                            //更新评论列表
-//                            lvCommentData.add(0, res.getComment());
-//                            lvCommentAdapter.notifyDataSetChanged();
-//                            mLvComment.setSelection(0);
-                            //清除之前保存的编辑内容
-                            ac.removeProperty(tempCommentKey);
-                        }
-                    } else {
-                        ((AppException) msg.obj).makeToast(TweetDetail.this);
-                    }
-                }
-            };
-            new Thread() {
-                public void run() {
-                    Message msg = new Message();
-                    Result res;
-                    try {
-                        //发表评论
-                        res = ac.diffuse(_id, _uid, _content);
                         msg.what = 1;
                         msg.obj = res;
                     } catch (AppException e) {

@@ -47,7 +47,7 @@ public class CommentPub extends BaseActivity{
 	public final static int CATALOG_MESSAGE = 4;//动态与留言都属于消息中心
 	public final static int CATALOG_BLOG = 5;
 	
-	private ImageView mBack;
+	private Button mBack;
 	private EditText mContent;
 	private CheckBox mZone;
 	private Button mPublish;
@@ -81,7 +81,7 @@ public class CommentPub extends BaseActivity{
 		_replyid = getIntent().getIntExtra("reply_id", 0);
 		_authorid = getIntent().getIntExtra("author_id", 0);
     	
-    	mBack = (ImageView)findViewById(R.id.comment_list_back);
+    	mBack = (Button)findViewById(R.id.comment_list_back);
     	mPublish = (Button)findViewById(R.id.comment_pub_publish);
     	mContent = (EditText)findViewById(R.id.comment_pub_content);
     	mZone = (CheckBox)findViewById(R.id.comment_pub_zone);
