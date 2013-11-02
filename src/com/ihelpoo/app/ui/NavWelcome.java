@@ -40,8 +40,8 @@ public class NavWelcome extends Activity {
                     startActivity(intent);
                     NavWelcome.this.finish();
                 }
-            }, 2000);
+            }, 12000);
         }
-        setContentView(R.layout.nav_strat);
+        setContentView(R.layout.welcome);
     }
 }
