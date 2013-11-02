@@ -39,20 +39,74 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:orientation="vertical" />
-
-                <TextView
-                    android:id="@+id/nest_profile_hear_bottom"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/nest_theme_follow_bg"
+                    android:layout_width="match_parent"
                     android:layout_height="@dimen/view_profile_headbottom_height"
                     android:layout_below="@+id/nest_theme_header_bg"
-                    android:layout_centerHorizontal="true"
-                    android:background="@color/white" />
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/nest_profile_friend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/view_profile_headbottom_height"
+                        android:layout_marginLeft="135dip"
+                        android:paddingLeft="@dimen/space_5"
+                        android:paddingRight="@dimen/space_5"
+                        android:gravity="center"
+                        android:textColor="@color/listitem_blue"
+                        android:layout_alignParentBottom="true"
+                        android:text="我圈"/>
+                    <TextView
+                        android:layout_toRightOf="@+id/nest_profile_friend"
+                        android:id="@+id/nest_profile_friend_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/view_profile_headbottom_height"
+                        android:paddingLeft="@dimen/space_5"
+                        android:paddingRight="@dimen/space_5"
+                        android:gravity="center"
+                        android:textColor="@color/listitem_black_gray"
+                        android:textStyle="bold"
+                        android:text="0"/>
+                    <TextView
+                        android:layout_toRightOf="@+id/nest_profile_friend_count"
+                        android:id="@+id/nest_profile_follow_cut"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/view_profile_headbottom_height"
+                        android:paddingLeft="@dimen/space_5"
+                        android:paddingRight="@dimen/space_7"
+                        android:gravity="center"
+                        android:textColor="@color/listitem_black_gray"
+                        android:textSize="@dimen/space_16"
+                        android:text="|"/>
+                    <TextView
+                        android:layout_toRightOf="@+id/nest_profile_follow_cut"
+                        android:id="@+id/nest_profile_follower"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/view_profile_headbottom_height"
+                        android:paddingLeft="@dimen/space_5"
+                        android:paddingRight="@dimen/space_5"
+                        android:gravity="center"
+                        android:textColor="@color/listitem_blue"
+                        android:text="圈子"/>
+                    <TextView
+                        android:layout_toRightOf="@+id/nest_profile_follower"
+                        android:id="@+id/nest_profile_follower_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/view_profile_headbottom_height"
+                        android:paddingLeft="@dimen/space_5"
+                        android:paddingRight="@dimen/space_5"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/listitem_black_gray"
+                        android:text="0"/>
+                </RelativeLayout>
+
 
                 <ImageView
                     android:id="@+id/nest_profile_avartar"
                     android:layout_width="100dip"
                     android:layout_height="75dip"
-                    android:layout_alignBottom="@+id/nest_profile_hear_bottom"
+                    android:layout_alignBottom="@+id/nest_theme_follow_bg"
                     android:layout_marginLeft="20dip"
                     android:background="@drawable/widget_dface_loading" />
 
@@ -60,10 +114,13 @@
                     android:id="@+id/nest_profile_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/nest_profile_hear_bottom"
+                    android:layout_alignBottom="@+id/nest_theme_follow_bg"
                     android:layout_toRightOf="@+id/nest_profile_avartar"
                     android:layout_marginLeft="20dip"
                     android:layout_marginBottom="50dip"
+                    android:shadowRadius="1"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
                     android:text="昵称"
                     android:textSize="16dip"
                     android:textColor="@color/white" />
@@ -72,7 +129,7 @@
                     android:id="@+id/nest_profile_gender"
                     android:layout_width="16dip"
                     android:layout_height="16dip"
-                    android:layout_alignBottom="@+id/nest_profile_hear_bottom"
+                    android:layout_alignBottom="@+id/nest_theme_follow_bg"
                     android:layout_toRightOf="@+id/nest_profile_nickname"
                     android:layout_marginLeft="15dip"
                     android:layout_marginBottom="50dip"
@@ -99,86 +156,6 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:id="@+id/nest_friends_area"
-                    android:orientation="vertical"
-                    android:layout_width="fill_parent"
-                    android:layout_below="@+id/nest_profile_intro"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:paddingLeft="20dip"
-                    android:paddingRight="20dip"
-                    android:paddingBottom="20dip"
-                    android:paddingTop="2dip"
-                    >
-
-                    <LinearLayout
-                        android:id="@+id/nest_friend_following"
-                        android:layout_width="fill_parent"
-                        android:layout_height="60dip"
-                        android:gravity="center_vertical"
-                        android:padding="@dimen/space_5"
-                        android:focusable="true"
-                        android:clickable="true"
-                        android:background="@drawable/table_above_bg">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dip"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/nest_my_trends" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/space_10"
-                            android:layout_weight="1"
-                            android:textSize="@dimen/text_size_16"
-                            android:text="我圈"
-                            android:textColor="#ff000000" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dip"
-                            android:src="@drawable/widget_right_icon" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/nest_friend_follower"
-                        android:layout_width="fill_parent"
-                        android:layout_height="60dip"
-                        android:gravity="center_vertical"
-                        android:padding="@dimen/space_5"
-                        android:focusable="true"
-                        android:clickable="true"
-                        android:background="@drawable/table_mid_bg">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dip"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/nest_my_info" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/space_10"
-                            android:layout_weight="1"
-                            android:textSize="@dimen/text_size_16"
-                            android:text="圈子"
-                            android:textColor="#ff000000" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dip"
-                            android:src="@drawable/widget_right_icon" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="fill_parent"
                     android:layout_below="@+id/nest_friends_area"
@@ -198,8 +175,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dip"
+                            android:layout_height="40dip"
                             android:scaleType="fitCenter"
                             android:src="@drawable/nest_my_trends" />
 
@@ -231,8 +207,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dip"
+                            android:layout_height="40dip"
                             android:scaleType="fitCenter"
                             android:src="@drawable/nest_my_info" />
 
@@ -264,8 +239,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dip"
+                            android:layout_height="40dip"
                             android:scaleType="fitCenter"
                             android:src="@drawable/nest_visit_school" />
 
@@ -297,8 +271,7 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dip"
+                            android:layout_height="40dip"
                             android:scaleType="fitCenter"
                             android:src="@drawable/nest_trends_rank" />
 

@@ -556,12 +556,17 @@ public class Main extends BaseActivity {
     private TextView nestProfileNickname;
     private ImageView nestProfileGender;
     private TextView nestProfileIntro;
-    private LinearLayout nestFriendFollowing;
-    private LinearLayout nestFriendFollower;
+
     private LinearLayout nestActionTrends;
     private LinearLayout nestActionInfo;
     private LinearLayout nestActionFind;
     private LinearLayout nestActionRank;
+
+
+    private TextView nestProfileFriendCount;
+    private TextView nestProfileFriend;
+    private TextView nestProfileFollowerCount;
+    private TextView nestProfileFollower;
 
 
     private MyInformation user;
@@ -648,6 +653,9 @@ public class Main extends BaseActivity {
                     themeId = themeId == -1 ? R.drawable.nest_theme_1_bg : themeId;
                     nestThemeBg.setBackgroundResource(themeId);
 
+                    nestProfileFriendCount.setText(String.valueOf(user.getFriends_count()));
+                    nestProfileFollowerCount.setText(String.valueOf(user.getFollowers_count()));
+
                 } else if (msg.obj != null) {
                     ((AppException) msg.obj).makeToast(Main.this);
                 }
@@ -682,15 +690,21 @@ public class Main extends BaseActivity {
         nestProfileGender = (ImageView) findViewById(R.id.nest_profile_gender);
         nestProfileIntro = (TextView) findViewById(R.id.nest_profile_intro);
 
-        nestFriendFollowing = (LinearLayout) findViewById(R.id.nest_friend_following);
-        nestFriendFollower = (LinearLayout) findViewById(R.id.nest_friend_follower);
+        nestProfileFriendCount = (TextView) findViewById(R.id.nest_profile_friend_count);
+        nestProfileFriend = (TextView) findViewById(R.id.nest_profile_friend);
+        nestProfileFollowerCount = (TextView) findViewById(R.id.nest_profile_follower_count);
+        nestProfileFollower = (TextView) findViewById(R.id.nest_profile_follower);
+
         nestActionTrends = (LinearLayout) findViewById(R.id.nest_action_trends);
         nestActionInfo = (LinearLayout) findViewById(R.id.nest_action_info);
         nestActionFind = (LinearLayout) findViewById(R.id.nest_action_find);
         nestActionRank = (LinearLayout) findViewById(R.id.nest_action_rank);
 
-        nestFriendFollowing.setOnClickListener(followersClickListener);
-        nestFriendFollower.setOnClickListener(fansClickListener);
+        nestProfileFriendCount.setOnClickListener(followersClickListener);
+        nestProfileFriend.setOnClickListener(followersClickListener);
+        nestProfileFollowerCount.setOnClickListener(fansClickListener);
+        nestProfileFollower.setOnClickListener(fansClickListener);
+
         nestActionTrends.setOnClickListener(trendsClickListener);
         nestActionInfo.setOnClickListener(infoClickListener);
         nestActionFind.setOnClickListener(findClickListener);
