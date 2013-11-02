@@ -606,7 +606,7 @@ public class Main extends BaseActivity {
     };
     private View.OnClickListener avatarClickListener = new View.OnClickListener() {
         public void onClick(View v) {
-            UIHelper.showImageDialog(Main.this, (String) v.getTag());
+//            UIHelper.showImageDialog(Main.this, (String) v.getTag());
         }
     };
 
