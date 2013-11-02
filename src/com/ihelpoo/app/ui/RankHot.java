@@ -189,7 +189,7 @@ public class RankHot extends BaseActivity{
                         // 跳转到问答详情
 //                        UIHelper.showQuestionDetail(view.getContext(),
 //                                post.getId());
-                        UIHelper.showTweetDetail(view.getContext(), post.getId(), false);
+                        UIHelper.showTweetDetail(view.getContext(), post.getId(), "1".equals(post.getSayType()));
                     }
                 });
         lvRank.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -330,7 +330,6 @@ public class RankHot extends BaseActivity{
 	
   	/**
      * 线程加载软件分类二级列表数据
-     * @param tag 第一级:0 第二级:tag
      * @param handler 处理器
      * @param action 动作标识
      */
@@ -359,7 +358,6 @@ public class RankHot extends BaseActivity{
 	
   	/**
      * 线程加载软件列表数据
-     * @param searchTag 软件分类 推荐:recommend 最新:time 热门:view 国产:list_cn
      * @param pageIndex 当前页数
      * @param handler 处理器
      * @param action 动作标识

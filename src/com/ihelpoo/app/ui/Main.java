@@ -936,9 +936,7 @@ public class Main extends BaseActivity {
                             return;
 
                         // 跳转到问答详情
-//                        UIHelper.showQuestionDetail(view.getContext(),
-//                                post.getId());
-                        UIHelper.showTweetDetail(view.getContext(), post.getId(), false);//FIXME help
+                        UIHelper.showTweetDetail(view.getContext(), post.getId(), "1".equals(post.getSayType()));
                     }
                 });
         lvRank.setOnScrollListener(new AbsListView.OnScrollListener() {

@@ -114,6 +114,10 @@ public class PostList extends Entity{
 				            {			            	
 				            	post.setPubDate(xmlParser.nextText());         	
 				            }
+                            else if(tag.equalsIgnoreCase(Post.NODE_SAYTYPE))
+                            {
+                                post.setSayType(xmlParser.nextText());
+                            }
 			    		}
 			            //通知信息
 			            else if(tag.equalsIgnoreCase("notice"))

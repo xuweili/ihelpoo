@@ -46,6 +46,7 @@ public class Post extends Entity{
 	public final static String NODE_VIEWCOUNT = "viewCount";
 	public final static String NODE_FAVORITE = "favorite";
 	public final static String NODE_START = "post";
+    public final static String NODE_SAYTYPE = "sayType";
 
 	public final static int CATALOG_ASK = 1;
 	public final static int CATALOG_SHARE = 2;
@@ -65,10 +66,18 @@ public class Post extends Entity{
 	private int catalog;
 	private int isNoticeMe;	
 	private int favorite;
+    private String sayType;
 	private List<String> tags;
-	
-	
-	public List<String> getTags() {
+
+    public String getSayType() {
+        return sayType;
+    }
+
+    public void setSayType(String sayType) {
+        this.sayType = sayType;
+    }
+
+    public List<String> getTags() {
 		return tags;
 	}
 	public void setTags(List<String> tags) {
@@ -210,6 +219,10 @@ public class Post extends Entity{
 				            {			            	
 				            	post.setFavorite(StringUtils.toInt(xmlParser.nextText(),0));		            	
 				            }
+                            else if(tag.equalsIgnoreCase(NODE_SAYTYPE))
+                            {
+                                post.setSayType(xmlParser.nextText());
+                            }
 				            //标签
 				            else if(tag.equalsIgnoreCase("tags"))
 				            {
