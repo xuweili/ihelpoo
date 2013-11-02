@@ -47,7 +47,7 @@ public class Tweet extends Entity{
 	public final static String NODE_AUTHORID = "authorid";
 	public final static String NODE_AUTHOR = "author";
 	public final static String NODE_PUBDATE = "pubDate";
-	public final static String NODE_COMMENTCOUNT = "commentCount";
+	public final static String NODE_COMMENTCOUNT = "comment_count";
 	public final static String NODE_IMGSMALL = "imgSmall";
 	public final static String NODE_IMGBIG = "imgBig";
 	public final static String NODE_APPCLIENT = "appclient";
@@ -351,13 +351,13 @@ public class Tweet extends Entity{
                             {
                                 tweet.setSayType(xmlParser.nextText());
                             }
-				            //通知信息
-				            else if(tag.equalsIgnoreCase("notice"))
-				    		{
-				            	tweet.setNotice(new Notice());
-				    		}
-				            else if(tweet.getNotice() != null)
-				    		{
+                            //通知信息
+                            else if(tag.equalsIgnoreCase("notice"))
+                            {
+                                tweet.setNotice(new Notice());
+                            }
+                            else if(tweet.getNotice() != null)
+                            {
                                 if(tag.equalsIgnoreCase("systemCount"))
                                 {
                                     tweet.getNotice().setSystemCount(StringUtils.toInt(xmlParser.nextText(), 0));
@@ -378,7 +378,7 @@ public class Tweet extends Entity{
                                 {
                                     tweet.getNotice().setChatCount(StringUtils.toInt(xmlParser.nextText(),0));
                                 }
-				    		}
+                            }
 			    		}
 			    		break;
 			    	case XmlPullParser.END_TAG:		    		

@@ -419,7 +419,6 @@ public class TweetDetail extends BaseActivity {
                     username.setText(tweetDetail.getAuthor());
                     username.setOnClickListener(faceClickListener);
                     date.setText(StringUtils.friendly_time(tweetDetail.getPubDate()));
-                    commentCount.setText(tweetDetail.getCommentCount() + "");
 
                     String body = UIHelper.WEB_STYLE + tweetDetail.getBody();
                     body = body.replaceAll("(<img[^>]*?)\\s+width\\s*=\\s*\\S+", "$1");
