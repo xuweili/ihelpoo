@@ -19,6 +19,7 @@ import greendroid.widget.QuickActionGrid;
 import greendroid.widget.QuickActionWidget;
 import greendroid.widget.QuickActionWidget.OnQuickActionClickListener;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -71,6 +72,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -534,13 +536,13 @@ public class Main extends BaseActivity {
         });
     }
 
-    private void setHeadBgMargin(int top){
+    private void setHeadBgMargin(int top) {
 
-        if(headViewHeight == 0)
+        if (headViewHeight == 0)
             headViewHeight = getResources().getDimensionPixelSize(R.dimen.image_profile_headbg_height);
 
-        if(lp == null)
-            lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,headViewHeight);
+        if (lp == null)
+            lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, headViewHeight);
         lp.setMargins(0, top, 0, 0);
         nestThemeBg.setLayoutParams(lp);
     }
@@ -581,7 +583,7 @@ public class Main extends BaseActivity {
     };
     private View.OnClickListener trendsClickListener = new View.OnClickListener() {
         public void onClick(View v) {
-            if(!appContext.isLogin()){
+            if (!appContext.isLogin()) {
                 UIHelper.showLoginDialog(Main.this);
                 return;
             }
@@ -611,6 +613,16 @@ public class Main extends BaseActivity {
     };
 
 
+    public static int getResId(String drawableName, Class<?> clazz) {
+        try {
+            Field field = clazz.getField(drawableName);
+            return field.getInt(null);
+        } catch (Exception e) {
+            Log.e("MyTag", "Failure to get drawable id.", e);
+            return -1;
+        }
+    }
+
     private void loadUserInfoThread(final boolean isRefresh) {
 //        loading = new LoadingDialog(this);
 //        loading.show();
@@ -625,15 +637,16 @@ public class Main extends BaseActivity {
                     UIHelper.showUserFace(nestProfileAvartar, user.getAvatar_url());
 
                     //用户性别
-                    if (user.getGender() == 1)
-                        nestProfileGender.setImageResource(R.drawable.widget_gender_man);
-                    else
-                        nestProfileGender.setImageResource(R.drawable.widget_gender_woman);
+                    nestProfileGender.setImageResource(user.getGender() == 1 ? R.drawable.widget_gender_man : R.drawable.widget_gender_woman);
 
                     nestProfileNickname.setText(user.getNickname());
                     nestProfileIntro.setText(user.getSelf_intro());
                     nestProfileAvartar.setOnClickListener(avatarClickListener);
                     nestProfileAvartar.setTag(user.getAvatar_preview());
+
+                    int themeId = getResId("nest_theme_" + user.getWeb_theme() + "_bg", R.drawable.class);
+                    themeId = themeId == -1 ? R.drawable.nest_theme_1_bg : themeId;
+                    nestThemeBg.setBackgroundResource(themeId);
 
                 } else if (msg.obj != null) {
                     ((AppException) msg.obj).makeToast(Main.this);
@@ -656,23 +669,25 @@ public class Main extends BaseActivity {
             }
         }.start();
     }
+
     private void createNestData() {
         this.loadUserInfoThread(false);
     }
-    private void createNestView(){
-        nestScrollView = (ScrollViewForNest)findViewById(R.id.nest_scroll_view);
-        nestThemeBg = (ImageView)findViewById(R.id.nest_theme_bg);
-        nestProfileAvartar = (ImageView)findViewById(R.id.nest_profile_avartar);
-        nestProfileNickname = (TextView)findViewById(R.id.nest_profile_nickname);
-        nestProfileGender = (ImageView)findViewById(R.id.nest_profile_gender);
-        nestProfileIntro = (TextView)findViewById(R.id.nest_profile_intro);
 
-        nestFriendFollowing = (LinearLayout)findViewById(R.id.nest_friend_following);
-        nestFriendFollower = (LinearLayout)findViewById(R.id.nest_friend_follower);
-        nestActionTrends = (LinearLayout)findViewById(R.id.nest_action_trends);
-        nestActionInfo = (LinearLayout)findViewById(R.id.nest_action_info);
-        nestActionFind = (LinearLayout)findViewById(R.id.nest_action_find);
-        nestActionRank = (LinearLayout)findViewById(R.id.nest_action_rank);
+    private void createNestView() {
+        nestScrollView = (ScrollViewForNest) findViewById(R.id.nest_scroll_view);
+        nestThemeBg = (ImageView) findViewById(R.id.nest_theme_bg);
+        nestProfileAvartar = (ImageView) findViewById(R.id.nest_profile_avartar);
+        nestProfileNickname = (TextView) findViewById(R.id.nest_profile_nickname);
+        nestProfileGender = (ImageView) findViewById(R.id.nest_profile_gender);
+        nestProfileIntro = (TextView) findViewById(R.id.nest_profile_intro);
+
+        nestFriendFollowing = (LinearLayout) findViewById(R.id.nest_friend_following);
+        nestFriendFollower = (LinearLayout) findViewById(R.id.nest_friend_follower);
+        nestActionTrends = (LinearLayout) findViewById(R.id.nest_action_trends);
+        nestActionInfo = (LinearLayout) findViewById(R.id.nest_action_info);
+        nestActionFind = (LinearLayout) findViewById(R.id.nest_action_find);
+        nestActionRank = (LinearLayout) findViewById(R.id.nest_action_rank);
 
         nestFriendFollowing.setOnClickListener(followersClickListener);
         nestFriendFollower.setOnClickListener(fansClickListener);
@@ -680,7 +695,6 @@ public class Main extends BaseActivity {
         nestActionInfo.setOnClickListener(infoClickListener);
         nestActionFind.setOnClickListener(findClickListener);
         nestActionRank.setOnClickListener(rankClickListener);
-
 
 
         nestScrollView.setOnScrollListener(new ScrollViewForNest.OnScrollListener() {
@@ -1559,7 +1573,7 @@ public class Main extends BaseActivity {
                                 break;
                             case 2:// 小窝
                                 mainHeaderLyt.setVisibility(View.GONE);
-                                if(!appContext.isLogin()){
+                                if (!appContext.isLogin()) {
                                     toLogin();
                                 } else {
                                     createNestData();

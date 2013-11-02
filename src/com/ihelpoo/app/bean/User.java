@@ -146,6 +146,8 @@ public class User extends Base {
                                 user.setLevel(StringUtils.toInt(xmlParser.nextText()));
                             } else if (tag.equalsIgnoreCase("relation")) {
                                 user.setRelation(StringUtils.toInt(xmlParser.nextText()));
+                            } else if (tag.equalsIgnoreCase("web_theme")) {
+                                user.setWeb_theme(xmlParser.nextText());
                             }
 
                             //通知信息
