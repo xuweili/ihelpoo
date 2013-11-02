@@ -9,17 +9,22 @@
     	android:layout_height="40.dip"
     	android:paddingLeft="2dip"
    		android:paddingRight="2dip"
-    	android:background="@drawable/widget_head_bg">
+    	android:background="@drawable/head_bg">
         <TextView 
 	        style="@style/detail_head_title"
 	        android:text="@string/setting_head_title"/>
-	   	<ImageView 
-		   	android:layout_width="wrap_content" 
-		   	android:layout_height="wrap_content" 
-		   	android:layout_gravity="left|center" 
-		   	android:clickable="true" 
-		   	android:background="@drawable/head_back"
-		   	android:onClick="back"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:clickable="true"
+            android:background="@drawable/head_back"
+            android:textColor="@color/listitem_white"
+            android:width="50dip"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingBottom="2dip"
+            android:text="返回"
+            android:onClick="back"/>
     </FrameLayout>
     <FrameLayout 
 	    android:id="@+id/setting_content" 
