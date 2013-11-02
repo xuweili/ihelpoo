@@ -54,6 +54,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
@@ -84,6 +85,9 @@ public class TweetDetail extends BaseActivity {
     private TextView username;
     private TextView date;
     private TextView commentCount;
+    private TextView helpCount;
+    private ImageView commentIcon;
+    private ImageView helpIcon;
     private WebView content;
     private ImageView image;
     private Handler mHandler;
@@ -233,6 +237,9 @@ public class TweetDetail extends BaseActivity {
         username = (TextView) lvHeader.findViewById(R.id.tweet_listitem_username);
         date = (TextView) lvHeader.findViewById(R.id.tweet_listitem_date);
         commentCount = (TextView) lvHeader.findViewById(R.id.tweet_listitem_comment_count);
+        commentIcon = (ImageView) lvHeader.findViewById(R.id.tweet_listitem_comment_icon);
+        helpIcon = (ImageView) lvHeader.findViewById(R.id.tweet_listitem_help_icon);
+        helpCount = (TextView) lvHeader.findViewById(R.id.tweet_listitem_help_count);
         image = (ImageView) lvHeader.findViewById(R.id.tweet_listitem_image);
 
         redirect = (ImageView) lvHeader.findViewById(R.id.tweet_listitem_diffuse_icon);
@@ -393,6 +400,21 @@ public class TweetDetail extends BaseActivity {
                     online.setText(tweetDetail.getOnlineState());
                     diffusionCount.setText(tweetDetail.getSpreadCount() + "");
                     plusCount.setText(tweetDetail.getPlusCount() + "");
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)diffusionCount.getLayoutParams();
+                    if("1".equals(tweetDetail.getSayType())){
+                        helpIcon.setVisibility(View.VISIBLE);
+                        helpCount.setVisibility(View.VISIBLE);
+                        commentIcon.setVisibility(View.GONE);
+                        commentCount.setVisibility(View.GONE);
+                        params.addRule(RelativeLayout.LEFT_OF, R.id.tweet_listitem_help_icon);
+                    } else {
+                        helpIcon.setVisibility(View.GONE);
+                        helpCount.setVisibility(View.GONE);
+                        commentIcon.setVisibility(View.VISIBLE);
+                        commentCount.setVisibility(View.VISIBLE);
+                        commentCount.setText(tweetDetail.getCommentCount() + "");
+                        params.addRule(RelativeLayout.LEFT_OF, R.id.tweet_listitem_comment_icon);
+                    }
 
                     username.setText(tweetDetail.getAuthor());
                     username.setOnClickListener(faceClickListener);
