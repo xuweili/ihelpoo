@@ -66,11 +66,11 @@ public class TweetList extends Entity{
 	    		String tag = xmlParser.getName(); 
 			    switch(evtType){ 
 			    	case XmlPullParser.START_TAG:
-			    		if(tag.equalsIgnoreCase("tweetCount")) 
+			    		if(tag.equalsIgnoreCase("tweet_count"))
 			    		{
 			    			tweetlist.tweetCount = StringUtils.toInt(xmlParser.nextText(),0);
 			    		}
-			    		else if(tag.equalsIgnoreCase("pageSize")) 
+			    		else if(tag.equalsIgnoreCase("page_size"))
 			    		{
 			    			tweetlist.pageSize = StringUtils.toInt(xmlParser.nextText(),0);
 			    		}
@@ -159,6 +159,10 @@ public class TweetList extends Entity{
                             else if(tag.equalsIgnoreCase(Tweet.NODE_spreadCount))
                             {
                                 tweet.setSpreadCount(StringUtils.toInt(xmlParser.nextText(),0));
+                            }
+                            else if(tag.equalsIgnoreCase(Tweet.NODE_plusCount))
+                            {
+                                tweet.setPlusCount(StringUtils.toInt(xmlParser.nextText(), 0));
                             }
 
 			    		}

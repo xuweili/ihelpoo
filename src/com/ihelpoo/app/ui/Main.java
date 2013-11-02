@@ -2499,8 +2499,7 @@ public class Main extends BaseActivity {
                         || action == UIHelper.LISTVIEW_ACTION_SCROLL)
                     isRefresh = true;
                 try {
-                    TweetList list = appContext.getTweetList(catalog,
-                            String.valueOf(mySchool), pageIndex, isRefresh);
+                    TweetList list = appContext.getTweetList(catalog, String.valueOf(mySchool), pageIndex, isRefresh);
                     msg.what = list.getPageSize();
                     msg.obj = list;
                 } catch (AppException e) {
