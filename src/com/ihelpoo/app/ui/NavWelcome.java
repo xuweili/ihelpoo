@@ -40,7 +40,7 @@ public class NavWelcome extends Activity {
                     startActivity(intent);
                     NavWelcome.this.finish();
                 }
-            }, 12000);
+            }, 2000);
         }
         setContentView(R.layout.welcome);
     }

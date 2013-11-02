@@ -74,11 +74,11 @@ public class NewsList extends Entity{
 			    		{
 			    			newslist.catalog = StringUtils.toInt(xmlParser.nextText(), 0);
 			    		}
-			    		else if(tag.equalsIgnoreCase("pageSize")) 
+			    		else if(tag.equalsIgnoreCase("page_size"))
 			    		{
 			    			newslist.pageSize = StringUtils.toInt(xmlParser.nextText(),0);
 			    		}
-			    		else if(tag.equalsIgnoreCase("newsCount")) 
+			    		else if(tag.equalsIgnoreCase("news_count"))
 			    		{
 			    			newslist.newsCount = StringUtils.toInt(xmlParser.nextText(),0);
 			    		}

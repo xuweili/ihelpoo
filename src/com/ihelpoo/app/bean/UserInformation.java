@@ -69,7 +69,7 @@ public class UserInformation extends Entity{
 			    		{
 			    			user = new User();
 			    		}
-			    		else if(tag.equalsIgnoreCase("pageSize")) 
+			    		else if(tag.equalsIgnoreCase("page_size"))
 			    		{
 			    			uinfo.pageSize = StringUtils.toInt(xmlParser.nextText(), 0);
 			    		}

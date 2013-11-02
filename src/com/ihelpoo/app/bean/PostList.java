@@ -68,11 +68,11 @@ public class PostList extends Entity{
 	    		String tag = xmlParser.getName(); 
 			    switch(evtType){ 
 			    	case XmlPullParser.START_TAG:			    		
-			    		if(tag.equalsIgnoreCase("postCount")) 
+			    		if(tag.equalsIgnoreCase("post_count"))
 			    		{
 			    			postlist.postCount = StringUtils.toInt(xmlParser.nextText(), 0);
 			    		}
-			    		else if(tag.equalsIgnoreCase("pageSize")) 
+			    		else if(tag.equalsIgnoreCase("page_size"))
 			    		{
 			    			postlist.pageSize = StringUtils.toInt(xmlParser.nextText(),0);
 			    		}

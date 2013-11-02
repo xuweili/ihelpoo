@@ -423,13 +423,13 @@ public class TweetDetail extends BaseActivity {
                         image.setOnClickListener(imageClickListener);
                     }
 
-                    if(tweetDetail.getPlusByMe() > 0){
+                    if (tweetDetail.getPlusByMe() > 0) {
                         mFootPlus.setBackgroundResource(R.drawable.widget_bar_favorite2);
                     } else {
                         mFootPlus.setBackgroundResource(R.drawable.widget_bar_favorite);
                     }
 
-                    if(tweetDetail.getDiffuseByMe() > 0){
+                    if (tweetDetail.getDiffuseByMe() > 0) {
                         mFootDiffuse.setBackgroundResource(R.drawable.widget_bar_share_over);
                     } else {
                         mFootDiffuse.setBackgroundResource(R.drawable.widget_bar_share_nor);
@@ -467,20 +467,7 @@ public class TweetDetail extends BaseActivity {
                             break;
                         case UIHelper.LISTVIEW_ACTION_SCROLL:
                             lvSumData += msg.what;
-                            if (lvCommentData.size() > 0) {
-                                for (Comment com1 : list.getCommentlist()) {
-                                    boolean b = false;
-                                    for (Comment com2 : lvCommentData) {
-                                        if (com1.getId() == com2.getId() && com1.getAuthorId() == com2.getAuthorId()) {
-                                            b = true;
-                                            break;
-                                        }
-                                    }
-                                    if (!b) lvCommentData.add(com1);
-                                }
-                            } else {
-                                lvCommentData.addAll(list.getCommentlist());
-                            }
+                            lvCommentData.addAll(list.getCommentlist());
                             break;
                     }
 
@@ -561,7 +548,7 @@ public class TweetDetail extends BaseActivity {
 
         this.headButtonSwitch(DATA_LOAD_ING, 1);
 
-        final AppContext ac = (AppContext)getApplication();
+        final AppContext ac = (AppContext) getApplication();
         final int uid = ac.getLoginUid();
 
         new Thread() {
@@ -696,9 +683,9 @@ public class TweetDetail extends BaseActivity {
                         Result res = (Result) msg.obj;
                         UIHelper.ToastMessage(TweetDetail.this, res.getErrorMessage());
                         if (res.OK()) {
-                            if(tweetDetail.getDiffuseByMe() == 1){
+                            if (tweetDetail.getDiffuseByMe() == 1) {
                                 UIHelper.ToastMessage(TweetDetail.this, "您已扩散过这条消息");
-                            }else{
+                            } else {
                                 tweetDetail.setDiffuseByMe(1);
                                 mFootDiffuse.setBackgroundResource(R.drawable.widget_bar_share_over);
                                 UIHelper.ToastMessage(TweetDetail.this, res.getErrorMessage());
@@ -758,10 +745,10 @@ public class TweetDetail extends BaseActivity {
                         Result res = (Result) msg.obj;
                         UIHelper.ToastMessage(TweetDetail.this, res.getErrorMessage());
                         if (res.OK()) {
-                            if(tweetDetail.getPlusByMe() == 1){
+                            if (tweetDetail.getPlusByMe() == 1) {
                                 tweetDetail.setPlusByMe(0);
                                 mFootPlus.setBackgroundResource(R.drawable.widget_bar_favorite);
-                            }else{
+                            } else {
                                 tweetDetail.setPlusByMe(1);
                                 mFootPlus.setBackgroundResource(R.drawable.widget_bar_favorite2);
                             }

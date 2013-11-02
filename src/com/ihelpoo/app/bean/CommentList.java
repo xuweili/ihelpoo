@@ -70,11 +70,11 @@ public class CommentList extends Entity{
 	    		String tag = xmlParser.getName(); 
 			    switch(evtType){ 
 			    	case XmlPullParser.START_TAG:
-			    		if(tag.equalsIgnoreCase("allCount")) 
+			    		if(tag.equalsIgnoreCase("all_count"))
 			    		{
 			    			commlist.allCount = StringUtils.toInt(xmlParser.nextText(), 0);
 			    		}
-			    		else if(tag.equalsIgnoreCase("pageSize")) 
+			    		else if(tag.equalsIgnoreCase("page_size"))
 			    		{
 			    			commlist.pageSize = StringUtils.toInt(xmlParser.nextText(),0);
 			    		}
