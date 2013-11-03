@@ -61,7 +61,6 @@
 			        android:scaleType="fitCenter"
 			        android:padding="3dip"
 					android:clickable="true"
-			        android:background="@drawable/widget_dface_border"
 			        android:src="@drawable/widget_dface"/>
 	    	    <ImageView
 			    	android:id="@+id/user_info_gender"
@@ -110,9 +109,8 @@
 	                android:layout_marginLeft="10dip"
 	                android:duplicateParentState="true"
 	                android:textSize="@dimen/text_size_15"
-	                android:textStyle="bold"
 	                android:textColor="@color/grayslate"
-	                android:text="我圈：" />
+	                android:text="我\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0圈：" />
                 <TextView
                		android:id="@+id/user_info_favorites"
 	                android:layout_width="fill_parent"
@@ -121,7 +119,6 @@
 	                android:layout_marginRight="10dip"
 	                android:duplicateParentState="true"
 	                android:textSize="@dimen/text_size_14"
-	                android:textStyle="bold"
 	                android:textColor="@color/author_text"/>
                 <ImageView
                     android:layout_width="wrap_content"
@@ -143,7 +140,6 @@
                   	<!--android:layout_marginLeft="10dip"-->
                   	<!--android:duplicateParentState="true"-->
                   	<!--android:textSize="@dimen/text_size_15"-->
-                	<!--android:textStyle="bold"-->
                   	<!--android:textColor="@color/grayslate"-->
                   	<!--android:text="关注：" />-->
              	<!--<TextView-->
@@ -154,7 +150,6 @@
                   	<!--android:layout_marginRight="10dip"-->
                   	<!--android:duplicateParentState="true"-->
                   	<!--android:textSize="@dimen/text_size_14"-->
-                  	<!--android:textStyle="bold"-->
                   	<!--android:textColor="@color/author_text"/>-->
              	<!--<ImageView-->
                     <!--android:layout_width="wrap_content"-->
@@ -176,9 +171,8 @@
 	                android:layout_marginLeft="10dip"
 	                android:duplicateParentState="true"
 	                android:textSize="@dimen/text_size_15"
-	                android:textStyle="bold"
 	                android:textColor="@color/grayslate"
-	                android:text="圈子：" />
+	                android:text="圈\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0子：" />
                	<TextView
               		android:id="@+id/user_info_fans"
 	                android:layout_width="fill_parent"
@@ -187,7 +181,6 @@
 	                android:layout_marginRight="10dip"
 	                android:duplicateParentState="true"
 	                android:textSize="@dimen/text_size_14"
-	                android:textStyle="bold"
 	                android:textColor="@color/author_text"/>
                	<ImageView
                     android:layout_width="wrap_content"
@@ -210,9 +203,8 @@
 	                android:layout_marginLeft="10dip"
 	                android:duplicateParentState="true"
 	                android:textSize="@dimen/text_size_15"
-	                android:textStyle="bold"
 	                android:textColor="@color/grayslate"
-	                android:text="登录名：" />
+	                android:text="帐\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0号：" />
                 <TextView
                		android:id="@+id/user_info_account"
 	                android:layout_width="fill_parent"
@@ -221,7 +213,7 @@
 	                android:layout_marginRight="10dip"
 	                android:duplicateParentState="true"
 	                android:textSize="@dimen/text_size_14"
-	                android:textColor="#ff000000"/>
+	                android:textColor="@color/listitem_black_gray"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -236,7 +228,6 @@
                     android:layout_marginLeft="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold"
                     android:textColor="@color/grayslate"
                     android:text="入学年份：" />
                 <TextView
@@ -247,7 +238,7 @@
                     android:layout_marginRight="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_14"
-                    android:textColor="#ff000000"/>
+                    android:textColor="@color/listitem_black_gray"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -262,9 +253,8 @@
                     android:layout_marginLeft="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold"
                     android:textColor="@color/grayslate"
-                    android:text="学校：" />
+                    android:text="学\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0校：" />
                 <TextView
                     android:id="@+id/user_info_school"
                     android:layout_width="fill_parent"
@@ -273,7 +263,7 @@
                     android:layout_marginRight="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_14"
-                    android:textColor="#ff000000"/>
+                    android:textColor="@color/listitem_black_gray"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -288,9 +278,8 @@
                     android:layout_marginLeft="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold"
                     android:textColor="@color/grayslate"
-                    android:text="学院：" />
+                    android:text="学\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0院：" />
                 <TextView
                     android:id="@+id/user_info_academy"
                     android:layout_width="fill_parent"
@@ -299,7 +288,7 @@
                     android:layout_marginRight="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_14"
-                    android:textColor="#ff000000"/>
+                    android:textColor="@color/listitem_black_gray"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -314,9 +303,8 @@
                     android:layout_marginLeft="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold"
                     android:textColor="@color/grayslate"
-                    android:text="专业：" />
+                    android:text="专\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0业：" />
                 <TextView
                     android:id="@+id/user_info_major"
                     android:layout_width="fill_parent"
@@ -325,7 +313,7 @@
                     android:layout_marginRight="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_14"
-                    android:textColor="#ff000000"/>
+                    android:textColor="@color/listitem_black_gray"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -340,7 +328,6 @@
                     android:layout_marginLeft="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold"
                     android:textColor="@color/grayslate"
                     android:text="寝室楼栋：" />
                 <TextView
@@ -351,7 +338,7 @@
                     android:layout_marginRight="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_14"
-                    android:textColor="#ff000000"/>
+                    android:textColor="@color/listitem_black_gray"/>
             </LinearLayout>
 	        <LinearLayout
             	android:layout_width="fill_parent"
@@ -366,18 +353,20 @@
 	                android:layout_marginLeft="10dip"
 	                android:duplicateParentState="true"
 	                android:textSize="@dimen/text_size_15"
-	                android:textStyle="bold"
 	                android:textColor="@color/grayslate"
 	                android:text="自我简介：" />
                	<TextView
               		android:id="@+id/user_info_self"
 	                android:layout_width="fill_parent"
 	                android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/space_10"
+                    android:paddingBottom="@dimen/space_10"
 	                android:layout_weight="1"
 	                android:layout_marginRight="10dip"
 	                android:duplicateParentState="true"
-	                android:textSize="@dimen/text_size_14" 
-	                android:textColor="#ff000000"
+	                android:textSize="@dimen/text_size_14"
+                    android:text="自我简介"
+	                android:textColor="@color/listitem_black_gray"
                     />
 	        </LinearLayout>
         </LinearLayout>	

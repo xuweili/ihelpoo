@@ -101,6 +101,7 @@ public class TweetDetail extends BaseActivity {
     private TextView academy;
     private TextView rank;
 
+    public TextView by;
     private int curId;
     private boolean isHelp;
     private int curCatalog;
@@ -249,6 +250,7 @@ public class TweetDetail extends BaseActivity {
         online = (TextView) lvHeader.findViewById(R.id.tweet_listitem_online);
         academy = (TextView) lvHeader.findViewById(R.id.tweet_listitem_academy);
         rank = (TextView) lvHeader.findViewById(R.id.tweet_listitem_rank);
+        by = (TextView) lvHeader.findViewById(R.id.tweet_listitem_by);
 
         content = (WebView) lvHeader.findViewById(R.id.tweet_listitem_content);
         content.getSettings().setJavaScriptEnabled(false);
@@ -416,6 +418,7 @@ public class TweetDetail extends BaseActivity {
                         params.addRule(RelativeLayout.LEFT_OF, R.id.tweet_listitem_comment_icon);
                     }
 
+                    by.setText(tweetDetail.getBy());
                     username.setText(tweetDetail.getAuthor());
                     username.setOnClickListener(faceClickListener);
                     date.setText(StringUtils.friendly_time(tweetDetail.getPubDate()));

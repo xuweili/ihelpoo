@@ -1414,7 +1414,9 @@ public class Main extends BaseActivity {
                         else lvNotice.clickRefresh();
                         break;
                     case 2:// 小窝
-//                        lvNest.clickRefresh();
+                        if (!appContext.isLogin()) {
+                            toLogin();
+                        }
                         break;
                     case 3:// 排行
                         lvRank.clickRefresh();
@@ -1527,7 +1529,9 @@ public class Main extends BaseActivity {
                                 else lvNotice.clickRefresh();
                                 break;
                             case 2:// 小窝
-//                                lvNest.clickRefresh();
+                                if (!appContext.isLogin()) {
+                                    toLogin();
+                                }
                                 break;
                             case 3:// 排行
                                 lvRank.clickRefresh();
@@ -1594,7 +1598,7 @@ public class Main extends BaseActivity {
                             case 2:// 小窝
                                 mainHeaderLyt.setVisibility(View.GONE);
                                 if (!appContext.isLogin()) {
-                                    toLogin();
+                                    UIHelper.showLoginDialog(Main.this);
                                 } else {
                                     createNestData();
                                 }

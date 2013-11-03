@@ -4,8 +4,7 @@
 	android:layout_width="fill_parent" 
 	android:layout_height="25dip"
 	android:textSize="@dimen/text_size_15" 
-	android:textStyle="bold" 
-	android:textColor="#ffffffff" 
+	android:textColor="#ffffffff"
 	android:gravity="left|center" 
 	android:background="@drawable/frame_button_n"
 	android:paddingLeft="10.0dip" />

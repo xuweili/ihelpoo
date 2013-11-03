@@ -36,7 +36,7 @@
             android:paddingTop="10dip"
     		android:paddingBottom="15dip"
         	android:layout_marginLeft="100dip"
-        	android:layout_marginRight="10dip">  
+        	android:layout_marginRight="10dip">
   
 	        <ProgressBar  
 	            android:id="@+id/head_progressBar"

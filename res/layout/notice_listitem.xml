@@ -43,7 +43,7 @@
         <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="16dip"
+            android:layout_height="18dip"
             android:layout_marginTop="3dip"
             android:paddingLeft="5dip"
             >
