@@ -59,7 +59,8 @@ public class Active extends Entity {
 	private int activeType;
 	private int objectId;
 	private int objectType;
-	private int objectCatalog;	
+	private int objectCatalog;
+    private String objectSayType;
 	private String objectTitle;
 	private ObjectReply objectReply;
 	private int commentCount;
@@ -74,6 +75,14 @@ public class Active extends Entity {
     private int diffusionCount;
     private int online;
     private int rank;
+
+    public String getObjectSayType() {
+        return objectSayType;
+    }
+
+    public void setObjectSayType(String objectSayType) {
+        this.objectSayType = objectSayType;
+    }
 
     public int getRank() {
         return rank;
@@ -298,6 +307,10 @@ public class Active extends Entity {
 				            {			            	
 				            	active.setObjectReply(new ObjectReply());	            	
 				            }
+                            else if(tag.equalsIgnoreCase("objectSayType"))
+                            {
+                                active.setObjectSayType(xmlParser.nextText());
+                            }
 				            else if(active.getObjectReply()!=null && tag.equalsIgnoreCase("objectname"))
 				            {			            	
 				            	active.getObjectReply().objectName = xmlParser.nextText();		            	

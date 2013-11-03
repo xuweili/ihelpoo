@@ -73,7 +73,7 @@ public class WordList extends Entity{
 			    		{
 			    			activelist.activeCount = StringUtils.toInt(xmlParser.nextText(),0);
 			    		}
-			    		else if(tag.equalsIgnoreCase("pageSize")) 
+			    		else if(tag.equalsIgnoreCase("page_size"))
 			    		{
 			    			activelist.pageSize = StringUtils.toInt(xmlParser.nextText(),0);
 			    		}
@@ -123,6 +123,10 @@ public class WordList extends Entity{
 				            {			            	
 				            	active.setObjectTitle(xmlParser.nextText());			            	
 				            }
+                            else if(tag.equalsIgnoreCase("objectSayType"))
+                            {
+                                active.setObjectSayType(xmlParser.nextText());
+                            }
 				            else if(tag.equalsIgnoreCase("objectreply"))
 				            {			            	
 				            	active.setObjectReply(new ObjectReply());	            	

@@ -340,10 +340,10 @@ public class UIHelper {
                     showQuestionDetail(context, id);
                     break;
                 case Active.CATALOG_TWEET:
-                    showTweetDetail(context, id, false);
+                    showTweetDetail(context, id, "1".equals(active.getObjectSayType()));
                     break;
                 case Active.CATALOG_BLOG:
-                    showTweetDetail(context, active.getId(), false);
+                    showTweetDetail(context, active.getId(), "1".equals(active.getObjectSayType()));
 //				showBlogDetail(context, id);
                     break;
             }
