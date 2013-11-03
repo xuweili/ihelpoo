@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
@@ -173,6 +174,10 @@ public class Register extends BaseActivity implements android.view.View.OnClickL
                 final String mobileNo = txt_mobile_no.getText().toString();
                 final String mobileCode = txt_mobile_code.getText().toString();
                 final String pwd = txt_pwd.getText().toString();
+                if(TextUtils.isEmpty(pwd) || pwd.length() < 6){
+                    Toast.makeText(Register.this, "请设置最少6位密码", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 final AppContext ac = (AppContext) getApplication();
                 mProgress = ProgressDialog.show(v.getContext(), null, "注册中···", true, true);
