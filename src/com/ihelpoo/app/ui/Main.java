@@ -104,8 +104,6 @@ public class Main extends BaseActivity {
     public static final int QUICKACTION_SEARCH = 3;
     public static final int QUICKACTION_SETTING = 4;
     public static final int QUICKACTION_EXIT = 5;
-    public static final int REQUEST_CODE_SCHOOL = 0;
-    public static final int REQUEST_CODE_LOGIN = 1;
     public static final int POLLING_NOTICE_INTERVAL = 30;
 
     private ScrollLayout mScrollLayout;
@@ -437,14 +435,14 @@ public class Main extends BaseActivity {
     private void toSelectSchool() {
         Intent ii = new Intent();
         ii.setClass(this, SchoolListActivity.class);
-        startActivityForResult(ii, REQUEST_CODE_SCHOOL);
+        startActivityForResult(ii, UIHelper.REQUEST_CODE_SCHOOL);
     }
 
     private void toLogin() {
         Intent ii = new Intent();
         ii.setClass(this, LoginDialog.class);
         ii.putExtra("LOGINTYPE", LoginDialog.LOGIN_MAIN);
-        startActivityForResult(ii, REQUEST_CODE_LOGIN);
+        startActivityForResult(ii, UIHelper.REQUEST_CODE_LOGIN);
     }
 
 
@@ -1631,12 +1629,12 @@ public class Main extends BaseActivity {
         }
 
         switch (requestCode) {
-            case REQUEST_CODE_SCHOOL:
+            case UIHelper.REQUEST_CODE_SCHOOL:
                 mScrollLayout.setToScreen(0);
                 lvHome.clickRefresh();
                 setHomeHeader(schoolNameSelected);
                 break;
-            case REQUEST_CODE_LOGIN:
+            case UIHelper.REQUEST_CODE_LOGIN:
                 mScrollLayout.setToScreen(2);
                 loadUserInfoThread(false);
                 break;

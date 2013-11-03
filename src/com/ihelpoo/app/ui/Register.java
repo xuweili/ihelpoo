@@ -202,9 +202,10 @@ public class Register extends BaseActivity implements android.view.View.OnClickL
                                 user.setNickname(res.getUser().getNickname());
                                 user.setSchool_id(res.getUser().getSchool_id());
                                 ac.saveLoginInfo(user);
-                                Intent intent = new Intent(Register.this, Main.class);
-                                intent.putExtra("LOGIN", true);
+                                Intent intent = new Intent(Register.this, UserInfoNickname.class);
+                                intent.putExtra("nickname", res.getUser().getNickname());
                                 startActivity(intent);
+                                Register.this.finish();
 
                             } else {
                                 UIHelper.ToastMessage(Register.this, res.getErrorMessage());

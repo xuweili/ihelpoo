@@ -76,24 +76,12 @@
                     android:layout_weight="1"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_14"
-                    android:textColor="@color/listitem_gray"
+                    android:textColor="@color/listitem_black_gray"
                     android:layout_alignParentBottom="true"
                     android:padding="@dimen/space_14"
-                    android:text="点击修改图片"
+                    android:text="点击头像修改"
                     android:layout_toRightOf="@+id/user_info_edit_avatar"
                     android:layout_toLeftOf="@+id/user_info_edit_change_avatar" />
-			    <Button
-			    	android:id="@+id/user_info_edit_change_avatar"
-			        android:layout_width="wrap_content"
-			    	android:layout_height="wrap_content"
-			    	android:layout_alignParentRight="true"
-			    	android:layout_alignParentBottom="true"
-			    	android:background="@drawable/login_btn_selector"
-                    android:paddingLeft="@dimen/space_15"
-                    android:paddingRight="@dimen/space_15"
-			    	android:textSize="40dip"
-                    android:textColor="@color/white"
-			        android:text="+"/>
 		    </RelativeLayout>
 
             <LinearLayout
@@ -110,9 +98,8 @@
 	                android:layout_marginLeft="10dip"
 	                android:duplicateParentState="true"
 	                android:textSize="@dimen/text_size_15"
-	                android:textStyle="bold"
 	                android:textColor="@color/grayslate"
-	                android:text="登录名：" />
+	                android:text="账\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0号：" />
                 <TextView
                		android:id="@+id/user_info_edit_account"
 	                android:layout_width="fill_parent"
@@ -137,9 +124,8 @@
                     android:layout_marginLeft="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold"
                     android:textColor="@color/grayslate"
-                    android:text="昵称：" />
+                    android:text="昵\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0称：" />
                 <TextView
                     android:id="@+id/user_info_edit_nickname"
                     android:layout_width="fill_parent"
@@ -169,9 +155,8 @@
                     android:layout_marginLeft="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold"
                     android:textColor="@color/grayslate"
-                    android:text="性别：" />
+                    android:text="性\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0别：" />
                 <TextView
                     android:id="@+id/user_info_edit_gender"
                     android:layout_width="fill_parent"
@@ -201,7 +186,6 @@
                     android:layout_marginLeft="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold"
                     android:textColor="@color/grayslate"
                     android:text="入学年份：" />
                 <TextView
@@ -233,9 +217,8 @@
                     android:layout_marginLeft="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold"
                     android:textColor="@color/grayslate"
-                    android:text="学校：" />
+                    android:text="学\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0校：" />
                 <TextView
                     android:id="@+id/user_info_edit_school"
                     android:layout_width="fill_parent"
@@ -265,9 +248,8 @@
                     android:layout_marginLeft="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold"
                     android:textColor="@color/grayslate"
-                    android:text="学院：" />
+                    android:text="学\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0院：" />
                 <TextView
                     android:id="@+id/user_info_edit_academy"
                     android:layout_width="fill_parent"
@@ -297,9 +279,8 @@
                     android:layout_marginLeft="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold"
                     android:textColor="@color/grayslate"
-                    android:text="专业：" />
+                    android:text="专\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0业：" />
                 <TextView
                     android:id="@+id/user_info_edit_major"
                     android:layout_width="fill_parent"
@@ -329,7 +310,6 @@
                     android:layout_marginLeft="10dip"
                     android:duplicateParentState="true"
                     android:textSize="@dimen/text_size_15"
-                    android:textStyle="bold"
                     android:textColor="@color/grayslate"
                     android:text="寝室楼栋：" />
                 <TextView
@@ -361,7 +341,6 @@
 	                android:layout_marginLeft="10dip"
 	                android:duplicateParentState="true"
 	                android:textSize="@dimen/text_size_15"
-	                android:textStyle="bold"
 	                android:textColor="@color/grayslate"
 	                android:text="自我简介：" />
                	<TextView
@@ -371,8 +350,11 @@
 	                android:layout_weight="1"
 	                android:layout_marginRight="10dip"
 	                android:duplicateParentState="true"
-	                android:textSize="@dimen/text_size_14" 
-	                android:textColor="#ff000000"
+	                android:textSize="@dimen/text_size_14"
+                    android:paddingTop="@dimen/space_10"
+                    android:paddingBottom="@dimen/space_10"
+                    android:text="自我简介：自我简介：自我简介：自我简介：自我简介：自我简介：自我简介：自我简介："
+                    android:textColor="#ff000000"
                     />
                 <ImageView
                     android:layout_width="wrap_content"

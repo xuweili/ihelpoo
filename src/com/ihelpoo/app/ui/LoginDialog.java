@@ -51,7 +51,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
@@ -167,6 +166,7 @@ public class LoginDialog extends BaseActivity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(LoginDialog.this, Register.class));
+                LoginDialog.this.finish();
             }
         });
         btn_login.setOnClickListener(new View.OnClickListener() {
@@ -290,7 +290,7 @@ public class LoginDialog extends BaseActivity {
     private void redirectToMain() {
         Intent intent = new Intent(this, Main.class);
         intent.putExtra("LOGIN", true);
-        setResult(Main.REQUEST_CODE_LOGIN, intent);
+        setResult(UIHelper.REQUEST_CODE_LOGIN, intent);
         startActivity(intent);
         finish();
     }

@@ -138,6 +138,8 @@ public class UIHelper {
 
     public final static int REQUEST_CODE_FOR_RESULT = 0x01;
     public final static int REQUEST_CODE_FOR_REPLY = 0x02;
+    public static final int REQUEST_CODE_LOGIN = 3;
+    public static final int REQUEST_CODE_SCHOOL = 0;
 
     /**
      * 表情图片匹配

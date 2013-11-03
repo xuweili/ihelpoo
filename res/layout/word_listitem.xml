@@ -139,7 +139,8 @@
                 android:lineSpacingMultiplier="1.2"
                 android:textSize="@dimen/text_size_15"
                 android:textColor="@color/listitem_black_gray"
-                android:background="@drawable/review_bg_top" />
+                android:background="@drawable/review_bg_top"
+                android:autoLink="web|email" />
 
             <RelativeLayout
                 android:id="@+id/word_count_lyt"

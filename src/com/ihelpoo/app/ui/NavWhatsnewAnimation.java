@@ -1,23 +1,19 @@
 package com.ihelpoo.app.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
 import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.R;
 import com.ihelpoo.app.common.StringUtils;
+import com.ihelpoo.app.common.UIHelper;
 
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -116,7 +112,7 @@ public class NavWhatsnewAnimation extends Activity {
             return;
         }
         Intent intent = new Intent(this, Main.class);
-        setResult(Main.REQUEST_CODE_SCHOOL, intent);
+        setResult(UIHelper.REQUEST_CODE_SCHOOL, intent);
         startActivity(intent);
         finish();
     }

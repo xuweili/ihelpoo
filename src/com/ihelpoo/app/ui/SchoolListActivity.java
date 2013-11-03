@@ -126,7 +126,7 @@ public class SchoolListActivity extends BaseActivity {
 //            if (isFirstIn(mySchool)) {
                 startActivity(intent);
 //            }
-            SchoolListActivity.this.setResult(Main.REQUEST_CODE_SCHOOL, intent);
+            SchoolListActivity.this.setResult(UIHelper.REQUEST_CODE_SCHOOL, intent);
             SchoolListActivity.this.finish();
         }
 
