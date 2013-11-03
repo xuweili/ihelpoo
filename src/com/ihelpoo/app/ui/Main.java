@@ -568,6 +568,8 @@ public class Main extends BaseActivity {
     private TextView nestProfileFollowerCount;
     private TextView nestProfileFollower;
 
+    private TextView nestActionModifyInfo;
+
 
     private MyInformation user;
     private LoadingDialog loading;
@@ -637,6 +639,11 @@ public class Main extends BaseActivity {
 //                if (loading != null) loading.dismiss();
                 if (msg.what == 1 && msg.obj != null) {
                     user = (MyInformation) msg.obj;
+                    if(user.getCreate_time().equals(user.getLogin_time()) && user.getCreate_time().equals(user.getLast_login())){
+                        nestActionModifyInfo.setText("修改资料");
+                    } else {
+                        nestActionModifyInfo.setText("我的资料");
+                    }
 
                     //加载用户头像
                     UIHelper.showUserFace(nestProfileAvartar, user.getAvatar_url());
@@ -694,6 +701,7 @@ public class Main extends BaseActivity {
         nestProfileFriend = (TextView) findViewById(R.id.nest_profile_friend);
         nestProfileFollowerCount = (TextView) findViewById(R.id.nest_profile_follower_count);
         nestProfileFollower = (TextView) findViewById(R.id.nest_profile_follower);
+        nestActionModifyInfo = (TextView)findViewById(R.id.nest_action_modify_info);
 
         nestActionTrends = (LinearLayout) findViewById(R.id.nest_action_trends);
         nestActionInfo = (LinearLayout) findViewById(R.id.nest_action_info);

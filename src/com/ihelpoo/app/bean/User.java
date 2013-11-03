@@ -148,6 +148,12 @@ public class User extends Base {
                                 user.setRelation(StringUtils.toInt(xmlParser.nextText()));
                             } else if (tag.equalsIgnoreCase("web_theme")) {
                                 user.setWeb_theme(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("create_time")) {
+                                user.setCreate_time(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("login_time")) {
+                                user.setLogin_time(xmlParser.nextText());
+                            } else if (tag.equalsIgnoreCase("last_login")) {
+                                user.setLast_login(StringUtils.toInt(xmlParser.nextText()));
                             }
 
                             //通知信息
