@@ -100,7 +100,7 @@ public class UserInfoEdit extends BaseActivity {
     private Bitmap protraitBitmap;
     private String protraitPath;
 
-    private int enrolFlag;
+//    private int enrolFlag;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -457,8 +457,8 @@ public class UserInfoEdit extends BaseActivity {
     private AdapterView.OnItemSelectedListener onSelectEnrol = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-            enrolFlag += 1;
-            if(enrolFlag<=1) return;
+//            enrolFlag += 1;
+//            if(enrolFlag<=1) return;
             if(!enrol.getText().toString().equals(spEnrol.getSelectedItem().toString())){
                 updateEnrol();
             }

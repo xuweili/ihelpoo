@@ -639,7 +639,7 @@ public class Main extends BaseActivity {
 //                if (loading != null) loading.dismiss();
                 if (msg.what == 1 && msg.obj != null) {
                     user = (MyInformation) msg.obj;
-                    if(user.getCreate_time().equals(user.getLogin_time()) && user.getCreate_time().equals(user.getLast_login())){
+                    if(user.getCreate_time().equals(user.getLogin_time()) && user.getCreate_time().equals(String.valueOf(user.getLast_login()))){
                         nestActionModifyInfo.setText("修改资料");
                     } else {
                         nestActionModifyInfo.setText("我的资料");
