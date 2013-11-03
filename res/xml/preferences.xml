@@ -11,7 +11,7 @@
 	        android:layout="@layout/preference" 
 	        android:title="我的资料" 
 	        android:key="myinfo" 
-	        android:summary="我的信息、收藏、粉丝..."/>
+	        android:summary="个人信息、圈子、专业..."/>
     </PreferenceCategory>
     <PreferenceCategory 
 	    android:layout="@layout/preference_category" 
@@ -22,12 +22,12 @@
 	        android:key="saveimagepath"
 	        android:summary="设置图片的保存路径"
 	        />
-		<CheckBoxPreference 
-		    android:layout="@layout/preference" 
-		    android:title="HTTPS登录" 
-	        android:key="httpslogin" 
-	        android:summary="当前以HTTP登录" 
-		    android:defaultValue="false"/>
+		<!--<CheckBoxPreference -->
+		    <!--android:layout="@layout/preference"-->
+		    <!--android:title="HTTPS登录"-->
+	        <!--android:key="httpslogin"-->
+	        <!--android:summary="当前以HTTP登录"-->
+		    <!--android:defaultValue="false"/>-->
 		<CheckBoxPreference 
 		    android:layout="@layout/preference" 
 		    android:title="加载图片" 

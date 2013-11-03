@@ -7,5 +7,5 @@
 	android:textStyle="bold" 
 	android:textColor="#ffffffff" 
 	android:gravity="left|center" 
-	android:background="@drawable/frame_button_p" 
+	android:background="@drawable/frame_button_n"
 	android:paddingLeft="10.0dip" />

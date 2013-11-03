@@ -49,7 +49,7 @@ public class Setting extends PreferenceActivity {
 
 	Preference saveImagePath;
 
-	CheckBoxPreference httpslogin;
+//	CheckBoxPreference httpslogin;
 	CheckBoxPreference loadimage;
 	CheckBoxPreference scroll;
 	CheckBoxPreference voice;
@@ -121,25 +121,25 @@ public class Setting extends PreferenceActivity {
 				
 
 		// https登录
-		httpslogin = (CheckBoxPreference) findPreference("httpslogin");
-		httpslogin.setChecked(ac.isHttpsLogin());
-		if (ac.isHttpsLogin()) {
-			httpslogin.setSummary("当前以 HTTPS 登录");
-		} else {
-			httpslogin.setSummary("当前以 HTTP 登录");
-		}
-		httpslogin
-				.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-					public boolean onPreferenceClick(Preference preference) {
-						ac.setConfigHttpsLogin(httpslogin.isChecked());
-						if (httpslogin.isChecked()) {
-							httpslogin.setSummary("当前以 HTTPS 登录");
-						} else {
-							httpslogin.setSummary("当前以 HTTP 登录");
-						}
-						return true;
-					}
-				});
+//		httpslogin = (CheckBoxPreference) findPreference("httpslogin");
+//		httpslogin.setChecked(ac.isHttpsLogin());
+//		if (ac.isHttpsLogin()) {
+//			httpslogin.setSummary("当前以 HTTPS 登录");
+//		} else {
+//			httpslogin.setSummary("当前以 HTTP 登录");
+//		}
+//		httpslogin
+//				.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+//					public boolean onPreferenceClick(Preference preference) {
+//						ac.setConfigHttpsLogin(httpslogin.isChecked());
+//						if (httpslogin.isChecked()) {
+//							httpslogin.setSummary("当前以 HTTPS 登录");
+//						} else {
+//							httpslogin.setSummary("当前以 HTTP 登录");
+//						}
+//						return true;
+//					}
+//				});
 
 		// 加载图片loadimage
 		loadimage = (CheckBoxPreference) findPreference("loadimage");
