@@ -61,6 +61,7 @@ public class CommentPub extends BaseActivity{
 	//-------对评论回复还需加2变量------
 	private int _replyid;//被回复的单个评论id
 	private int _authorid;//该评论的原始作者id
+    private String _author;//原始作者昵称
     private boolean _isHelp;
 
     @Override
@@ -79,6 +80,7 @@ public class CommentPub extends BaseActivity{
 		_catalog = getIntent().getIntExtra("catalog", 0);
 		_replyid = getIntent().getIntExtra("reply_id", 0);
 		_authorid = getIntent().getIntExtra("author_id", 0);
+        _author =  getIntent().getStringExtra("author");
         _isHelp = getIntent().getBooleanExtra("is_help", false);
     	
     	mBack = (Button)findViewById(R.id.comment_list_back);
@@ -156,7 +158,7 @@ public class CommentPub extends BaseActivity{
 							if(_catalog == CATALOG_BLOG)
 								res = ac.replyBlogComment(_id, _uid, _content, _replyid, _authorid);
 							else
-								res = ac.replyComment(_id, _catalog, _replyid, _authorid, _uid, _content, _isHelp);
+								res = ac.replyComment(_id, _catalog, _replyid, _authorid, _author, _uid, _content, _isHelp);
 						}
 						msg.what = 1;
 						msg.obj = res;

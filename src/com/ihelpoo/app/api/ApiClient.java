@@ -1338,17 +1338,18 @@ public class ApiClient {
 
     /**
      *
+     *
      * @param id       表示被评论的某条新闻，帖子，动弹的id 或者某条消息的 friendid
      * @param catalog  表示该评论所属什么类型：1新闻  2帖子  3动弹  4动态
      * @param replyid  表示被回复的单个评论id
      * @param authorid 表示该评论的原始作者id
-     * @param uid      用户uid 一般都是当前登录用户uid
+     * @param author
+     *@param uid      用户uid 一般都是当前登录用户uid
      * @param content  发表评论的内容
-     * @param isHelp
-     * @return
+     * @param isHelp    @return
      * @throws AppException
      */
-    public static Result replyComment(AppContext appContext, int id, int catalog, int replyid, int authorid, int uid, String content, boolean isHelp) throws AppException {
+    public static Result replyComment(AppContext appContext, int id, int catalog, int replyid, int authorid, String author, int uid, String content, boolean isHelp) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("catalog", catalog);
         params.put("id", id);
@@ -1356,6 +1357,7 @@ public class ApiClient {
         params.put("content", content);
         params.put("replyid", replyid);
         params.put("authorid", authorid);
+        params.put("author", author);
         params.put("is_help", isHelp);
 
         try {
