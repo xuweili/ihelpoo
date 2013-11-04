@@ -475,7 +475,7 @@ public class UserCenter extends BaseActivity {
             case User.RELATION_TYPE_NULL:
                 mFollow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_follow, 0, 0, 0);
                 mFollow.setVisibility(View.VISIBLE);
-                mShield.setVisibility(View.VISIBLE);
+                mShield.setVisibility(View.GONE);
                 mMessage.setVisibility(View.VISIBLE);
                 mShield.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_shield, 0, 0, 0);
                 mFollow.setText("圈Ta");//屏蔽他
@@ -725,7 +725,7 @@ public class UserCenter extends BaseActivity {
                                     mUser.setRelation(User.RELATION_TYPE_NULL);
                                     mShield.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_shield, 0, 0, 0);
                                     mShield.setText("屏蔽Ta");
-                                    mShield.setVisibility(View.VISIBLE);
+                                    mShield.setVisibility(View.GONE);
                                     mFollow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.widget_bar_relation_follow, 0, 0, 0);
                                     mFollow.setText("圈Ta");
                                     mFollow.setVisibility(View.VISIBLE);

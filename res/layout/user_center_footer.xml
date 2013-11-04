@@ -21,10 +21,12 @@
         style="@style/user_center_footbar"
         android:layout_marginLeft="5dip"
         android:drawableLeft="@drawable/widget_bar_relation_shield"
-        android:text="屏蔽Ta"/>
+        android:text="屏蔽Ta"
+        android:visibility="gone"/>
     <ImageView
         style="@style/main_footbar_cutline"
-        android:src="@drawable/widget_bar_cut_off"/>
+        android:src="@drawable/widget_bar_cut_off"
+        android:visibility="gone"/>
     <RadioButton
         android:id="@+id/user_center_footbar_atme"
         style="@style/user_center_footbar"
