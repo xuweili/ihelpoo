@@ -125,7 +125,6 @@ public class TweetDetail extends BaseActivity {
     private int _id;
     private int _uid;
     private String _content;
-    private int _isPostToMyZone;
 
     private final static int DATA_LOAD_ING = 0x001;
     private final static int DATA_LOAD_COMPLETE = 0x002;
@@ -285,7 +284,7 @@ public class TweetDetail extends BaseActivity {
                 if (com == null) return;
 
                 //跳转--回复评论界面
-                UIHelper.showCommentReply(TweetDetail.this, curId, curCatalog, com.getId(), com.getAuthorId(), com.getAuthor(), com.getContent());
+                UIHelper.showCommentReply(TweetDetail.this, curId, curCatalog, com.getId(), com.getAuthorId(), com.getAuthor(), com.getContent(), isHelp);
             }
         });
         mLvComment.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -371,9 +370,9 @@ public class TweetDetail extends BaseActivity {
                             handler.sendMessage(msg);
                         }
                     };
-                    UIHelper.showCommentOptionDialog(TweetDetail.this, curId, curCatalog, com, thread);
+                    UIHelper.showCommentOptionDialog(TweetDetail.this, curId, curCatalog, com, thread, isHelp);
                 } else {
-                    UIHelper.showCommentOptionDialog(TweetDetail.this, curId, curCatalog, com, null);
+                    UIHelper.showCommentOptionDialog(TweetDetail.this, curId, curCatalog, com, null, isHelp);
                 }
                 return true;
             }
@@ -875,7 +874,7 @@ public class TweetDetail extends BaseActivity {
                     Result res;
                     try {
                         //发表评论
-                        res = ac.pubComment(_catalog, _id, _uid, _content, _isPostToMyZone);
+                        res = ac.pubComment(_catalog, _id, _uid, _content, isHelp);
                         msg.what = 1;
                         msg.obj = res;
                     } catch (AppException e) {

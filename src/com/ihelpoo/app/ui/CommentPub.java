@@ -17,7 +17,6 @@ package com.ihelpoo.app.ui;
 import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.AppException;
 import com.ihelpoo.app.R;
-import com.ihelpoo.app.bean.CommentList;
 import com.ihelpoo.app.bean.Result;
 import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
@@ -31,7 +30,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 /**
  * 发表评论
@@ -63,8 +61,9 @@ public class CommentPub extends BaseActivity{
 	//-------对评论回复还需加2变量------
 	private int _replyid;//被回复的单个评论id
 	private int _authorid;//该评论的原始作者id
-	
-	@Override
+    private boolean _isHelp;
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.comment_pub);
@@ -80,6 +79,7 @@ public class CommentPub extends BaseActivity{
 		_catalog = getIntent().getIntExtra("catalog", 0);
 		_replyid = getIntent().getIntExtra("reply_id", 0);
 		_authorid = getIntent().getIntExtra("author_id", 0);
+        _isHelp = getIntent().getBooleanExtra("is_help", false);
     	
     	mBack = (Button)findViewById(R.id.comment_list_back);
     	mPublish = (Button)findViewById(R.id.comment_pub_publish);
@@ -149,14 +149,14 @@ public class CommentPub extends BaseActivity{
 					try {
 						//发表评论
 						if(_replyid == 0){
-							res = ac.pubComment(_catalog, _id, _uid, _content, _isPostToMyZone);
+							res = ac.pubComment(_catalog, _id, _uid, _content, false);
 						}
 						//对评论进行回复
 						else if(_replyid > 0){
 							if(_catalog == CATALOG_BLOG)
 								res = ac.replyBlogComment(_id, _uid, _content, _replyid, _authorid);
 							else
-								res = ac.replyComment(_id, _catalog, _replyid, _authorid, _uid, _content);
+								res = ac.replyComment(_id, _catalog, _replyid, _authorid, _uid, _content, _isHelp);
 						}
 						msg.what = 1;
 						msg.obj = res;

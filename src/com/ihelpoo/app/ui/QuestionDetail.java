@@ -524,7 +524,7 @@ public class QuestionDetail extends BaseActivity {
         		if(com == null) return;
 
         		//跳转--回复评论界面
-        		UIHelper.showCommentReply(QuestionDetail.this,curId, curCatalog, com.getId(), com.getAuthorId(), com.getAuthor(), com.getContent());
+        		UIHelper.showCommentReply(QuestionDetail.this,curId, curCatalog, com.getId(), com.getAuthorId(), com.getAuthor(), com.getContent(), false);
         	}
 		});
         mLvComment.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -614,11 +614,11 @@ public class QuestionDetail extends BaseActivity {
 			                handler.sendMessage(msg);
 						}        			
 	        		};
-	        		UIHelper.showCommentOptionDialog(QuestionDetail.this, curId, curCatalog, com, thread);
+	        		UIHelper.showCommentOptionDialog(QuestionDetail.this, curId, curCatalog, com, thread, false);
         		}
         		else
         		{
-        			UIHelper.showCommentOptionDialog(QuestionDetail.this, curId, curCatalog, com, null);
+        			UIHelper.showCommentOptionDialog(QuestionDetail.this, curId, curCatalog, com, null, false);
         		}
 				return true;
 			}        	
@@ -841,7 +841,7 @@ public class QuestionDetail extends BaseActivity {
 					Result res = new Result();
 					try {
 						//发表评论
-						res = ac.pubComment(_catalog, _id, _uid, _content, _isPostToMyZone);
+						res = ac.pubComment(_catalog, _id, _uid, _content, false);
 						msg.what = 1;
 						msg.obj = res;
 		            } catch (AppException e) {

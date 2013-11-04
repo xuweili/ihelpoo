@@ -376,9 +376,10 @@ public class UIHelper {
      * @param catalog
      * @param replyid
      * @param authorid
+     * @param isHelp
      */
     public static void showCommentReply(Activity context, int id, int catalog,
-                                        int replyid, int authorid, String author, String content) {
+                                        int replyid, int authorid, String author, String content, boolean isHelp) {
         Intent intent = new Intent(context, CommentPub.class);
         intent.putExtra("id", id);
         intent.putExtra("catalog", catalog);
@@ -386,6 +387,7 @@ public class UIHelper {
         intent.putExtra("author_id", authorid);
         intent.putExtra("author", author);
         intent.putExtra("content", content);
+        intent.putExtra("is_help", isHelp);
         if (catalog == CommentList.CATALOG_POST)
             context.startActivityForResult(intent, REQUEST_CODE_FOR_REPLY);
         else
@@ -636,10 +638,11 @@ public class UIHelper {
      * @param catalog 该评论所属类型：1新闻 2帖子 3动弹 4动态
      * @param comment 本条评论对象，用于获取评论id&评论者authorid
      * @param thread  处理删除评论的线程，若无删除操作传null
+     * @param isHelp
      */
     public static void showCommentOptionDialog(final Activity context,
                                                final int id, final int catalog, final Comment comment,
-                                               final Thread thread) {
+                                               final Thread thread, final boolean isHelp) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setIcon(R.drawable.ic_dialog_menu);
         builder.setTitle(context.getString(R.string.select));
@@ -652,7 +655,8 @@ public class UIHelper {
                                     showCommentReply(context, id, catalog,
                                             comment.getId(), comment.getAuthorId(),
                                             comment.getAuthor(),
-                                            comment.getContent());
+                                            comment.getContent(),
+                                            isHelp);
                                     break;
                                 case 1:// 删除
                                     thread.start();
@@ -669,7 +673,8 @@ public class UIHelper {
                                     showCommentReply(context, id, catalog,
                                             comment.getId(), comment.getAuthorId(),
                                             comment.getAuthor(),
-                                            comment.getContent());
+                                            comment.getContent(),
+                                            isHelp);
                                     break;
                             }
                         }

@@ -521,7 +521,7 @@ public class BlogDetail extends BaseActivity {
         		if(com == null) return;
         		
         		//跳转--回复评论界面
-        		UIHelper.showCommentReply(BlogDetail.this,curId, curCatalog, com.getId(), com.getAuthorId(), com.getAuthor(), com.getContent());
+        		UIHelper.showCommentReply(BlogDetail.this,curId, curCatalog, com.getId(), com.getAuthorId(), com.getAuthor(), com.getContent(), false);
         	}
 		});
         mLvComment.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -611,11 +611,11 @@ public class BlogDetail extends BaseActivity {
 			                handler.sendMessage(msg);
 						}        			
 	        		};
-	        		UIHelper.showCommentOptionDialog(BlogDetail.this, curId, curCatalog, com, thread);
+	        		UIHelper.showCommentOptionDialog(BlogDetail.this, curId, curCatalog, com, thread, false);
         		}
         		else
         		{
-        			UIHelper.showCommentOptionDialog(BlogDetail.this, curId, curCatalog, com, null);
+        			UIHelper.showCommentOptionDialog(BlogDetail.this, curId, curCatalog, com, null, false);
         		}
 				return true;
 			}        	

@@ -98,7 +98,7 @@ public class StringUtils {
     private static String getFriendlyMinute(Date time, Calendar cal) {
         String ftime;
         int hour = (int) ((cal.getTimeInMillis() - time.getTime()) / 3600000);
-        if (hour == 0) {
+        if (hour <= 0) {
             ftime = getTimeInterval(time, cal) < 1 ? "刚刚" : getTimeInterval(time, cal) + "分钟前";
         } else
             ftime = hour + "小时前";

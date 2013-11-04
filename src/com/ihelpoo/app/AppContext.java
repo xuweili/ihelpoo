@@ -1213,16 +1213,17 @@ public class AppContext extends Application {
     /**
      * 发表评论
      *
+     *
      * @param catalog        1新闻  2帖子  3动弹  4动态
      * @param id             某条新闻，帖子，动弹的id
      * @param uid            用户uid
      * @param content        发表评论的内容
-     * @param isPostToMyZone 是否转发到我的空间  0不转发  1转发
+     * @param isHelp
      * @return
      * @throws AppException
      */
-    public Result pubComment(int catalog, int id, int uid, String content, int isPostToMyZone) throws AppException {
-        return ApiClient.pubComment(this, catalog, id, uid, content, isPostToMyZone);
+    public Result pubComment(int catalog, int id, int uid, String content, Boolean isHelp) throws AppException {
+        return ApiClient.pubComment(this, catalog, id, uid, content, isHelp);
     }
 
 
@@ -1236,17 +1237,19 @@ public class AppContext extends Application {
     }
 
     /**
+     *
      * @param id       表示被评论的某条新闻，帖子，动弹的id 或者某条消息的 friendid
      * @param catalog  表示该评论所属什么类型：1新闻  2帖子  3动弹  4动态
      * @param replyid  表示被回复的单个评论id
      * @param authorid 表示该评论的原始作者id
      * @param uid      用户uid 一般都是当前登录用户uid
      * @param content  发表评论的内容
+     * @param isHelp
      * @return
      * @throws AppException
      */
-    public Result replyComment(int id, int catalog, int replyid, int authorid, int uid, String content) throws AppException {
-        return ApiClient.replyComment(this, id, catalog, replyid, authorid, uid, content);
+    public Result replyComment(int id, int catalog, int replyid, int authorid, int uid, String content, boolean isHelp) throws AppException {
+        return ApiClient.replyComment(this, id, catalog, replyid, authorid, uid, content, isHelp);
     }
 
     /**

@@ -63,7 +63,6 @@ public class UserInfoEdit extends BaseActivity {
     private Button btnBack;
     private ImageView refresh;
     private ImageView avatar;
-    private Button avatarBtn;
 
     private RelativeLayout lytAvatar;
     private LinearLayout lytNickname;
@@ -124,7 +123,6 @@ public class UserInfoEdit extends BaseActivity {
         refresh.setOnClickListener(refreshClickListener);
 
         lytAvatar = (RelativeLayout) findViewById(R.id.user_edit_avatar_lyt);
-        avatarBtn = (Button) findViewById(R.id.user_info_edit_change_avatar);
         avatar = (ImageView) findViewById(R.id.user_info_edit_avatar);
 
         lytNickname = (LinearLayout) findViewById(R.id.user_edit_nickname_lyt);
@@ -139,7 +137,6 @@ public class UserInfoEdit extends BaseActivity {
 
 
         lytAvatar.setOnClickListener(onClickAvatar);
-        avatarBtn.setOnClickListener(onClickAvatar);
         avatar.setOnClickListener(onClickAvatar);
 
         lytNickname.setOnClickListener(onClickNickname);

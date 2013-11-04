@@ -81,7 +81,7 @@
                     android:padding="@dimen/space_14"
                     android:text="点击头像修改"
                     android:layout_toRightOf="@+id/user_info_edit_avatar"
-                    android:layout_toLeftOf="@+id/user_info_edit_change_avatar" />
+                    />
 		    </RelativeLayout>
 
             <LinearLayout
@@ -330,7 +330,7 @@
 	        <LinearLayout
                 android:id="@+id/user_edit_intro_lyt"
             	android:layout_width="fill_parent"
-	            android:layout_height="35dip"
+	            android:layout_height="wrap_content"
 	            android:gravity="center_vertical"
 	            android:focusable="true"
 	            android:clickable="true"
