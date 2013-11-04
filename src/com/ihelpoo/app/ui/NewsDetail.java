@@ -668,7 +668,7 @@ public class NewsDetail extends BaseActivity {
 									try {
 										Result res = ac.delComment(curId,
 												curCatalog, com.getId(),
-												com.getAuthorId());
+												com.getAuthorId(), false);
 										msg.what = 1;
 										msg.obj = res;
 									} catch (AppException e) {

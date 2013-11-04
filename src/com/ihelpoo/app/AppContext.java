@@ -1255,15 +1255,17 @@ public class AppContext extends Application {
     /**
      * 删除评论
      *
+     *
      * @param id       表示被评论对应的某条新闻,帖子,动弹的id 或者某条消息的 friendid
      * @param catalog  表示该评论所属什么类型：1新闻  2帖子  3动弹  4动态&留言
      * @param replyid  表示被回复的单个评论id
      * @param authorid 表示该评论的原始作者id
+     * @param isHelp
      * @return
      * @throws AppException
      */
-    public Result delComment(int id, int catalog, int replyid, int authorid) throws AppException {
-        return ApiClient.delComment(this, id, catalog, replyid, authorid);
+    public Result delComment(int id, int catalog, int replyid, int authorid, Boolean isHelp) throws AppException {
+        return ApiClient.delComment(this, id, catalog, replyid, authorid, isHelp);
     }
 
     /**

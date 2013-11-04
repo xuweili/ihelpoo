@@ -247,7 +247,7 @@ public class MessageDetail extends BaseActivity{
 					public void run() {
 						Message msg = new Message();
 						try {
-							Result res = ((AppContext)getApplication()).delComment(curFriendId, curCatalog, com.getId(), com.getAuthorId());
+							Result res = ((AppContext)getApplication()).delComment(curFriendId, curCatalog, com.getId(), com.getAuthorId(), false);
 							msg.what = 1;
 							msg.obj = res;
 			            } catch (AppException e) {

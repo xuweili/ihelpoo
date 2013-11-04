@@ -88,7 +88,8 @@ public class URLs implements Serializable {
     public final static String DIFFUSE = "http://192.168.0.108:8080/v1.1/diffuse.xml";
     //	public final static String COMMENT_REPLY = URL_API_HOST+"action/api/comment_reply";
     public final static String COMMENT_REPLY = "http://192.168.0.108:8080/v1.1/commentReply.xml";
-    public final static String COMMENT_DELETE = URL_API_HOST + "action/api/comment_delete";
+//    public final static String COMMENT_DELETE = URL_API_HOST + "action/api/comment_delete";
+    public final static String COMMENT_DELETE = "http://192.168.0.108:8080/v1.1/commentDelete.xml";
     public final static String SOFTWARECATALOG_LIST = URL_API_HOST + "action/api/softwarecatalog_list";
     public final static String SOFTWARETAG_LIST = URL_API_HOST + "action/api/softwaretag_list";
     public final static String SOFTWARE_LIST = URL_API_HOST + "action/api/software_list";
