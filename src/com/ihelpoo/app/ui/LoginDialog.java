@@ -18,6 +18,7 @@ import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.AppException;
 import com.ihelpoo.app.R;
 import com.ihelpoo.app.api.ApiClient;
+import com.ihelpoo.app.bean.MobileRegisterResult;
 import com.ihelpoo.app.bean.Result;
 import com.ihelpoo.app.bean.User;
 import com.ihelpoo.app.common.QQWeiboHelper;
@@ -38,10 +39,13 @@ import com.weibo.sdk.android.WeiboException;
 import com.weibo.sdk.android.sso.SsoHandler;
 import com.weibo.sdk.android.util.AccessTokenKeeper;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -73,7 +77,7 @@ import java.text.SimpleDateFormat;
 public class LoginDialog extends BaseActivity {
 
     private ViewSwitcher mViewSwitcher;
-//    private ImageButton btn_close;
+    //    private ImageButton btn_close;
     private TextView btn_register;
     private Button btn_login;
     private TextView btn_login_wb;
@@ -131,7 +135,7 @@ public class LoginDialog extends BaseActivity {
 //        btn_close = (ImageButton) findViewById(R.id.login_close_button);
 //        btn_close.setOnClickListener(UIHelper.finish(this));
 
-        btn_register =  (TextView) findViewById(R.id.login_btn_register);
+        btn_register = (TextView) findViewById(R.id.login_btn_register);
         btn_login = (Button) findViewById(R.id.login_btn_login);
 
 
@@ -143,10 +147,8 @@ public class LoginDialog extends BaseActivity {
         // 第一次启动本应用，AccessToken 不可用
         mAccessToken = AccessTokenKeeper.readAccessToken(this);
         if (mAccessToken.isSessionValid()) {
-            String date = new java.text.SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
-                    .format(new java.util.Date(mAccessToken.getExpiresTime()));
-            Toast.makeText(LoginDialog.this, "access_token 仍在有效期内,无需再次登录: \naccess_token:"
-                    + mAccessToken.getToken() + "\n有效期：" + date, Toast.LENGTH_SHORT).show();
+            String date = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new java.util.Date(mAccessToken.getExpiresTime()));
+//            Toast.makeText(LoginDialog.this, "access_token 仍在有效期内,无需再次登录" + date, Toast.LENGTH_SHORT).show();
         }
         btn_login_wb = (TextView) findViewById(R.id.login_btn_login_wb);
         btn_login_qq = (TextView) findViewById(R.id.login_btn_login_qq);
@@ -304,6 +306,8 @@ public class LoginDialog extends BaseActivity {
     }
 
 
+    private ProgressDialog mProgress;
+
     /**
      * 微博认证授权回调类。
      * 1. SSO登陆时，需要在{@link #onActivityResult}中调用mSsoHandler.authorizeCallBack后，
@@ -316,16 +320,21 @@ public class LoginDialog extends BaseActivity {
         @Override
         public void onComplete(Bundle values) {
 
-            String token = values.getString("access_token");
+            String accessToken = values.getString("access_token");
             String expires_in = values.getString("expires_in");
             String userName = values.getString("userName");
-            mAccessToken = new Oauth2AccessToken(token, expires_in);
+            String uid = values.getString("uid");
+
+            final String thirdUid = uid;
+            final String nickname = userName;
+
+            mAccessToken = new Oauth2AccessToken(accessToken, expires_in);
             if (mAccessToken.isSessionValid()) {
-                String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-                        .format(new java.util.Date(mAccessToken.getExpiresTime()));
+                String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new java.util.Date(mAccessToken.getExpiresTime()));
 
                 AccessTokenKeeper.keepAccessToken(LoginDialog.this, mAccessToken);
-                Toast.makeText(LoginDialog.this, "欢迎 "+userName, Toast.LENGTH_SHORT).show();
+
+                thirdLogin(thirdUid, "weibo", nickname);
             }
         }
 
@@ -347,6 +356,76 @@ public class LoginDialog extends BaseActivity {
         }
     }
 
+    private void thirdLogin(final String thirdUid, final String thirdType, final String nickname) {
+        final AppContext ac = (AppContext) getApplication();
+        final JSONObject[] json = new JSONObject[1];
+        mProgress = ProgressDialog.show(LoginDialog.this, null, "登录中···", true, true);
+        final Handler handler = new Handler() {
+            public void handleMessage(Message msg) {
+
+                if (mProgress != null) mProgress.dismiss();
+
+                if (msg.what == 1 && msg.obj != null) {
+                    MobileRegisterResult res = (MobileRegisterResult) msg.obj;
+                    if (res.OK()) {
+                        UIHelper.ToastMessage(LoginDialog.this, "登录成功");
+                        User user = new User();
+                        user.setUid(res.getUser().getUid());
+                        user.setEmail(res.getUser().getEmail());
+                        user.setRemember(true);
+                        user.setAvatar_url("http://img.ihelpoo.cn/useralbum/default_avatar.jpg!app");
+                        user.setOnline_status("1");
+                        user.setNickname(res.getUser().getNickname());
+                        user.setSchool_id(res.getUser().getSchool_id());
+                        ac.saveThridLoginInfo(user);
+                        if (curLoginType == LOGIN_MAIN) {
+                            //跳转--加载用户动态
+                            redirectToMain();
+                        } else if (curLoginType == LOGIN_SETTING) {
+                            //跳转--用户设置页面
+                            redirectToSetting();
+                        }
+
+                    } else {
+                        UIHelper.ToastMessage(LoginDialog.this, res.getErrorMessage());
+                    }
+                } else {
+                    ((AppException) msg.obj).makeToast(LoginDialog.this);
+                }
+            }
+        };
+        new Thread() {
+            public void run() {
+                Message msg = new Message();
+                MobileRegisterResult res;
+                try {
+                    String nick = "";
+                    if("QQ".equals(thirdType)){
+                        json[0] = mTencent.request(Constants.GRAPH_SIMPLE_USER_INFO, null,Constants.HTTP_GET);
+                        try {
+                            nick = json[0].getString("nickname");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        nick = nickname;
+                    }
+                    SharedPreferences preferences = getSharedPreferences(NavWelcome.GLOBAL_CONFIG, MODE_PRIVATE);
+                    int mySchool = preferences.getInt(NavWelcome.CHOOSE_SCHOOL, NavWelcome.DEFAULT_SCHOOL);
+                    boolean status = chb_status.isChecked();
+                    res = ac.thirdLogin(thirdUid, thirdType, mySchool, nick, status ? "1" : "0");
+                    msg.what = 1;
+                    msg.obj = res;
+                } catch (AppException e) {
+                    e.printStackTrace();
+                    msg.what = -1;
+                    msg.obj = e;
+                }
+                handler.sendMessage(msg);
+            }
+        }.start();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -359,13 +438,33 @@ public class LoginDialog extends BaseActivity {
         mTencent.onActivityResult(requestCode, resultCode, data);
     }
 
+//    private void onClickLogin() {
+//        if (!mTencent.isSessionValid()) {
+//            IUiListener listener = new BaseUiListener() {
+//                @Override
+//                protected void doComplete(JSONObject values) {
+//                    mTencent.requestAsync(Constants.GRAPH_SIMPLE_USER_INFO, null,
+//                            Constants.HTTP_GET, new BaseUiListener("get_simple_userinfo", false), null);
+//                }
+//            };
+//            mTencent.login(this, "all", listener);
+//        } else {
+//            mTencent.logout(this);
+//        }
+//    }
+
+
     private void onClickLogin() {
         if (!mTencent.isSessionValid()) {
             IUiListener listener = new BaseUiListener() {
                 @Override
                 protected void doComplete(JSONObject values) {
-                    mTencent.requestAsync(Constants.GRAPH_SIMPLE_USER_INFO, null,
-                            Constants.HTTP_GET, new BaseApiListener("get_simple_userinfo", false), null);
+                    try {
+                        String qqUid = values.getString("openid");
+                        thirdLogin(qqUid, "QQ", "");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             };
             mTencent.login(this, "all", listener);
@@ -373,7 +472,6 @@ public class LoginDialog extends BaseActivity {
             mTencent.logout(this);
         }
     }
-
 
     private class BaseUiListener implements IUiListener {
 
@@ -383,7 +481,12 @@ public class LoginDialog extends BaseActivity {
         }
 
         protected void doComplete(JSONObject values) {
-
+            try {
+                String qqUid = values.getString("openid");
+                thirdLogin(qqUid, "QQ", "QQ_"+qqUid);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
@@ -398,92 +501,87 @@ public class LoginDialog extends BaseActivity {
         }
 
 
-
     }
 
-    private class BaseApiListener implements IRequestListener {
-        private String mScope = "all";
-        private Boolean mNeedReAuth = false;
-
-        public BaseApiListener(String scope, boolean needReAuth) {
-            mScope = scope;
-            mNeedReAuth = needReAuth;
-        }
-
-        @Override
-        public void onComplete(final JSONObject response, Object state) {
-            try {
-                showResult("IRequestListener.onComplete:", response.getString("nickname"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            doComplete(response, state);
-        }
-
-        protected void doComplete(JSONObject response, Object state) {
-            try {
-                int ret = response.getInt("ret");
-                if (ret == 100030) {
-                    if (mNeedReAuth) {
-                        Runnable r = new Runnable() {
-                            public void run() {
-                                mTencent.reAuth(LoginDialog.this, mScope, new BaseUiListener());
-                            }
-                        };
-                        LoginDialog.this.runOnUiThread(r);
-                    }
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-                Log.e("toddtest", response.toString());
-            }
-
-        }
-
-        @Override
-        public void onIOException(final IOException e, Object state) {
-            showResult("IRequestListener.onIOException:", e.getMessage());
-        }
-
-        @Override
-        public void onMalformedURLException(final MalformedURLException e,
-                                            Object state) {
-            showResult("IRequestListener.onMalformedURLException", e.toString());
-        }
-
-        @Override
-        public void onJSONException(final JSONException e, Object state) {
-            showResult("IRequestListener.onJSONException:", e.getMessage());
-        }
-
-        @Override
-        public void onConnectTimeoutException(ConnectTimeoutException arg0,
-                                              Object arg1) {
-            showResult("IRequestListener.onConnectTimeoutException:", arg0.getMessage());
-
-        }
-
-        @Override
-        public void onSocketTimeoutException(SocketTimeoutException arg0,
-                                             Object arg1) {
-            showResult("IRequestListener.SocketTimeoutException:", arg0.getMessage());
-        }
-
-        @Override
-        public void onUnknowException(Exception arg0, Object arg1) {
-            showResult("IRequestListener.onUnknowException:", arg0.getMessage());
-        }
-
-        @Override
-        public void onHttpStatusException(HttpStatusException arg0, Object arg1) {
-            showResult("IRequestListener.HttpStatusException:", arg0.getMessage());
-        }
-
-        @Override
-        public void onNetworkUnavailableException(NetworkUnavailableException arg0, Object arg1) {
-            showResult("IRequestListener.onNetworkUnavailableException:", arg0.getMessage());
-        }
-    }
+//    private class BaseApiListener implements IRequestListener {
+//        private String mScope = "all";
+//        private Boolean mNeedReAuth = false;
+//
+//        public BaseApiListener(String scope, boolean needReAuth) {
+//            mScope = scope;
+//            mNeedReAuth = needReAuth;
+//        }
+//
+//        @Override
+//        public void onComplete(final JSONObject response, Object state) {
+//            doComplete(response, state);
+//        }
+//
+//        protected void doComplete(JSONObject response, Object state) {
+//            try {
+//                int ret = response.getInt("ret");
+//                if (ret == 100030) {
+//                    if (mNeedReAuth) {
+//                        Runnable r = new Runnable() {
+//                            public void run() {
+//                                mTencent.reAuth(LoginDialog.this, mScope, new BaseUiListener());
+//                            }
+//                        };
+//                        LoginDialog.this.runOnUiThread(r);
+//                    }
+//                }
+//                thirdLogin("QQ1234_UID", "QQ", response.getString("nickname"));
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//                Log.e("toddtest", response.toString());
+//            }
+//
+//        }
+//
+//        @Override
+//        public void onIOException(final IOException e, Object state) {
+//            showResult("IRequestListener.onIOException:", e.getMessage());
+//        }
+//
+//        @Override
+//        public void onMalformedURLException(final MalformedURLException e,
+//                                            Object state) {
+//            showResult("IRequestListener.onMalformedURLException", e.toString());
+//        }
+//
+//        @Override
+//        public void onJSONException(final JSONException e, Object state) {
+//            showResult("IRequestListener.onJSONException:", e.getMessage());
+//        }
+//
+//        @Override
+//        public void onConnectTimeoutException(ConnectTimeoutException arg0,
+//                                              Object arg1) {
+//            showResult("IRequestListener.onConnectTimeoutException:", arg0.getMessage());
+//
+//        }
+//
+//        @Override
+//        public void onSocketTimeoutException(SocketTimeoutException arg0,
+//                                             Object arg1) {
+//            showResult("IRequestListener.SocketTimeoutException:", arg0.getMessage());
+//        }
+//
+//        @Override
+//        public void onUnknowException(Exception arg0, Object arg1) {
+//            showResult("IRequestListener.onUnknowException:", arg0.getMessage());
+//        }
+//
+//        @Override
+//        public void onHttpStatusException(HttpStatusException arg0, Object arg1) {
+//            showResult("IRequestListener.HttpStatusException:", arg0.getMessage());
+//        }
+//
+//        @Override
+//        public void onNetworkUnavailableException(NetworkUnavailableException arg0, Object arg1) {
+//            showResult("IRequestListener.onNetworkUnavailableException:", arg0.getMessage());
+//        }
+//    }
 
     private void showResult(final String base, final String msg) {
         mHandler.post(new Runnable() {

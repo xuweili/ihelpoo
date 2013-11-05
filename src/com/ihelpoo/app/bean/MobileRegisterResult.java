@@ -75,6 +75,8 @@ public class MobileRegisterResult {
 
                                 if (tag.equalsIgnoreCase("uid")) {
                                     res.user.setUid(StringUtils.toInt(xmlParser.nextText(), 0));
+                                } else if (tag.equalsIgnoreCase("email")) {
+                                    res.user.setEmail(xmlParser.nextText());
                                 } else if (tag.equalsIgnoreCase("nickname")) {
                                     res.user.setNickname(xmlParser.nextText());
                                 } else if (tag.equalsIgnoreCase("gender")) {

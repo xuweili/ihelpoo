@@ -234,17 +234,17 @@ public class ApiClient {
         } while (time < RETRY_TIME);
 
         responseBody = responseBody.replaceAll("\\p{Cntrl}", "");
-        if (responseBody.contains("result") && responseBody.contains("errorCode") && appContext.containsProperty("user.uid")) {
-            try {
-                Result res = Result.parse(new ByteArrayInputStream(responseBody.getBytes()));
-                if (res.getErrorCode() == 0) {
-                    appContext.logout();
-                    appContext.getUnLoginHandler().sendEmptyMessage(1);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+//        if (responseBody.contains("result") && responseBody.contains("errorCode") && appContext.containsProperty("user.uid")) {//FIXME
+//            try {
+//                Result res = Result.parse(new ByteArrayInputStream(responseBody.getBytes()));
+//                if (res.getErrorCode() == 0) {
+//                    appContext.logout();
+//                    appContext.getUnLoginHandler().sendEmptyMessage(1);
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
         return new ByteArrayInputStream(responseBody.getBytes());
     }
 
@@ -1579,6 +1579,24 @@ public class ApiClient {
 
         try {
             return Software.parse(_post(appContext, URLs.SOFTWARE_DETAIL, params, null));
+        } catch (Exception e) {
+            if (e instanceof AppException)
+                throw (AppException) e;
+            throw AppException.network(e);
+        }
+    }
+
+    public static MobileRegisterResult thirdLogin(AppContext appContext, String thirdUid, String thirdType, Integer schoolId, String nickname, String status) throws AppException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("third_uid", thirdUid);
+        params.put("third_type", thirdType);
+        params.put("school_id", schoolId);
+        params.put("ip", DeviceUtil.getIPAddress(true));
+        params.put("nickname", nickname);
+        params.put("status", status);
+
+        try {
+            return MobileRegisterResult.parse(_post(appContext, URLs.THIRD_LOGIN, params, null));
         } catch (Exception e) {
             if (e instanceof AppException)
                 throw (AppException) e;

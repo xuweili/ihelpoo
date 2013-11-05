@@ -458,4 +458,5 @@ public class User extends Base {
     public void setAvatar_preview(String avatar_preview) {
         this.avatar_preview = avatar_preview;
     }
+
 }

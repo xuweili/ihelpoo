@@ -243,10 +243,11 @@ public class AppContext extends Application {
      */
     public void logout() {
         User loginUser = getLoginInfo();
-        if(!loginUser.isRemember()){
+        if (!loginUser.isRemember()) {
             cleanAccountInfo();
         }
         cleanLoginInfo();//清除登录信息
+        cleanThirdLoginInfo();
         ApiClient.cleanCookie();
         this.cleanCookie();
         this.login = false;
@@ -265,7 +266,8 @@ public class AppContext extends Application {
      */
     public void initLoginInfo() {
         User loginUser = getLoginInfo();
-        if (loginUser.getUid() > 0 && loginUser.isRemember()) {
+        if (loginUser.getUid() > 0) {
+//            if (loginUser.getUid() > 0 && loginUser.isRemember()) {
             this.loginUid = loginUser.getUid();
             this.login = true;
         } else {
@@ -379,9 +381,8 @@ public class AppContext extends Application {
     /**
      * 清空通知消息
      *
-     *
      * @param uid
-     * @param type 1:@我的信息 2:未读消息 3:评论个数 4:新粉丝个数
+     * @param type    1:@我的信息 2:未读消息 3:评论个数 4:新粉丝个数
      * @param fromUid
      * @return
      * @throws AppException
@@ -812,7 +813,6 @@ public class AppContext extends Application {
     /**
      * 帖子列表
      *
-     *
      * @param schoolId
      * @param catalog
      * @param pageIndex
@@ -951,7 +951,6 @@ public class AppContext extends Application {
     /**
      * 获取动弹详情
      *
-     *
      * @param tweet_id
      * @param uid
      * @return
@@ -1088,8 +1087,6 @@ public class AppContext extends Application {
     /**
      * 评论列表
      *
-     *
-     *
      * @param isHelp
      * @param uid
      * @param catalog   1新闻 2帖子 3动弹 4动态
@@ -1213,11 +1210,10 @@ public class AppContext extends Application {
     /**
      * 发表评论
      *
-     *
-     * @param catalog        1新闻  2帖子  3动弹  4动态
-     * @param id             某条新闻，帖子，动弹的id
-     * @param uid            用户uid
-     * @param content        发表评论的内容
+     * @param catalog 1新闻  2帖子  3动弹  4动态
+     * @param id      某条新闻，帖子，动弹的id
+     * @param uid     用户uid
+     * @param content 发表评论的内容
      * @param isHelp
      * @return
      * @throws AppException
@@ -1237,16 +1233,14 @@ public class AppContext extends Application {
     }
 
     /**
-     *
-     *
      * @param id       表示被评论的某条新闻，帖子，动弹的id 或者某条消息的 friendid
      * @param catalog  表示该评论所属什么类型：1新闻  2帖子  3动弹  4动态
      * @param replyid  表示被回复的单个评论id
      * @param authorid 表示该评论的原始作者id
      * @param author
-     *@param uid      用户uid 一般都是当前登录用户uid
+     * @param uid      用户uid 一般都是当前登录用户uid
      * @param content  发表评论的内容
-     * @param isHelp    @return
+     * @param isHelp   @return
      * @throws AppException
      */
     public Result replyComment(int id, int catalog, int replyid, int authorid, String author, int uid, String content, boolean isHelp) throws AppException {
@@ -1255,7 +1249,6 @@ public class AppContext extends Application {
 
     /**
      * 删除评论
-     *
      *
      * @param id       表示被评论对应的某条新闻,帖子,动弹的id 或者某条消息的 friendid
      * @param catalog  表示该评论所属什么类型：1新闻  2帖子  3动弹  4动态&留言
@@ -1351,12 +1344,54 @@ public class AppContext extends Application {
         return ApiClient.delFavorite(this, uid, objid, type);
     }
 
+
+    /**
+     * 保存第三方登录信息
+     *
+     * @param user
+     */
+    public void saveThridLoginInfo(final User user) {
+        cleanLoginInfo();
+        cleanAccountInfo();
+        this.loginUid = user.getUid();
+        this.login = true;
+        setProperties(new Properties() {{
+            setProperty("user.third.uid", String.valueOf(user.getUid()));
+            setProperty("user.third.nickname", user.getNickname());
+            setProperty("user.third.avatar", user.getAvatar_url());
+            setProperty("user.third.account", user.getEmail());
+            setProperty("user.third.school", user.getSchool_id());
+            setProperty("user.third.friends", String.valueOf(user.getFriends_count()));
+            setProperty("user.third.followers", String.valueOf(user.getFollowers_count()));
+            setProperty("user.third.actives", String.valueOf(user.getActive_credits()));
+        }});
+    }
+
+    /**
+     * 清除登录信息
+     */
+    public void cleanThirdLoginInfo() {
+        this.loginUid = 0;
+        this.login = false;
+        removeProperty(
+                "user.third.uid",
+                "user.third.nickname",
+                "user.third.account",
+                "user.third.avatar",
+                "user.third.school",
+                "user.third.friends",
+                "user.third.followers",
+                "user.third.actives"
+        );
+    }
+
     /**
      * 保存登录信息
      *
      * @param user
      */
     public void saveLoginInfo(final User user) {
+        cleanThirdLoginInfo();
         this.loginUid = user.getUid();
         this.login = true;
         setProperties(new Properties() {{
@@ -1410,6 +1445,9 @@ public class AppContext extends Application {
      */
     public User getLoginInfo() {
         User lu = new User();
+        if(getProperty("user.account") == null){
+            return getThirdLoginInfo();
+        }
         lu.setUid(StringUtils.toInt(getProperty("user.uid"), 0));
         lu.setNickname(getProperty("user.name"));
         lu.setAvatar_url(getProperty("user.face"));
@@ -1420,6 +1458,25 @@ public class AppContext extends Application {
         lu.setFollowers_count(StringUtils.toInt(getProperty("user.fans"), 0));
         lu.setActive_credits(StringUtils.toInt(getProperty("user.score"), 0));
         lu.setRemember(StringUtils.toBool(getProperty("user.isRemember")));
+        return lu;
+    }
+
+
+    /**
+     * 获取登录信息
+     *
+     * @return
+     */
+    public User getThirdLoginInfo() {
+        User lu = new User();
+        lu.setUid(StringUtils.toInt(getProperty("user.third.uid"), 0));
+        lu.setNickname(getProperty("user.third.nickname"));
+        lu.setAvatar_url(getProperty("user.third.avatar"));
+        lu.setEmail(getProperty("user.third.account"));
+        lu.setSchool_id(getProperty("user.third.school"));
+        lu.setFriends_count(StringUtils.toInt(getProperty("user.third.friends"), 0));
+        lu.setFollowers_count(StringUtils.toInt(getProperty("user.third.followers"), 0));
+        lu.setActive_credits(StringUtils.toInt(getProperty("user.third.actives"), 0));
         return lu;
     }
 
@@ -1901,5 +1958,9 @@ public class AppContext extends Application {
 
     public Result updateMajor(int loginUid, String schoolId, String academyId, String majorId, String dormId) throws AppException {
         return ApiClient.updateMajor(this, loginUid, schoolId, academyId, majorId, dormId);
+    }
+
+    public MobileRegisterResult thirdLogin(String thirdUid, String thirdType, Integer schoolId, String nickname, String status) throws AppException {
+        return ApiClient.thirdLogin(this, thirdUid, thirdType, schoolId, nickname, status);
     }
 }

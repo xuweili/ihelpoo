@@ -52,6 +52,7 @@ public class URLs implements Serializable {
     public final static String SCHOOL_LIST = "http://192.168.0.108:8080/v1.1/schools.xml";
     public final static String MOBILE_CODE = "http://192.168.0.108:8080/v1.1/mobileCode.xml";
     public final static String MOBILE_REGISTER = "http://192.168.0.108:8080/v1.1/mobileRegister.xml";
+    public static final String THIRD_LOGIN = "http://192.168.0.108:8080/v1.1/thirdLogin.xml";
 
     //	public final static String LOGIN_VALIDATE_HTTP = HTTP + HOST + URL_SPLITTER + "action/api/login_validate";
     public final static String LOGIN_VALIDATE_HTTP = "http://192.168.0.108:8080/v1.1/login.xml";
