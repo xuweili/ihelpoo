@@ -63,11 +63,11 @@ public class MessageList extends Entity{
 	    		int depth = xmlParser.getDepth();
 			    switch(evtType){ 
 			    	case XmlPullParser.START_TAG:
-			    		if(depth==2 && tag.equalsIgnoreCase("messageCount")) 
+			    		if(depth==2 && tag.equalsIgnoreCase("message_count"))
 			    		{
 			    			msglist.messageCount = StringUtils.toInt(xmlParser.nextText(),0);
 			    		}
-			    		else if(tag.equalsIgnoreCase("pageSize")) 
+			    		else if(tag.equalsIgnoreCase("page_size"))
 			    		{
 			    			msglist.pageSize = StringUtils.toInt(xmlParser.nextText(),0);
 			    		}

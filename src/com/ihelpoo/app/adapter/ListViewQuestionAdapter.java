@@ -24,6 +24,7 @@ import com.ihelpoo.app.common.BitmapManager;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -114,7 +115,7 @@ public class ListViewQuestionAdapter extends BaseAdapter {
 		listItemView.face.setOnClickListener(faceClickListener);
 		listItemView.face.setTag(post);
 		
-		listItemView.title.setText(post.getTitle());
+		listItemView.title.setText(Html.fromHtml(post.getTitle()));
 		listItemView.title.setTag(post);//设置隐藏参数(实体类)
 		listItemView.author.setText(post.getAuthor());
 		listItemView.date.setText(post.getPubDate());

@@ -193,7 +193,7 @@ public class LoginDialog extends BaseActivity {
                 loadingAnimation.start();
                 mViewSwitcher.showNext();
 
-                login(account, pwd, isRemember, status ? "1" : "0");
+                login(account, pwd, isRemember, status ? "2" : "1");
             }
         });
 
@@ -438,21 +438,6 @@ public class LoginDialog extends BaseActivity {
         mTencent.onActivityResult(requestCode, resultCode, data);
     }
 
-//    private void onClickLogin() {
-//        if (!mTencent.isSessionValid()) {
-//            IUiListener listener = new BaseUiListener() {
-//                @Override
-//                protected void doComplete(JSONObject values) {
-//                    mTencent.requestAsync(Constants.GRAPH_SIMPLE_USER_INFO, null,
-//                            Constants.HTTP_GET, new BaseUiListener("get_simple_userinfo", false), null);
-//                }
-//            };
-//            mTencent.login(this, "all", listener);
-//        } else {
-//            mTencent.logout(this);
-//        }
-//    }
-
 
     private void onClickLogin() {
         if (!mTencent.isSessionValid()) {
@@ -481,12 +466,6 @@ public class LoginDialog extends BaseActivity {
         }
 
         protected void doComplete(JSONObject values) {
-            try {
-                String qqUid = values.getString("openid");
-                thirdLogin(qqUid, "QQ", "QQ_"+qqUid);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
         }
 
         @Override
@@ -502,86 +481,6 @@ public class LoginDialog extends BaseActivity {
 
 
     }
-
-//    private class BaseApiListener implements IRequestListener {
-//        private String mScope = "all";
-//        private Boolean mNeedReAuth = false;
-//
-//        public BaseApiListener(String scope, boolean needReAuth) {
-//            mScope = scope;
-//            mNeedReAuth = needReAuth;
-//        }
-//
-//        @Override
-//        public void onComplete(final JSONObject response, Object state) {
-//            doComplete(response, state);
-//        }
-//
-//        protected void doComplete(JSONObject response, Object state) {
-//            try {
-//                int ret = response.getInt("ret");
-//                if (ret == 100030) {
-//                    if (mNeedReAuth) {
-//                        Runnable r = new Runnable() {
-//                            public void run() {
-//                                mTencent.reAuth(LoginDialog.this, mScope, new BaseUiListener());
-//                            }
-//                        };
-//                        LoginDialog.this.runOnUiThread(r);
-//                    }
-//                }
-//                thirdLogin("QQ1234_UID", "QQ", response.getString("nickname"));
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//                Log.e("toddtest", response.toString());
-//            }
-//
-//        }
-//
-//        @Override
-//        public void onIOException(final IOException e, Object state) {
-//            showResult("IRequestListener.onIOException:", e.getMessage());
-//        }
-//
-//        @Override
-//        public void onMalformedURLException(final MalformedURLException e,
-//                                            Object state) {
-//            showResult("IRequestListener.onMalformedURLException", e.toString());
-//        }
-//
-//        @Override
-//        public void onJSONException(final JSONException e, Object state) {
-//            showResult("IRequestListener.onJSONException:", e.getMessage());
-//        }
-//
-//        @Override
-//        public void onConnectTimeoutException(ConnectTimeoutException arg0,
-//                                              Object arg1) {
-//            showResult("IRequestListener.onConnectTimeoutException:", arg0.getMessage());
-//
-//        }
-//
-//        @Override
-//        public void onSocketTimeoutException(SocketTimeoutException arg0,
-//                                             Object arg1) {
-//            showResult("IRequestListener.SocketTimeoutException:", arg0.getMessage());
-//        }
-//
-//        @Override
-//        public void onUnknowException(Exception arg0, Object arg1) {
-//            showResult("IRequestListener.onUnknowException:", arg0.getMessage());
-//        }
-//
-//        @Override
-//        public void onHttpStatusException(HttpStatusException arg0, Object arg1) {
-//            showResult("IRequestListener.HttpStatusException:", arg0.getMessage());
-//        }
-//
-//        @Override
-//        public void onNetworkUnavailableException(NetworkUnavailableException arg0, Object arg1) {
-//            showResult("IRequestListener.onNetworkUnavailableException:", arg0.getMessage());
-//        }
-//    }
 
     private void showResult(final String base, final String msg) {
         mHandler.post(new Runnable() {

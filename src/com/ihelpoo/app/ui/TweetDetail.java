@@ -490,8 +490,23 @@ public class TweetDetail extends BaseActivity {
                             break;
                         case UIHelper.LISTVIEW_ACTION_SCROLL:
                             lvSumData += msg.what;
-                            lvCommentData.addAll(list.getCommentlist());
+//                            lvCommentData.addAll(list.getCommentlist());
+                            if (lvCommentData.size() > 0) {
+                                for (Comment com1 : list.getCommentlist()) {
+                                    boolean b = false;
+                                    for (Comment com2 : lvCommentData) {
+                                        if (com1.getId() == com2.getId() && com1.getAuthorId() == com2.getAuthorId()) {
+                                            b = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!b) lvCommentData.add(com1);
+                                }
+                            } else {
+                                lvCommentData.addAll(list.getCommentlist());
+                            }
                             break;
+
                     }
 
                     if (msg.what < 20) {

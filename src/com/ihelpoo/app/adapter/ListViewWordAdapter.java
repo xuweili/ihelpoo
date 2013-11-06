@@ -25,6 +25,7 @@ import com.ihelpoo.app.common.BitmapManager;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -211,8 +212,7 @@ public class ListViewWordAdapter extends MyBaseAdapter {
 
         Active.ObjectReply reply = active.getObjectReply();
         if (reply != null) {
-            listItemView.reply.setText(UIHelper.parseActiveReply(
-                    reply.objectName, reply.objectBody));
+            listItemView.reply.setText(Html.fromHtml(String.valueOf(UIHelper.parseActiveReply(reply.objectName, reply.objectBody))));
             listItemView.reply.setVisibility(TextView.VISIBLE);
         } else {
             listItemView.reply.setText("");
