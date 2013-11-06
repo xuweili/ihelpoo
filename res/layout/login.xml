@@ -141,7 +141,7 @@
             android:button="@null"
             android:drawableLeft="@drawable/register_checkbox_bg"
             android:paddingLeft="6dp"
-            android:text="隐身登录"
+            android:text="潜水登录"
             android:drawablePadding="5dp"
             android:textColor="#b1b1b1"
             android:textSize="13sp"
