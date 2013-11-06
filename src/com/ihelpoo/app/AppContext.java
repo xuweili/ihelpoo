@@ -1345,27 +1345,6 @@ public class AppContext extends Application {
     }
 
 
-    /**
-     * 保存第三方登录信息
-     *
-     * @param user
-     */
-    public void saveThridLoginInfo(final User user) {
-        cleanLoginInfo();
-        cleanAccountInfo();
-        this.loginUid = user.getUid();
-        this.login = true;
-        setProperties(new Properties() {{
-            setProperty("user.third.uid", String.valueOf(user.getUid()));
-            setProperty("user.third.nickname", user.getNickname());
-            setProperty("user.third.avatar", user.getAvatar_url());
-            setProperty("user.third.account", user.getEmail());
-            setProperty("user.third.school", user.getSchool_id());
-            setProperty("user.third.friends", String.valueOf(user.getFriends_count()));
-            setProperty("user.third.followers", String.valueOf(user.getFollowers_count()));
-            setProperty("user.third.actives", String.valueOf(user.getActive_credits()));
-        }});
-    }
 
     /**
      * 清除登录信息
@@ -1374,15 +1353,25 @@ public class AppContext extends Application {
         this.loginUid = 0;
         this.login = false;
         removeProperty(
-                "user.third.uid",
-                "user.third.nickname",
-                "user.third.account",
-                "user.third.avatar",
-                "user.third.school",
-                "user.third.friends",
-                "user.third.followers",
-                "user.third.actives"
+                "user.uid",
+                "user.nickname",
+                "user.account",
+                "user.avatar_url",
+                "user.school_id",
+                "user.friends_count",
+                "user.followers_count",
+                "user.active_credits"
         );
+    }
+    /**
+     * 保存第三方登录信息
+     *
+     * @param user
+     */
+    public void saveThridLoginInfo(final User user) {
+        cleanLoginInfo();
+        cleanAccountInfo();
+        saveLoginUserInfo(user);
     }
 
     /**
@@ -1392,20 +1381,33 @@ public class AppContext extends Application {
      */
     public void saveLoginInfo(final User user) {
         cleanThirdLoginInfo();
+        saveLoginUserInfo(user);
+        setProperty("user.is_remember", String.valueOf(user.isRemember()));
+        setProperty("user.password", CyptoUtils.encode("ihelpooApp", user.getPwd()));
+    }
+
+    private void saveLoginUserInfo(final User user) {
         this.loginUid = user.getUid();
         this.login = true;
         setProperties(new Properties() {{
             setProperty("user.uid", String.valueOf(user.getUid()));
-            setProperty("user.name", user.getNickname());
-            setProperty("user.face", user.getAvatar_url());
+            setProperty("user.nickname", user.getNickname());
+            setProperty("user.avatar_url", user.getAvatar_url());
             setProperty("user.account", user.getEmail());
-            setProperty("user.pwd", CyptoUtils.encode("ihelpooApp", user.getPwd()));
-            setProperty("user.location", user.getSchool_id());
-            setProperty("user.followers", String.valueOf(user.getFriends_count()));
-            setProperty("user.fans", String.valueOf(user.getFollowers_count()));
-            setProperty("user.score", String.valueOf(user.getActive_credits()));
-            setProperty("user.isRemember", String.valueOf(user.isRemember()));
+            setProperty("user.school_id", user.getSchool_id());
+            setProperty("user.friends_count", String.valueOf(user.getFriends_count()));
+            setProperty("user.followers_count", String.valueOf(user.getFollowers_count()));
+            setProperty("user.active_credits", String.valueOf(user.getActive_credits()));
         }});
+    }
+
+    public int getUserActiveCredits(){
+        int activeCredits = 0;
+        String activeCreditsStr = getProperty("user.active_credits");
+        if(activeCreditsStr != null && activeCreditsStr.matches("\\d+")){
+            activeCredits = Integer.parseInt(activeCreditsStr);
+        }
+        return activeCredits;
     }
 
     /**
@@ -1416,12 +1418,12 @@ public class AppContext extends Application {
         this.login = false;
         removeProperty(
                 "user.uid",
-                "user.name",
-                "user.face",
-                "user.location",
-                "user.followers",
-                "user.fans",
-                "user.score"
+                "user.nickname",
+                "user.avatar_url",
+                "user.school_id",
+                "user.friends_count",
+                "user.followers_count",
+                "user.active_credits"
         );
     }
 
@@ -1434,7 +1436,7 @@ public class AppContext extends Application {
         this.login = false;
         removeProperty(
                 "user.account",
-                "user.pwd"
+                "user.password"
         );
     }
 
@@ -1448,16 +1450,9 @@ public class AppContext extends Application {
         if(getProperty("user.account") == null){
             return getThirdLoginInfo();
         }
-        lu.setUid(StringUtils.toInt(getProperty("user.uid"), 0));
-        lu.setNickname(getProperty("user.name"));
-        lu.setAvatar_url(getProperty("user.face"));
-        lu.setEmail(getProperty("user.account"));
-        lu.setPwd(CyptoUtils.decode("ihelpooApp", getProperty("user.pwd")));
-        lu.setSchool_id(getProperty("user.location"));
-        lu.setFriends_count(StringUtils.toInt(getProperty("user.followers"), 0));
-        lu.setFollowers_count(StringUtils.toInt(getProperty("user.fans"), 0));
-        lu.setActive_credits(StringUtils.toInt(getProperty("user.score"), 0));
-        lu.setRemember(StringUtils.toBool(getProperty("user.isRemember")));
+        makeUserInfo(lu);
+        lu.setPwd(CyptoUtils.decode("ihelpooApp", getProperty("user.password")));
+        lu.setRemember(StringUtils.toBool(getProperty("user.is_remember")));
         return lu;
     }
 
@@ -1469,15 +1464,19 @@ public class AppContext extends Application {
      */
     public User getThirdLoginInfo() {
         User lu = new User();
-        lu.setUid(StringUtils.toInt(getProperty("user.third.uid"), 0));
-        lu.setNickname(getProperty("user.third.nickname"));
-        lu.setAvatar_url(getProperty("user.third.avatar"));
-        lu.setEmail(getProperty("user.third.account"));
-        lu.setSchool_id(getProperty("user.third.school"));
-        lu.setFriends_count(StringUtils.toInt(getProperty("user.third.friends"), 0));
-        lu.setFollowers_count(StringUtils.toInt(getProperty("user.third.followers"), 0));
-        lu.setActive_credits(StringUtils.toInt(getProperty("user.third.actives"), 0));
+        makeUserInfo(lu);
         return lu;
+    }
+
+    private void makeUserInfo(User lu) {
+        lu.setUid(StringUtils.toInt(getProperty("user.uid"), 0));
+        lu.setNickname(getProperty("user.nickname"));
+        lu.setAvatar_url(getProperty("user.avatar_url"));
+        lu.setEmail(getProperty("user.account"));
+        lu.setSchool_id(getProperty("user.school_id"));
+        lu.setFriends_count(StringUtils.toInt(getProperty("user.friends_count"), 0));
+        lu.setFollowers_count(StringUtils.toInt(getProperty("user.followers_count"), 0));
+        lu.setActive_credits(StringUtils.toInt(getProperty("user.active_credits"), 0));
     }
 
     /**
@@ -1962,5 +1961,13 @@ public class AppContext extends Application {
 
     public MobileRegisterResult thirdLogin(String thirdUid, String thirdType, Integer schoolId, String nickname, String status) throws AppException {
         return ApiClient.thirdLogin(this, thirdUid, thirdType, schoolId, nickname, status);
+    }
+
+    public void saveLoginSchool(String schoolId) {
+        setProperty("user.school_id", schoolId);
+    }
+
+    public void saveLoginNickname(String nickname) {
+        setProperty("user.nickname", nickname);
     }
 }

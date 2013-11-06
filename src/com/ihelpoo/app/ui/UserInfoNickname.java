@@ -118,7 +118,7 @@ public class UserInfoNickname extends BaseActivity {
                 try {
                     Result res = appContext.updateNickname(appContext.getLoginUid(), _nickname);
                     if (res != null && res.OK()) {
-                        appContext.setProperty("user.name", _nickname);
+                        appContext.saveLoginNickname(_nickname);
                     }
                     msg.what = 1;
                     msg.obj = res;

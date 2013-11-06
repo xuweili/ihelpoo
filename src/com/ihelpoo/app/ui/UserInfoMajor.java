@@ -345,7 +345,7 @@ public class UserInfoMajor extends BaseActivity {
                 try {
                     Result res = appContext.updateMajor(appContext.getLoginUid(), schoolId, academyId, majorId, dormId);
                     if (res != null && res.OK()) {
-                        appContext.setProperty("user.location", schoolId);
+                        appContext.saveLoginSchool(schoolId);
                     }
                     msg.what = 1;
                     msg.obj = res;

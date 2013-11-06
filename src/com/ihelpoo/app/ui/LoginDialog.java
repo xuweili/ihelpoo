@@ -377,6 +377,7 @@ public class LoginDialog extends BaseActivity {
                         user.setOnline_status("1");
                         user.setNickname(res.getUser().getNickname());
                         user.setSchool_id(res.getUser().getSchool_id());
+                        user.setActive_credits(res.getUser().getActive_credits());
                         ac.saveThridLoginInfo(user);
                         if (curLoginType == LOGIN_MAIN) {
                             //跳转--加载用户动态

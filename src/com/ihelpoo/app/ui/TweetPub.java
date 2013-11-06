@@ -165,7 +165,15 @@ public class TweetPub extends BaseActivity {
         reward.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                if(id != 0){
+                if (id != 0) {
+                    final AppContext ac = (AppContext) getApplication();
+                    int activeCredits = ac.getUserActiveCredits();
+                    int selectedCredits = Integer.parseInt(String.valueOf(reward.getSelectedItem()));
+                    if (activeCredits < selectedCredits) {
+                        UIHelper.ToastMessage(TweetPub.this, "活跃不够了(" + activeCredits + ")");
+                        reward.setSelection(0);
+                        return;
+                    }
                     mHelp.setImageResource(R.drawable.widget_bar_help_selected);
                 } else {
                     mHelp.setImageResource(R.drawable.widget_bar_help);
@@ -596,10 +604,11 @@ public class TweetPub extends BaseActivity {
             tweet.setAuthorId(ac.getLoginUid());
             tweet.setBody(content);
             tweet.setImageFile(imgFile);
-            if(0L == reward.getSelectedItemId()){
+            if (0L == reward.getSelectedItemId()) {
                 tweet.setReward(-1);
             } else {
-                tweet.setReward(Integer.parseInt(String.valueOf(reward.getSelectedItem())));
+                int selectedCredits = Integer.parseInt(String.valueOf(reward.getSelectedItem()));
+                tweet.setReward(selectedCredits);
             }
 
             final Handler handler = new Handler() {
