@@ -537,7 +537,7 @@ public class TweetDetail extends BaseActivity {
                     mLvComment.onRefreshComplete(getString(R.string.pull_to_refresh_update) + new Date().toLocaleString());
             }
         };
-        this.loadLvCommentData(curId, curCatalog, 0, mCommentHandler, UIHelper.LISTVIEW_ACTION_INIT);
+        this.loadLvCommentData(curId, curCatalog, 0, mCommentHandler, UIHelper.LISTVIEW_ACTION_REFRESH);
     }
 
     /**
