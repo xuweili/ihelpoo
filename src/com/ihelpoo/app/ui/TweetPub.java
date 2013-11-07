@@ -482,8 +482,10 @@ public class TweetPub extends BaseActivity {
         imageDialog.show();
     }
 
+
     @Override
-    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
         if (resultCode != RESULT_OK) return;
 
         final Handler handler = new Handler() {
@@ -501,12 +503,23 @@ public class TweetPub extends BaseActivity {
                 Bitmap bitmap = null;
 
                 if (requestCode == ImageUtils.REQUEST_CODE_GETIMAGE_BYSDCARD) {
-                    if (data == null) return;
+                    if (intent == null) return;
 
-                    Uri thisUri = data.getData();
+                    Uri thisUri = intent.getData();
                     String thePath = ImageUtils.getAbsolutePathFromNoStandardUri(thisUri);
 
-                    //如果是标准Uri
+                    if (thisUri.toString().startsWith("content://com.google.android.gallery3d")
+                            || thisUri.toString().startsWith("content://com.android.gallery3d.provider")){
+                        TweetPub.this.runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(TweetPub.this, getString(R.string.picasa_image_not_support), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        return;
+                    }
+
+
+                        //如果是标准Uri
                     if (StringUtils.isEmpty(thePath)) {
                         theLarge = ImageUtils.getAbsoluteImagePath(TweetPub.this, thisUri);
                     } else {
@@ -515,7 +528,11 @@ public class TweetPub extends BaseActivity {
 
                     String attFormat = FileUtils.getFileFormat(theLarge);
                     if (!"photo".equals(MediaUtils.getContentType(attFormat))) {
-                        Toast.makeText(TweetPub.this, getString(R.string.choose_image), Toast.LENGTH_SHORT).show();
+                        TweetPub.this.runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(TweetPub.this, getString(R.string.choose_image), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         return;
                     }
 
@@ -575,8 +592,6 @@ public class TweetPub extends BaseActivity {
                     handler.sendMessage(msg);
                 }
             }
-
-            ;
         }.start();
     }
 
