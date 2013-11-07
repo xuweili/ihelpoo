@@ -108,7 +108,7 @@
                     android:layout_height="75dip"
                     android:layout_alignBottom="@+id/nest_theme_follow_bg"
                     android:layout_marginLeft="20dip"
-                    android:background="@drawable/widget_dface_loading" />
+                    android:background="@drawable/widget_dface" />
 
                 <TextView
                     android:id="@+id/nest_profile_nickname"

@@ -84,6 +84,10 @@ public class FriendList extends Entity{
 				            {			            	
 				            	friend.online_status = xmlParser.nextText();
 				            }
+                            else if(tag.equalsIgnoreCase("create_time"))
+                            {
+                                friend.create_time = xmlParser.nextText();
+                            }
 				            else if(tag.equalsIgnoreCase("gender"))
 				            {			            	
 				            	friend.gender = StringUtils.toInt(xmlParser.nextText(),0);

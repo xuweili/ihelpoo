@@ -208,7 +208,7 @@ public class UserInfo extends BaseActivity {
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         if(resultCode == 0){
-            refresh.callOnClick();
+            refresh.performClick();
         }
     }
 }

@@ -163,6 +163,7 @@ public class UserInfoEdit extends BaseActivity {
     }
 
     private void initData() {
+        enrolFlag = 0;
         mHandler = new Handler() {
             public void handleMessage(Message msg) {
                 if (loading != null) loading.dismiss();
@@ -451,11 +452,12 @@ public class UserInfoEdit extends BaseActivity {
             spEnrol.performClick();
         }
     };
+    private int enrolFlag;
     private AdapterView.OnItemSelectedListener onSelectEnrol = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-//            enrolFlag += 1;
-//            if(enrolFlag<=1) return;
+            enrolFlag += 1;
+            if(enrolFlag<=1) return;
             if(!enrol.getText().toString().equals(spEnrol.getSelectedItem().toString())){
                 updateEnrol();
             }

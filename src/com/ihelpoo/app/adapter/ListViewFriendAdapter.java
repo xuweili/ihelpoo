@@ -46,6 +46,7 @@ public class ListViewFriendAdapter extends BaseAdapter {
         public ImageView gender;
         public TextView name;  
         public TextView expertise;
+        public TextView time;
 	}  
 
 	/**
@@ -91,6 +92,7 @@ public class ListViewFriendAdapter extends BaseAdapter {
 			//获取控件对象
 			listItemView.name = (TextView)convertView.findViewById(R.id.friend_listitem_name);
 			listItemView.expertise = (TextView)convertView.findViewById(R.id.friend_listitem_expertise);
+            listItemView.time = (TextView)convertView.findViewById(R.id.friend_listitem_time);
 			listItemView.face = (ImageView)convertView.findViewById(R.id.friend_listitem_userface);
 			listItemView.gender = (ImageView)convertView.findViewById(R.id.friend_listitem_gender);
 			
@@ -106,6 +108,7 @@ public class ListViewFriendAdapter extends BaseAdapter {
 		listItemView.name.setText(friend.getNickname());
 		listItemView.name.setTag(friend);//设置隐藏参数(实体类)
 		listItemView.expertise.setText("0".equals(friend.getOnline_status())? "":"在线");
+        listItemView.time.setText(StringUtils.friendly_time(friend.getCreate_time()));
 		
 		if(friend.getGender() == 1)
 			listItemView.gender.setImageResource(R.drawable.widget_gender_man);

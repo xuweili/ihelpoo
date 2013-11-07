@@ -32,8 +32,16 @@
    	   	<ProgressBar 
 			android:id="@+id/friend_head_progress" 
 			style="@style/loading_small"
+            android:layout_marginRight="@dimen/space_10"
 			android:layout_gravity="right|center"/>
-	</FrameLayout>
+        <ImageView
+            android:id="@+id/user_info_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:clickable="true"
+            android:background="@drawable/head_refresh"/>
+    </FrameLayout>
 
 	<LinearLayout
 	    android:id="@+id/friend_ll" 

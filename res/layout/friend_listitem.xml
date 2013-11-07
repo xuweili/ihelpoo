@@ -6,6 +6,7 @@
     android:descendantFocusability="blocksDescendants" 
     android:paddingLeft="6dip"
     android:paddingRight="6dip"
+    android:background="@color/white"
     android:paddingTop="10dip"
     android:paddingBottom="9dip">   
 
@@ -16,13 +17,13 @@
 	<LinearLayout
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content"
-    	android:orientation="vertical"
+    	android:orientation="horizontal"
     	android:layout_marginLeft="6dip"> 
 
-	    <LinearLayout 
+	    <RelativeLayout
 	    	android:orientation="horizontal" 
 	        android:layout_width="fill_parent"  
-	        android:layout_height="wrap_content">   
+	        android:layout_height="32dp">
 	            
 		    <ImageView 
 		        android:id="@+id/friend_listitem_gender"  
@@ -35,24 +36,40 @@
 	       	    android:id="@+id/friend_listitem_name"  
 	    		android:layout_width="wrap_content" 
 	           	android:layout_height="wrap_content" 
-	           	android:layout_marginLeft="3dip"
-	           	android:textStyle="bold"
+	           	android:layout_marginLeft="10dip"
 	           	android:textSize="@dimen/text_size_14"
 	            android:textColor="@color/listitem_blue"
 	            android:includeFontPadding="false"
 	            android:singleLine="true"
-	            android:ellipsize="end"/>
+                android:text="昵称"
+	            android:ellipsize="end"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/friend_listitem_gender" />
+            <TextView
+                android:id="@+id/friend_listitem_expertise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_14"
+                android:textColor="@color/listitem_blue"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:text="在线"
+                android:ellipsize="end"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true" />
+
+            <TextView
+                android:id="@+id/friend_listitem_time"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_10"
+                android:textColor="@color/listitem_black_gray"
+                android:ellipsize="end"
+                android:text="前天"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true" />
 	            
-       	</LinearLayout>
-	    
-	    <TextView 
-	        android:id="@+id/friend_listitem_expertise" 
-	        android:layout_width="fill_parent" 
-	     	android:layout_height="wrap_content"
-	     	android:layout_marginTop="8dip"
-     		android:textSize="@dimen/text_size_12"
-	     	android:textColor="@color/listitem_black"
-	    	android:ellipsize="end"/> 	
+       	</RelativeLayout>
        	
     </LinearLayout>
 

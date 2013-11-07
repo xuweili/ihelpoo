@@ -104,7 +104,7 @@ public class Main extends BaseActivity {
     public static final int QUICKACTION_SEARCH = 3;
     public static final int QUICKACTION_SETTING = 4;
     public static final int QUICKACTION_EXIT = 5;
-    public static final int POLLING_NOTICE_INTERVAL = 30;
+    public static final int POLLING_NOTICE_INTERVAL = 60;
 
     private ScrollLayout mScrollLayout;
     private RadioButton[] mButtons;
@@ -637,7 +637,7 @@ public class Main extends BaseActivity {
 //                if (loading != null) loading.dismiss();
                 if (msg.what == 1 && msg.obj != null) {
                     user = (MyInformation) msg.obj;
-                    if(user.getCreate_time().equals(user.getLogin_time()) && user.getCreate_time().equals(String.valueOf(user.getLast_login()))){
+                    if (user.getCreate_time().equals(user.getLogin_time()) && user.getCreate_time().equals(String.valueOf(user.getLast_login()))) {
                         nestActionModifyInfo.setText("修改资料");
                     } else {
                         nestActionModifyInfo.setText("我的资料");
@@ -699,7 +699,7 @@ public class Main extends BaseActivity {
         nestProfileFriend = (TextView) findViewById(R.id.nest_profile_friend);
         nestProfileFollowerCount = (TextView) findViewById(R.id.nest_profile_follower_count);
         nestProfileFollower = (TextView) findViewById(R.id.nest_profile_follower);
-        nestActionModifyInfo = (TextView)findViewById(R.id.nest_action_modify_info);
+        nestActionModifyInfo = (TextView) findViewById(R.id.nest_action_modify_info);
 
         nestActionTrends = (LinearLayout) findViewById(R.id.nest_action_trends);
         nestActionInfo = (LinearLayout) findViewById(R.id.nest_action_info);
@@ -1623,10 +1623,8 @@ public class Main extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        String schoolNameSelected = "请选择学校";
-        if (data != null) {
-            schoolNameSelected = data.getStringExtra(SchoolListActivity.SCHOOL_NAME_SELECTED);
-        }
+        if (data == null) return;
+        String schoolNameSelected = data.getStringExtra(SchoolListActivity.SCHOOL_NAME_SELECTED);
 
         switch (requestCode) {
             case UIHelper.REQUEST_CODE_SCHOOL:
