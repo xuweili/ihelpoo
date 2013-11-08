@@ -159,7 +159,7 @@ public class TweetDetail extends BaseActivity {
             case DATA_LOAD_COMPLETE:
                 mLinearlayout.setVisibility(View.VISIBLE);
                 mProgressbar.setVisibility(View.GONE);
-                mRefresh.setVisibility(View.VISIBLE);
+                mRefresh.setVisibility(View.GONE);
                 break;
         }
     }
@@ -308,7 +308,7 @@ public class TweetDetail extends BaseActivity {
                     lvComment_foot_more.setText(R.string.load_ing);
                     lvComment_foot_progress.setVisibility(View.VISIBLE);
                     //当前pageIndex
-                    int pageIndex = lvSumData / 20;
+                    int pageIndex = lvSumData /  AppContext.PAGE_SIZE;
                     loadLvCommentData(curId, curCatalog, pageIndex, mCommentHandler, UIHelper.LISTVIEW_ACTION_SCROLL);
                 }
             }
@@ -469,7 +469,7 @@ public class TweetDetail extends BaseActivity {
                 }
             }
         };
-        this.loadTweetDetail(curId, mHandler, false);
+        this.loadTweetDetail(curId, mHandler, true);
 
         //加载评论
         mCommentHandler = new Handler() {
