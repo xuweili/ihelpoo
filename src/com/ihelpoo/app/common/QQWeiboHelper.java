@@ -48,7 +48,7 @@ public class QQWeiboHelper {
                     + "friendships_groups_read,friendships_groups_write,statuses_to_me_read,"
                     + "follow_app_official_microblog," + "invitation_write";
 
-    public static final String APP_ID_QQ      = "100535493";
+    public static final String APP_ID_QQ      = "100506408";
 
 
     /**
