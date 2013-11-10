@@ -29,6 +29,7 @@ import com.ihelpoo.app.bean.CommentList;
 import com.ihelpoo.app.bean.Notice;
 import com.ihelpoo.app.bean.Result;
 import com.ihelpoo.app.bean.Tweet;
+import com.ihelpoo.app.common.ImageLoader;
 import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.widget.PullToRefreshListView;
@@ -308,7 +309,7 @@ public class TweetDetail extends BaseActivity {
                     lvComment_foot_more.setText(R.string.load_ing);
                     lvComment_foot_progress.setVisibility(View.VISIBLE);
                     //当前pageIndex
-                    int pageIndex = lvSumData /  AppContext.PAGE_SIZE;
+                    int pageIndex = lvSumData / AppContext.PAGE_SIZE;
                     loadLvCommentData(curId, curCatalog, pageIndex, mCommentHandler, UIHelper.LISTVIEW_ACTION_SCROLL);
                 }
             }
@@ -401,8 +402,8 @@ public class TweetDetail extends BaseActivity {
                     online.setText(tweetDetail.getOnlineState());
                     diffusionCount.setText(tweetDetail.getSpreadCount() + "");
                     plusCount.setText(tweetDetail.getPlusCount() + "");
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)diffusionCount.getLayoutParams();
-                    if("1".equals(tweetDetail.getSayType())){
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) diffusionCount.getLayoutParams();
+                    if ("1".equals(tweetDetail.getSayType())) {
                         helpIcon.setVisibility(View.VISIBLE);
                         helpCount.setVisibility(View.VISIBLE);
                         commentIcon.setVisibility(View.GONE);
@@ -441,7 +442,9 @@ public class TweetDetail extends BaseActivity {
                     //加载图片
                     String imgBig = tweetDetail.getImgBig();
                     if (!StringUtils.isEmpty(imgBig)) {
-                        UIHelper.showLoadImage(image, imgBig, null);
+//                        UIHelper.showLoadImage(image, imgBig, null);
+                        UIHelper.loadDecodeImage(TweetDetail.this, imgBig, image);
+                        // ImageLoader class instance
                         image.setVisibility(View.VISIBLE);
                         image.setOnClickListener(imageClickListener);
                     }
