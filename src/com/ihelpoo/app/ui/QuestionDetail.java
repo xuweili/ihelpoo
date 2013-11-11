@@ -346,7 +346,7 @@ public class QuestionDetail extends BaseActivity {
     		return "";
     	String tags = "";
     	for(String tag : taglist) {
-    		tags += String.format("<a class='tag' href='http://www.oschina.net/question/tag/%s' >&nbsp;%s&nbsp;</a>&nbsp;&nbsp;", URLEncoder.encode(tag), tag);
+    		tags += String.format("<a class='tag' href='http://www.ihelpoo.cn/question/tag/%s' >&nbsp;%s&nbsp;</a>&nbsp;&nbsp;", URLEncoder.encode(tag), tag);
     	}
     	return String.format("<div style='margin-top:10px;'>%s</div>", tags);
     }
@@ -415,8 +415,6 @@ public class QuestionDetail extends BaseActivity {
 				UIHelper.ToastMessage(v.getContext(), R.string.msg_read_detail_fail);
 				return;
 			}
-			//分享到
-			UIHelper.showShareDialog(QuestionDetail.this, postDetail.getTitle(), postDetail.getUrl());
 		}
 	};
 	

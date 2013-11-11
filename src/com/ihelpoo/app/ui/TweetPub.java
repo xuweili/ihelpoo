@@ -452,7 +452,7 @@ public class TweetPub extends BaseActivity {
                             //判断是否挂载了SD卡
                             String storageState = Environment.getExternalStorageState();
                             if (storageState.equals(Environment.MEDIA_MOUNTED)) {
-                                savePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/OSChina/Camera/";//存放照片的文件夹
+                                savePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ihelpoo/Camera/";//存放照片的文件夹
                                 File savedir = new File(savePath);
                                 if (!savedir.exists()) {
                                     savedir.mkdirs();
@@ -555,7 +555,7 @@ public class TweetPub extends BaseActivity {
 
                 if (bitmap != null) {
                     //存放照片的文件夹
-                    String savePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/OSChina/Camera/";
+                    String savePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ihelpoo/Camera/";
                     File savedir = new File(savePath);
                     if (!savedir.exists()) {
                         savedir.mkdirs();

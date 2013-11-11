@@ -49,7 +49,6 @@
 		<activity android:name=".ui.UserFriend" android:theme="@style/Theme.ZoomLight" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask"/>
 		<activity android:name=".ui.ImageDialog" android:theme="@style/Theme.HalfTranslucent" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask"/>
 		<activity android:name=".ui.ImageZoomDialog" android:theme="@style/Theme.ZoomLight.Fullscreen" android:configChanges="keyboardHidden|orientation|screenSize" android:launchMode="singleTask"/>
-		<activity android:name=".ui.ScreenShotShare" android:theme="@style/Theme.ZoomLight.Fullscreen" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask"/>
 		<activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"

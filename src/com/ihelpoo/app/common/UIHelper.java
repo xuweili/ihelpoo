@@ -58,7 +58,6 @@ import com.ihelpoo.app.ui.MessageForward;
 import com.ihelpoo.app.ui.NewsDetail;
 import com.ihelpoo.app.ui.QuestionDetail;
 import com.ihelpoo.app.ui.QuestionTag;
-import com.ihelpoo.app.ui.ScreenShotShare;
 import com.ihelpoo.app.ui.Search;
 import com.ihelpoo.app.ui.Setting;
 import com.ihelpoo.app.ui.SoftwareDetail;
@@ -75,7 +74,6 @@ import com.ihelpoo.app.widget.ScreenShotView.OnScreenShotListener;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -461,88 +459,6 @@ public class UIHelper {
         context.startActivity(Intent.createChooser(intent, "选择分享"));
     }
 
-    /**
-     * 分享到'新浪微博'或'腾讯微博'的对话框
-     *
-     * @param context 当前Activity
-     * @param title   分享的标题
-     * @param url     分享的链接
-     */
-    public static void showShareDialog(final Activity context,
-                                       final String title, final String url) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setIcon(android.R.drawable.btn_star);
-        builder.setTitle(context.getString(R.string.share));
-        builder.setItems(R.array.app_share_items,
-                new DialogInterface.OnClickListener() {
-                    AppConfig cfgHelper = AppConfig.getAppConfig(context);
-                    AccessInfo access = cfgHelper.getAccessInfo();
-
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        switch (arg1) {
-                            case 0:// 新浪微博
-                                // 分享的内容
-                                final String shareMessage = title + " " + url;
-                                // 初始化微博
-                                if (SinaWeiboHelper.isWeiboNull()) {
-                                    SinaWeiboHelper.initWeibo();
-                                }
-                                // 判断之前是否登陆过
-                                if (access != null) {
-                                    SinaWeiboHelper.progressDialog = new ProgressDialog(
-                                            context);
-                                    SinaWeiboHelper.progressDialog
-                                            .setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                                    SinaWeiboHelper.progressDialog
-                                            .setMessage(context
-                                                    .getString(R.string.sharing));
-                                    SinaWeiboHelper.progressDialog
-                                            .setCancelable(true);
-                                    SinaWeiboHelper.progressDialog.show();
-                                    new Thread() {
-                                        public void run() {
-                                            SinaWeiboHelper.setAccessToken(
-                                                    access.getAccessToken(),
-                                                    access.getAccessSecret(),
-                                                    access.getExpiresIn());
-                                            SinaWeiboHelper.shareMessage(context,
-                                                    shareMessage);
-                                        }
-                                    }.start();
-                                } else {
-                                    SinaWeiboHelper
-                                            .authorize(context, shareMessage);
-                                }
-                                break;
-                            case 1:// 腾讯微博
-                                QQWeiboHelper.shareToQQ(context, title, url);
-                                break;
-                            case 2:// 截图分享
-                                addScreenShot(context, new OnScreenShotListener() {
-
-                                    @SuppressLint("NewApi")
-                                    public void onComplete(Bitmap bm) {
-                                        Intent intent = new Intent(context, ScreenShotShare.class);
-                                        intent.putExtra("title", title);
-                                        intent.putExtra("url", url);
-                                        intent.putExtra("cut_image_tmp_path", ScreenShotView.TEMP_SHARE_FILE_NAME);
-                                        try {
-                                            ImageUtils.saveImageToSD(context, ScreenShotView.TEMP_SHARE_FILE_NAME, bm, 100);
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
-                                        context.startActivity(intent);
-                                    }
-                                });
-                                break;
-                            case 3:// 更多
-                                showShareMore(context, title, url);
-                                break;
-                        }
-                    }
-                });
-        builder.create().show();
-    }
 
     /**
      * 收藏操作选择框
