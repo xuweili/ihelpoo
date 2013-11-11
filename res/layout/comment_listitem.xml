@@ -5,10 +5,9 @@
     android:layout_height="wrap_content"
     android:descendantFocusability="blocksDescendants"
     android:paddingLeft="12dip"
-    android:paddingRight="12dip"
-    android:background="@color/white"
-    android:paddingTop="10dip"
-    android:paddingBottom="6dip">
+    android:paddingRight="9dip"
+    android:paddingTop="3dip"
+    android:paddingBottom="3dip">
 
     <ImageView
     	android:id="@+id/comment_listitem_userface"
@@ -18,7 +17,8 @@
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
     	android:orientation="vertical"
-    	android:layout_marginLeft="6dip">
+    	android:layout_marginLeft="3dip"
+        android:background="@drawable/comment_list_divider">
 
        	<TextView
        		android:id="@+id/comment_listitem_username"

@@ -37,12 +37,7 @@ import android.widget.TextView;
  * @created 2012-3-21
  */
 public class LinkView extends TextView {
-	private OnLinkClickListener mLinkClickListener = new LinkView.OnLinkClickListener() {
-		@Override
-		public void onLinkClick() {
-
-		}
-	};
+	private OnLinkClickListener mLinkClickListener;
 
 	public LinkView(Context context) {
 		super(context);

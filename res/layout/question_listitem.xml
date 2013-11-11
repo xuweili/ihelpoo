@@ -4,7 +4,6 @@
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content"
     android:descendantFocusability="blocksDescendants"
-    android:background="@color/white"
     android:paddingLeft="10dip"
     android:paddingRight="10dip"
     android:paddingTop="10dip"
@@ -18,7 +17,8 @@
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content"
     	android:orientation="vertical"
-    	android:layout_marginLeft="9dip">
+    	android:layout_marginLeft="9dip"
+        android:background="@drawable/comment_list_divider">
 
 	    <TextView android:id="@+id/question_listitem_title" 
 	        android:layout_width="fill_parent" 

@@ -124,8 +124,9 @@ public class ListViewCommentAdapter extends BaseAdapter {
 		listItemView.name.setText(comment.getAuthor());
 		listItemView.date.setText(StringUtils.friendly_time(comment.getPubDate()));
 		listItemView.content.setLinkText(comment.getContent());
+        listItemView.content.parseLinkText();
 		listItemView.content.setTag(comment);//设置隐藏参数(实体类)
-		
+
 		switch(comment.getAppClient())
 		{	
 			default:

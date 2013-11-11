@@ -13,6 +13,7 @@
 	<color name="orange">#FFA500</color>
 	<color name="lemonyellow">#FFFACD</color>
 	<color name="graywhite">#F5F5F5</color>
+    <color name="graywhite2">#F7F7F7</color>
 	<color name="grayslate">#708090</color>
 	<color name="lightblue">#0083FF</color>
 	
@@ -54,13 +55,13 @@
     <color name="listitem_yellow">#fffaffbf</color>
 
     <color name="bg_rank1">#A8A8A8</color>
-    <color name="bg_rank2">#99CC14</color>
-    <color name="bg_rank3">#73CAFC</color>
-    <color name="bg_rank4">#2B78C8</color>
-    <color name="bg_rank5">#EB6534</color>
-    <color name="bg_rank6">#DD405D</color>
-    <color name="bg_rank7">#F9CC32</color>
-    <color name="bg_rank8">#F9CC32</color>
-    <color name="bg_rank9">#212121</color>
-    <color name="bg_rank10">#212121</color>
+    <color name="bg_rank2">#99cc01</color>
+    <color name="bg_rank3">#72cbff </color>
+    <color name="bg_rank4">#2b78c8</color>
+    <color name="bg_rank5">#ff6600 </color>
+    <color name="bg_rank6">#dc215b</color>
+    <color name="bg_rank7">#ffcc00 </color>
+    <color name="bg_rank8">#ffcc00</color>
+    <color name="bg_rank9">#333333</color>
+    <color name="bg_rank10">#333333</color>
 </resources>

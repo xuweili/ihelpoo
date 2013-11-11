@@ -6,7 +6,6 @@
     android:descendantFocusability="blocksDescendants" 
     android:paddingLeft="6dip"
     android:paddingRight="6dip"
-    android:background="@color/white"
     android:paddingTop="10dip"
     android:paddingBottom="9dip">   
 
@@ -18,7 +17,8 @@
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content"
     	android:orientation="horizontal"
-    	android:layout_marginLeft="6dip"> 
+    	android:layout_marginLeft="6dip"
+        android:background="@drawable/comment_list_divider">
 
 	    <RelativeLayout
 	    	android:orientation="horizontal" 
