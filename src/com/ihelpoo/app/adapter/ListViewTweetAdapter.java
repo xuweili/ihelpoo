@@ -190,7 +190,8 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
 
         String imgSmall = tweet.getImgSmall();
         if (!StringUtils.isEmpty(imgSmall)) {
-            bmpManager.loadBitmap(imgSmall, listItemView.image, BitmapFactory.decodeResource(context.getResources(), R.drawable.image_loading));
+//            bmpManager.loadBitmap(imgSmall, listItemView.image, BitmapFactory.decodeResource(context.getResources(), R.drawable.image_loading));
+            UIHelper.loadDecodeImage(context, imgSmall, listItemView.image);
             listItemView.image.setOnClickListener(imageClickListener);
             listItemView.image.setTag(tweet.getImgBig());
             listItemView.image.setVisibility(ImageView.VISIBLE);

@@ -904,6 +904,13 @@ public class UIHelper {
                 imgFace.getContext().getString(R.string.msg_load_userface_fail));
     }
 
+    public static void loadDecodeImage(Context context, String imgUrl, ImageView imageView){
+
+        ImageLoader imgLoader = new ImageLoader(context);
+        imgLoader.DisplayImage(imgUrl, R.drawable.image_loading, imageView);
+
+    }
+
     /**
      * 加载显示图片
      *
