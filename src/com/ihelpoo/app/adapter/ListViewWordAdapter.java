@@ -265,7 +265,7 @@ public class ListViewWordAdapter extends MyBaseAdapter {
     private String modifyPath(String message) {
 //		message = message.replaceAll("(<a[^>]+href=\")/([\\S]+)\"", "$1"
 //				+ AT_HOST_PRE + "/$2\"");
-//		message = message.replaceAll("(<a[^>]+href=\")http://m.oschina.net([\\S]+)\"", "$1"+MAIN_HOST+"$2\"");
+//		message = message.replaceAll("(<a[^>]+href=\")http://m.ihelpoo.cn([\\S]+)\"", "$1"+MAIN_HOST+"$2\"");
         return message;
     }
 

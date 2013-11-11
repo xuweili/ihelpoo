@@ -29,7 +29,7 @@ import java.net.URLEncoder;
  */
 public class URLs implements Serializable {
 
-    public final static String HOST = "api.ihelpoo.cn";//192.168.1.110  www.oschina.net
+    public final static String HOST = "api.ihelpoo.cn";//192.168.1.110  www.ihelpoo.cn
 //    public final static String LOCALHOST = "api.ihelpoo.cn";
     public final static String HTTP = "http://";
     public final static String HTTPS = "https://";
@@ -124,7 +124,7 @@ public class URLs implements Serializable {
     //	public final static String UPDATE_VERSION = URL_API_HOST+"MobileAppVersion.xml";
     public final static String UPDATE_VERSION = "http://api.ihelpoo.cn/v1.1/versions.xml";
 
-    private final static String URL_HOST = "oschina.net";
+    private final static String URL_HOST = "ihelpoo.cn";
     private final static String URL_WWW_HOST = "www." + URL_HOST;
     private final static String URL_MY_HOST = "my." + URL_HOST;
 

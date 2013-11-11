@@ -6,8 +6,7 @@
         android:id="@+id/doorpage_left"
         android:scaleType="fitXY"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-		android:src="@drawable/nav_doorpage_left"/>
+        android:layout_height="fill_parent"/>
     
 
 </RelativeLayout>

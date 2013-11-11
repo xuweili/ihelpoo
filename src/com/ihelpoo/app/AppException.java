@@ -123,7 +123,7 @@ public class AppException extends Exception implements UncaughtExceptionHandler{
 			//判断是否挂载了SD卡
 			String storageState = Environment.getExternalStorageState();		
 			if(storageState.equals(Environment.MEDIA_MOUNTED)){
-				savePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/OSChina/Log/";
+				savePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/ihelpoo/Log/";
 				File file = new File(savePath);
 				if(!file.exists()){
 					file.mkdirs();

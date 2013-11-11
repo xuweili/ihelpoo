@@ -411,8 +411,6 @@ public class BlogDetail extends BaseActivity {
 				UIHelper.ToastMessage(v.getContext(), R.string.msg_read_detail_fail);
 				return;
 			}
-			//分享到
-			UIHelper.showShareDialog(BlogDetail.this, blogDetail.getTitle(), blogDetail.getUrl());
 		}
 	};
 	

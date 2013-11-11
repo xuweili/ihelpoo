@@ -306,7 +306,7 @@ public class NewsDetail extends BaseActivity {
 					if (!StringUtils.isEmpty(softwareName)
 							&& !StringUtils.isEmpty(softwareLink))
 						body += String
-								.format("<div id='oschina_software' style='margin-top:8px;color:#FF0000;font-weight:bold'>更多关于:&nbsp;<a href='%s'>%s</a>&nbsp;的详细信息</div>",
+								.format("<div id='ihelpoo_software' style='margin-top:8px;color:#FF0000;font-weight:bold'>更多关于:&nbsp;<a href='%s'>%s</a>&nbsp;的详细信息</div>",
 										softwareLink, softwareName);
 
 					// 相关新闻
@@ -449,9 +449,6 @@ public class NewsDetail extends BaseActivity {
 						R.string.msg_read_detail_fail);
 				return;
 			}
-			// 分享到
-			UIHelper.showShareDialog(NewsDetail.this, newsDetail.getTitle(),
-					newsDetail.getUrl());
 		}
 	};
 
