@@ -33,6 +33,7 @@
     <string name="picasa_image_not_support">咱不支持Picasa中的图片，请选择其他图片试试！</string>
     <string name="delete_image">确定删除该图片吗？</string>
     <string name="delete_tweet">确定删除这条消息吗？</string>
+    <string name="delete_all_messages">确定删除和Ta的所有悄悄话吗？</string>
     <string name="delete_blog">确定删除该博客吗？</string>
     <string name="republish_tweet">网络超时，是否重新发布？</string>
     <string name="clearwords">清除文字吗？</string>

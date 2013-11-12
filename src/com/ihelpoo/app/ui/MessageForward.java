@@ -38,7 +38,7 @@ import android.widget.ImageView;
  */
 public class MessageForward extends BaseActivity{
 	
-	private ImageView mBack;
+	private Button mBack;
 	private EditText mReceiver;
 	private EditText mContent;
 	private Button mPublish;
@@ -66,7 +66,7 @@ public class MessageForward extends BaseActivity{
 		_uid = getIntent().getIntExtra("user_id", 0);
 		_content = friend_name + getIntent().getStringExtra("message_content");
     	
-    	mBack = (ImageView)findViewById(R.id.message_forward_back);
+    	mBack = (Button)findViewById(R.id.message_forward_back);
     	mPublish = (Button)findViewById(R.id.message_forward_publish);
     	mContent = (EditText)findViewById(R.id.message_forward_content);
     	mReceiver = (EditText)findViewById(R.id.message_forward_receiver);

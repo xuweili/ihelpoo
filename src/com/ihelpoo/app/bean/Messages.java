@@ -45,13 +45,13 @@ public class Messages extends Entity {
 	private String content;
 	private int messageCount;
 	private String pubDate;	
-	private int appClient; 
+	private int del;
 	
-	public int getAppClient() {
-		return appClient;
+	public int getDel() {
+		return del;
 	}
-	public void setAppClient(int appClient) {
-		this.appClient = appClient;
+	public void setDel(int del) {
+		this.del = del;
 	}
 	public String getFace() {
 		return face;
@@ -157,9 +157,9 @@ public class Messages extends Entity {
 				            {			            	
 				            	msg.setPubDate(xmlParser.nextText());	            	
 				            }
-				            else if(tag.equalsIgnoreCase("appclient"))
+				            else if(tag.equalsIgnoreCase("del"))
 				            {			            	
-				            	msg.setAppClient(StringUtils.toInt(xmlParser.nextText(),0));			            	
+				            	msg.setDel(StringUtils.toInt(xmlParser.nextText(), 0));
 				            }
 				            //通知信息
 				            else if(tag.equalsIgnoreCase("notice"))

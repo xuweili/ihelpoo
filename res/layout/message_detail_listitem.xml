@@ -6,7 +6,6 @@
     android:descendantFocusability="blocksDescendants"
     android:paddingLeft="5dip"
     android:paddingRight="6dip"
-    android:background="@color/white"
     android:paddingTop="6dip"
     android:paddingBottom="6dip">
 

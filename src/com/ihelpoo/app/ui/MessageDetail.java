@@ -247,7 +247,8 @@ public class MessageDetail extends BaseActivity{
 					public void run() {
 						Message msg = new Message();
 						try {
-							Result res = ((AppContext)getApplication()).delComment(curFriendId, curCatalog, com.getId(), com.getAuthorId(), false);
+//							Result res = ((AppContext)getApplication()).delComment(curFriendId, curCatalog, com.getId(), com.getAuthorId(), false);
+                            Result res = ((AppContext)getApplication()).delComment(curFriendId, curCatalog, com.getId(), _uid, false);
 							msg.what = 1;
 							msg.obj = res;
 			            } catch (AppException e) {
@@ -293,20 +294,22 @@ public class MessageDetail extends BaseActivity{
 						break;
 					case UIHelper.LISTVIEW_ACTION_SCROLL:
 						lvSumData += msg.what;
-						if(lvCommentData.size() > 0){
-							for(Comment com1 : list.getCommentlist()){
-								boolean b = false;
-								for(Comment com2 : lvCommentData){
-									if(com1.getId() == com2.getId() && com1.getAuthorId() == com2.getAuthorId()){
-										b = true;
-										break;
-									}
-								}
-								if(!b) lvCommentData.add(com1);
-							}
-						}else{
-							lvCommentData.addAll(list.getCommentlist());
-						}
+//						if(lvCommentData.size() > 0){
+//							for(Comment com1 : list.getCommentlist()){
+//								boolean b = false;
+//								for(Comment com2 : lvCommentData){
+//									if(com1.getId() == com2.getId() && com1.getAuthorId() == com2.getAuthorId()){
+//										b = true;
+//										break;
+//									}
+//								}
+//								if(!b) lvCommentData.add(com1);
+//							}
+//                            lvCommentData.addAll(list.getCommentlist());
+//						}else{
+//							lvCommentData.addAll(list.getCommentlist());
+//						}
+                        lvCommentData.addAll(list.getCommentlist());
 						break;
 					}	
 					

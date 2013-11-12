@@ -187,7 +187,7 @@ public class ListViewWordAdapter extends MyBaseAdapter {
             listItemView.date.setText(StringUtils.friendly_time(active.getPubDate()));
         listItemView.commentCount.setText(active.getCommentCount() + "");
 
-//        switch (active.getAppClient()) {
+//        switch (active.getDel()) {
 //            default:
 //                listItemView.client.setText("");
 //                break;

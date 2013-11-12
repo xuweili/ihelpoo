@@ -1336,9 +1336,7 @@ public class Main extends BaseActivity {
                     public void run() {
                         Message msg = new Message();
                         try {
-                            Result res = appContext.delMessage(
-                                    appContext.getLoginUid(),
-                                    message.getFriendId());
+                            Result res = appContext.delMessage(appContext.getLoginUid(), message.getFriendId());
                             msg.what = 1;
                             msg.obj = res;
                         } catch (AppException e) {

@@ -113,9 +113,9 @@ public class MessageList extends Entity{
 				            {			            	
 				            	msg.setPubDate(xmlParser.nextText());     	
 				            }
-				            else if(tag.equalsIgnoreCase("appclient"))
+				            else if(tag.equalsIgnoreCase("del"))
 				            {			            	
-				            	msg.setAppClient(StringUtils.toInt(xmlParser.nextText(),0));			            	
+				            	msg.setDel(StringUtils.toInt(xmlParser.nextText(), 0));
 				            }
 			    		}
 			            //通知信息

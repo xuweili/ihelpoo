@@ -1106,7 +1106,7 @@ public class ApiClient {
     public static Result forwardMessage(AppContext appContext, int uid, String receiverName, String content) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("uid", uid);
-        params.put("receiverName", receiverName);
+        params.put("receiver_nickname", receiverName);
         params.put("content", content);
 
         try {
@@ -1129,7 +1129,7 @@ public class ApiClient {
     public static Result delMessage(AppContext appContext, int uid, int friendid) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("uid", uid);
-        params.put("friendid", friendid);
+        params.put("friend_id", friendid);
 
         try {
             return http_post(appContext, URLs.MESSAGE_DELETE, params, null);
@@ -1383,6 +1383,7 @@ public class ApiClient {
      */
     public static Result delComment(AppContext appContext, int id, int catalog, int replyid, int authorid, Boolean isHelp) throws AppException {
         Map<String, Object> params = new HashMap<String, Object>();
+        params.put("id", id);
         params.put("catalog", catalog);
         params.put("replyid", replyid);
         params.put("authorid", authorid);

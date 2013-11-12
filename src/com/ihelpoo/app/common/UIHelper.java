@@ -644,20 +644,15 @@ public class UIHelper {
                 .setTitle(context.getString(R.string.delete_tweet))
                 .setPositiveButton(R.string.sure,
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                if (thread != null)
-                                    thread.start();
-                                else
-                                    ToastMessage(context,
-                                            R.string.msg_noaccess_delete);
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (thread != null) thread.start();
+                                else ToastMessage(context, R.string.msg_noaccess_delete);
                                 dialog.dismiss();
                             }
                         })
                 .setNegativeButton(R.string.cancle,
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
+                            public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
                             }
                         }).create().show();
@@ -820,7 +815,7 @@ public class UIHelper {
                 imgFace.getContext().getString(R.string.msg_load_userface_fail));
     }
 
-    public static void loadDecodeImage(Context context, String imgUrl, ImageView imageView){
+    public static void loadDecodeImage(Context context, String imgUrl, ImageView imageView) {
 
         ImageLoader imgLoader = new ImageLoader(context);
         imgLoader.DisplayImage(imgUrl, R.drawable.image_loading, imageView);
