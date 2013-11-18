@@ -24,7 +24,6 @@ import java.util.regex.Pattern;
 
 import com.ihelpoo.app.AppConfig;
 import com.ihelpoo.app.AppException;
-import com.ihelpoo.app.adapter.GridViewFaceAdapter;
 import com.ihelpoo.app.bean.News;
 import com.ihelpoo.app.ui.BaseActivity;
 import com.ihelpoo.app.ui.CommentPub;
@@ -39,6 +38,7 @@ import com.ihelpoo.app.widget.LinkView;
 import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.AppManager;
 import com.ihelpoo.app.R;
+import com.ihelpoo.app.adapter.GridViewFaceAdapter;
 import com.ihelpoo.app.api.ApiClient;
 import com.ihelpoo.app.bean.AccessInfo;
 import com.ihelpoo.app.bean.Active;
@@ -141,10 +141,12 @@ public class UIHelper {
 
     /**
      * 表情图片匹配
-     */
+     
     private static Pattern facePattern = Pattern
             .compile("\\[{1}([0-9]\\d*)\\]{1}");
-
+	*/
+    
+    
     /**
      * 全局web样式
      */
@@ -809,6 +811,7 @@ public class UIHelper {
      * @param imgFace
      * @param faceURL
      */
+    
     public static void showUserFace(final ImageView imgFace,
                                     final String faceURL) {
         showLoadImage(imgFace, faceURL,
@@ -1006,42 +1009,11 @@ public class UIHelper {
         String tempContent = ((AppContext) context.getApplication())
                 .getProperty(temlKey);
         if (!StringUtils.isEmpty(tempContent)) {
-            SpannableStringBuilder builder = parseFaceByText(context,
+            SpannableStringBuilder builder = ExpressionUtil.parseFaceByText(context,
                     tempContent);
             editer.setText(builder);
             editer.setSelection(tempContent.length());// 设置光标位置
         }
-    }
-
-    /**
-     * 将[12]之类的字符串替换为表情
-     *
-     * @param context
-     * @param content
-     */
-    public static SpannableStringBuilder parseFaceByText(Context context,
-                                                         String content) {
-        SpannableStringBuilder builder = new SpannableStringBuilder(content);
-        Matcher matcher = facePattern.matcher(content);
-        while (matcher.find()) {
-            // 使用正则表达式找出其中的数字
-            int position = StringUtils.toInt(matcher.group(1));
-            int resId = 0;
-            try {
-                if (position > 65 && position < 102)
-                    position = position - 1;
-                else if (position > 102)
-                    position = position - 2;
-                resId = GridViewFaceAdapter.getImageIds()[position];
-                Drawable d = context.getResources().getDrawable(resId);
-                d.setBounds(0, 0, 35, 35);// 设置表情图片的显示大小
-                ImageSpan span = new ImageSpan(d, ImageSpan.ALIGN_BOTTOM);
-                builder.setSpan(span, matcher.start(), matcher.end(),
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            } catch (Exception e) {
-            }
-        }
-        return builder;
     }
 
     /**

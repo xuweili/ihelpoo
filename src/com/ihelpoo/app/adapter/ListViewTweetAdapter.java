@@ -21,10 +21,12 @@ import com.ihelpoo.app.widget.LinkView;
 import com.ihelpoo.app.R;
 import com.ihelpoo.app.bean.Tweet;
 import com.ihelpoo.app.common.BitmapManager;
+import com.ihelpoo.app.common.ExpressionUtil;
 import com.ihelpoo.app.common.UIHelper;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -171,7 +173,11 @@ public class ListViewTweetAdapter extends MyBaseAdapter {
 
 //		listItemView.content.setText(tweet.getBody());
 //		listItemView.content.parseLinkText();
-        listItemView.content.setLinkText(parseBody(tweet.getBody()));
+        /**
+         * Time 2013/11/17
+         * author Suwen
+         */
+        listItemView.content.setLinkText(tweet.getBody());
         listItemView.content.setTag(tweet);//设置隐藏参数(实体类)
         listItemView.content.setOnClickListener(linkViewClickListener);
         listItemView.content.setLinkClickListener(linkClickListener);

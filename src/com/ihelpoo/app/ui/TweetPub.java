@@ -19,19 +19,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.ihelpoo.app.AppConfig;
-import com.ihelpoo.app.AppContext;
-import com.ihelpoo.app.AppException;
-import com.ihelpoo.app.R;
-import com.ihelpoo.app.adapter.GridViewFaceAdapter;
-import com.ihelpoo.app.bean.Result;
-import com.ihelpoo.app.bean.Tweet;
-import com.ihelpoo.app.common.FileUtils;
-import com.ihelpoo.app.common.ImageUtils;
-import com.ihelpoo.app.common.MediaUtils;
-import com.ihelpoo.app.common.StringUtils;
-import com.ihelpoo.app.common.UIHelper;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -63,6 +50,19 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.ihelpoo.app.AppConfig;
+import com.ihelpoo.app.AppContext;
+import com.ihelpoo.app.AppException;
+import com.ihelpoo.app.R;
+import com.ihelpoo.app.adapter.GridViewFaceAdapter;
+import com.ihelpoo.app.bean.Result;
+import com.ihelpoo.app.bean.Tweet;
+import com.ihelpoo.app.common.FileUtils;
+import com.ihelpoo.app.common.ImageUtils;
+import com.ihelpoo.app.common.MediaUtils;
+import com.ihelpoo.app.common.StringUtils;
+import com.ihelpoo.app.common.UIHelper;
 
 /**
  * 发表动弹
@@ -448,6 +448,7 @@ public class TweetPub extends BaseActivity {
                         }
                         //拍照
                         else if (item == 1) {
+                        	//判断是否相机可用
                             String savePath = "";
                             //判断是否挂载了SD卡
                             String storageState = Environment.getExternalStorageState();

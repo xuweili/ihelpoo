@@ -3,6 +3,7 @@ package com.ihelpoo.app.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -100,6 +101,30 @@ public class NavWhatsnewPages extends Activity {
 		@Override
 		public void destroyItem(View container, int position, Object object) {
 			((ViewPager) container).removeView(pageViews.get(position));
+		}
+
+		@Override
+		public void finishUpdate(View arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void restoreState(Parcelable arg0, ClassLoader arg1) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public Parcelable saveState() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void startUpdate(View arg0) {
+			// TODO Auto-generated method stub
+			
 		}
 
 	}

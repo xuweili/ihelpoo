@@ -16,9 +16,11 @@ package com.ihelpoo.app.adapter;
 
 import java.util.List;
 
+import com.ihelpoo.app.common.ExpressionUtil;
 import com.ihelpoo.app.common.StringUtils;
 import com.ihelpoo.app.common.UIHelper;
 import com.ihelpoo.app.widget.LinkView;
+import com.ihelpoo.app.AppContext;
 import com.ihelpoo.app.R;
 import com.ihelpoo.app.bean.Comment;
 import com.ihelpoo.app.bean.Comment.Refer;
@@ -27,6 +29,7 @@ import com.ihelpoo.app.common.BitmapManager;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -162,7 +165,10 @@ public class ListViewCommentAdapter extends BaseAdapter {
 			for(Reply reply : comment.getReplies()){
 				View view2 = listContainer.inflate(R.layout.comment_reply, null);
 				TextView tv2 = (TextView)view2.findViewById(R.id.comment_reply_content);
-				tv2.setText(reply.rauthor+"("+StringUtils.friendly_time(reply.rpubDate)+")："+reply.rcontent);
+				String rcontent = reply.rauthor+"("+StringUtils.friendly_time(reply.rpubDate)+")："+reply.rcontent;
+				SpannableStringBuilder builder = ExpressionUtil.parseFaceByText(context,
+						rcontent);
+				tv2.setText(builder);
 				listItemView.relies.addView(view2);
 			}
 			listItemView.relies.setVisibility(View.VISIBLE);

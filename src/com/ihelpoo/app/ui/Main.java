@@ -921,8 +921,7 @@ public class Main extends BaseActivity {
         lvRank = (PullToRefreshListView) findViewById(R.id.frame_listview_rank);
         lvRank.addFooterView(lvRank_footer);// 添加底部视图 必须在setAdapter前
         lvRank.setAdapter(lvRankAdapter);
-        lvRank
-                .setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvRank.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
                         // 点击头部、底部栏无效

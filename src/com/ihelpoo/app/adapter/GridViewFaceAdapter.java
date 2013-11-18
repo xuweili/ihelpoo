@@ -106,7 +106,7 @@ public class GridViewFaceAdapter extends BaseAdapter {
         return mImageIds[position];
     }
 
-    public int getPosition(String emotionText){
+    public static int getPosition(String emotionText){
         return Arrays.asList(emotionsText).indexOf(emotionText);
     }
 

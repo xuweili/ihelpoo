@@ -46,6 +46,7 @@ import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -91,6 +92,21 @@ public class ImageUtils {
 		byte[] bytes = stream.toByteArray();
 		fos.write(bytes);
 		fos.close();
+	}
+	
+	/**
+	 * 判断是否有摄像设备
+	 */
+	/** 安全获取Camera对象实例的方法*/ 
+	public static Camera getCameraInstance(){ 
+	    Camera c = null; 
+	    try { 
+	        c = Camera.open(); // 试图获取Camera实例
+	    } 
+	    catch (Exception e){ 
+	        // 摄像头不可用（正被占用或不存在）
+	    } 
+	    return c; // 不可用则返回null
 	}
 
 	/**

@@ -14,7 +14,10 @@
 
 package com.ihelpoo.app.widget;
 
+import com.ihelpoo.app.AppContext;
+import com.ihelpoo.app.adapter.ListViewTweetAdapter;
 import com.ihelpoo.app.bean.URLs;
+import com.ihelpoo.app.common.ExpressionUtil;
 import com.ihelpoo.app.common.UIHelper;
 import android.content.Context;
 import android.graphics.Color;
@@ -61,9 +64,12 @@ public class LinkView extends TextView {
 
 	public void setLinkText(String linktxt) {
 		Spanned span = Html.fromHtml(linktxt);
-		setText(span);
 		setMovementMethod(LinkMovementMethod.getInstance());
-		parseLinkText(span);
+		Context context=AppContext.getInstance();//取得application的context
+		SpannableStringBuilder builder = ExpressionUtil.parseFaceByText(context,
+				span.toString());
+		setText(builder);
+		parseLinkText(builder);
 	}
 
 	public void parseLinkText(Spanned spanhtml) {
@@ -102,6 +108,9 @@ public class LinkView extends TextView {
 						spanhtml.getSpanEnd(url),
 						Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
+			/**
+			 * Time:2013/11/17
+			 */
 			setText(style);
 		}
 	}

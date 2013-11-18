@@ -77,7 +77,8 @@ import java.util.UUID;
  * @created 2012-3-21
  */
 public class AppContext extends Application {
-
+	
+	private static AppContext instance;  //定义context实例
     public static final int NETTYPE_WIFI = 0x01;
     public static final int NETTYPE_CMWAP = 0x02;
     public static final int NETTYPE_CMNET = 0x03;
@@ -99,10 +100,15 @@ public class AppContext extends Application {
             }
         }
     };
-
+    
+    public static AppContext getInstance() {
+        return instance;
+    }
+    
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this; //取得context
         //注册App异常崩溃处理器
         Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler());
 
